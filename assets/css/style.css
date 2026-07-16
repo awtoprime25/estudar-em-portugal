@@ -99,7 +99,7 @@ a { color: inherit; text-decoration: none; }
   height: 76px;
   gap: 24px;
 }
-.brand__logo { height: 34px; width: auto; }
+.brand__logo { height: 34px; width: auto; max-width: none; }
 
 .primary-nav {
   display: flex;
@@ -331,7 +331,7 @@ a { color: inherit; text-decoration: none; }
   gap: 40px;
   padding-bottom: 40px;
 }
-.footer-logo { height: 30px; margin-bottom: 14px; }
+.footer-logo { height: 30px; margin-bottom: 14px; width: auto; max-width: none; }
 .footer-brand p { font-size: 14px; max-width: 280px; line-height: 1.6; margin: 0; }
 .footer-col h6 {
   font-size: 12px;
@@ -702,12 +702,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Responsive ---------- */
-/* Menu hambúrguer a partir de 1350px — com 8 links (nowrap) + locale-switch
-   + CTA, o conteúdo do nav precisa de ~1285px; 1350px dá margem de sobra
-   para não ficar espremido contra a borda (medido com white-space:nowrap
-   nos links — sem isso os rótulos mais compridos quebravam linha e
-   desalinhavam o cabeçalho inteiro). */
-@media (max-width: 1350px) {
+/* Menu hambúrguer a partir de 1200px — reduzido para 7 links + labels mais
+   curtas ("Início" removido por ser redundante com o clique no logo;
+   "Acesso ao Ensino Superior" encurtado para "Concurso Especial") para caber
+   em ecrãs de portátil comuns (1280/1366px) sem precisar do hambúrguer. */
+@media (max-width: 1200px) {
   .nav-toggle { display: flex; }
   .primary-nav {
     position: absolute;

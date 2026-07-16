@@ -134,11 +134,10 @@ $noindex         = !empty($noindex);
 
         <nav id="primaryNav" class="primary-nav" aria-label="Navegação principal">
             <ul>
-                <li><a href="./" class="<?= $activeNav === 'inicio' ? 'is-active' : '' ?>">Início</a></li>
                 <li><a href="./#destinos" class="<?= $activeNav === 'destinos' ? 'is-active' : '' ?>">Destinos</a></li>
                 <li><a href="./#como-funciona" class="<?= $activeNav === 'como-funciona' ? 'is-active' : '' ?>">Como funciona</a></li>
                 <li><a href="explicacoes.php" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Explicações</a></li>
-                <li><a href="concurso-especial-estudantes-internacionais.php" class="<?= $activeNav === 'concurso-especial' ? 'is-active' : '' ?>">Acesso ao Ensino Superior</a></li>
+                <li><a href="concurso-especial-estudantes-internacionais.php" class="<?= $activeNav === 'concurso-especial' ? 'is-active' : '' ?>">Concurso Especial</a></li>
                 <li><a href="comparar.php" class="<?= $activeNav === 'comparar' ? 'is-active' : '' ?>">Comparar</a></li>
                 <li><a href="blog.php" class="<?= $activeNav === 'blog' ? 'is-active' : '' ?>">Blog</a></li>
                 <li><a href="contato.php" class="<?= $activeNav === 'contato' ? 'is-active' : '' ?>">Contato</a></li>
