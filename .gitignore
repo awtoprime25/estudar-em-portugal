@@ -1,0 +1,11 @@
+# Segredos — nunca versionar
+.env
+
+# Runtime (logs, locks, rate-limit) — gerados automaticamente, não faz sentido versionar
+/storage/
+/log/
+*.log
+
+# Editor/OS
+.DS_Store
+Thumbs.db

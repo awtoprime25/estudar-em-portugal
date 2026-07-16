@@ -1,0 +1,49 @@
+{
+  "empresa": {
+    "nome": "Lá Fora — Estudar em Portugal",
+    "modelo": "Parceria entre a Da Vinci (rede de explicações e apoio escolar com mais de 30 unidades em Portugal e 17 anos de experiência) e a StudyWing (consultora internacional de candidaturas universitárias) para ajudar brasileiros a entrar em universidades portuguesas."
+  },
+  "processo": {
+    "duracao": "4-9 meses",
+    "etapas": [
+      "1. Consulta inicial gratuita com um consultor StudyWing",
+      "2. Escolha do curso e da universidade certa para o perfil",
+      "3. Candidatura pelo Concurso Especial de Estudantes Internacionais (ou regime geral, se tiver dupla nacionalidade PT/UE)",
+      "4. Organização de documentos, equivalências e tradução/apostila",
+      "5. Visto de estudante e chegada a Portugal"
+    ]
+  },
+  "concurso_especial": {
+    "o_que_e": "Processo de candidatura criado pelo Decreto-Lei n.º 36/2014 para quem não tem nacionalidade portuguesa nem de outro país da UE/EEE — vagas próprias, separadas do concurso nacional português.",
+    "quem_se_enquadra": "Não ter nacionalidade portuguesa/UE, não residir legalmente em Portugal há mais de 2 anos, não ser familiar de português/nacional UE, e ter diploma de ensino secundário válido no país de origem.",
+    "enem": "A maioria das instituições aceita a nota do ENEM como prova de acesso, dispensando exames nacionais portugueses.",
+    "dupla_nacionalidade": "Quem tem dupla nacionalidade brasileira e portuguesa/UE NÃO pode usar este concurso — segue o regime geral, com exames nacionais obrigatórios (o ENEM não substitui)."
+  },
+  "vistos": {
+    "tipo": "Visto de estudante junto ao consulado português no Brasil, com regularização de residência na AIMA após a chegada a Portugal.",
+    "prazo": "O processo consular pode demorar vários meses — recomenda-se tratar do visto logo após a matrícula, não deixar para depois."
+  },
+  "custos": {
+    "propinas": "Entre 3.500€ e mais de 16.000€/ano para estudantes internacionais, variando por curso e instituição.",
+    "desconto_cplp": "Por o Brasil pertencer à CPLP, muitas universidades aplicam desconto na propina — até 45% em algumas instituições. É desconto na propina, não é bolsa.",
+    "custo_vida": "Entre 700€ e 1.200€/mês, dependendo da cidade — Lisboa e Porto no topo, cidades médias e o Algarve mais em conta."
+  },
+  "bolsas": [
+    { "nome": "Desconto CPLP", "detalhe": "Redução de até 45% na propina de estudante internacional para candidatos de países da CPLP, incluindo o Brasil. Varia por instituição — confirma-se caso a caso." }
+  ],
+  "cidades": [
+    { "nome": "Lisboa", "detalhe": "Capital, vida académica intensa, maior oferta de cursos e universidades." },
+    { "nome": "Porto", "detalhe": "Tradição universitária, cidade à beira do Douro, custo de vida ligeiramente mais baixo que Lisboa." },
+    { "nome": "Coimbra", "detalhe": "A cidade universitária por excelência em Portugal, ambiente académico muito forte." },
+    { "nome": "Braga", "detalhe": "Cidade jovem, acessível e em crescimento, boa relação custo-benefício." },
+    { "nome": "Faro", "detalhe": "Sol o ano inteiro, Algarve à porta, custo de vida mais baixo que as grandes cidades." },
+    { "nome": "Évora", "detalhe": "Cidade património da UNESCO, tranquila, ambiente académico mais pequeno e acessível." },
+    { "nome": "Aveiro", "detalhe": "Conhecida como a 'Veneza portuguesa', polo forte em engenharia e tecnologia." }
+  ],
+  "faqs_comuns": [
+    { "q": "Preciso de fazer exames portugueses para entrar?", "a": "Na maioria dos casos não — o ENEM é aceite como prova de acesso pelo Concurso Especial de Estudantes Internacionais. A equipa confirma o teu caso na consulta gratuita 👉 [FORM_LINK]" },
+    { "q": "As aulas são em português ou inglês?", "a": "A esmagadora maioria dos cursos em Portugal é lecionada em português — o mesmo português que já falas, sem curso de idioma antes." },
+    { "q": "Quanto custa estudar em Portugal?", "a": "Propinas de estudante internacional entre 3.500€ e 16.000€/ano, muitas vezes com desconto CPLP até 45%. A equipa dá-te os valores exatos para o teu curso na consulta gratuita 👉 [FORM_LINK]" },
+    { "q": "Quais são os requisitos de inglês?", "a": "Para a maioria dos cursos em português não é exigido IELTS/TOEFL — só para os poucos cursos lecionados em inglês." }
+  ]
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="lisboaTitle">
+  <title id="lisboaTitle">Ilustração de Lisboa</title>
+  <defs>
+    <linearGradient id="bgLisboa" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#132a4c"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <pattern id="stripesLisboa" width="20" height="20" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="20" stroke="#1ab8c8" stroke-opacity="0.10" stroke-width="8"/>
+    </pattern>
+  </defs>
+  <rect width="200" height="200" fill="url(#bgLisboa)"/>
+  <rect width="200" height="200" fill="url(#stripesLisboa)"/>
+  <g stroke="#3fd0e0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="20" y1="150" x2="180" y2="150"/>
+    <path d="M78 150 V108 M78 108 L52 130 M78 108 L104 130 M78 108 L140 138"/>
+    <line x1="45" y1="132" x2="150" y2="140"/>
+    <rect x="140" y="108" width="16" height="42" rx="1.5"/>
+    <rect x="136" y="101" width="24" height="8" rx="1.5"/>
+    <circle cx="148" cy="93" r="4"/>
+  </g>
+</svg>

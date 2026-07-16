@@ -1,0 +1,12 @@
+{
+  "name": "Lá Fora — Estudar em Portugal (Da Vinci × StudyWing)",
+  "short_name": "Lá Fora",
+  "description": "Consultoria para brasileiros que querem estudar em Portugal. Parceria Da Vinci × StudyWing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1628",
+  "theme_color": "#0a1628",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="heroCompararTitle">
+  <title id="heroCompararTitle">Ilustração: comparação entre estudar em Portugal ou noutro país da Europa</title>
+  <defs>
+    <radialGradient id="heroCompararBg" cx="35%" cy="30%" r="85%">
+      <stop offset="0%" stop-color="#12294a"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </radialGradient>
+    <pattern id="heroCompararStripes" width="26" height="26" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <rect width="26" height="26" fill="transparent"/>
+      <line x1="0" y1="0" x2="0" y2="26" stroke="#1ab8c8" stroke-opacity="0.10" stroke-width="10"/>
+    </pattern>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#heroCompararBg)"/>
+  <rect width="400" height="400" fill="url(#heroCompararStripes)"/>
+
+  <!-- signpost: caminho bifurcado -->
+  <g stroke="#3fd0e0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="200" y1="360" x2="200" y2="170"/>
+    <!-- placa esquerda: Portugal -->
+    <path d="M200 200 h95 l14 16 l-14 16 h-95 z"/>
+    <!-- placa direita: Europa -->
+    <path d="M200 244 h-95 l-14 16 l14 16 h95 z"/>
+  </g>
+  <text x="248" y="222" fill="#eafcff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Portugal</text>
+  <text x="112" y="266" fill="#eafcff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Europa</text>
+
+  <!-- topo do poste -->
+  <circle cx="200" cy="170" r="6" fill="#0a1628" stroke="#3fd0e0" stroke-width="2.5"/>
+  <circle cx="200" cy="170" r="2" fill="#3fd0e0"/>
+
+  <!-- bandeiras estilizadas -->
+  <g transform="translate(292,150)">
+    <circle r="20" fill="none" stroke="#3fd0e0" stroke-width="2"/>
+    <text x="0" y="6" fill="#3fd0e0" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" text-anchor="middle">PT</text>
+  </g>
+  <g transform="translate(108,150)">
+    <circle r="20" fill="none" stroke="#ffd761" stroke-width="2"/>
+    <text x="0" y="6" fill="#ffd761" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" text-anchor="middle">UE</text>
+  </g>
+
+  <!-- chão -->
+  <line x1="40" y1="360" x2="360" y2="360" stroke="#3fd0e0" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <circle cx="200" cy="200" r="188" fill="none" stroke="#eafcff" stroke-opacity="0.06" stroke-width="1"/>
+</svg>

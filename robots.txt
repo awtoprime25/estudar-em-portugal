@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /views-stats.php
+Disallow: /admin/views-stats.php
+Disallow: /ajax-comp.php
+Disallow: /track-visit.php
+Disallow: /cron-cleanup-views.php
+Disallow: /cron-update-geoip.php
+Disallow: /gerador_artigo_comparar.php
+Disallow: /cron-gerar-blog.php
+Disallow: /gerar-sitemap.php
+Disallow: /chat.php
+Disallow: /csrf-token.php
+Disallow: /comparar-form.log
+Disallow: /storage/
+Disallow: /includes/
+Disallow: /log/
+Disallow: /_dev/
+Disallow: /_backups*/
+
+Sitemap: https://estudar-em-portugal.com/sitemap.xml

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+  <defs>
+    <style>.icon-fill{fill:#fff;}.bg-fill{fill:#0f8ba6;}</style>
+  </defs>
+  <circle class="bg-fill" cx="28" cy="28" r="28"/>
+  <g>
+    <path class="icon-fill" d="M28,50C16.3,50,7,40.7,7,29S16.3,8,28,8s21,9.3,21,21S39.7,50,28,50z M28,9C18,9,10,17,10,27s8,18,18,18s18-8,18-18S38,9,28,9z"/>
+    <polygon class="icon-fill" points="24.7,48.8 23.6,48.8 23.6,24.3 8,24.3 8,23.2 24.7,23.2"/>
+    <rect class="icon-fill" x="27.2" y="33.8" width="1.1" height="15.5"/>
+    <polygon class="icon-fill" points="32,48.8 30.8,48.8 30.8,23.2 47.5,23.2 47.5,24.3 32,24.3"/>
+    <rect class="icon-fill" x="9" y="20" width="37.7" height="1.1"/>
+    <path class="icon-fill" d="M27.9,19c-1.9,0-3.4-1.5-3.4-3.4s1.5-3.4,3.4-3.4s3.4,1.5,3.4,3.4S29.8,19,27.9,19z M27.9,13.4c-1.2,0-2.3,1-2.3,2.3s1,2.3,2.3,2.3s2.3-1,2.3-2.3S29.1,13.4,27.9,13.4z"/>
+    <rect class="icon-fill" x="11.1" y="36.9" width="14.8" height="1.1" transform="translate(-19.8 20.7) rotate(-40)"/>
+    <rect class="icon-fill" x="13.5" y="40.8" width="12.1" height="1.1" transform="translate(-21.9 21.9) rotate(-39.6)"/>
+    <rect class="icon-fill" x="36.5" y="30.1" width="1.1" height="14.8" transform="translate(-15.5 41.9) rotate(-50)"/>
+    <rect class="icon-fill" x="35.5" y="35.3" width="1.1" height="12.1" transform="translate(-18.8 42.8) rotate(-50.4)"/>
+    <rect class="icon-fill" x="28.5" y="15.5" width="12.4" height="1.1" transform="translate(-1.1 29.6) rotate(-45.6)"/>
+    <rect class="icon-fill" x="33.4" y="16.7" width="9.4" height="1.1" transform="translate(-1.2 31.6) rotate(-44.4)"/>
+    <rect class="icon-fill" x="20.8" y="9.9" width="1.1" height="12.4" transform="translate(-5.1 19.5) rotate(-44.4)"/>
+    <rect class="icon-fill" x="17.4" y="12.6" width="1.1" height="9.4" transform="translate(-6.9 18) rotate(-45.6)"/>
+    <path class="icon-fill" d="M19,30.1H7.8c-0.4,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6H19c0.4,0,0.6,0.3,0.6,0.6S19.4,30.1,19,30.1z"/>
+    <path class="icon-fill" d="M14.5,33.5H7.8c-0.4,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6h6.7c0.4,0,0.6,0.3,0.6,0.6S14.9,33.5,14.5,33.5z"/>
+    <path class="icon-fill" d="M47.9,30.1H36.8c-0.4,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6h11.1c0.4,0,0.6,0.3,0.6,0.6S48.3,30.1,47.9,30.1z"/>
+    <path class="icon-fill" d="M47.9,33.5h-6.7c-0.4,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6h6.7c0.4,0,0.6,0.3,0.6,0.6S48.3,33.5,47.9,33.5z"/>
+  </g>
+</svg>
