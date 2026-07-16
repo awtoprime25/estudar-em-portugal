@@ -83,55 +83,97 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="section-head on-dark">
         <h2>Onde você pode estudar</h2>
-        <a href="#destinos" class="see-all">Ver todos os destinos →</a>
       </div>
 
       <div class="city-list">
-        <div class="city-row">
+        <a href="destino-lisboa.php" class="city-row">
           <span class="city-row__num">01</span>
           <h3>Lisboa</h3>
           <p>Capital vibrante, vida acadêmica intensa.</p>
           <div class="city-row__thumb"><img src="<?= site_image('cidade-lisboa') ?>" alt="Lisboa"></div>
-        </div>
-        <div class="city-row">
+        </a>
+        <a href="destino-porto.php" class="city-row">
           <span class="city-row__num">02</span>
           <h3>Porto</h3>
           <p>Tradição universitária à beira do Douro.</p>
           <div class="city-row__thumb"><img src="<?= site_image('cidade-porto') ?>" alt="Porto"></div>
-        </div>
-        <div class="city-row">
+        </a>
+        <a href="destino-coimbra.php" class="city-row">
           <span class="city-row__num">03</span>
           <h3>Coimbra</h3>
           <p>A cidade universitária por excelência.</p>
           <div class="city-row__thumb"><img src="<?= site_image('cidade-coimbra') ?>" alt="Coimbra"></div>
-        </div>
-        <div class="city-row">
+        </a>
+        <a href="destino-braga.php" class="city-row">
           <span class="city-row__num">04</span>
           <h3>Braga</h3>
           <p>Jovem, acessível e em crescimento.</p>
           <div class="city-row__thumb"><img src="<?= site_image('cidade-braga') ?>" alt="Braga"></div>
-        </div>
-        <div class="city-row">
+        </a>
+        <a href="destino-faro.php" class="city-row">
           <span class="city-row__num">05</span>
           <h3>Faro</h3>
           <p>Sol o ano inteiro, Algarve à porta e custo de vida mais baixo.</p>
           <div class="city-row__thumb"><img src="<?= site_image('cidade-faro') ?>" alt="Faro"></div>
-        </div>
-        <div class="city-row">
+        </a>
+        <a href="destino-evora.php" class="city-row">
           <span class="city-row__num">06</span>
           <h3>Évora</h3>
           <p>Cidade património da UNESCO, tranquila e acessível.</p>
           <div class="city-row__thumb"><img src="<?= site_image('cidade-evora') ?>" alt="Évora"></div>
-        </div>
-        <div class="city-row">
+        </a>
+        <a href="destino-aveiro.php" class="city-row">
           <span class="city-row__num">07</span>
           <h3>Aveiro</h3>
           <p>A "Veneza portuguesa", polo de engenharia e tecnologia.</p>
           <div class="city-row__thumb"><img src="<?= site_image('cidade-aveiro') ?>" alt="Aveiro"></div>
-        </div>
+        </a>
       </div>
 
       <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
+    </div>
+  </section>
+
+  <section class="section" id="cursos">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Cursos</span>
+          <h2>Cursos em destaque</h2>
+        </div>
+      </div>
+      <div class="icon-row" style="grid-template-columns:repeat(4,1fr);">
+        <a href="curso-medicina.php" class="icon-card" style="text-decoration:none;color:inherit;">
+          <div class="icon-card__glyph"><i class="bi bi-heart-pulse"></i></div>
+          <h3>Medicina</h3>
+          <p>Mestrado Integrado, 6 anos.</p>
+        </a>
+        <a href="curso-engenharia-informatica.php" class="icon-card" style="text-decoration:none;color:inherit;">
+          <div class="icon-card__glyph"><i class="bi bi-cpu"></i></div>
+          <h3>Engenharia Informática</h3>
+          <p>Alta empregabilidade.</p>
+        </a>
+        <a href="curso-direito.php" class="icon-card" style="text-decoration:none;color:inherit;">
+          <div class="icon-card__glyph"><i class="bi bi-bank"></i></div>
+          <h3>Direito</h3>
+          <p>Tradição desde 1290.</p>
+        </a>
+        <a href="curso-gestao.php" class="icon-card" style="text-decoration:none;color:inherit;">
+          <div class="icon-card__glyph"><i class="bi bi-graph-up-arrow"></i></div>
+          <h3>Gestão</h3>
+          <p>ISEG, NOVA SBE e mais.</p>
+        </a>
+      </div>
+      <p style="text-align:center;margin-top:28px;">
+        <a href="curso-enfermagem.php">Enfermagem</a> ·
+        <a href="curso-arquitetura.php">Arquitetura</a> ·
+        <a href="curso-psicologia.php">Psicologia</a> ·
+        <a href="curso-fisioterapia.php">Fisioterapia</a>
+      </p>
+      <p style="text-align:center;margin-top:16px;">
+        <a href="cursos.php">Ver todos os cursos</a> ·
+        <a href="universidades.php">Ver mapa de universidades</a>
+      </p>
     </div>
   </section>
 

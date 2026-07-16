@@ -32,6 +32,11 @@ if (function_exists('site_visit_track')) {
         <div class="footer-col">
             <h6>Recursos</h6>
             <ul>
+                <li><a href="sobre.php">Sobre nós</a></li>
+                <li><a href="universidades.php">Mapa de universidades</a></li>
+                <li><a href="cursos.php">Todos os cursos</a></li>
+                <li><a href="visto-de-estudante.php">Visto de estudante</a></li>
+                <li><a href="faq.php">Perguntas frequentes</a></li>
                 <li><a href="blog.php">Blog Estudar em Portugal</a></li>
                 <li><a href="comparar.php">Comparar destinos</a></li>
                 <li><a href="<?= e(BLOG_URL) ?>" target="_blank" rel="noopener">Blog Estudar no Estrangeiro</a></li>

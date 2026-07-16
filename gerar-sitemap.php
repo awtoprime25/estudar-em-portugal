@@ -22,11 +22,17 @@ if (!defined('ENP_SITEMAP_INCLUDE')) {
 } else {
     require_once __DIR__ . '/includes/blog-db.php';
 }
+require_once __DIR__ . '/includes/subpage-data.php';
 
 if (!function_exists('enp_gerar_sitemap')) {
     function enp_gerar_sitemap(): int {
         $staticPages = [
             ['loc' => '', 'priority' => '1.0', 'changefreq' => 'weekly'],
+            ['loc' => 'sobre.php', 'priority' => '0.7', 'changefreq' => 'monthly'],
+            ['loc' => 'universidades.php', 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => 'cursos.php', 'priority' => '0.85', 'changefreq' => 'monthly'],
+            ['loc' => 'visto-de-estudante.php', 'priority' => '0.85', 'changefreq' => 'monthly'],
+            ['loc' => 'faq.php', 'priority' => '0.8', 'changefreq' => 'monthly'],
             ['loc' => 'comparar.php', 'priority' => '0.95', 'changefreq' => 'weekly'],
             ['loc' => 'explicacoes.php', 'priority' => '0.9', 'changefreq' => 'monthly'],
             ['loc' => 'concurso-especial-estudantes-internacionais.php', 'priority' => '0.9', 'changefreq' => 'monthly'],
@@ -35,6 +41,12 @@ if (!function_exists('enp_gerar_sitemap')) {
             ['loc' => 'termos.php', 'priority' => '0.2', 'changefreq' => ''],
             ['loc' => 'privacidade.php', 'priority' => '0.2', 'changefreq' => ''],
         ];
+        foreach (array_keys(DESTINOS) as $slug) {
+            $staticPages[] = ['loc' => 'destino-' . $slug . '.php', 'priority' => '0.85', 'changefreq' => 'monthly'];
+        }
+        foreach (array_keys(CURSOS) as $slug) {
+            $staticPages[] = ['loc' => 'curso-' . $slug . '.php', 'priority' => '0.85', 'changefreq' => 'monthly'];
+        }
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
              . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";

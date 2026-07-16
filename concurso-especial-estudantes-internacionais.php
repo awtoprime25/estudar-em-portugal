@@ -142,7 +142,7 @@ require_once __DIR__ . '/includes/header.php';
       <li>Pré-matrícula / reserva de vaga — dentro do prazo indicado, sob risco de perder a vaga.</li>
       <li>Matrícula definitiva — com entrega dos documentos originais e pagamento da propina.</li>
     </ol>
-    <p>Depois de aprovado, ainda é preciso tratar do visto de estudante junto ao consulado português no Brasil, e, já em Portugal, regularizar a residência junto à AIMA.</p>
+    <p>Depois de aprovado, ainda é preciso tratar do <a href="visto-de-estudante.php">visto de estudante</a> junto ao consulado português no Brasil, e, já em Portugal, regularizar a residência junto à AIMA.</p>
 
     <h2 id="quanto-custa">Quanto custa</h2>
     <p>A propina de estudante internacional é mais alta do que a de um aluno nacional, variando bastante por curso e instituição — em algumas faculdades vai de cerca de 3.500€ a mais de 16.000€ por ano.</p>
