@@ -9,3 +9,6 @@
 # Editor/OS
 .DS_Store
 Thumbs.db
+
+# Template de env — mantido só localmente, a pedido
+.env.example
