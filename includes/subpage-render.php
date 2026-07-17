@@ -13,7 +13,7 @@ function render_destino_page(string $slug): void
     $city = DESTINOS[$slug] ?? null;
     if ($city === null) {
         http_response_code(404);
-        $pageTitle       = 'Página não encontrada | Lá Fora';
+        $pageTitle       = 'Página não encontrada | Estudar em Portugal';
         $pageDescription = 'Esta página não existe.';
         $noindex         = true;
         require_once __DIR__ . '/header.php';
@@ -22,7 +22,7 @@ function render_destino_page(string $slug): void
         return;
     }
 
-    $pageTitle       = 'Estudar em ' . $city['nome'] . ' — Guia para Brasileiros | Lá Fora';
+    $pageTitle       = 'Estudar em ' . $city['nome'] . ' — Guia para Brasileiros | Estudar em Portugal';
     $pageDescription = $city['resumo'];
     $activeNav       = 'destinos';
     $pageSlug        = 'destino-' . $slug;
@@ -150,7 +150,7 @@ function render_curso_page(string $slug): void
     $course = CURSOS[$slug] ?? null;
     if ($course === null) {
         http_response_code(404);
-        $pageTitle       = 'Página não encontrada | Lá Fora';
+        $pageTitle       = 'Página não encontrada | Estudar em Portugal';
         $pageDescription = 'Esta página não existe.';
         $noindex         = true;
         require_once __DIR__ . '/header.php';
@@ -159,7 +159,7 @@ function render_curso_page(string $slug): void
         return;
     }
 
-    $pageTitle       = e($course['nome']) . ' em Portugal para Brasileiros | Lá Fora';
+    $pageTitle       = e($course['nome']) . ' em Portugal para Brasileiros | Estudar em Portugal';
     $pageDescription = $course['resumo'];
     $pageSlug        = 'curso-' . $slug;
 

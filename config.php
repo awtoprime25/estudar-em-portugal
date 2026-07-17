@@ -6,8 +6,8 @@
 // reutilizados a partir do projeto irmão EstudarNoEstrangeiro.
 // ============================================================
 
-define('SITE_NAME',        'Lá Fora — Estudar em Portugal');
-define('SITE_SHORT_NAME',  'Lá Fora');
+define('SITE_NAME',        'Estudar em Portugal');
+define('SITE_SHORT_NAME',  'Estudar em Portugal');
 define('SITE_URL',         'https://estudar-em-portugal.com/');
 define('SITE_DESCRIPTION', 'Estude em Portugal com quem conhece o caminho. Candidatura, visto, bolsas e chegada — acompanhamento completo para estudantes brasileiros que querem a Europa como porta de entrada.');
 
@@ -58,6 +58,15 @@ define('DB_USER', (string) (getenv('DB_USER') ?: 'root'));
 define('DB_PASS', (string) (getenv('DB_PASS') ?: ''));
 define('DB_NAME', (string) (getenv('DB_NAME') ?: 'ginasiosdavinci_estudaremportugal'));
 
+// BD DaVinciGlobal — só leitura, para o número de unidades em tempo real
+// (ver includes/davinci-units.php). BD própria da Da Vinci, partilhada
+// (read-only) com os sites irmãos — mesmo padrão do EstudarNoEstrangeiro.
+define('DAVINCI_DB_HOST',  (string) (getenv('DAVINCI_DB_HOST')  ?: 'localhost'));
+define('DAVINCI_DB_USER',  (string) (getenv('DAVINCI_DB_USER')  ?: ''));
+define('DAVINCI_DB_PASS',  (string) (getenv('DAVINCI_DB_PASS')  ?: ''));
+define('DAVINCI_DB_NAME',  (string) (getenv('DAVINCI_DB_NAME')  ?: ''));
+define('DAVINCI_DB_TABLE', (string) (getenv('DAVINCI_DB_TABLE') ?: 'DaVinciGlobal'));
+
 // Segredo usado para fazer hash(IP) antes de gravar (nunca guardamos o IP em
 // claro — ver site_visit_track() em includes/db-helper.php). Preferível vir
 // do .env em produção; fallback determinístico estável para dev local.
@@ -68,7 +77,7 @@ define('CSRF_SECRET', (string) (getenv('CSRF_SECRET') ?: hash('sha256', 'estudar
 define('VIEWS_HASH_SALT', (string) (getenv('VIEWS_HASH_SALT') ?: hash('sha256', 'estudar-em-portugal-views-dev-salt')));
 
 // Retenção da auditoria de views (blog_view_hits) em dias. Reduzido a 30
-// alinhado com o irmão Lá Fora + princípio RGPD de minimização.
+// alinhado com o site irmão + princípio RGPD de minimização.
 define('LF_VIEWS_RETENTION_DAYS', max(7, min(180, (int) (getenv('LF_VIEWS_RETENTION_DAYS') ?: 30))));
 
 // Token de acesso ao dashboard /views-stats.php?key=<TOKEN>. Definido aqui

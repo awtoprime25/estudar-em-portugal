@@ -1,5 +1,5 @@
 <?php
-$pageTitle       = 'Estudar em Portugal para Brasileiros | Lá Fora — Ginásios da Vinci';
+$pageTitle       = 'Estudar em Portugal para Brasileiros | Ginásios Da Vinci';
 $pageDescription = 'Seu diploma europeu começa em Portugal. Mesma língua, universidades reconhecidas em toda a Europa e acompanhamento completo da candidatura à chegada. Agende uma consultoria gratuita.';
 $activeNav       = 'inicio';
 require_once __DIR__ . '/includes/header.php';

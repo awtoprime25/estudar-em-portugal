@@ -95,7 +95,7 @@
     '  <div class="lf-chat-header">',
     '    <div class="lf-chat-header-left">',
     '      <div class="lf-avatar">L</div>',
-    '      <div class="lf-header-info"><strong>Leo</strong><span>Lá Fora · Estudar em Portugal</span></div>',
+    '      <div class="lf-header-info"><strong>Leo</strong><span>Assistente virtual · Ginásios Da Vinci</span></div>',
     '    </div>',
     '    <div class="lf-header-actions">',
     '      <button class="lf-new-chat-btn" id="lf-new-chat" aria-label="Novo chat">&#x21BA; Novo chat</button>',
@@ -232,7 +232,7 @@
       return;
     }
     setTimeout(function () {
-      var greetMsg = 'Olá! Sou o Leo, do Lá Fora. Queres saber mais sobre estudar em Portugal? Em que te posso ajudar?';
+      var greetMsg = 'Olá! Sou o Leo, assistente virtual dos Ginásios Da Vinci. Queres saber mais sobre estudar em Portugal? Em que te posso ajudar?';
       addMsg(greetMsg, 'bot');
       savedHistory.push({ role: 'assistant', content: greetMsg });
       saveHistory();

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
 
-$pageTitle       = 'Perguntas Frequentes — Estudar em Portugal | Lá Fora';
+$pageTitle       = 'Perguntas Frequentes — Estudar em Portugal';
 $pageDescription = 'Respostas às perguntas mais comuns de brasileiros sobre estudar em Portugal: Concurso Especial, ENEM, propinas, visto de estudante, exames e mais.';
 $activeNav       = 'faq';
 

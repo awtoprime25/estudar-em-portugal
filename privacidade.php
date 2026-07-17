@@ -1,6 +1,6 @@
 <?php
-$pageTitle       = 'Política de Privacidade | Lá Fora — Estudar em Portugal';
-$pageDescription = 'Política de privacidade do site Estudar em Portugal — Lá Fora.';
+$pageTitle       = 'Política de Privacidade | Estudar em Portugal';
+$pageDescription = 'Política de privacidade do site Estudar em Portugal.';
 $activeNav       = '';
 require_once __DIR__ . '/includes/header.php';
 ?>

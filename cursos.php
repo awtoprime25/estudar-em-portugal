@@ -3,7 +3,7 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/subpage-data.php';
 require_once __DIR__ . '/includes/universidades-data.php';
 
-$pageTitle       = 'Cursos em Portugal para Brasileiros | Lá Fora';
+$pageTitle       = 'Cursos em Portugal para Brasileiros | Estudar em Portugal';
 $pageDescription = 'Medicina, Engenharia Informática, Direito, Gestão e mais — descobre a duração, as universidades de referência e as saídas profissionais de cada curso em Portugal.';
 $activeNav       = 'cursos';
 

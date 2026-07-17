@@ -79,8 +79,8 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var step3 = form.querySelector('.studywing-step[data-step="3"]');
-      if (!validateStep(step3)) return;
+      var lastStep = form.querySelector('.studywing-step[data-step="4"]');
+      if (!validateStep(lastStep)) return;
 
       var btn = form.querySelector('button[type="submit"]');
       btn.disabled = true;

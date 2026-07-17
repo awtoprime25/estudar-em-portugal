@@ -7,7 +7,7 @@ $post = $slug !== '' ? blog_get_by_slug($slug) : null;
 
 if (!$post) {
     http_response_code(404);
-    $pageTitle       = 'Artigo não encontrado | Lá Fora';
+    $pageTitle       = 'Artigo não encontrado | Estudar em Portugal';
     $pageDescription = 'O artigo que procuras não existe ou foi removido.';
     $noindex         = true;
     require_once __DIR__ . '/includes/header.php';
@@ -25,7 +25,7 @@ if (!$post) {
 
 $categoryLabels = ['cidade' => 'Cidades', 'curso' => 'Cursos', 'dica' => 'Dicas'];
 $heroImg = $post['hero_image'] ?: 'hero-blog-default.svg';
-$title   = $post['title'] !== '' ? $post['title'] : 'Blog Lá Fora';
+$title   = $post['title'] !== '' ? $post['title'] : 'Blog Estudar em Portugal';
 $desc    = $post['meta_description'] !== '' ? $post['meta_description'] : (string) $post['excerpt'];
 $dateFmt = $post['published_at'] ? date('d/m/Y', strtotime($post['published_at'])) : '';
 
@@ -48,8 +48,8 @@ $extraJsonLd = json_encode([
             'inLanguage' => 'pt-PT',
             'datePublished' => $post['published_at'] ? date('Y-m-d', strtotime($post['published_at'])) : date('Y-m-d'),
             'dateModified' => $post['updated_at'] ? date('Y-m-d', strtotime($post['updated_at'])) : date('Y-m-d'),
-            'author' => ['@type' => 'Organization', 'name' => 'Lá Fora — Da Vinci × StudyWing', 'url' => SITE_URL],
-            'publisher' => ['@type' => 'Organization', 'name' => 'Lá Fora — Da Vinci × StudyWing', 'url' => SITE_URL],
+            'author' => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
+            'publisher' => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => SITE_URL . 'artigo.php?slug=' . $post['slug']],
         ],
         [

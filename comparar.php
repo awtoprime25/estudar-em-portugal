@@ -35,7 +35,7 @@ setcookie('enp_csrf', $enpCsrf, [
     'samesite' => 'Lax',
 ]);
 
-$pageTitle       = 'Portugal vs Estudar no Estrangeiro — Comparação Honesta 2026 | Lá Fora';
+$pageTitle       = 'Portugal vs Estudar no Estrangeiro — Comparação Honesta 2026 | Estudar em Portugal';
 $pageDescription = 'Comparação completa para brasileiros: idioma, propinas, custo de vida, visto, equivalências e diploma. Portugal ou outros países da Europa? Tabela comparativa + formulário StudyWing.';
 $activeNav       = 'comparar';
 $ogImage         = SITE_URL . 'assets/images/ogi-comparar.png';
@@ -53,10 +53,10 @@ $extraJsonLd = json_encode([
             'inLanguage' => 'pt-PT',
             'datePublished' => '2026-07-13',
             'dateModified' => '2026-07-13',
-            'author' => ['@type' => 'Organization', 'name' => 'Lá Fora — Da Vinci × StudyWing', 'url' => SITE_URL],
+            'author' => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'publisher' => [
                 '@type' => 'Organization',
-                'name' => 'Lá Fora — Da Vinci × StudyWing',
+                'name' => 'Estudar em Portugal — Da Vinci × StudyWing',
                 'url' => SITE_URL,
                 'logo' => ['@type' => 'ImageObject', 'url' => SITE_URL . 'assets/images/logotipo-studywing.png'],
             ],
@@ -118,8 +118,7 @@ ksort($cardsColecoes);
            data-br="Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing."
            data-pt="Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing.">Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing.</p>
         <div class="cmp-hero__ctas">
-          <a href="#tabela" class="btn-pill btn-teal">Ver tabela comparativa</a>
-          <a href="#formulario" class="btn-pill btn-outline-light">Falar com StudyWing</a>
+          <a href="#formulario" class="btn-pill btn-teal">Falar com StudyWing</a>
         </div>
         <div class="cmp-hero__badges">
           <span data-br="ENEM aceite em PT" data-pt="ENEM aceite em PT">ENEM aceite em PT</span>
@@ -358,9 +357,20 @@ ksort($cardsColecoes);
                 <span>Telefone / WhatsApp *</span>
                 <input type="tel" name="tel" placeholder="+55 11 9XXXX-XXXX" required>
               </label>
-              <label class="studywing-grid--full">
+              <label>
                 <span>Onde moras? *</span>
                 <input type="text" name="localidade" required placeholder="Cidade, Estado / País">
+              </label>
+              <label class="studywing-grid--full">
+                <span>Nacionalidade do aluno *</span>
+                <select name="nacionalidade" required>
+                  <option value="">Escolhe…</option>
+                  <option value="brasileira">Brasileira</option>
+                  <option value="portuguesa">Portuguesa</option>
+                  <option value="dupla-br-pt">Dupla — brasileira e portuguesa/UE</option>
+                  <option value="outra-cplp">Outra nacionalidade CPLP</option>
+                  <option value="outra">Outra</option>
+                </select>
               </label>
             </div>
             <button type="button" class="btn-pill btn-teal" data-next-step>
@@ -408,6 +418,19 @@ ksort($cardsColecoes);
                 <span>Área(s) de estudo de interesse *</span>
                 <input type="text" name="areas" placeholder="Medicina, Engenharia Informática, Gestão…" required>
               </label>
+              <label class="studywing-grid--full">
+                <span>Que tipo de formação procuras? *</span>
+                <select name="tipo_curso" required>
+                  <option value="">Escolhe…</option>
+                  <option value="licenciatura">Licenciatura</option>
+                  <option value="mestrado">Mestrado</option>
+                  <option value="mestrado-integrado">Mestrado Integrado</option>
+                  <option value="doutoramento">Doutoramento</option>
+                  <option value="ctesp">Curso técnico superior (CTeSP)</option>
+                  <option value="pos-graduacao">Pós-graduação</option>
+                  <option value="nao-sei">Ainda não sei</option>
+                </select>
+              </label>
             </div>
             <div class="studywing-actions">
               <button type="button" class="btn-pill btn-outline-light" data-prev-step>← Voltar</button>
@@ -415,8 +438,49 @@ ksort($cardsColecoes);
             </div>
           </fieldset>
 
-          <!-- ===== STEP 3: preferências ===== -->
+          <!-- ===== STEP 3: objetivo e orçamento ===== -->
           <fieldset class="studywing-step" data-step="3">
+            <legend>Objetivo e orçamento</legend>
+            <div class="studywing-grid">
+              <label class="studywing-grid--full">
+                <span>O que procuras, no fundo? *</span>
+                <select name="objetivo" required>
+                  <option value="">Escolhe…</option>
+                  <option value="diploma-ue">Um diploma reconhecido na União Europeia</option>
+                  <option value="mudar-vida">Mudar de vida / viver na Europa a longo prazo</option>
+                  <option value="raizes-familia">Já tenho família ou raízes em Portugal</option>
+                  <option value="explorando">Ainda estou a explorar as opções</option>
+                </select>
+              </label>
+              <label class="studywing-grid--full">
+                <span>Contando ~1.000€/mês de custo de vida em Portugal, como estás neste momento? *</span>
+                <select name="situacao_financeira" required>
+                  <option value="">Escolhe…</option>
+                  <option value="garantido">Já tenho esse valor garantido</option>
+                  <option value="a-juntar">Estou a juntar, mas ainda não tenho tudo</option>
+                  <option value="preciso-ajuda">Preciso de ajuda para perceber como chegar lá</option>
+                  <option value="nao-pensei">Ainda não parei para pensar nisso</option>
+                </select>
+              </label>
+              <label class="studywing-grid--full">
+                <span>Como pensas pagar os estudos e a estadia? *</span>
+                <select name="financiamento" required>
+                  <option value="">Escolhe…</option>
+                  <option value="recursos-proprios">Recursos próprios / da família</option>
+                  <option value="bolsa">Bolsa ou financiamento estudantil</option>
+                  <option value="trabalho">Vou trabalhar part-time enquanto estudo</option>
+                  <option value="nao-decidi">Ainda não decidi</option>
+                </select>
+              </label>
+            </div>
+            <div class="studywing-actions">
+              <button type="button" class="btn-pill btn-outline-light" data-prev-step>← Voltar</button>
+              <button type="button" class="btn-pill btn-teal" data-next-step>Próximo →</button>
+            </div>
+          </fieldset>
+
+          <!-- ===== STEP 4: preferências ===== -->
+          <fieldset class="studywing-step" data-step="4">
             <legend>Preferências</legend>
             <div class="studywing-grid">
               <label>
@@ -445,6 +509,21 @@ ksort($cardsColecoes);
                   <option value="ainda-decidi">Ainda estou a decidir</option>
                 </select>
               </label>
+              <div class="studywing-grid--full studywing-radio-group">
+                <span class="studywing-radio-group__label">Em que fase estás? *</span>
+                <label class="studywing-radio-option">
+                  <input type="radio" name="momento" value="pesquisando" required>
+                  <span>Só comecei a pesquisar agora</span>
+                </label>
+                <label class="studywing-radio-option">
+                  <input type="radio" name="momento" value="duvidas-sozinho">
+                  <span>Quero esclarecer dúvidas, mas pensava tratar sozinho</span>
+                </label>
+                <label class="studywing-radio-option">
+                  <input type="radio" name="momento" value="quero-assessoria">
+                  <span>Quero contratar já o acompanhamento completo da Da Vinci × StudyWing</span>
+                </label>
+              </div>
               <label class="studywing-grid--full">
                 <span>Outras observações?</span>
                 <textarea name="obs" rows="3" placeholder="Dúvidas, contexto adicional, condicionantes…"></textarea>
@@ -467,6 +546,8 @@ ksort($cardsColecoes);
             <span class="studywing-progress__dot" data-dot="2"></span>
             <span class="studywing-progress__line"></span>
             <span class="studywing-progress__dot" data-dot="3"></span>
+            <span class="studywing-progress__line"></span>
+            <span class="studywing-progress__dot" data-dot="4"></span>
           </div>
 
           <div class="studywing-message" data-feedback hidden></div>

@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS blog_posts (
     meta_description VARCHAR(320)  NULL,
     meta_keywords    VARCHAR(500)  NULL,
     reading_minutes  TINYINT UNSIGNED NULL,
-    author           VARCHAR(120)  NOT NULL DEFAULT 'Equipa Lá Fora',
+    author           VARCHAR(120)  NOT NULL DEFAULT 'Equipa Estudar em Portugal',
     status           ENUM('published','draft') NOT NULL DEFAULT 'published',
     published_at     DATETIME      NULL,
     updated_at       DATETIME      NULL,

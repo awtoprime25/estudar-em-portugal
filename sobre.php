@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
-$pageTitle       = 'Sobre Nós — Da Vinci × StudyWing | Lá Fora';
+require_once __DIR__ . '/includes/davinci-units.php';
+$pageTitle       = 'Sobre Nós — Da Vinci × StudyWing | Estudar em Portugal';
 $pageDescription = 'Conhece a parceria Da Vinci × StudyWing: a maior rede de apoio escolar de Portugal e uma consultoria internacional especializada, juntas para levar brasileiros às melhores universidades portuguesas.';
 $activeNav       = 'sobre';
 
@@ -81,12 +82,12 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
-        <p>A Da Vinci é a maior rede de centros de apoio escolar de Portugal, com mais de 30 unidades em todo o país e mais de 90 mil alunos desde 2008.</p>
+        <p>A Da Vinci é a rede número 1 de centros de apoio escolar de Portugal, com <?= lf_davinci_unidades() ?> unidades em todo o país e mais de 90 mil alunos desde 2008.</p>
         <p>Ao longo do seu percurso, tem-se afirmado como referência nacional no apoio escolar, nas explicações e na formação, oferecendo soluções educativas adaptadas às necessidades de cada aluno.</p>
         <p>Com uma abordagem próxima, personalizada e orientada para resultados, a Da Vinci combina experiência, inovação pedagógica e acompanhamento contínuo — ajudando os alunos a superar desafios académicos e a construir um percurso de sucesso.</p>
       </div>
       <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
-        <div class="stat"><div class="stat__num">+30</div><div class="stat__label">unidades em Portugal</div></div>
+        <div class="stat"><div class="stat__num">+<?= lf_davinci_unidades() ?></div><div class="stat__label">unidades em Portugal</div></div>
         <div class="stat"><div class="stat__num">+90.000</div><div class="stat__label">alunos já apoiados</div></div>
         <div class="stat"><div class="stat__num"><?= date('Y') - 2008 ?> anos</div><div class="stat__label">de liderança em Portugal</div></div>
       </div>
@@ -104,7 +105,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
         <p>A StudyWing é uma consultora especializada em candidaturas a universidades internacionais. Com uma vasta experiência acumulada, ajuda estudantes a encontrar e a candidatar-se às universidades certas para o seu perfil.</p>
-        <p>Para o programa Lá Fora, essa experiência está agora dedicada aos brasileiros que querem estudar em Portugal: da escolha do curso e da universidade, à candidatura pelo Concurso Especial de Estudantes Internacionais, passando pelo visto e pela chegada.</p>
+        <p>No programa Estudar em Portugal, essa experiência está agora dedicada aos brasileiros que querem estudar em Portugal: da escolha do curso e da universidade, à candidatura pelo Concurso Especial de Estudantes Internacionais, passando pelo visto e pela chegada.</p>
         <p>A experiência internacional da StudyWing é um pilar do programa — garante que cada aluno brasileiro tem acesso à orientação certa em cada etapa da candidatura.</p>
       </div>
     </div>
@@ -116,11 +117,11 @@ require_once __DIR__ . '/includes/header.php';
       <div class="section-head on-dark">
         <div>
           <span class="eyebrow">A parceria</span>
-          <h2>Lá Fora: Da Vinci × StudyWing</h2>
+          <h2>Estudar em Portugal: Da Vinci × StudyWing</h2>
         </div>
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
-        <p>O <strong>Lá Fora</strong> é o resultado da parceria entre a Da Vinci e a StudyWing — uma colaboração que combina a presença nacional da Da Vinci em Portugal com a experiência internacional da StudyWing em candidaturas universitárias.</p>
+        <p>O <strong>Estudar em Portugal</strong> é o programa da Ginásios Da Vinci em colaboração com a StudyWing — uma parceria que combina a presença nacional da Da Vinci em Portugal com a experiência internacional da StudyWing em candidaturas universitárias.</p>
         <p>Juntas, ajudam estudantes brasileiros a entrar em universidades portuguesas em cidades como Lisboa, Porto, Coimbra, Braga, Faro, Évora e Aveiro — com a mesma língua, diploma reconhecido em toda a Europa, e um acompanhamento próximo do primeiro contacto até à chegada.</p>
         <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
       </div>

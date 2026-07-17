@@ -16,7 +16,7 @@ if (function_exists('site_visit_track')) {
                 <span class="footer-brand-times" aria-hidden="true">×</span>
                 <img src="assets/images/logotipo-studywing.png" alt="StudyWing — Parceiro Internacional" class="footer-logo footer-logo--studywing">
             </div>
-            <p>O seu futuro começa com a decisão que você faz hoje. Programa <strong>Lá Fora</strong> — parceria <strong>Da Vinci × StudyWing</strong> para admissão universitária em Portugal e na Europa.</p>
+            <p>O seu futuro começa com a decisão que você faz hoje. Programa <strong>Estudar em Portugal</strong> — dos Ginásios Da Vinci, em colaboração com a <strong>StudyWing</strong>, para admissão universitária em Portugal e na Europa.</p>
             <p class="footer-tagline">Há <strong><?= date('Y') - 2008 ?></strong>+ anos a colocar alunos nas melhores universidades.</p>
         </div>
 
@@ -47,7 +47,7 @@ if (function_exists('site_visit_track')) {
         </div>
 
         <div class="footer-col">
-            <h6>Programa Lá Fora</h6>
+            <h6>Programa Estudar em Portugal</h6>
             <ul>
                 <li><a href="https://www.ginasiosdavinci.com/" target="_blank" rel="noopener">Ginásios Da Vinci ↗</a></li>
                 <li><a href="https://studywing.org/" target="_blank" rel="noopener">StudyWing ↗</a></li>

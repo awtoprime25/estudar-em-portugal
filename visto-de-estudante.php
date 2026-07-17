@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
 
-$pageTitle       = 'Visto de Estudante em Portugal para Brasileiros | Lá Fora';
+$pageTitle       = 'Visto de Estudante em Portugal para Brasileiros | Estudar em Portugal';
 $pageDescription = 'Como funciona o visto de estudante para brasileiros que vão estudar em Portugal: quando pedir, que documentos preparar e o que fazer depois de chegar.';
 $activeNav       = 'visto';
 
@@ -24,8 +24,8 @@ $extraJsonLd = json_encode([
             'headline'         => 'Visto de Estudante em Portugal para Brasileiros',
             'description'      => $pageDescription,
             'inLanguage'       => 'pt-PT',
-            'author'           => ['@type' => 'Organization', 'name' => 'Lá Fora — Da Vinci × StudyWing', 'url' => SITE_URL],
-            'publisher'        => ['@type' => 'Organization', 'name' => 'Lá Fora — Da Vinci × StudyWing', 'url' => SITE_URL],
+            'author'           => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
+            'publisher'        => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => SITE_URL . 'visto-de-estudante.php'],
         ],
         [

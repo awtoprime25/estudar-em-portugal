@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
-$pageTitle       = 'Cursos Preparatórios para os Exames Nacionais Portugueses | Lá Fora';
+require_once __DIR__ . '/includes/davinci-units.php';
+$pageTitle       = 'Cursos Preparatórios para os Exames Nacionais Portugueses | Estudar em Portugal';
 $pageDescription = 'Preparação online individual para os Exames Nacionais Portugueses — explicações, reforço e tutoria com professores portugueses, feita para brasileiros.';
 $activeNav       = 'explicacoes';
 
@@ -84,15 +85,15 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="section-head on-dark">
         <div>
-          <h2>A maior rede de explicações, reforço e tutoria de Portugal</h2>
+          <h2>A rede número 1 de explicações, reforço e tutoria de Portugal</h2>
         </div>
       </div>
       <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
-        <div class="stat"><div class="stat__num">+30</div><div class="stat__label">unidades em Portugal</div></div>
+        <div class="stat"><div class="stat__num">+<?= lf_davinci_unidades() ?></div><div class="stat__label">unidades em Portugal</div></div>
         <div class="stat"><div class="stat__num">+90.000</div><div class="stat__label">alunos já preparados</div></div>
-        <div class="stat"><div class="stat__num">17 anos</div><div class="stat__label">de liderança em Portugal</div></div>
+        <div class="stat"><div class="stat__num"><?= date('Y') - 2008 ?> anos</div><div class="stat__label">de liderança em Portugal</div></div>
       </div>
-      <p style="color:var(--muted-on-dark);max-width:720px;line-height:1.7;">Somos a maior e mais conceituada rede de aulas particulares, explicações, reforço e tutoria de Portugal — com mais de 30 unidades no país e mais de 90 mil alunos já preparados. Agora, essa mesma experiência chega até você, no Brasil, 100% online.</p>
+      <p style="color:var(--muted-on-dark);max-width:720px;line-height:1.7;">Somos a rede número 1 de aulas particulares, explicações, reforço e tutoria de Portugal — com <?= lf_davinci_unidades() ?> unidades no país e mais de 90 mil alunos já preparados. Agora, essa mesma experiência chega até você, no Brasil, 100% online.</p>
     </div>
   </section>
 

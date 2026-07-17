@@ -160,7 +160,7 @@ function generateTopicIdea(array $tracker): ?array {
     $allExisting = array_unique(array_merge($used, STATIC_BLOG_SLUGS));
 
     $systemPrompt = 'És um especialista em conteúdo SEO para brasileiros que querem estudar em Portugal. Devolve APENAS um JSON válido, sem markdown, sem texto extra.';
-    $userPrompt  = "Sugere UM novo tópico de blog para o site Lá Fora — Estudar em Portugal (brasileiros que querem estudar em Portugal).\n";
+    $userPrompt  = "Sugere UM novo tópico de blog para o site Estudar em Portugal (brasileiros que querem estudar em Portugal).\n";
     $userPrompt .= "Conteúdo já existente (NÃO repetir nem tópicos semelhantes):\n" . implode(', ', $allExisting) . "\n\n";
     $userPrompt .= "O tópico deve ser sobre cidades portuguesas, cursos em Portugal, vistos, ENEM, Concurso Especial, propinas, CPLP, vida estudantil — 100% focado em Portugal para brasileiros.\n";
     $userPrompt .= "Devolve APENAS este JSON:\n{\n  \"title\": \"Título com <span>palavra-chave</span>\",\n  \"slug_prefix\": \"slug-unico-em-minusculas\",\n  \"category\": \"cidade|curso|dica\",\n  \"category_label\": \"Guia por Cidade · X  ou  Guia por Curso · X  ou  Dicas · X\",\n  \"category_icon\": \"bi bi-lightbulb\",\n  \"keywords\": \"keyword1, keyword2, keyword3\",\n  \"tags\": [\"Tag1\", \"Tag2\"]\n}";
@@ -314,7 +314,7 @@ function lf_gemini_image_attempt(string $cleanTitle, string $category, string $s
 function buildUserPrompt(array $topic): string {
     $existingPosts = implode(', ', STATIC_BLOG_SLUGS);
     return <<<PROMPT
-Gera um artigo de blog para o site Lá Fora — Estudar em Portugal (brasileiros que querem estudar em Portugal).
+Gera um artigo de blog para o site Estudar em Portugal (brasileiros que querem estudar em Portugal).
 
 TÍTULO: {$topic['title']}
 CATEGORIA: {$topic['category_label']}

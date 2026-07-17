@@ -1,6 +1,6 @@
 <?php
-$pageTitle       = 'Termos de Uso | Lá Fora — Estudar em Portugal';
-$pageDescription = 'Termos de uso do site Estudar em Portugal — Lá Fora.';
+$pageTitle       = 'Termos de Uso | Estudar em Portugal';
+$pageDescription = 'Termos de uso do site Estudar em Portugal.';
 $activeNav       = '';
 require_once __DIR__ . '/includes/header.php';
 ?>

@@ -10,16 +10,20 @@
     subdomains: 'abcd', maxZoom: 19
   }).addTo(map);
 
-  var icon = L.divIcon({
-    className: 'custom-marker',
-    html: '<div style="width:14px;height:14px;border-radius:50%;background:#0f8ba6;border:2px solid #fff;box-shadow:0 0 0 2px rgba(15,139,166,.35);"></div>',
-    iconSize: [14, 14], iconAnchor: [7, 7], popupAnchor: [0, -10]
-  });
+  function markerIcon(cor) {
+    return L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="width:14px;height:14px;border-radius:50%;background:' + cor + ';border:2px solid #fff;box-shadow:0 0 0 2px ' + cor + '59;"></div>',
+      iconSize: [14, 14], iconAnchor: [7, 7], popupAnchor: [0, -10]
+    });
+  }
+  var iconPublica = markerIcon('#0f8ba6');
+  var iconPrivada = markerIcon('#d68a2e');
 
   function tipoLabel(u) {
-    if (u.tipo === 'privada') return 'Privada';
-    if (u.tipo === 'politecnico') return 'Politécnico';
-    return 'Pública';
+    var grau = u.grau === 'politecnico' ? 'Politécnico' : 'Universidade';
+    var natureza = u.natureza === 'privada' ? 'Privado(a)' : 'Público(a)';
+    return grau + ' ' + natureza;
   }
 
   function cursosLinks(u, cls) {
@@ -31,7 +35,7 @@
   var markers = [];
   universidades.forEach(function (u) {
     var cidadeLink = u.citySlug ? ' · <a href="destino-' + u.citySlug + '.php" style="color:#0f8ba6;font-weight:600;text-decoration:none;">Ver cidade →</a>' : '';
-    var marker = L.marker([u.lat, u.lng], { icon: icon }).bindPopup(
+    var marker = L.marker([u.lat, u.lng], { icon: u.natureza === 'privada' ? iconPrivada : iconPublica }).bindPopup(
       '<div class="uni-popup">' +
       '<p class="uni-popup-cidade">' + u.cidade + '</p>' +
       '<h4>' + u.nome + '</h4>' +
@@ -75,17 +79,27 @@
     });
   }
 
-  function applyFilter(cidade) {
+  var state = { cidade: 'todas', natureza: 'todas' };
+
+  function matches(u) {
+    return (state.cidade === 'todas' || u.cidade === state.cidade) &&
+           (state.natureza === 'todas' || u.natureza === state.natureza);
+  }
+
+  function applyFilter() {
     document.querySelectorAll('#uniFilters .filter-btn').forEach(function (btn) {
-      btn.classList.toggle('active', btn.dataset.filtro === cidade);
+      btn.classList.toggle('active', btn.dataset.filtro === state.cidade);
     });
-    var filtered = (cidade === 'todas') ? universidades : universidades.filter(function (u) { return u.cidade === cidade; });
+    document.querySelectorAll('#uniNaturezaFilters .filter-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.natureza === state.natureza);
+    });
+    var filtered = universidades.filter(matches);
     var visible = [];
     markers.forEach(function (m) {
       map.removeLayer(m);
-      if (cidade === 'todas' || m._uni.cidade === cidade) { m.addTo(map); visible.push(m); }
+      if (matches(m._uni)) { m.addTo(map); visible.push(m); }
     });
-    if (cidade === 'todas') {
+    if (state.cidade === 'todas') {
       map.flyTo([39.6, -8.2], 6.5, { duration: 1 });
     } else if (visible.length) {
       map.flyToBounds(L.featureGroup(visible).getBounds().pad(0.4), { duration: 1, maxZoom: 12 });
@@ -94,7 +108,10 @@
   }
 
   document.querySelectorAll('#uniFilters .filter-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () { applyFilter(btn.dataset.filtro); });
+    btn.addEventListener('click', function () { state.cidade = btn.dataset.filtro; applyFilter(); });
+  });
+  document.querySelectorAll('#uniNaturezaFilters .filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { state.natureza = btn.dataset.natureza; applyFilter(); });
   });
 
   renderList(universidades);

@@ -11,7 +11,7 @@
  *   - `blog/{slug}.php`       — ficheiro PHP renderizado, include header/footer
  *
  * Tracking: tanto compara_link_regista_view() (legacy contar_views 24h) como
- * lf_track_view() (schema unificado Lá Fora, dedup 24h via UNIQUE+ip_hash+day)
+ * lf_track_view() (schema unificado, dedup 24h via UNIQUE+ip_hash+day)
  * são chamados no ficheiro gerado. Diferença de contadores é documentada em
  * admin/views-stats.php.
  */
@@ -168,10 +168,10 @@ function enp_render_blog_php(array $artigo, array $topico): string {
                 'inLanguage'    => 'pt-PT',
                 'datePublished' => date('Y-m-d'),
                 'dateModified'  => date('Y-m-d'),
-                'author'        => ['@type' => 'Organization', 'name' => 'Lá Fora — Da Vinci × StudyWing', 'url' => SITE_URL],
+                'author'        => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
                 'publisher'     => [
                     '@type' => 'Organization',
-                    'name'  => 'Lá Fora — Da Vinci × StudyWing',
+                    'name'  => 'Estudar em Portugal — Da Vinci × StudyWing',
                     'url'   => SITE_URL,
                     'logo'  => ['@type' => 'ImageObject', 'url' => SITE_URL . 'assets/images/logotipo-studywing.png'],
                 ],
@@ -198,7 +198,7 @@ function enp_render_blog_php(array $artigo, array $topico): string {
 // ARTIGO GERADO EM MODO BLOG-COMPARAR — não editar manualmente;
 // re-executar gerador_artigo_comparar.php pode reescrever este conteúdo.
 $enpSlug        = __LI__;
-$enpPageTitle   = __TI__ . " | Lá Fora — Da Vinci × StudyWing";
+$enpPageTitle   = __TI__ . " | Estudar em Portugal — Da Vinci × StudyWing";
 $enpMeta        = __PI__;
 $enpOgImage     = SITE_URL . 'assets/images/__SI__';
 $enpExtraJsonLd = __JS__;
@@ -279,7 +279,7 @@ function enp_artigo_template(string $titulo, string $a, string $b): array {
     return [
         'tema'           => $titulo,
         'h1_html'        => $h1,
-        'titulo'         => $titulo . ' | Lá Fora',
+        'titulo'         => $titulo . ' | Estudar em Portugal',
         'descricao_meta' => "Comparação honesta entre {$a} e {$b} para brasileiros: propinas, custo de vida, visto, equivalências e diploma. Tudo num só artigo.",
         'keywords'       => mb_strtolower("comparar {$a} {$b}, {$a} vs {$b}, estudar {$b} sendo brasileiro, ENEM {$b}, propinas {$b}, visto {$b}", 'UTF-8'),
         'slug'           => enp_slug('comparar-' . $a . '-' . $b),
@@ -333,7 +333,7 @@ function enp_openrouter_chat(string $prompt, ?string $apiKey, string $model): ?a
 
 function enp_build_prompt(string $titulo, string $a, string $b, string $cat, string $foco): string {
     $af = e($a); $bf = e($b); $cf = e($cat); $ff = e($foco); $tf = e($titulo);
-    return "És um copywriter especializado em conteúdo académico para estudantes internacionais que comparam destinos na Europa. Escreves para o blog 'Lá Fora' (parceria Ginásios Da Vinci × StudyWing) no site comparar.php.\n\nEscreve um artigo comparativo completo sobre o tema:\n\nTÍTULO-BASE: {$tf}\nDESTINO A:    {$af}\nDESTINO B:    {$bf}\nCATEGORIA:    {$cf}\nFOCO:         {$ff}\n\nREGRAS:\n- NÃO menciones lafora.pt, ginasiosdavinci.com, studywing.org, ou qualquer URL externa\n- NÃO escrevas texto fora do JSON\n- Português de Portugal, jornalístico, natural, não promocional\n- Mínimo 900 palavras\n\nEstrutura obrigatória:\n1. Introdução clara ao tema (relação {$af} vs {$bf}).\n2. <h2>O que é {$cat} e porque importa para quem estuda em {$af} ou {$bf}</h2> — resposta direta.\n3. <h2>Comparação direta: {$af} vs {$bf}</h2> — usar tabela HTML (<table class=\"compare-table\">) com 6-8 critérios-chave.\n4. <h2>Prós e contras de cada destino</h2> — listas com <ul><li>.\n5. <h2>Para que perfil serve {$af}?</h2>\n6. <h2>Para que perfil serve {$bf}?</h2>\n7. <h2>Custos e vistos — números reais</h2>.\n8. <h2>Perguntas frequentes sobre {$af} vs {$bf}</h2> — 4 a 5 perguntas com respostas curtas e diretas.\n9. <h2>Conclusão</h2> — decidir quando cada destino é melhor.\n\nSEO+AEO+GEO:\n- Frases claras e respondem a perguntas directas (AEO).\n- Incluir palavras-chave naturais: \"comparar {$af} e {$bf}\", \"{$af} vs {$bf}\", \"estudar {$bf} sendo brasileiro\", \"propinas {$bf}\".\n- FAQ section em perguntas que começam com palavras interrogativas reais.\n\nFormato obrigatório JSON:\n{\n  \"tema\": \"tema principal\",\n  \"titulo\": \"título SEO final (≤ 60 caracteres)\",\n  \"h1_html\": \"h1 em HTML (≤ 70 caracteres)\",\n  \"descricao_meta\": \"meta description (≤ 155 caracteres)\",\n  \"keywords\": \"lista de palavras-chave separadas por vírgula\",\n  \"imagem_url\": \"ogi-comparar.png\",\n  \"descricao_longa\": \"artigo completo em HTML (com <h2>, <h3>, <ul>, <table>, <p>)\",\n  \"slug\": \"url-amigavel-apenas-com-hifens\"\n}\n";
+    return "És um copywriter especializado em conteúdo académico para estudantes internacionais que comparam destinos na Europa. Escreves para o blog do programa 'Estudar em Portugal' (Ginásios Da Vinci em colaboração com a StudyWing) no site comparar.php.\n\nEscreve um artigo comparativo completo sobre o tema:\n\nTÍTULO-BASE: {$tf}\nDESTINO A:    {$af}\nDESTINO B:    {$bf}\nCATEGORIA:    {$cf}\nFOCO:         {$ff}\n\nREGRAS:\n- NÃO menciones lafora.pt, ginasiosdavinci.com, studywing.org, ou qualquer URL externa\n- NÃO escrevas texto fora do JSON\n- Português de Portugal, jornalístico, natural, não promocional\n- Mínimo 900 palavras\n\nEstrutura obrigatória:\n1. Introdução clara ao tema (relação {$af} vs {$bf}).\n2. <h2>O que é {$cat} e porque importa para quem estuda em {$af} ou {$bf}</h2> — resposta direta.\n3. <h2>Comparação direta: {$af} vs {$bf}</h2> — usar tabela HTML (<table class=\"compare-table\">) com 6-8 critérios-chave.\n4. <h2>Prós e contras de cada destino</h2> — listas com <ul><li>.\n5. <h2>Para que perfil serve {$af}?</h2>\n6. <h2>Para que perfil serve {$bf}?</h2>\n7. <h2>Custos e vistos — números reais</h2>.\n8. <h2>Perguntas frequentes sobre {$af} vs {$bf}</h2> — 4 a 5 perguntas com respostas curtas e diretas.\n9. <h2>Conclusão</h2> — decidir quando cada destino é melhor.\n\nSEO+AEO+GEO:\n- Frases claras e respondem a perguntas directas (AEO).\n- Incluir palavras-chave naturais: \"comparar {$af} e {$bf}\", \"{$af} vs {$bf}\", \"estudar {$bf} sendo brasileiro\", \"propinas {$bf}\".\n- FAQ section em perguntas que começam com palavras interrogativas reais.\n\nFormato obrigatório JSON:\n{\n  \"tema\": \"tema principal\",\n  \"titulo\": \"título SEO final (≤ 60 caracteres)\",\n  \"h1_html\": \"h1 em HTML (≤ 70 caracteres)\",\n  \"descricao_meta\": \"meta description (≤ 155 caracteres)\",\n  \"keywords\": \"lista de palavras-chave separadas por vírgula\",\n  \"imagem_url\": \"ogi-comparar.png\",\n  \"descricao_longa\": \"artigo completo em HTML (com <h2>, <h3>, <ul>, <table>, <p>)\",\n  \"slug\": \"url-amigavel-apenas-com-hifens\"\n}\n";
 }
 
 function enp_run_pipeline(bool $dryrun = false): array {
@@ -402,7 +402,7 @@ $enpToken    = (string) ($_GET['key'] ?? $_POST['key'] ?? '');
 $authOk      = VIEWS_STATS_TOKEN !== '' && hash_equals(VIEWS_STATS_TOKEN, $enpToken);
 $cronTrigger = ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && $authOk;
 
-$pageTitle       = 'Gerador Artigos Comparar — Admin | Lá Fora';
+$pageTitle       = 'Gerador Artigos Comparar — Admin | Estudar em Portugal';
 $pageDescription = 'Painel admin do gerador_artigo_comparar.php';
 $activeNav       = '';
 $noindex         = true;

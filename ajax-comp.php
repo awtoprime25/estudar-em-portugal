@@ -62,20 +62,26 @@ if (!$enpTokenOk) {
 // Regenera após uso (defesa contra replay).
 unset($_SESSION['enp_csrf']);
 
-$nome     = trim((string)($_POST['nome']     ?? ''));
-$perfil   = trim((string)($_POST['perfil']   ?? ''));
-$email    = trim((string)($_POST['email']    ?? ''));
-$tel      = trim((string)($_POST['tel']      ?? ''));
-$local    = trim((string)($_POST['localidade'] ?? ''));
-$ano      = trim((string)($_POST['ano']      ?? ''));
-$enem     = trim((string)($_POST['enem']     ?? ''));
-$ielts    = trim((string)($_POST['ielts']    ?? ''));
-$media    = trim((string)($_POST['media']    ?? ''));
-$areas    = trim((string)($_POST['areas']    ?? ''));
-$destino  = trim((string)($_POST['destino']  ?? ''));
-$quando   = trim((string)($_POST['quando']   ?? ''));
-$obs      = trim((string)($_POST['obs']      ?? ''));
-$termos   = !empty($_POST['termos']) ? '1' : '';
+$nome       = trim((string)($_POST['nome']       ?? ''));
+$perfil     = trim((string)($_POST['perfil']     ?? ''));
+$email      = trim((string)($_POST['email']      ?? ''));
+$tel        = trim((string)($_POST['tel']        ?? ''));
+$local      = trim((string)($_POST['localidade'] ?? ''));
+$nacionalidade      = trim((string)($_POST['nacionalidade']      ?? ''));
+$ano        = trim((string)($_POST['ano']        ?? ''));
+$enem       = trim((string)($_POST['enem']       ?? ''));
+$ielts      = trim((string)($_POST['ielts']      ?? ''));
+$media      = trim((string)($_POST['media']      ?? ''));
+$areas      = trim((string)($_POST['areas']      ?? ''));
+$tipoCurso  = trim((string)($_POST['tipo_curso'] ?? ''));
+$objetivo   = trim((string)($_POST['objetivo']   ?? ''));
+$situacaoFinanceira = trim((string)($_POST['situacao_financeira'] ?? ''));
+$financiamento      = trim((string)($_POST['financiamento']       ?? ''));
+$destino    = trim((string)($_POST['destino']    ?? ''));
+$quando     = trim((string)($_POST['quando']     ?? ''));
+$momento    = trim((string)($_POST['momento']    ?? ''));
+$obs        = trim((string)($_POST['obs']        ?? ''));
+$termos     = !empty($_POST['termos']) ? '1' : '';
 
 // Defesa contra header injection (CRLF smuggling) em mail() headers:
 // filter_var filtrou o formato RFC, mas quoted-local-part admite control chars.
@@ -93,13 +99,19 @@ if ($nome === '' || mb_strlen($nome) < 2)              $errors[] = 'nome é obri
 if (!filter_var($email, FILTER_VALIDATE_EMAIL))         $errors[] = 'email inválido';
 if ($tel === '' || mb_strlen($tel) < 6)                 $errors[] = 'telefone é obrigatório';
 if ($local === '')                                      $errors[] = 'localidade é obrigatória';
+if ($nacionalidade === '')                              $errors[] = 'nacionalidade é obrigatória';
 if ($ano === '')                                        $errors[] = 'ano escolar é obrigatório';
 if ($enem === '')                                       $errors[] = 'ENEM é obrigatório';
 if ($ielts === '')                                      $errors[] = 'IELTS/TOEFL é obrigatório';
 if ($media === '')                                      $errors[] = 'média é obrigatória';
 if ($areas === '')                                      $errors[] = 'áreas de interesse são obrigatórias';
+if ($tipoCurso === '')                                  $errors[] = 'tipo de formação é obrigatório';
+if ($objetivo === '')                                   $errors[] = 'objetivo é obrigatório';
+if ($situacaoFinanceira === '')                         $errors[] = 'situação financeira é obrigatória';
+if ($financiamento === '')                              $errors[] = 'plano de financiamento é obrigatório';
 if ($destino === '')                                    $errors[] = 'destino é obrigatório';
 if ($quando === '')                                     $errors[] = 'quando é obrigatório';
+if ($momento === '')                                    $errors[] = 'fase atual é obrigatória';
 if ($termos !== '1')                                    $errors[] = 'termos de privacidade não aceites';
 
 if ($errors) {
@@ -125,6 +137,33 @@ function _bn_quando_label(string $q): string {
     return ['2026-set'=>'Setembro 2026','2027-jan'=>'Janeiro 2027','2027-set'=>'Setembro 2027',
             'ainda-decidi'=>'A decidir'][$q] ?? $q;
 }
+function _bn_nacionalidade_label(string $n): string {
+    return ['brasileira'=>'Brasileira','portuguesa'=>'Portuguesa','dupla-br-pt'=>'Dupla — brasileira e portuguesa/UE',
+            'outra-cplp'=>'Outra nacionalidade CPLP','outra'=>'Outra'][$n] ?? $n;
+}
+function _bn_tipo_curso_label(string $t): string {
+    return ['licenciatura'=>'Licenciatura','mestrado'=>'Mestrado','mestrado-integrado'=>'Mestrado Integrado',
+            'doutoramento'=>'Doutoramento','ctesp'=>'Curso técnico superior (CTeSP)',
+            'pos-graduacao'=>'Pós-graduação','nao-sei'=>'Ainda não sei'][$t] ?? $t;
+}
+function _bn_objetivo_label(string $o): string {
+    return ['diploma-ue'=>'Um diploma reconhecido na UE','mudar-vida'=>'Mudar de vida / viver na Europa',
+            'raizes-familia'=>'Já tem família ou raízes em Portugal','explorando'=>'Ainda está a explorar as opções'][$o] ?? $o;
+}
+function _bn_situacao_financeira_label(string $s): string {
+    return ['garantido'=>'Já tem o valor garantido','a-juntar'=>'Está a juntar, ainda não tem tudo',
+            'preciso-ajuda'=>'Precisa de ajuda para perceber como chegar lá',
+            'nao-pensei'=>'Ainda não pensou nisso'][$s] ?? $s;
+}
+function _bn_financiamento_label(string $f): string {
+    return ['recursos-proprios'=>'Recursos próprios / da família','bolsa'=>'Bolsa ou financiamento estudantil',
+            'trabalho'=>'Vai trabalhar part-time enquanto estuda','nao-decidi'=>'Ainda não decidiu'][$f] ?? $f;
+}
+function _bn_momento_label(string $m): string {
+    return ['pesquisando'=>'Só começou a pesquisar agora',
+            'duvidas-sozinho'=>'Quer esclarecer dúvidas, mas pensava tratar sozinho',
+            'quero-assessoria'=>'Quer contratar já o acompanhamento completo'][$m] ?? $m;
+}
 
 $corpoTexto =
     "FOI EFETUADA UMA PRÉ-INSCRIÇÃO NO SITE estudar-em-portugal/comparar.php\n".
@@ -136,7 +175,8 @@ $corpoTexto =
     "Sou:                 {$perfil}\n".
     "Email:               {$email}\n".
     "Telefone/WhatsApp:   {$tel}\n".
-    "Onde mora:           {$local}\n\n".
+    "Onde mora:           {$local}\n".
+    "Nacionalidade:       "._bn_nacionalidade_label($nacionalidade)."\n\n".
     "===========================================\n".
     "PERFIL ACADÉMICO\n".
     "===========================================\n".
@@ -144,12 +184,20 @@ $corpoTexto =
     "ENEM:                "._bn_sim_nao($enem)."\n".
     "IELTS/TOEFL:         "._bn_sim_nao($ielts)."\n".
     "Média do último ano: {$media}\n".
-    "Áreas de interesse:  {$areas}\n\n".
+    "Áreas de interesse:  {$areas}\n".
+    "Tipo de formação:    "._bn_tipo_curso_label($tipoCurso)."\n\n".
+    "===========================================\n".
+    "OBJETIVO E ORÇAMENTO\n".
+    "===========================================\n".
+    "Objetivo principal:  "._bn_objetivo_label($objetivo)."\n".
+    "Situação financeira: "._bn_situacao_financeira_label($situacaoFinanceira)."\n".
+    "Como vai financiar:  "._bn_financiamento_label($financiamento)."\n\n".
     "===========================================\n".
     "PREFERÊNCIAS\n".
     "===========================================\n".
     "Destino preferido:   "._bn_destino_pais($destino)."\n".
     "Quando quer começar: "._bn_quando_label($quando)."\n".
+    "Fase atual:          "._bn_momento_label($momento)."\n".
     "Observações:         {$obs}\n\n".
     "===========================================\n".
     "Meta\n".

@@ -1,6 +1,6 @@
 <?php
-$pageTitle       = 'Contato — ' . 'Estudar em Portugal | Lá Fora';
-$pageDescription = 'Agende uma consultoria gratuita e fale com a equipa Lá Fora sobre estudar em Portugal e na Europa.';
+$pageTitle       = 'Contato — Estudar em Portugal';
+$pageDescription = 'Agende uma consultoria gratuita e fale com a nossa equipa sobre estudar em Portugal e na Europa.';
 $activeNav       = 'contato';
 require_once __DIR__ . '/includes/header.php';
 

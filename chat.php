@@ -11,6 +11,7 @@ header('X-Content-Type-Options: nosniff');
 
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/db-helper.php';
+require_once __DIR__ . '/includes/davinci-units.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -149,7 +150,7 @@ if (is_file($knowledgePath) && is_readable($knowledgePath)) {
 if (empty($rawKnowledge)) {
     $rawKnowledge = [
         'empresa' => [
-            'nome'   => 'Lá Fora — Estudar em Portugal',
+            'nome'   => 'Estudar em Portugal',
             'modelo' => 'Parceria entre a Da Vinci (rede de explicações e apoio escolar em Portugal) e a StudyWing (consultora internacional de candidaturas universitárias) para ajudar brasileiros a estudar em Portugal.',
         ],
         'processo' => [
@@ -171,6 +172,17 @@ if (empty($rawKnowledge)) {
 
 // Nunca partilhar contacto direto ao LLM (regra REGRAS ABSOLUTAS #3).
 unset($rawKnowledge['empresa']['contacto']);
+
+// Nº de unidades e anos de experiência sempre atuais (BD DaVinciGlobal +
+// data do servidor) — nunca ficam presos ao valor estático escrito em
+// chat-knowledge.json, que serve só de texto-base/fallback.
+if (isset($rawKnowledge['empresa']['modelo']) && is_string($rawKnowledge['empresa']['modelo'])) {
+    $rawKnowledge['empresa']['modelo'] = preg_replace(
+        ['/\d+ unidades/u', '/\d+ anos de experiência/u'],
+        [lf_davinci_unidades() . ' unidades', (date('Y') - 2008) . ' anos de experiência'],
+        $rawKnowledge['empresa']['modelo']
+    );
+}
 
 // Build context string: current message + last 2 user messages
 $contextText = $userMessage;
@@ -252,14 +264,14 @@ $knowledge = json_encode($filtered, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 // System prompt — retematizado: Leo aqui ajuda BRASILEIROS a entrar em
 // Portugal (o inverso do Leo do site irmão, que ajuda portugueses a sair).
 $systemPrompt = <<<PROMPT
-Chamas-te Leo. És o assistente do programa **Lá Fora — Estudar em Portugal** — uma parceria entre **Ginásios Da Vinci × StudyWing** que ajuda estudantes brasileiros a entrar em universidades portuguesas. O teu ÚNICO objetivo é levar a pessoa a preencher o formulário de consulta.
+Chamas-te Leo. És o assistente virtual dos **Ginásios Da Vinci**. Aqui ajudas estudantes brasileiros a entrar em universidades portuguesas, através do programa **Estudar em Portugal**, dos Ginásios Da Vinci em colaboração com a StudyWing. O teu ÚNICO objetivo é levar a pessoa a preencher o formulário de consulta.
 
 ==IDENTIDADE (NÃO NEGAR NUNCA)==
-- O programa **"Lá Fora" É uma parceria entre Ginásios Da Vinci e StudyWing**. Tu representas esta parceria.
-- Fala sempre na primeira pessoa do plural — "nós", "ajudamos-te", "a nossa equipa". Tu FAZES PARTE do Lá Fora, não descreves o programa de fora.
-- Se o utilizador perguntar de quem é, se StudyWing é vossa parceira, ou duvidar da autoria:
-  → Afirma SEMPRE: "Sim, o Lá Fora é uma parceria entre os Ginásios Da Vinci e a StudyWing."
-- O nome canónico é **Lá Fora** (L maiúsculo, acento no "á").
+- Tu és o assistente virtual dos **Ginásios Da Vinci** — não te apresentes como "do Lá Fora": esse não é o nome deste programa.
+- Fala sempre na primeira pessoa do plural — "nós", "ajudamos-te", "a nossa equipa". Tu representas a Da Vinci.
+- Se o utilizador perguntar de quem és, se StudyWing é parceira, ou duvidar da autoria:
+  → Afirma SEMPRE: "Sou o assistente virtual dos Ginásios Da Vinci. O Estudar em Portugal é o nosso programa em colaboração com a StudyWing para levar brasileiros a estudar em Portugal."
+- O nome do programa é **Estudar em Portugal**.
 - O público é BRASILEIRO (e outros internacionais/CPLP) que quer estudar em PORTUGAL — não confundas com "estudar no estrangeiro" genérico. O destino é sempre Portugal.
 - O programa é 100% ONLINE na fase de aconselhamento. NUNCA digas que há consultas presenciais numa unidade Da Vinci — a consulta inicial é sempre por videochamada.
 
@@ -346,7 +358,7 @@ for ($attempt = 0; $attempt <= $maxRetries; $attempt++) {
             'Content-Type: application/json',
             'Authorization: Bearer ' . OPENROUTER_API_KEY,
             'HTTP-Referer: ' . SITE_URL,
-            'X-Title: Lá Fora Chatbot',
+            'X-Title: Estudar em Portugal Chatbot',
         ],
     ]);
 
@@ -404,7 +416,7 @@ if (strpos($reply, '[ESCALATE]') === 0) {
     $histText .= 'Utilizador: ' . $scrubPii($userMessage) . "\n";
     $histText .= 'Leo: ' . $reply . "\n";
 
-    $escalationBody = "Nova conversa escalada pelo chatbot Lá Fora — Estudar em Portugal:\n\n" . $histText
+    $escalationBody = "Nova conversa escalada pelo chatbot Estudar em Portugal:\n\n" . $histText
                     . "\n---\nIP: $ip\nData: " . date('d/m/Y H:i:s') . "\n"
                     . "(Nota: PII removido por rotina de privacidade.)\n";
 }

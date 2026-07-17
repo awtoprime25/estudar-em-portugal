@@ -52,7 +52,7 @@ $noindex         = !empty($noindex);
           "@type": ["LocalBusiness", "EducationalOrganization"],
           "@id": "<?= e(SITE_URL) ?>#org",
           "name": "<?= e(SITE_NAME) ?> — Da Vinci × StudyWing",
-          "alternateName": "Lá Fora",
+          "alternateName": "Estudar em Portugal",
           "url": "<?= e(SITE_URL) ?>",
           "telephone": "<?= e(CONTACT_PHONE_TEL) ?>",
           "email": "<?= e(CONTACT_EMAIL) ?>",
@@ -74,7 +74,7 @@ $noindex         = !empty($noindex);
           ],
           "parentOrganization": {
             "@type": "Organization",
-            "name": "Da Vinci \u00d7 StudyWing (Programa L\u00e1 Fora)",
+            "name": "Da Vinci \u00d7 StudyWing (Programa Estudar em Portugal)",
             "url": "<?= e(SITE_URL) ?>",
             "member": [
               {"@type": "Organization", "name": "Ginásios Da Vinci", "url": "https://www.ginasiosdavinci.com/"},
@@ -121,13 +121,17 @@ $noindex         = !empty($noindex);
 
 <header class="site-nav">
     <div class="container site-nav__inner">
-        <a href="./" class="brand" aria-label="<?= e(SITE_SHORT_NAME) ?> — Início">
+        <div class="brand">
             <div class="brand-logos">
-                <img src="assets/logo-davinci.svg" alt="Ginásios Da Vinci" class="brand__logo brand__logo--davinci">
+                <a href="https://www.ginasiosdavinci.com/" target="_blank" rel="noopener" aria-label="Ginásios Da Vinci — site oficial">
+                    <img src="assets/logo-davinci.svg" alt="Ginásios Da Vinci" class="brand__logo brand__logo--davinci">
+                </a>
                 <span class="brand__times" aria-hidden="true">×</span>
-                <img src="assets/images/logotipo-studywing.png" alt="StudyWing — Parceiro Internacional" class="brand__logo brand__logo--studywing">
+                <a href="https://studywing.org/" target="_blank" rel="noopener" aria-label="StudyWing — site oficial">
+                    <img src="assets/images/logotipo-studywing.png" alt="StudyWing — Parceiro Internacional" class="brand__logo brand__logo--studywing">
+                </a>
             </div>
-        </a>
+        </div>
 
         <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menu">
             <span></span><span></span><span></span>

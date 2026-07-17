@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
-$pageTitle       = 'Concurso Especial de Acesso para Estudantes Internacionais em Portugal: Guia Completo para Brasileiros | Lá Fora';
+$pageTitle       = 'Concurso Especial de Acesso para Estudantes Internacionais em Portugal: Guia Completo para Brasileiros | Estudar em Portugal';
 $pageDescription = 'Guia completo do Concurso Especial de Acesso a Portugal: quem se enquadra, exames, documentos, prazos, custos e desconto CPLP para brasileiros.';
 $activeNav       = 'concurso-especial';
 
@@ -28,8 +28,8 @@ $extraJsonLd = json_encode([
             'inLanguage'    => 'pt-PT',
             'datePublished' => '2026-07-15',
             'dateModified'  => '2026-07-15',
-            'author'        => ['@type' => 'Organization', 'name' => 'Lá Fora — Da Vinci × StudyWing', 'url' => SITE_URL],
-            'publisher'     => ['@type' => 'Organization', 'name' => 'Lá Fora — Da Vinci × StudyWing', 'url' => SITE_URL],
+            'author'        => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
+            'publisher'     => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => SITE_URL . 'concurso-especial-estudantes-internacionais.php'],
         ],
         [

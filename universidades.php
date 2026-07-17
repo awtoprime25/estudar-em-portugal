@@ -3,15 +3,17 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/universidades-data.php';
 require_once __DIR__ . '/includes/subpage-data.php';
 
-$pageTitle       = 'Universidades em Portugal — Mapa Completo | Lá Fora';
+$pageTitle       = 'Universidades em Portugal — Mapa Completo | Estudar em Portugal';
 $pageDescription = 'Explora ' . count(UNIVERSIDADES) . ' universidades e institutos politécnicos em Portugal — filtra por cidade e descobre onde estudar.';
 $activeNav       = 'universidades';
 
 $extraHeadHtml = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">';
 
 $cidades = [];
+$naturezas = ['publica' => 0, 'privada' => 0];
 foreach (UNIVERSIDADES as $u) {
     $cidades[$u['cidade']] = ($cidades[$u['cidade']] ?? 0) + 1;
+    $naturezas[$u['natureza']] = ($naturezas[$u['natureza']] ?? 0) + 1;
 }
 ksort($cidades);
 
@@ -23,7 +25,8 @@ $mapData = array_map(function ($u) {
         'citySlug' => $u['citySlug'],
         'lat'      => $u['lat'],
         'lng'      => $u['lng'],
-        'tipo'     => $u['tipo'],
+        'natureza' => $u['natureza'],
+        'grau'     => $u['grau'],
         'cursos'   => array_values(array_filter(array_map(function ($cSlug) {
             $c = CURSOS[$cSlug] ?? null;
             return $c ? ['slug' => $cSlug, 'nome' => $c['nome']] : null;
@@ -60,15 +63,20 @@ require_once __DIR__ . '/includes/header.php';
       <div class="hero__copy" style="max-width:720px;margin:0 auto;">
         <span class="eyebrow">MAPA DE UNIVERSIDADES</span>
         <h1>Universidades em <span class="accent">Portugal</span></h1>
-        <p class="lede"><?= count(UNIVERSIDADES) ?> universidades e institutos politécnicos, de norte a sul e nas ilhas — filtra por cidade e explora onde podes estudar.</p>
+        <p class="lede"><?= count(UNIVERSIDADES) ?> universidades e institutos politécnicos — públicos e privados, de norte a sul e nas ilhas — filtra por cidade ou natureza e explora onde podes estudar.</p>
       </div>
     </div>
   </section>
 
   <section class="section" style="padding-bottom:0;">
     <div class="container">
+      <div class="blog-filters" id="uniNaturezaFilters" style="margin-bottom:12px;">
+        <button class="filter-btn active" data-natureza="todas">Todas <span>(<?= count(UNIVERSIDADES) ?>)</span></button>
+        <button class="filter-btn" data-natureza="publica">Públicas <span>(<?= $naturezas['publica'] ?? 0 ?>)</span></button>
+        <button class="filter-btn" data-natureza="privada">Privadas <span>(<?= $naturezas['privada'] ?? 0 ?>)</span></button>
+      </div>
       <div class="blog-filters" id="uniFilters">
-        <button class="filter-btn active" data-filtro="todas">Todas <span>(<?= count(UNIVERSIDADES) ?>)</span></button>
+        <button class="filter-btn active" data-filtro="todas">Todas as cidades <span>(<?= count(UNIVERSIDADES) ?>)</span></button>
         <?php foreach ($cidades as $cidade => $n): ?>
         <button class="filter-btn" data-filtro="<?= e($cidade) ?>"><?= e($cidade) ?> <span>(<?= $n ?>)</span></button>
         <?php endforeach; ?>

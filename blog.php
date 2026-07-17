@@ -1,5 +1,5 @@
 <?php
-$pageTitle       = 'Blog — Estudar em Portugal | Lá Fora';
+$pageTitle       = 'Blog — Estudar em Portugal';
 $pageDescription = 'Guias, prazos de candidatura e dicas práticas sobre estudar em Portugal para brasileiros: cidades, cursos, vistos, ENEM e Concurso Especial.';
 $activeNav       = 'blog';
 require_once __DIR__ . '/config.php';
@@ -23,7 +23,7 @@ require_once __DIR__ . '/includes/header.php';
 <main id="conteudo">
   <section class="page-hero">
     <div class="container">
-      <h1>Blog Lá Fora</h1>
+      <h1>Blog Estudar em Portugal</h1>
       <p>Guias práticos sobre candidaturas, vistos, custo de vida e escolha de curso para quem quer estudar em Portugal.</p>
     </div>
   </section>
