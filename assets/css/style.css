@@ -856,9 +856,13 @@ a { color: inherit; text-decoration: none; }
 .icon-diamond__rotate:hover { transform: translate(-50%,-50%) rotate(90deg); }
 .icon-diamond__rotate:active { transform: translate(-50%,-50%) rotate(90deg) scale(.92); }
 .icon-diamond__node {
-  position: absolute; width: 230px; text-align: center; padding: 10px;
+  position: absolute; width: 230px; text-align: center; padding: 14px 10px;
   transform: translate(-50%,-50%);
-  transition: opacity .18s ease, transform .18s ease;
+  transition: opacity .18s ease, transform .18s ease, box-shadow .18s ease;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(10,22,40,.08);
+  z-index: 1;
 }
 .icon-diamond__node[data-slot="top"]    { top: 8%;  left: 50%; }
 .icon-diamond__node[data-slot="right"]  { top: 50%; left: 92%; }
@@ -872,10 +876,11 @@ a { color: inherit; text-decoration: none; }
 }
 .icon-diamond__node h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; color: var(--ink); transition: color .18s ease; }
 .icon-diamond__node p { font-size: 13px; line-height: 1.5; color: var(--muted-on-light); margin: 0; }
-.icon-diamond__node.is-active { transform: translate(-50%,-50%) scale(1.08); z-index: 1; }
+.icon-diamond__node.is-active { transform: translate(-50%,-50%) scale(1.08); z-index: 2; box-shadow: 0 8px 26px rgba(15,139,166,.22); }
 .icon-diamond__node.is-active .icon-diamond__glyph { background: var(--teal); color: #fff; }
 .icon-diamond__node.is-active h3 { color: var(--teal); }
 .icon-diamond.is-rotating .icon-diamond__node { opacity: .35; }
+.section-dark .icon-diamond__node { background: var(--navy-700); box-shadow: 0 4px 16px rgba(0,0,0,.28); }
 .section-dark .icon-diamond__glyph { background: rgba(63,208,224,.14); color: var(--teal-light); }
 .section-dark .icon-diamond__node h3 { color: #fff; }
 .section-dark .icon-diamond__node p { color: var(--muted-on-dark); }
