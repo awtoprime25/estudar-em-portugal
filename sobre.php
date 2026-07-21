@@ -38,7 +38,7 @@ require_once __DIR__ . '/includes/header.php';
         <h1>Duas marcas, <span class="accent">uma missão</span></h1>
         <p class="lede">A ponte entre o Brasil e as melhores universidades de Portugal. Uma parceria entre duas organizações que partilham a mesma missão: transformar o futuro de quem quer estudar lá fora.</p>
         <div class="hero__ctas">
-          <a href="comparar.php#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+          <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
         </div>
       </div>
       <div class="hero__art">
@@ -168,7 +168,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="article-cta">
         <h3>Pronto para dar o próximo passo?</h3>
         <p>Fala connosco e descobre como a Da Vinci × StudyWing pode ajudar-te a estudar em Portugal.</p>
-        <a href="comparar.php#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+        <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
       </div>
     </div>
   </section>

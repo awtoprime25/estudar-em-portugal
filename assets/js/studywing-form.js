@@ -1,8 +1,9 @@
 (function () {
   "use strict";
 
-  /* comparar.js NÃO duplica nav-toggle e locale-switch — esses já estão em main.js.
-     Só adiciona comportamento exclusivo da página comparar.php.                  */
+  /* studywing-form.js NÃO duplica nav-toggle e locale-switch — esses já estão em
+     main.js. Carregado em todas as páginas (footer.php) porque o formulário
+     StudyWing e o acordeão de FAQ agora aparecem em várias páginas, não só comparar.php. */
 
   /* ============================================================
      FAQ accordion — best practice (1 aberta de cada vez, GEO/AEO)

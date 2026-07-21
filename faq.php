@@ -111,7 +111,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="article-cta">
       <h3>Não encontraste a tua resposta?</h3>
       <p>Fala com a equipa Da Vinci × StudyWing e tira as tuas dúvidas numa consultoria gratuita.</p>
-      <a href="comparar.php#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+      <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
     </div>
   </section>
 </main>

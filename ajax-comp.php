@@ -1,28 +1,17 @@
 <?php
 /**
- * ajax-comp.php — handler do formulário StudyWing em comparar.php
+ * ajax-comp.php — handler do formulário StudyWing (includes/studywing-form.php,
+ * incluído em todas as páginas via footer.php)
  *
- * Recebe POST multi-step, valida, envia email para info@davinci.com.pt e
- * lafora@studywing.org (mesmo padrão do EstudarNoEstrangeiro/ajax.php).
+ * Recebe POST multi-step, valida, grava em BD (leads), depois envia email
+ * SMTP best-effort com PHPMailer. Se SMTP falhar, o lead já ficou gravado.
  *
  * Retorna JSON: {ok:bool, message:string, errors?:array}.
- *
- * Sem Composer/PHPMailer para não obrigar a dependências externas: usa
- * mail() nativo do PHP. Em ambiente de produção com SMTP configurado,
- * recomenda-se trocar por PHPMailer (ver EstudarNoEstrangeiro/ajax.php).
  */
 declare(strict_types=1);
 
 require_once __DIR__ . '/config.php';
-
-// Sessão para CSRF token (best-effort — não quebra se sessão não arrancar)
-if (session_status() === PHP_SESSION_NONE) {
-    @ini_set('session.use_strict_mode', '1');
-    @ini_set('session.cookie_httponly', '1');
-    @ini_set('session.cookie_samesite', 'Lax');
-    @session_name('enp_sc');
-    @session_start();
-}
+require_once __DIR__ . '/includes/db-helper.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, no-cache, must-revalidate');
@@ -63,15 +52,11 @@ if (!$enpTokenOk) {
 unset($_SESSION['enp_csrf']);
 
 $nome       = trim((string)($_POST['nome']       ?? ''));
-$perfil     = trim((string)($_POST['perfil']     ?? ''));
 $email      = trim((string)($_POST['email']      ?? ''));
 $tel        = trim((string)($_POST['tel']        ?? ''));
 $local      = trim((string)($_POST['localidade'] ?? ''));
 $nacionalidade      = trim((string)($_POST['nacionalidade']      ?? ''));
 $ano        = trim((string)($_POST['ano']        ?? ''));
-$enem       = trim((string)($_POST['enem']       ?? ''));
-$ielts      = trim((string)($_POST['ielts']      ?? ''));
-$media      = trim((string)($_POST['media']      ?? ''));
 $areas      = trim((string)($_POST['areas']      ?? ''));
 $tipoCurso  = trim((string)($_POST['tipo_curso'] ?? ''));
 $objetivo   = trim((string)($_POST['objetivo']   ?? ''));
@@ -100,10 +85,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL))         $errors[] = 'email invá
 if ($tel === '' || mb_strlen($tel) < 6)                 $errors[] = 'telefone é obrigatório';
 if ($local === '')                                      $errors[] = 'localidade é obrigatória';
 if ($nacionalidade === '')                              $errors[] = 'nacionalidade é obrigatória';
-if ($ano === '')                                        $errors[] = 'ano escolar é obrigatório';
-if ($enem === '')                                       $errors[] = 'ENEM é obrigatório';
-if ($ielts === '')                                      $errors[] = 'IELTS/TOEFL é obrigatório';
-if ($media === '')                                      $errors[] = 'média é obrigatória';
+if ($ano === '')                                        $errors[] = 'grau de escolaridade é obrigatório';
 if ($areas === '')                                      $errors[] = 'áreas de interesse são obrigatórias';
 if ($tipoCurso === '')                                  $errors[] = 'tipo de formação é obrigatório';
 if ($objetivo === '')                                   $errors[] = 'objetivo é obrigatório';
@@ -127,11 +109,8 @@ function _bn_destino_pais(string $dest): string {
             'irlanda'=>'Irlanda','aberto'=>'A definir com consultor'][$dest] ?? $dest;
 }
 function _bn_ano_label(string $a): string {
-    return ['3-ano-em'=>'3.º ano EM','cursinho'=>'(Pré-)vestibular','formado'=>'Ensino Médio completo',
-            'graduacao'=>'Já cursei faculdade'][$a] ?? $a;
-}
-function _bn_sim_nao(string $v): string {
-    return $v === 'sim' ? 'Sim' : ($v === 'vou-fazer' ? 'Vou fazer este ano' : ($v === 'nao' ? 'Não' : $v));
+    return ['3-ano-em'=>'A cursar o Ensino Médio','cursinho'=>'Ensino Médio completo, a fazer cursinho/pré-vestibular',
+            'formado'=>'Ensino Médio completo','graduacao'=>'Já concluiu uma graduação'][$a] ?? $a;
 }
 function _bn_quando_label(string $q): string {
     return ['2026-set'=>'Setembro 2026','2027-jan'=>'Janeiro 2027','2027-set'=>'Setembro 2027',
@@ -165,38 +144,36 @@ function _bn_momento_label(string $m): string {
             'quero-assessoria'=>'Quer contratar já o acompanhamento completo'][$m] ?? $m;
 }
 
+$origemPagina = (string) ($_SERVER['HTTP_REFERER'] ?? 'estudar-em-portugal (página não identificada)');
+
 $corpoTexto =
-    "FOI EFETUADA UMA PRÉ-INSCRIÇÃO NO SITE estudar-em-portugal/comparar.php\n".
-    "PARCERIA Da Vinci × StudyWing — PROGRAMA LÁ FORA\n\n".
+    "FOI EFETUADA UMA PRÉ-INSCRIÇÃO NO SITE ESTUDAR EM PORTUGAL\n".
+    "PARCERIA Da Vinci × StudyWing\n\n".
     "===========================================\n".
     "DADOS PESSOAIS\n".
     "===========================================\n".
     "Nome:                {$nome}\n".
-    "Sou:                 {$perfil}\n".
     "Email:               {$email}\n".
     "Telefone/WhatsApp:   {$tel}\n".
     "Onde mora:           {$local}\n".
     "Nacionalidade:       "._bn_nacionalidade_label($nacionalidade)."\n\n".
     "===========================================\n".
-    "PERFIL ACADÉMICO\n".
-    "===========================================\n".
-    "Onde está no percurso: "._bn_ano_label($ano)."\n".
-    "ENEM:                "._bn_sim_nao($enem)."\n".
-    "IELTS/TOEFL:         "._bn_sim_nao($ielts)."\n".
-    "Média do último ano: {$media}\n".
-    "Áreas de interesse:  {$areas}\n".
-    "Tipo de formação:    "._bn_tipo_curso_label($tipoCurso)."\n\n".
-    "===========================================\n".
-    "OBJETIVO E ORÇAMENTO\n".
+    "CURSO E OBJETIVO\n".
     "===========================================\n".
     "Objetivo principal:  "._bn_objetivo_label($objetivo)."\n".
+    "Tipo de formação:    "._bn_tipo_curso_label($tipoCurso)."\n".
+    "Curso pretendido:    {$areas}\n".
+    "Quando quer começar: "._bn_quando_label($quando)."\n\n".
+    "===========================================\n".
+    "PERFIL E ORÇAMENTO\n".
+    "===========================================\n".
+    "Grau de escolaridade: "._bn_ano_label($ano)."\n".
     "Situação financeira: "._bn_situacao_financeira_label($situacaoFinanceira)."\n".
     "Como vai financiar:  "._bn_financiamento_label($financiamento)."\n\n".
     "===========================================\n".
-    "PREFERÊNCIAS\n".
+    "PREFERÊNCIAS FINAIS\n".
     "===========================================\n".
     "Destino preferido:   "._bn_destino_pais($destino)."\n".
-    "Quando quer começar: "._bn_quando_label($quando)."\n".
     "Fase atual:          "._bn_momento_label($momento)."\n".
     "Observações:         {$obs}\n\n".
     "===========================================\n".
@@ -205,39 +182,49 @@ $corpoTexto =
     "IP origem:           ".(string)($_SERVER['REMOTE_ADDR'] ?? '')."\n".
     "User-agent:          ".(string)($_SERVER['HTTP_USER_AGENT'] ?? '')."\n".
     "Data/hora servidor:  ".date('Y-m-d H:i:s')."\n".
-    "Source:              comparar.php (estudar-em-portugal)\n";
+    "Página de origem:    {$origemPagina}\n";
 $corpoHtml = nl2br(e($corpoTexto));
 
-// Headers (formato RFC 5322)
-$subject   = '=?UTF-8?B?' . base64_encode('Nova pré-inscrição — comparar (estudar-em-portugal)') . '?=';
-$headers   = [];
-$headers[] = 'From: no-reply@ginasiosdavinci.com';
-$headers[] = 'Reply-To: ' . $email;
-$headers[] = 'X-Mailer: estudar-em-portugal/ajax-comp';
-$headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-Type: text/plain; charset=UTF-8';
-$headers[] = 'Content-Transfer-Encoding: 8bit';
-
-// Envia para dois destinatários (CC) — padrão do EstudarNoEstrangeiro
-$toPrimary = CONTACT_EMAIL;           // info@davinci.com.pt
-$toStudywing = 'lafora@studywing.org'; // Parceiro internacional
-
-$okPrimary  = @mail($toPrimary,     $subject, $corpoTexto, implode("\r\n", $headers));
-$okStudywing = @mail($toStudywing,  $subject, $corpoTexto, implode("\r\n", $headers));
-
-if (!$okPrimary && !$okStudywing) {
-    // Em produção: escrever na fila + avisar admin. Aqui: responde com erro.
-    http_response_code(500);
-    echo json_encode(['ok' => false, 'message' => 'Não foi possível enviar o formulário. Tenta novamente ou escreve-nos diretamente para ' . CONTACT_EMAIL . '.']);
-    exit;
+// ---- PASSO 1: GRAVAR NA BASE DE DADOS ----
+$leadId = lf_store_lead([
+    'nome'                   => $nome,
+    'email'                  => $email,
+    'tel'                    => $tel,
+    'localidade'             => $local,
+    'nacionalidade'          => $nacionalidade,
+    'ano'                    => $ano,
+    'tipo_curso'             => $tipoCurso,
+    'objetivo'               => $objetivo,
+    'situacao_financeira'    => $situacaoFinanceira,
+    'financiamento'          => $financiamento,
+    'destino'                => $destino,
+    'quando'                 => $quando,
+    'momento'                => $momento,
+    'origem'                 => $origemPagina,
+    'ip'                     => $_SERVER['REMOTE_ADDR'] ?? '',
+    'user_agent'             => $_SERVER['HTTP_USER_AGENT'] ?? '',
+    'areas'                  => $areas,
+    'obs'                    => $obs,
+]);
+if ($leadId === null) {
+    error_log('[estudar-em-portugal/ajax-comp] Falha ao gravar lead na BD');
 }
 
+// ---- PASSO 2: RESPONDER AO UTILIZADOR (JÁ COM SUCESSO) ----
+http_response_code(200);
 echo json_encode([
     'ok' => true,
     'message' => 'Recebemos! A equipa StudyWing contacta-te em ≤ 24h úteis por email ou WhatsApp.',
 ]);
 
-// Log de auditoria (best-effort, silencioso)
+// ---- PASSO 3: TERMINAR A LIGAÇÃO AO CLIENTE ----
+if (function_exists('fastcgi_finish_request')) {
+    fastcgi_finish_request();
+}
+
+// ---- LOG DE AUDITORIA (best-effort — corre SEMPRE, mesmo sem SMTP/BD) ----
+// Rede de segurança: garante rasto do lead em ficheiro mesmo que a BD esteja
+// em baixo e o SMTP não esteja configurado (nunca perder um lead sem rasto).
 $logDir = __DIR__ . '/storage';
 if (!is_dir($logDir)) @mkdir($logDir, 0775, true);
 $logLine = sprintf("[%s] nome=%s email=%s tel=%s destino=%s ip=%s\n",
@@ -247,3 +234,44 @@ $logLine = sprintf("[%s] nome=%s email=%s tel=%s destino=%s ip=%s\n",
     (string)($_SERVER['REMOTE_ADDR'] ?? '')
 );
 @file_put_contents($logDir . '/lead-comparar.log', $logLine, FILE_APPEND);
+
+// ---- PASSO 4: ENVIO SMTP (BEST-EFFORT, NUNCA QUEBRA A RESPOSTA JÁ ENVIADA) ----
+// Se SMTP_HOST vazio, skip silencioso (não há servidor configurado)
+if (SMTP_HOST === '') {
+    exit;
+}
+
+try {
+    require_once __DIR__ . '/lib/PHPMailer/src/Exception.php';
+    require_once __DIR__ . '/lib/PHPMailer/src/PHPMailer.php';
+    require_once __DIR__ . '/lib/PHPMailer/src/SMTP.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+    $mail->CharSet = 'UTF-8';
+    $mail->isSMTP();
+    $mail->Host       = SMTP_HOST;
+    $mail->Port       = SMTP_PORT;
+    $mail->Timeout    = 12;
+    $mail->SMTPSecure = SMTP_SECURE ?: null;
+    if (SMTP_USER !== '') {
+        $mail->SMTPAuth = true;
+        $mail->Username = SMTP_USER;
+        $mail->Password = SMTP_PASS;
+    }
+    $mail->setFrom(SMTP_FROM, SMTP_FROMNAME);
+    $mail->addAddress(MAIL_TO);
+    if (MAIL_CC !== '') {
+        $mail->addCC(MAIL_CC);
+    }
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $mail->addReplyTo($email, $nome);
+    }
+    $mail->isHTML(true);
+    $mail->Subject = '=?UTF-8?B?' . base64_encode('Nova pré-inscrição — Estudar em Portugal') . '?=';
+    $mail->Body    = $corpoHtml;
+    $mail->AltBody = $corpoTexto;
+    $mail->send();
+} catch (\Throwable $e) {
+    // Best-effort: o lead já ficou gravado na BD. Apenas registamos o erro.
+    error_log('[estudar-em-portugal/ajax-comp] Falha envio SMTP: ' . $e->getMessage());
+}

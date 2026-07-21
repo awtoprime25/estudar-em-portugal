@@ -7,6 +7,7 @@ require_once __DIR__ . '/db-helper.php';
 if (function_exists('site_visit_track')) {
     site_visit_track();
 }
+require_once __DIR__ . '/studywing-form.php';
 ?>
 <footer class="site-footer">
     <div class="container footer-grid">
@@ -18,6 +19,34 @@ if (function_exists('site_visit_track')) {
             </div>
             <p>O seu futuro começa com a decisão que você faz hoje. Programa <strong>Estudar em Portugal</strong> — dos Ginásios Da Vinci, em colaboração com a <strong>StudyWing</strong>, para admissão universitária em Portugal e na Europa.</p>
             <p class="footer-tagline">Há <strong><?= date('Y') - 2008 ?></strong>+ anos a colocar alunos nas melhores universidades.</p>
+            <div class="footer-social">
+                <a href="<?= e(SOCIAL_INSTAGRAM) ?>" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="<?= e(SOCIAL_FACEBOOK) ?>" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="<?= e(SOCIAL_YOUTUBE) ?>" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h6>Explorar</h6>
+            <ul>
+                <li><a href="destinos.php">Destinos</a></li>
+                <li><a href="universidades.php">Mapa de universidades</a></li>
+                <li><a href="cursos.php">Todos os cursos</a></li>
+                <li><a href="comparar.php">Comparar destinos</a></li>
+                <li><a href="sobre.php">Sobre nós</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h6>Guias &amp; apoio</h6>
+            <ul>
+                <li><a href="explicacoes.php">Exames e explicações</a></li>
+                <li><a href="acesso-ensino-superior.php">Acesso ao ensino superior</a></li>
+                <li><a href="concurso-especial-estudantes-internacionais.php">Concurso Especial</a></li>
+                <li><a href="visto-de-estudante.php">Visto de estudante</a></li>
+                <li><a href="faq.php">Perguntas frequentes</a></li>
+                <li><a href="blog.php">Blog</a></li>
+            </ul>
         </div>
 
         <div class="footer-col">
@@ -27,27 +56,7 @@ if (function_exists('site_visit_track')) {
                 <li><a href="mailto:<?= e(CONTACT_EMAIL) ?>"><?= e(CONTACT_EMAIL) ?></a></li>
                 <li><?= e(CONTACT_ADDRESS_LINE) ?></li>
             </ul>
-        </div>
-
-        <div class="footer-col">
-            <h6>Recursos</h6>
-            <ul>
-                <li><a href="sobre.php">Sobre nós</a></li>
-                <li><a href="universidades.php">Mapa de universidades</a></li>
-                <li><a href="cursos.php">Todos os cursos</a></li>
-                <li><a href="visto-de-estudante.php">Visto de estudante</a></li>
-                <li><a href="faq.php">Perguntas frequentes</a></li>
-                <li><a href="blog.php">Blog Estudar em Portugal</a></li>
-                <li><a href="comparar.php">Comparar destinos</a></li>
-                <li><a href="<?= e(BLOG_URL) ?>" target="_blank" rel="noopener">Blog Estudar no Estrangeiro</a></li>
-                <li><a href="<?= e(SOCIAL_INSTAGRAM) ?>" target="_blank" rel="noopener">Instagram</a></li>
-                <li><a href="<?= e(SOCIAL_FACEBOOK) ?>" target="_blank" rel="noopener">Facebook</a></li>
-                <li><a href="<?= e(SOCIAL_YOUTUBE) ?>" target="_blank" rel="noopener">YouTube</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h6>Programa Estudar em Portugal</h6>
+            <h6 class="footer-col__sub">Parceiros</h6>
             <ul>
                 <li><a href="https://www.ginasiosdavinci.com/" target="_blank" rel="noopener">Ginásios Da Vinci ↗</a></li>
                 <li><a href="https://studywing.org/" target="_blank" rel="noopener">StudyWing ↗</a></li>
@@ -73,6 +82,7 @@ window.TRACK_URL  = <?= json_encode('track-visit.php') ?>;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<?= e(asset_url('assets/js/main.js')) ?>"></script>
 <script src="<?= e(asset_url('assets/js/tracker.js')) ?>"></script>
+<script src="<?= e(asset_url('assets/js/studywing-form.js')) ?>"></script>
 <?php if (!empty($extraJS)): ?>
 <script src="<?= e(asset_url($extraJS)) ?>"></script>
 <?php endif; ?>

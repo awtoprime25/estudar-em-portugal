@@ -5,7 +5,7 @@ require_once __DIR__ . '/includes/subpage-data.php';
 
 $pageTitle       = 'Universidades em Portugal — Mapa Completo | Estudar em Portugal';
 $pageDescription = 'Explora ' . count(UNIVERSIDADES) . ' universidades e institutos politécnicos em Portugal — filtra por cidade e descobre onde estudar.';
-$activeNav       = 'universidades';
+$activeNav       = 'mapa';
 
 $extraHeadHtml = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">';
 
@@ -104,7 +104,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="article-cta">
         <h3>Não sabes qual escolher?</h3>
         <p>A equipa Da Vinci × StudyWing ajuda-te a encontrar a universidade e o curso certos para o teu perfil.</p>
-        <a href="comparar.php#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+        <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
       </div>
     </div>
   </section>

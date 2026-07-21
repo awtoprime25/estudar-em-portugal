@@ -91,7 +91,7 @@ require_once __DIR__ . '/includes/header.php';
       <li>Compete pelas vagas normais do curso, junto com os candidatos portugueses, e não pelas vagas reservadas a internacionais;</li>
       <li>Paga a propina de estudante nacional/UE, bem mais barata que a de internacional.</li>
     </ul>
-    <p>Se esse é o seu caso, o conteúdo abaixo sobre o Concurso Especial não se aplica a você — <a href="contato.php" style="color:var(--teal);font-weight:600;">fale com a gente</a> para entender o processo do regime geral.</p>
+    <p>Se esse é o seu caso, o conteúdo abaixo sobre o Concurso Especial não se aplica a você — <a href="#formulario" style="color:var(--teal);font-weight:600;">fale com a gente</a> para entender o processo do regime geral.</p>
 
     <h2 id="exames-regime-geral">Quais exames você precisa fazer (regime geral)</h2>
     <p>Não existe uma lista única — cada curso superior exige 1 ou 2 provas de ingresso específicas, definidas por cada instituição. Mas o princípio é sempre o mesmo: são os exames nacionais do 12.º ano português, os mesmos que qualquer aluno português faz no final do secundário.</p>
@@ -170,7 +170,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="article-cta">
       <h3>Quer saber se você se encaixa no Concurso Especial de Estudantes Internacionais?</h3>
       <p>Fale com um consultor da StudyWing e agende uma conversa gratuita.</p>
-      <a href="contato.php" class="btn-pill btn-teal">Falar com um consultor</a>
+      <a href="#formulario" class="btn-pill btn-teal">Falar com um consultor</a>
     </div>
 
   </section>

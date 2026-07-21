@@ -86,6 +86,20 @@ define('LF_VIEWS_RETENTION_DAYS', max(7, min(180, (int) (getenv('LF_VIEWS_RETENT
 define('VIEWS_STATS_TOKEN', (string) (getenv('VIEWS_STATS_TOKEN') ?: '88b4193f989f69dd43a5b48b36ff16a5d42872c6093f449febd75864e1f5393e'));
 
 // ============================================================
+// SMTP para envio de email (formulário StudyWing — ajax-comp.php)
+// Lido do .env; vazio = skip (best-effort, sem erro se mail() falhar).
+// ============================================================
+define('SMTP_HOST',     (string) (getenv('SMTP_HOST')     ?: ''));
+define('SMTP_PORT',     (int)    (getenv('SMTP_PORT')     ?: 587));
+define('SMTP_USER',     (string) (getenv('SMTP_USER')     ?: ''));
+define('SMTP_PASS',     (string) (getenv('SMTP_PASS')     ?: ''));
+define('SMTP_SECURE',   (string) (getenv('SMTP_SECURE')   ?: 'tls'));
+define('SMTP_FROM',     (string) (getenv('SMTP_FROM')     ?: 'no-reply@estudar-em-portugal.com'));
+define('SMTP_FROMNAME', (string) (getenv('SMTP_FROMNAME') ?: 'Estudar em Portugal'));
+define('MAIL_TO',       (string) (getenv('MAIL_TO')       ?: CONTACT_EMAIL));
+define('MAIL_CC',       (string) (getenv('MAIL_CC')       ?: ''));
+
+// ============================================================
 // Chatbot "Leo" (chat.php) — mesma integração OpenRouter do site irmão
 // EstudarNoEstrangeiro. Sem chave: chat.php recusa pedidos com erro 502
 // em vez de rebentar (fail-safe, não bloqueia o resto do site).
@@ -103,6 +117,31 @@ define('CHAT_ESCALATION_EMAIL', (string) (getenv('CHAT_ESCALATION_EMAIL') ?: CON
 define('BLOG_OPENROUTER_API_KEY', (string) (getenv('BLOG_OPENROUTER_API_KEY') ?: ''));
 define('BLOG_MODEL',              (string) (getenv('BLOG_MODEL')       ?: 'openai/gpt-4o-mini'));
 define('BLOG_IMAGE_MODEL',        (string) (getenv('BLOG_IMAGE_MODEL') ?: 'google/gemini-2.5-flash-image-preview'));
+
+// ============================================================
+// CSRF do formulário StudyWing (includes/studywing-form.php + ajax-comp.php).
+// Gerado aqui — o PRIMEIRO require de todas as páginas — para que
+// session_start()/setcookie() corram sempre antes de qualquer output,
+// já que o formulário passou a aparecer no footer de todas as páginas.
+// ============================================================
+if (session_status() === PHP_SESSION_NONE) {
+    @ini_set('session.use_strict_mode', '1');
+    @ini_set('session.cookie_httponly', '1');
+    @ini_set('session.cookie_samesite', 'Lax');
+    @session_name('enp_sc');
+    @session_start();
+}
+if (empty($_SESSION['enp_csrf']) || !is_string($_SESSION['enp_csrf'])) {
+    $_SESSION['enp_csrf'] = bin2hex(random_bytes(16));
+}
+define('ENP_CSRF', (string) $_SESSION['enp_csrf']);
+setcookie('enp_csrf', ENP_CSRF, [
+    'expires'  => 0,
+    'path'     => '/',
+    'secure'   => (!empty($_SERVER['HTTPS']) && strtolower((string) $_SERVER['HTTPS']) !== 'off'),
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
 
 if (!function_exists('e')) {
     function e(string $value): string {

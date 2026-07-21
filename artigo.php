@@ -87,7 +87,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="article-cta">
       <h3>Queres saber se te enquadras?</h3>
       <p>Fala com a nossa equipa — orientamos-te na escolha da cidade, do curso e tratamos da candidatura. Sem compromisso.</p>
-      <a href="contato.php" class="btn-pill btn-teal">Falar com a equipa</a>
+      <a href="#formulario" class="btn-pill btn-teal">Falar com a equipa</a>
     </div>
   </section>
 

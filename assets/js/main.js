@@ -17,6 +17,17 @@
     });
   }
 
+  /* Dropdown toggle */
+  var dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
+  dropdownToggles.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var parent = btn.parentElement;
+      var isOpen = parent.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
   /* PT-BR / PT-PT copy toggle */
   var switcher = document.querySelector('[data-locale-switch]');
   if (switcher) {

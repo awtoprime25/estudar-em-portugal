@@ -139,20 +139,34 @@ $noindex         = !empty($noindex);
 
         <nav id="primaryNav" class="primary-nav" aria-label="Navegação principal">
             <ul>
-                <li><a href="./#destinos" class="<?= $activeNav === 'destinos' ? 'is-active' : '' ?>">Destinos</a></li>
-                <li><a href="./#como-funciona" class="<?= $activeNav === 'como-funciona' ? 'is-active' : '' ?>">Como funciona</a></li>
-                <li><a href="explicacoes.php" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Explicações</a></li>
-                <li><a href="concurso-especial-estudantes-internacionais.php" class="<?= $activeNav === 'concurso-especial' ? 'is-active' : '' ?>">Concurso Especial</a></li>
-                <li><a href="comparar.php" class="<?= $activeNav === 'comparar' ? 'is-active' : '' ?>">Comparar</a></li>
+                <li><a href="universidades.php" class="<?= $activeNav === 'mapa' ? 'is-active' : '' ?>">Mapa</a></li>
+                <li class="has-dropdown <?= in_array($activeNav, ['destinos', 'cursos', 'universidades']) ? 'is-active-group' : '' ?>">
+                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-explore">Cidades, cursos, universidade</button>
+                    <ul class="nav-dropdown" id="nav-dropdown-explore">
+                        <li><a href="destinos.php" class="<?= $activeNav === 'destinos' ? 'is-active' : '' ?>">Destinos</a></li>
+                        <li><a href="cursos.php" class="<?= $activeNav === 'cursos' ? 'is-active' : '' ?>">Cursos</a></li>
+                        <li><a href="universidades.php" class="<?= $activeNav === 'universidades' ? 'is-active' : '' ?>">Universidades</a></li>
+                    </ul>
+                </li>
+                <li><a href="faq.php" class="<?= $activeNav === 'faq' ? 'is-active' : '' ?>">FAQs</a></li>
+                <li><a href="explicacoes.php" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Exames e explicações</a></li>
+                <li class="has-dropdown <?= in_array($activeNav, ['acesso', 'concurso-especial', 'visto']) ? 'is-active-group' : '' ?>">
+                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-acesso">Acesso ao ensino superior</button>
+                    <ul class="nav-dropdown" id="nav-dropdown-acesso">
+                        <li><a href="acesso-ensino-superior.php" class="<?= $activeNav === 'acesso' ? 'is-active' : '' ?>">Visão geral</a></li>
+                        <li><a href="concurso-especial-estudantes-internacionais.php" class="<?= $activeNav === 'concurso-especial' ? 'is-active' : '' ?>">Concurso Especial</a></li>
+                        <li><a href="visto-de-estudante.php" class="<?= $activeNav === 'visto' ? 'is-active' : '' ?>">Visto de estudante</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" class="">Outros países</a></li>
                 <li><a href="blog.php" class="<?= $activeNav === 'blog' ? 'is-active' : '' ?>">Blog</a></li>
-                <li><a href="contato.php" class="<?= $activeNav === 'contato' ? 'is-active' : '' ?>">Contato</a></li>
             </ul>
             <div class="nav-actions">
                 <div class="locale-switch" data-locale-switch role="group" aria-label="Idioma / variante">
                     <button type="button" class="is-active" data-locale="br">PT-BR</button>
                     <button type="button" data-locale="pt">PT-PT</button>
                 </div>
-                <a href="comparar.php#formulario" class="btn btn-pill btn-light-outline">Agendar consultoria</a>
+                <a href="#formulario" class="btn btn-pill btn-light-outline">Fale connosco</a>
             </div>
         </nav>
     </div>
