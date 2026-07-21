@@ -25,7 +25,7 @@ require_once __DIR__ . '/includes/header.php';
 
         <div class="hero__ctas">
           <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
-          <a href="blog.php" class="btn-pill btn-outline-light">Ler o blog</a>
+          <a href="destinos.php" class="btn-pill btn-outline-light">Explorar cidades</a>
         </div>
 
         <div class="hero__badges">
@@ -49,9 +49,22 @@ require_once __DIR__ . '/includes/header.php';
     </div>
   </section>
 
-  <section class="section" id="como-funciona">
+  <section class="section" id="quem-somos">
     <div class="container">
       <div class="section-head">
+        <span class="eyebrow">Quem somos</span>
+        <h2>Da Vinci × StudyWing</h2>
+      </div>
+      <p style="max-width:720px;line-height:1.7;">Somos a parceria entre a <strong>Da Vinci</strong>, a maior rede de apoio escolar e explicações de Portugal, e a <strong>StudyWing</strong>, consultora internacional de admissões universitárias. Juntas, acompanhamos o estudante brasileiro do primeiro contacto até à matrícula em Portugal — com <?= lf_davinci_unidades() ?> unidades no país a dar-nos o apoio local no terreno.</p>
+      <p style="margin-top:28px;">
+        <a href="sobre.php" class="btn-pill btn-navy">Conhecer a nossa história →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="como-funciona">
+    <div class="container">
+      <div class="section-head on-dark">
         <h2>Como funciona</h2>
       </div>
 
@@ -89,27 +102,20 @@ require_once __DIR__ . '/includes/header.php';
 
       <p style="max-width:720px;line-height:1.7;margin-bottom:36px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e acompanhamos-te em cada passo, da escolha do curso à chegada a Portugal.</p>
 
-      <div class="icon-row">
-        <div class="icon-card">
-          <div class="icon-card__glyph"><i class="bi bi-mortarboard"></i></div>
-          <h3>Universidades certas</h3>
-          <p>Opções compatíveis com o teu perfil, clima académico e orçamento.</p>
+      <div class="icon-diamond-wrap">
+        <div class="icon-diamond" id="assessoriaDiamond">
+          <svg class="icon-diamond__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <polygon points="50,6 94,50 50,94 6,50"></polygon>
+          </svg>
+          <button type="button" class="icon-diamond__rotate" id="assessoriaDiamondRotate" aria-label="Ver o próximo destaque">
+            <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
+          </button>
+          <div class="icon-diamond__node" data-slot="top"></div>
+          <div class="icon-diamond__node" data-slot="right"></div>
+          <div class="icon-diamond__node" data-slot="bottom"></div>
+          <div class="icon-diamond__node" data-slot="left"></div>
         </div>
-        <div class="icon-card">
-          <div class="icon-card__glyph"><i class="bi bi-piggy-bank"></i></div>
-          <h3>Bolsas e propinas</h3>
-          <p>Mapeamos financiamentos públicos, privados e parcerias internacionais.</p>
-        </div>
-        <div class="icon-card">
-          <div class="icon-card__glyph"><i class="bi bi-check-circle"></i></div>
-          <h3>Candidatura sem erros</h3>
-          <p>Documentos, prazos, equivalências ENEM: nós tratamos dos detalhes.</p>
-        </div>
-        <div class="icon-card">
-          <div class="icon-card__glyph"><i class="bi bi-passport"></i></div>
-          <h3>Do ENEM ao visto</h3>
-          <p>Desde a prova até à chegada e primeiros passos no país.</p>
-        </div>
+        <div class="icon-diamond__detail" id="assessoriaDiamondDetail"></div>
       </div>
 
       <p style="text-align:center;margin-top:36px;">
@@ -117,6 +123,46 @@ require_once __DIR__ . '/includes/header.php';
       </p>
     </div>
   </section>
+
+  <script>
+  (function(){
+    var wrap = document.getElementById('assessoriaDiamond');
+    if (!wrap) return;
+    var detail = document.getElementById('assessoriaDiamondDetail');
+    var rotateBtn = document.getElementById('assessoriaDiamondRotate');
+    var slots = ['top', 'right', 'bottom', 'left'];
+    var items = [
+      { icon: 'bi-mortarboard', title: 'Universidades certas', text: 'Opções compatíveis com o teu perfil, clima académico e orçamento.' },
+      { icon: 'bi-piggy-bank',  title: 'Bolsas e propinas',    text: 'Mapeamos financiamentos públicos, privados e parcerias internacionais.' },
+      { icon: 'bi-check-circle', title: 'Candidatura sem erros', text: 'Documentos, prazos, equivalências ENEM: nós tratamos dos detalhes.' },
+      { icon: 'bi-passport',    title: 'Do ENEM ao visto',     text: 'Desde a prova até à chegada e primeiros passos no país.' }
+    ];
+    var topIndex = 0;
+
+    function render() {
+      slots.forEach(function (slot, slotIdx) {
+        var item = items[(topIndex + slotIdx) % items.length];
+        var node = wrap.querySelector('[data-slot="' + slot + '"]');
+        node.innerHTML = '<div class="icon-diamond__glyph"><i class="bi ' + item.icon + '" aria-hidden="true"></i></div><h3>' + item.title + '</h3>';
+        node.classList.toggle('is-active', slot === 'top');
+      });
+      var active = items[topIndex];
+      detail.innerHTML = '<div class="icon-diamond__detail-glyph"><i class="bi ' + active.icon + '" aria-hidden="true"></i></div><h3>' + active.title + '</h3><p>' + active.text + '</p>';
+    }
+    render();
+
+    rotateBtn.addEventListener('click', function () {
+      topIndex = (topIndex + 1) % items.length;
+      wrap.classList.add('is-rotating');
+      detail.classList.add('is-fading');
+      setTimeout(function () {
+        render();
+        wrap.classList.remove('is-rotating');
+        detail.classList.remove('is-fading');
+      }, 180);
+    });
+  })();
+  </script>
 
   <section class="section section-dark" id="destinos">
     <div class="container">
@@ -173,96 +219,17 @@ require_once __DIR__ . '/includes/header.php';
     </div>
   </section>
 
-  <section class="section" id="cursos">
+  <section class="section" id="explicacoes-preview">
     <div class="container">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">Cursos</span>
-          <h2>Cursos em destaque</h2>
-        </div>
+        <span class="eyebrow">Explicações</span>
+        <h2>Cursos Preparatórios para os Exames Nacionais Portugueses</h2>
       </div>
-      <div class="icon-row" style="grid-template-columns:repeat(4,1fr);">
-        <a href="curso-medicina.php" class="icon-card" style="text-decoration:none;color:inherit;">
-          <div class="icon-card__glyph"><i class="bi bi-heart-pulse"></i></div>
-          <h3>Medicina</h3>
-          <p>Mestrado Integrado, 6 anos.</p>
-        </a>
-        <a href="curso-engenharia-informatica.php" class="icon-card" style="text-decoration:none;color:inherit;">
-          <div class="icon-card__glyph"><i class="bi bi-cpu"></i></div>
-          <h3>Engenharia Informática</h3>
-          <p>Alta empregabilidade.</p>
-        </a>
-        <a href="curso-direito.php" class="icon-card" style="text-decoration:none;color:inherit;">
-          <div class="icon-card__glyph"><i class="bi bi-bank"></i></div>
-          <h3>Direito</h3>
-          <p>Tradição desde 1290.</p>
-        </a>
-        <a href="curso-gestao.php" class="icon-card" style="text-decoration:none;color:inherit;">
-          <div class="icon-card__glyph"><i class="bi bi-graph-up-arrow"></i></div>
-          <h3>Gestão</h3>
-          <p>ISEG, NOVA SBE e mais.</p>
-        </a>
-      </div>
-      <p style="text-align:center;margin-top:28px;">
-        <a href="curso-enfermagem.php">Enfermagem</a> ·
-        <a href="curso-arquitetura.php">Arquitetura</a> ·
-        <a href="curso-psicologia.php">Psicologia</a> ·
-        <a href="curso-fisioterapia.php">Fisioterapia</a>
+      <p style="max-width:720px;line-height:1.7;">Aulas individuais, online ao vivo, com professores portugueses experientes. Somos nº1 em Portugal em explicações, reforço e tutoria — preparação feita para brasileiros que querem estudar em Portugal.</p>
+      <p style="margin-top:24px;">
+        <a href="explicacoes.php" class="btn-pill btn-teal">Marcar aula experimental gratuita</a>
       </p>
-      <p style="text-align:center;margin-top:16px;">
-        <a href="cursos.php">Ver todos os cursos</a> ·
-        <a href="universidades.php">Ver mapa de universidades</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="section section-dark" id="quem-somos">
-    <div class="container">
-      <div class="section-head on-dark">
-        <span class="eyebrow">Quem somos</span>
-        <h2>Da Vinci × StudyWing</h2>
-      </div>
-
-      <div class="content-block content-block--wide" style="margin-bottom:36px;">
-        <p>A <strong>Da Vinci</strong> é a rede número 1 em Portugal em serviços de apoio escolar e explicações — com mais de <?= lf_davinci_unidades() ?> unidades no país, mais de 90.000 alunos preparados e <?= date('Y') - 2008 ?> anos de liderança.</p>
-      </div>
-
-      <div class="content-block content-block--wide" style="margin-bottom:36px;">
-        <p>A <strong>StudyWing</strong> é uma consultora internacional especializada em candidaturas a universidades. Juntas, acompanham o estudante brasileiro da escolha do curso à matrícula em Portugal.</p>
-      </div>
-
-      <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
-        <div class="stat"><div class="stat__num">+<?= lf_davinci_unidades() ?></div><div class="stat__label">unidades em Portugal</div></div>
-        <div class="stat"><div class="stat__num">+90.000</div><div class="stat__label">alunos preparados</div></div>
-        <div class="stat"><div class="stat__num"><?= date('Y') - 2008 ?> anos</div><div class="stat__label">de liderança</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="testemunhos">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Testemunhos</span>
-        <h2>Quem já fez connosco</h2>
-      </div>
-
-      <div class="icon-row">
-        <div class="icon-card">
-          <p><em>"Entrei em Enfermagem no Porto usando a nota do ENEM. A equipa tratou de tudo — desde a escolha da universidade até ao visto de estudante."</em></p>
-          <p style="margin-top:16px;font-weight:600;">Larissa M.</p>
-          <p style="font-size:13px;color:var(--muted-on-light);">Enfermagem, Universidade do Porto</p>
-        </div>
-        <div class="icon-card">
-          <p><em>"Tinha dúvidas na candidatura e achava que não ia conseguir. Em 3 meses estava matriculada em Engenharia Informática. Obrigada!"</em></p>
-          <p style="margin-top:16px;font-weight:600;">Carolina S.</p>
-          <p style="font-size:13px;color:var(--muted-on-light);">Engenharia Informática, Instituto Superior Técnico, Lisboa</p>
-        </div>
-        <div class="icon-card">
-          <p><em>"Sem o apoio deles, nunca teria entrado em Medicina. Foram fundamentais em cada etapa, especialmente com as equivalências."</em></p>
-          <p style="margin-top:16px;font-weight:600;">Bruno T.</p>
-          <p style="font-size:13px;color:var(--muted-on-light);">Medicina, Universidade de Coimbra</p>
-        </div>
-      </div>
+      <p style="margin-top:20px;font-size:13px;color:var(--muted-on-light);">Também em <a href="https://www.explicanet.com/" target="_blank" rel="noopener">explicanet.com</a> e <a href="https://www.ginasiosdavinci.com/explicacoes-online-portugal/" target="_blank" rel="noopener">ginasiosdavinci.com/explicações online</a>.</p>
     </div>
   </section>
 

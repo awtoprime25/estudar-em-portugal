@@ -94,6 +94,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="stat"><div class="stat__num"><?= date('Y') - 2008 ?> anos</div><div class="stat__label">de liderança em Portugal</div></div>
       </div>
       <p style="color:var(--muted-on-dark);max-width:720px;line-height:1.7;">Somos a rede número 1 de aulas particulares, explicações, reforço e tutoria de Portugal — com <?= lf_davinci_unidades() ?> unidades no país e mais de 90 mil alunos já preparados. Agora, essa mesma experiência chega até você, no Brasil, 100% online.</p>
+      <p style="color:var(--muted-on-dark);max-width:720px;line-height:1.7;font-size:14px;">Também em <a href="https://www.explicanet.com/" target="_blank" rel="noopener" style="color:var(--teal-light);">explicanet.com</a> e <a href="https://www.ginasiosdavinci.com/explicacoes-online-portugal/" target="_blank" rel="noopener" style="color:var(--teal-light);">ginasiosdavinci.com/explicações online</a>.</p>
     </div>
   </section>
 

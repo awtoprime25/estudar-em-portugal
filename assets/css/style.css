@@ -834,6 +834,60 @@ a { color: inherit; text-decoration: none; }
 .section-dark .icon-card p { color: var(--muted-on-dark); }
 
 /* ============================================================
+   Losango rotativo (Assessoria, index.php) — 4 destaques ligados
+   por linhas em forma de losango, com botão para rodar e trazer
+   o próximo para o topo (posição em destaque).
+   ============================================================ */
+.icon-diamond-wrap { display: flex; flex-direction: column; align-items: center; gap: 28px; margin: 8px 0 36px; padding: 0 40px; }
+.icon-diamond { position: relative; width: min(440px, 92vw); aspect-ratio: 1; margin: 0 auto; }
+.icon-diamond__lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.icon-diamond__lines polygon { fill: none; stroke: rgba(15,139,166,.4); stroke-width: 1.6; }
+.icon-diamond__rotate {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
+  background: var(--teal-light); color: var(--navy-950); font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(63,208,224,.4); transition: transform .2s ease;
+  z-index: 2;
+}
+.icon-diamond__rotate:hover { transform: translate(-50%,-50%) rotate(90deg); }
+.icon-diamond__rotate:active { transform: translate(-50%,-50%) rotate(90deg) scale(.92); }
+.icon-diamond__node {
+  position: absolute; width: 150px; text-align: center;
+  transform: translate(-50%,-50%);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.icon-diamond__node[data-slot="top"]    { top: 6%;  left: 50%; }
+.icon-diamond__node[data-slot="right"]  { top: 50%; left: 94%; }
+.icon-diamond__node[data-slot="bottom"] { top: 94%; left: 50%; }
+.icon-diamond__node[data-slot="left"]   { top: 50%; left: 6%; }
+.icon-diamond__glyph {
+  width: 52px; height: 52px; margin: 0 auto 10px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(15,139,166,.1); color: var(--teal); font-size: 22px;
+}
+.icon-diamond__node h3 { font-size: 14px; font-weight: 600; margin: 0; color: var(--muted-on-light); transition: color .18s ease; }
+.icon-diamond__node.is-active { transform: translate(-50%,-50%) scale(1.16); }
+.icon-diamond__node.is-active h3 { color: var(--teal); font-weight: 800; }
+.icon-diamond.is-rotating .icon-diamond__node { opacity: .3; }
+.icon-diamond__detail { max-width: 520px; text-align: center; transition: opacity .18s ease; }
+.icon-diamond__detail.is-fading { opacity: 0; }
+.icon-diamond__detail-glyph {
+  width: 44px; height: 44px; margin: 0 auto 10px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(15,139,166,.12); color: var(--teal); font-size: 19px;
+}
+.icon-diamond__detail h3 { margin: 0 0 6px; font-size: 18px; }
+.icon-diamond__detail p { margin: 0; color: var(--muted-on-light); font-size: 14.5px; line-height: 1.6; }
+@media (max-width: 560px) {
+  .icon-diamond-wrap { padding: 0 12px; }
+  .icon-diamond { width: min(260px, 84vw); }
+  .icon-diamond__node { width: 108px; }
+  .icon-diamond__node h3 { font-size: 12px; }
+  .icon-diamond__rotate { width: 46px; height: 46px; font-size: 17px; }
+}
+
+/* ============================================================
    Linha de números/estatísticas — ex.: explicacoes.php
    ============================================================ */
 .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 32px 0; }
