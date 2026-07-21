@@ -45,7 +45,7 @@ require_once __DIR__ . '/includes/header.php';
         <h1>Cursos Preparatórios para os <span class="accent">Exames Nacionais</span> Portugueses</h1>
         <p class="lede">Aulas individuais, online, com professores portugueses. Preparação feita para brasileiros que querem estudar em Portugal.</p>
         <div class="hero__ctas">
-          <a href="#formulario" class="btn-pill btn-teal">Marcar aula experimental gratuita</a>
+          <a href="https://www.ginasiosdavinci.com/inscricao2026-27/" target="_blank" rel="noopener" class="btn-pill btn-teal">Marcar aula experimental gratuita</a>
         </div>
         <p style="color:var(--muted-on-dark);font-size:13px;">Sem compromisso.</p>
       </div>
@@ -163,7 +163,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="article-cta">
         <h3>Marca a tua aula experimental gratuita</h3>
         <p>Preparação individual, com professores portugueses, para brasileiros que querem estudar em Portugal.</p>
-        <a href="#formulario" class="btn-pill btn-teal">Quero começar agora</a>
+        <a href="https://www.ginasiosdavinci.com/inscricao2026-27/" target="_blank" rel="noopener" class="btn-pill btn-teal">Quero começar agora</a>
       </div>
     </div>
   </section>

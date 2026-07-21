@@ -139,6 +139,7 @@ $noindex         = !empty($noindex);
 
         <nav id="primaryNav" class="primary-nav" aria-label="Navegação principal">
             <ul>
+                <li><a href="./" class="<?= $activeNav === 'inicio' ? 'is-active' : '' ?>">Início</a></li>
                 <li><a href="universidades.php" class="<?= $activeNav === 'mapa' ? 'is-active' : '' ?>">Mapa</a></li>
                 <li class="has-dropdown <?= in_array($activeNav, ['destinos', 'cursos', 'universidades']) ? 'is-active-group' : '' ?>">
                     <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-explore">Cidades e cursos</button>
