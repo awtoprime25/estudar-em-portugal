@@ -17,15 +17,34 @@
     });
   }
 
-  /* Dropdown toggle */
-  var dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
-  dropdownToggles.forEach(function (btn) {
+  /* Dropdown nav — controlado por clique (.is-open), um aberto de cada vez.
+     Nada de :hover/:focus-within no CSS: era isso que prendia dois abertos. */
+  var dropdownItems = document.querySelectorAll('.has-dropdown');
+  function closeDropdown(li) {
+    li.classList.remove('is-open');
+    var b = li.querySelector('.nav-dropdown-toggle');
+    if (b) b.setAttribute('aria-expanded', 'false');
+  }
+  function closeAllDropdowns() { dropdownItems.forEach(closeDropdown); }
+  dropdownItems.forEach(function (li) {
+    var btn = li.querySelector('.nav-dropdown-toggle');
+    if (!btn) return;
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-      var parent = btn.parentElement;
-      var isOpen = parent.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      e.stopPropagation();               // não deixa o handler de "clicar fora" fechar já
+      var willOpen = !li.classList.contains('is-open');
+      closeAllDropdowns();
+      if (willOpen) {
+        li.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.has-dropdown')) closeAllDropdowns();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAllDropdowns();
   });
 
   /* PT-BR / PT-PT copy toggle */
