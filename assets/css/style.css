@@ -472,6 +472,9 @@ a { color: inherit; text-decoration: none; }
 }
 .step h3 { font-size: 17px; font-weight: 700; margin: 0 0 8px; }
 .step p { font-size: 14.5px; line-height: 1.6; color: var(--muted-on-light); margin: 0; }
+.section-dark .step__num { background: var(--teal-light); color: var(--navy-950); }
+.section-dark .step p { color: var(--muted-on-dark); }
+.section-dark .steps::before { background: var(--border-on-dark); }
 
 /* ---------- Onde você pode estudar ---------- */
 .section-dark { background: var(--navy-900); color: #fff; }
@@ -838,10 +841,10 @@ a { color: inherit; text-decoration: none; }
    por linhas em forma de losango, com botão para rodar e trazer
    o próximo para o topo (posição em destaque).
    ============================================================ */
-.icon-diamond-wrap { display: flex; flex-direction: column; align-items: center; gap: 28px; margin: 8px 0 36px; padding: 0 40px; }
-.icon-diamond { position: relative; width: min(440px, 92vw); aspect-ratio: 1; margin: 0 auto; }
+.icon-diamond-wrap { display: flex; justify-content: center; margin: 8px 0 36px; padding: 0 20px; }
+.icon-diamond { position: relative; width: min(720px, 94vw); aspect-ratio: 1; margin: 40px auto; }
 .icon-diamond__lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.icon-diamond__lines polygon { fill: none; stroke: rgba(15,139,166,.4); stroke-width: 1.6; }
+.icon-diamond__lines polygon { fill: none; stroke: rgba(15,139,166,.35); stroke-width: 1.4; }
 .icon-diamond__rotate {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
   width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
@@ -853,38 +856,43 @@ a { color: inherit; text-decoration: none; }
 .icon-diamond__rotate:hover { transform: translate(-50%,-50%) rotate(90deg); }
 .icon-diamond__rotate:active { transform: translate(-50%,-50%) rotate(90deg) scale(.92); }
 .icon-diamond__node {
-  position: absolute; width: 150px; text-align: center;
+  position: absolute; width: 230px; text-align: center; padding: 10px;
   transform: translate(-50%,-50%);
   transition: opacity .18s ease, transform .18s ease;
 }
-.icon-diamond__node[data-slot="top"]    { top: 6%;  left: 50%; }
-.icon-diamond__node[data-slot="right"]  { top: 50%; left: 94%; }
-.icon-diamond__node[data-slot="bottom"] { top: 94%; left: 50%; }
-.icon-diamond__node[data-slot="left"]   { top: 50%; left: 6%; }
+.icon-diamond__node[data-slot="top"]    { top: 8%;  left: 50%; }
+.icon-diamond__node[data-slot="right"]  { top: 50%; left: 92%; }
+.icon-diamond__node[data-slot="bottom"] { top: 92%; left: 50%; }
+.icon-diamond__node[data-slot="left"]   { top: 50%; left: 8%; }
 .icon-diamond__glyph {
   width: 52px; height: 52px; margin: 0 auto 10px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   background: rgba(15,139,166,.1); color: var(--teal); font-size: 22px;
+  transition: background .18s ease, color .18s ease;
 }
-.icon-diamond__node h3 { font-size: 14px; font-weight: 600; margin: 0; color: var(--muted-on-light); transition: color .18s ease; }
-.icon-diamond__node.is-active { transform: translate(-50%,-50%) scale(1.16); }
-.icon-diamond__node.is-active h3 { color: var(--teal); font-weight: 800; }
-.icon-diamond.is-rotating .icon-diamond__node { opacity: .3; }
-.icon-diamond__detail { max-width: 520px; text-align: center; transition: opacity .18s ease; }
-.icon-diamond__detail.is-fading { opacity: 0; }
-.icon-diamond__detail-glyph {
-  width: 44px; height: 44px; margin: 0 auto 10px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(15,139,166,.12); color: var(--teal); font-size: 19px;
-}
-.icon-diamond__detail h3 { margin: 0 0 6px; font-size: 18px; }
-.icon-diamond__detail p { margin: 0; color: var(--muted-on-light); font-size: 14.5px; line-height: 1.6; }
-@media (max-width: 560px) {
-  .icon-diamond-wrap { padding: 0 12px; }
-  .icon-diamond { width: min(260px, 84vw); }
-  .icon-diamond__node { width: 108px; }
-  .icon-diamond__node h3 { font-size: 12px; }
-  .icon-diamond__rotate { width: 46px; height: 46px; font-size: 17px; }
+.icon-diamond__node h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; color: var(--ink); transition: color .18s ease; }
+.icon-diamond__node p { font-size: 13px; line-height: 1.5; color: var(--muted-on-light); margin: 0; }
+.icon-diamond__node.is-active { transform: translate(-50%,-50%) scale(1.08); z-index: 1; }
+.icon-diamond__node.is-active .icon-diamond__glyph { background: var(--teal); color: #fff; }
+.icon-diamond__node.is-active h3 { color: var(--teal); }
+.icon-diamond.is-rotating .icon-diamond__node { opacity: .35; }
+.section-dark .icon-diamond__glyph { background: rgba(63,208,224,.14); color: var(--teal-light); }
+.section-dark .icon-diamond__node h3 { color: #fff; }
+.section-dark .icon-diamond__node p { color: var(--muted-on-dark); }
+.section-dark .icon-diamond__node.is-active .icon-diamond__glyph { background: var(--teal-light); color: var(--navy-950); }
+.section-dark .icon-diamond__node.is-active h3 { color: var(--teal-light); }
+@media (max-width: 720px) {
+  .icon-diamond-wrap { padding: 0; }
+  .icon-diamond {
+    position: static; width: auto; aspect-ratio: auto; margin: 8px auto;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .icon-diamond__lines, .icon-diamond__rotate { display: none; }
+  .icon-diamond__node {
+    position: static; transform: none !important; width: auto; max-width: 420px; margin: 0 auto;
+    border-radius: 14px; background: rgba(15,139,166,.05);
+  }
+  .icon-diamond__node.is-active { background: rgba(15,139,166,.1); }
 }
 
 /* ============================================================

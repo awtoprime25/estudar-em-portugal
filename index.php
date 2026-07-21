@@ -52,8 +52,10 @@ require_once __DIR__ . '/includes/header.php';
   <section class="section" id="quem-somos">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Quem somos</span>
-        <h2>Da Vinci × StudyWing</h2>
+        <div>
+          <span class="eyebrow">Quem somos</span>
+          <h2>Da Vinci × StudyWing</h2>
+        </div>
       </div>
       <p style="max-width:720px;line-height:1.7;">Somos a parceria entre a <strong>Da Vinci</strong>, a maior rede de apoio escolar e explicações de Portugal, e a <strong>StudyWing</strong>, consultora internacional de admissões universitárias. Juntas, acompanhamos o estudante brasileiro do primeiro contacto até à matrícula em Portugal — com <?= lf_davinci_unidades() ?> unidades no país a dar-nos o apoio local no terreno.</p>
       <p style="margin-top:28px;">
@@ -96,8 +98,10 @@ require_once __DIR__ . '/includes/header.php';
   <section class="section" id="assessoria">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Assessoria</span>
-        <h2>Assessoria para Estudar em Portugal</h2>
+        <div>
+          <span class="eyebrow">Assessoria</span>
+          <h2>Assessoria para Estudar em Portugal</h2>
+        </div>
       </div>
 
       <p style="max-width:720px;line-height:1.7;margin-bottom:36px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e acompanhamos-te em cada passo, da escolha do curso à chegada a Portugal.</p>
@@ -115,7 +119,6 @@ require_once __DIR__ . '/includes/header.php';
           <div class="icon-diamond__node" data-slot="bottom"></div>
           <div class="icon-diamond__node" data-slot="left"></div>
         </div>
-        <div class="icon-diamond__detail" id="assessoriaDiamondDetail"></div>
       </div>
 
       <p style="text-align:center;margin-top:36px;">
@@ -128,7 +131,6 @@ require_once __DIR__ . '/includes/header.php';
   (function(){
     var wrap = document.getElementById('assessoriaDiamond');
     if (!wrap) return;
-    var detail = document.getElementById('assessoriaDiamondDetail');
     var rotateBtn = document.getElementById('assessoriaDiamondRotate');
     var slots = ['top', 'right', 'bottom', 'left'];
     var items = [
@@ -143,22 +145,18 @@ require_once __DIR__ . '/includes/header.php';
       slots.forEach(function (slot, slotIdx) {
         var item = items[(topIndex + slotIdx) % items.length];
         var node = wrap.querySelector('[data-slot="' + slot + '"]');
-        node.innerHTML = '<div class="icon-diamond__glyph"><i class="bi ' + item.icon + '" aria-hidden="true"></i></div><h3>' + item.title + '</h3>';
+        node.innerHTML = '<div class="icon-diamond__glyph"><i class="bi ' + item.icon + '" aria-hidden="true"></i></div><h3>' + item.title + '</h3><p>' + item.text + '</p>';
         node.classList.toggle('is-active', slot === 'top');
       });
-      var active = items[topIndex];
-      detail.innerHTML = '<div class="icon-diamond__detail-glyph"><i class="bi ' + active.icon + '" aria-hidden="true"></i></div><h3>' + active.title + '</h3><p>' + active.text + '</p>';
     }
     render();
 
     rotateBtn.addEventListener('click', function () {
       topIndex = (topIndex + 1) % items.length;
       wrap.classList.add('is-rotating');
-      detail.classList.add('is-fading');
       setTimeout(function () {
         render();
         wrap.classList.remove('is-rotating');
-        detail.classList.remove('is-fading');
       }, 180);
     });
   })();
@@ -222,8 +220,10 @@ require_once __DIR__ . '/includes/header.php';
   <section class="section" id="explicacoes-preview">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Explicações</span>
-        <h2>Cursos Preparatórios para os Exames Nacionais Portugueses</h2>
+        <div>
+          <span class="eyebrow">Explicações</span>
+          <h2>Cursos Preparatórios para os Exames Nacionais Portugueses</h2>
+        </div>
       </div>
       <p style="max-width:720px;line-height:1.7;">Aulas individuais, online ao vivo, com professores portugueses experientes. Somos nº1 em Portugal em explicações, reforço e tutoria — preparação feita para brasileiros que querem estudar em Portugal.</p>
       <p style="margin-top:24px;">
