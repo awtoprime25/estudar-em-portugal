@@ -89,8 +89,14 @@ require_once __DIR__ . '/includes/header.php';
   </section>
 
   <section class="container" style="padding-top:56px;padding-bottom:72px;">
+    <div class="page-search">
+      <i class="bi bi-search page-search__icon" aria-hidden="true"></i>
+      <input type="search" id="faqSearch" placeholder="Pesquisar perguntas…" aria-label="Pesquisar perguntas frequentes" autocomplete="off">
+    </div>
+    <p class="page-search__empty" id="faqEmpty">Nenhuma pergunta encontrada. Tenta outras palavras ou <a href="#formulario">fala connosco</a>.</p>
+
     <?php foreach ($categorias as $categoria => $lista): ?>
-    <div style="margin-bottom:48px;">
+    <div class="faq-category" style="margin-bottom:48px;">
       <h2 style="font-size:22px;font-weight:700;margin-bottom:16px;"><?= e($categoria) ?></h2>
       <div class="faq-accordion">
         <?php foreach ($lista as $i => $q): ?>
@@ -114,6 +120,31 @@ require_once __DIR__ . '/includes/header.php';
       <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
     </div>
   </section>
+
+  <script>
+  (function(){
+    var input = document.getElementById('faqSearch');
+    var empty = document.getElementById('faqEmpty');
+    if(!input) return;
+    var items = [].slice.call(document.querySelectorAll('.faq-item'));
+    var cats  = [].slice.call(document.querySelectorAll('.faq-category'));
+    function norm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+    input.addEventListener('input', function(){
+      var q = norm(input.value.trim());
+      var any = false;
+      items.forEach(function(it){
+        var match = q === '' || norm(it.textContent).indexOf(q) !== -1;
+        it.style.display = match ? '' : 'none';
+        if(match) any = true;
+      });
+      cats.forEach(function(cat){
+        var vis = [].slice.call(cat.querySelectorAll('.faq-item')).some(function(it){ return it.style.display !== 'none'; });
+        cat.style.display = vis ? '' : 'none';
+      });
+      empty.style.display = any ? 'none' : 'block';
+    });
+  })();
+  </script>
 </main>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

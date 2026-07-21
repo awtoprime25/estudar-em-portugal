@@ -166,7 +166,7 @@ $noindex         = !empty($noindex);
                     <button type="button" class="is-active" data-locale="br">PT-BR</button>
                     <button type="button" data-locale="pt">PT-PT</button>
                 </div>
-                <a href="#formulario" class="btn btn-pill btn-light-outline">Fale connosco</a>
+                <a href="#formulario" class="btn btn-pill btn-flag">Fale connosco</a>
             </div>
         </nav>
     </div>

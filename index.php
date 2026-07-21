@@ -24,7 +24,7 @@ require_once __DIR__ . '/includes/header.php';
            data-pt="Mesma língua, universidades reconhecidas em toda a Europa e uma equipa que te acompanha da candidatura à chegada.">Mesma língua, universidades reconhecidas em toda a Europa e uma equipe que acompanha você da candidatura à chegada.</p>
 
         <div class="hero__ctas">
-          <a href="#formulario" class="btn-pill btn-teal">Fale connosco</a>
+          <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
           <a href="blog.php" class="btn-pill btn-outline-light">Ler o blog</a>
         </div>
 
@@ -113,7 +113,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
 
       <p style="text-align:center;margin-top:36px;">
-        <a href="#formulario" class="btn-pill btn-teal">Fale connosco</a>
+        <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
       </p>
     </div>
   </section>

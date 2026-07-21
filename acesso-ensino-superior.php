@@ -38,7 +38,7 @@ require_once __DIR__ . '/includes/header.php';
         <h1>Como se acede ao <span class="accent">ensino superior</span> em Portugal</h1>
         <p class="lede">Guia completo para estudantes brasileiros e internacionais que querem concorrer a cursos de graduação, CTeSP, mestrado e doutoramento em Portugal.</p>
         <div class="hero__ctas">
-          <a href="#formulario" class="btn-pill btn-teal">Fale connosco</a>
+          <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
         </div>
         <p style="color:var(--muted-on-dark);font-size:13px;">Sem compromisso.</p>
       </div>
@@ -170,7 +170,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="article-cta">
         <h3>Queres saber por onde começar?</h3>
         <p>A Da Vinci acompanha-te na escolha e preparação académica; a StudyWing cuida da orientação e contacto com a universidade. Juntas, garantem que não perdes prazos nem envias documentação errada.</p>
-        <a href="#formulario" class="btn-pill btn-teal">Fale connosco</a>
+        <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
       </div>
     </div>
   </section>
