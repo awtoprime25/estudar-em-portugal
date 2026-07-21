@@ -919,6 +919,10 @@ a { color: inherit; text-decoration: none; }
 .content-block table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14.5px; }
 .content-block th, .content-block td { text-align: left; padding: 10px 14px; border-bottom: 1px solid #e4e8ef; }
 .content-block thead th { background: #f5f7fa; font-weight: 700; }
+.section-dark .content-block p,
+.section-dark .content-block ul,
+.section-dark .content-block ol { color: var(--muted-on-dark); }
+.section-dark .content-block li strong { color: #fff; }
 .highlight-box, .warning-box {
   border-radius: 14px; padding: 18px 22px; margin: 24px 0; font-size: 14.5px; line-height: 1.7;
 }
