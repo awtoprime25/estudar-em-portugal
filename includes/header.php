@@ -141,7 +141,7 @@ $noindex         = !empty($noindex);
             <ul>
                 <li><a href="universidades.php" class="<?= $activeNav === 'mapa' ? 'is-active' : '' ?>">Mapa</a></li>
                 <li class="has-dropdown <?= in_array($activeNav, ['destinos', 'cursos', 'universidades']) ? 'is-active-group' : '' ?>">
-                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-explore">Cidades, cursos, universidade</button>
+                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-explore">Cidades e cursos</button>
                     <ul class="nav-dropdown" id="nav-dropdown-explore">
                         <li><a href="destinos.php" class="<?= $activeNav === 'destinos' ? 'is-active' : '' ?>">Destinos</a></li>
                         <li><a href="cursos.php" class="<?= $activeNav === 'cursos' ? 'is-active' : '' ?>">Cursos</a></li>
@@ -151,7 +151,7 @@ $noindex         = !empty($noindex);
                 <li><a href="faq.php" class="<?= $activeNav === 'faq' ? 'is-active' : '' ?>">FAQs</a></li>
                 <li><a href="explicacoes.php" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Exames e explicações</a></li>
                 <li class="has-dropdown <?= in_array($activeNav, ['acesso', 'concurso-especial', 'visto']) ? 'is-active-group' : '' ?>">
-                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-acesso">Acesso ao ensino superior</button>
+                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-acesso">Ensino superior</button>
                     <ul class="nav-dropdown" id="nav-dropdown-acesso">
                         <li><a href="acesso-ensino-superior.php" class="<?= $activeNav === 'acesso' ? 'is-active' : '' ?>">Visão geral</a></li>
                         <li><a href="concurso-especial-estudantes-internacionais.php" class="<?= $activeNav === 'concurso-especial' ? 'is-active' : '' ?>">Concurso Especial</a></li>
