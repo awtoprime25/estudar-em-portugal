@@ -141,23 +141,28 @@ require_once __DIR__ . '/includes/header.php';
     ];
     var topIndex = 0;
 
-    function render() {
-      slots.forEach(function (slot, slotIdx) {
-        var item = items[(topIndex + slotIdx) % items.length];
-        var node = wrap.querySelector('[data-slot="' + slot + '"]');
-        node.innerHTML = '<div class="icon-diamond__glyph"><i class="bi ' + item.icon + '" aria-hidden="true"></i></div><h3>' + item.title + '</h3><p>' + item.text + '</p>';
-        node.classList.toggle('is-active', slot === 'top');
+    // Cada cartão fica ligado ao MESMO item para sempre (conteúdo escrito uma
+    // única vez); rodar só muda o data-slot de cada um, e a transição CSS em
+    // top/left anima o deslocamento real ao longo do losango — em vez de
+    // trocar o conteúdo no mesmo sítio.
+    var nodeEls = [].slice.call(wrap.querySelectorAll('.icon-diamond__node'));
+    nodeEls.forEach(function (el, i) {
+      var item = items[i];
+      el.innerHTML = '<div class="icon-diamond__glyph"><i class="bi ' + item.icon + '" aria-hidden="true"></i></div><h3>' + item.title + '</h3><p>' + item.text + '</p>';
+    });
+
+    function applyPositions() {
+      nodeEls.forEach(function (el, i) {
+        var slot = slots[(i - topIndex + items.length) % items.length];
+        el.setAttribute('data-slot', slot);
+        el.classList.toggle('is-active', slot === 'top');
       });
     }
-    render();
+    applyPositions();
 
     rotateBtn.addEventListener('click', function () {
       topIndex = (topIndex + 1) % items.length;
-      wrap.classList.add('is-rotating');
-      setTimeout(function () {
-        render();
-        wrap.classList.remove('is-rotating');
-      }, 180);
+      applyPositions();
     });
   })();
   </script>
