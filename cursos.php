@@ -45,11 +45,22 @@ require_once __DIR__ . '/includes/header.php';
   </section>
 
   <section class="container" style="padding-top:56px;padding-bottom:72px;">
+    <div class="page-search">
+      <i class="bi bi-search page-search__icon" aria-hidden="true"></i>
+      <input type="search" id="cursoSearch" placeholder="Pesquisar curso…" aria-label="Pesquisar cursos" autocomplete="off">
+    </div>
+    <p class="page-search__empty" id="cursoEmpty">Nenhum curso encontrado. Tenta outro termo ou <a href="#formulario">fala connosco</a>.</p>
+
     <div class="blog-cards" style="grid-template-columns:repeat(3,1fr);">
       <?php foreach (CURSOS as $slug => $c): ?>
       <a href="curso-<?= e($slug) ?>.php" class="blog-card blog-card--full">
-        <div class="blog-card__media" style="display:flex;align-items:center;justify-content:center;background:var(--navy-900);">
+        <?php $cimg = site_image_exists('curso-' . $slug); ?>
+        <div class="blog-card__media"<?= $cimg ? '' : ' style="display:flex;align-items:center;justify-content:center;background:var(--navy-900);"' ?>>
+          <?php if ($cimg): ?>
+          <img src="<?= e($cimg) ?>" alt="<?= e($c['nome']) ?>" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <?php else: ?>
           <i class="bi <?= e($c['icone']) ?>" style="font-size:52px;color:var(--teal-light);"></i>
+          <?php endif; ?>
         </div>
         <div class="blog-card__body">
           <span class="tag"><?= e($c['eyebrow']) ?></span>
@@ -69,6 +80,26 @@ require_once __DIR__ . '/includes/header.php';
       <a href="universidades.php" class="btn-pill btn-teal">Ver mapa de universidades</a>
     </div>
   </section>
+
+  <script>
+  (function(){
+    var input = document.getElementById('cursoSearch');
+    var empty = document.getElementById('cursoEmpty');
+    if(!input) return;
+    var cards = [].slice.call(document.querySelectorAll('.blog-cards .blog-card'));
+    function norm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+    input.addEventListener('input', function(){
+      var q = norm(input.value.trim());
+      var any = false;
+      cards.forEach(function(c){
+        var match = q === '' || norm(c.textContent).indexOf(q) !== -1;
+        c.style.display = match ? '' : 'none';
+        if(match) any = true;
+      });
+      empty.style.display = any ? 'none' : 'block';
+    });
+  })();
+  </script>
 </main>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

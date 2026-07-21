@@ -199,9 +199,16 @@ function render_curso_page(string $slug): void
             </div>
           </div>
           <div class="hero__art">
+            <?php $courseImg = site_image_exists('curso-' . $slug); ?>
+            <?php if ($courseImg): ?>
+            <div class="hero__circle">
+              <img src="<?= e($courseImg) ?>" alt="<?= e($course['nome']) ?>">
+            </div>
+            <?php else: ?>
             <div class="hero__circle hero__circle--icon">
               <i class="bi <?= e($course['icone']) ?>"></i>
             </div>
+            <?php endif; ?>
           </div>
         </div>
       </section>

@@ -168,6 +168,20 @@ if (!function_exists('site_image')) {
 }
 
 /**
+ * site_image_exists($name)
+ * Devolve o caminho do PNG em assets/images/{$name}.png se ele existir (e não
+ * estiver vazio), caso contrário null. Ao contrário de site_image(), NÃO cai
+ * para .svg — serve para templates que só querem mostrar a imagem quando ela
+ * já foi gerada, com fallback próprio (ex.: um ícone) quando ainda não existe.
+ */
+if (!function_exists('site_image_exists')) {
+    function site_image_exists(string $name): ?string {
+        $pngPath = __DIR__ . '/assets/images/' . $name . '.png';
+        return (is_file($pngPath) && filesize($pngPath) > 0) ? 'assets/images/' . $name . '.png' : null;
+    }
+}
+
+/**
  * asset_url($relPath)
  * Acrescenta ?v=<filemtime> a assets/css|js para cache-busting automático —
  * sem isto, browsers com cache antiga não veem atualizações de CSS/JS até
