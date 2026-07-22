@@ -48,19 +48,53 @@ require_once __DIR__ . '/includes/header.php';
       <div class="section-head">
         <div>
           <span class="eyebrow">Quem somos</span>
-          <h2>Da Vinci × StudyWing</h2>
+          <h2>Da Vinci</h2>
         </div>
       </div>
-      <p style="max-width:720px;line-height:1.7;">Somos a parceria entre a <strong>Da Vinci</strong>, a maior rede de apoio escolar e explicações de Portugal, e a <strong>StudyWing</strong>, consultora internacional de admissões universitárias. Juntas, acompanhamos o estudante brasileiro do primeiro contacto até à matrícula em Portugal — com <?= lf_davinci_unidades() ?> unidades no país a dar-nos o apoio local no terreno.</p>
+      <p style="max-width:720px;line-height:1.7;">A <strong>Da Vinci</strong> é a maior rede de apoio escolar e explicações de Portugal, com <?= lf_davinci_unidades() ?> unidades em todo o país e mais de 90 mil alunos apoiados desde 2008. Uma abordagem próxima, personalizada e orientada para resultados — agora também ao serviço de quem quer estudar em Portugal.</p>
       <p style="margin-top:28px;">
         <a href="sobre.php" class="btn-pill btn-navy">Conhecer a nossa história →</a>
       </p>
     </div>
   </section>
 
-  <section class="section section-dark" id="como-funciona">
+  <section class="section section-dark" id="assessoria">
     <div class="container">
       <div class="section-head on-dark">
+        <div>
+          <span class="eyebrow">Assessoria</span>
+          <h2>Assessoria para Estudar em Portugal</h2>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <p style="max-width:720px;line-height:1.7;margin-bottom:36px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e acompanhamos-te em cada passo, da escolha do curso à chegada a Portugal.</p>
+      </div>
+
+      <div class="icon-diamond-wrap">
+        <div class="icon-diamond" id="assessoriaDiamond">
+          <svg class="icon-diamond__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <polygon points="50,6 94,50 50,94 6,50"></polygon>
+          </svg>
+          <button type="button" class="icon-diamond__rotate" id="assessoriaDiamondRotate" aria-label="Ver o próximo destaque">
+            <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
+          </button>
+          <div class="icon-diamond__node" data-slot="top"></div>
+          <div class="icon-diamond__node" data-slot="right"></div>
+          <div class="icon-diamond__node" data-slot="bottom"></div>
+          <div class="icon-diamond__node" data-slot="left"></div>
+        </div>
+      </div>
+
+      <p style="text-align:center;margin-top:36px;">
+        <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="como-funciona">
+    <div class="container">
+      <div class="section-head">
         <h2>Como funciona</h2>
       </div>
 
@@ -86,38 +120,6 @@ require_once __DIR__ . '/includes/header.php';
           <p>Visto de estudante e primeiros passos no país, com apoio local.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section" id="assessoria">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Assessoria</span>
-          <h2>Assessoria para Estudar em Portugal</h2>
-        </div>
-      </div>
-
-      <p style="max-width:720px;line-height:1.7;margin-bottom:36px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e acompanhamos-te em cada passo, da escolha do curso à chegada a Portugal.</p>
-
-      <div class="icon-diamond-wrap">
-        <div class="icon-diamond" id="assessoriaDiamond">
-          <svg class="icon-diamond__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <polygon points="50,6 94,50 50,94 6,50"></polygon>
-          </svg>
-          <button type="button" class="icon-diamond__rotate" id="assessoriaDiamondRotate" aria-label="Ver o próximo destaque">
-            <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
-          </button>
-          <div class="icon-diamond__node" data-slot="top"></div>
-          <div class="icon-diamond__node" data-slot="right"></div>
-          <div class="icon-diamond__node" data-slot="bottom"></div>
-          <div class="icon-diamond__node" data-slot="left"></div>
-        </div>
-      </div>
-
-      <p style="text-align:center;margin-top:36px;">
-        <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
-      </p>
     </div>
   </section>
 
