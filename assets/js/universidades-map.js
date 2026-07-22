@@ -29,7 +29,7 @@
   function cursosLinks(u, cls) {
     return u.cursos.map(function (c) {
       return '<a class="' + cls + '" href="curso-' + c.slug + '.php">' + c.nome + '</a>';
-    }).join('');
+    }).join(' ');
   }
 
   var markers = [];
