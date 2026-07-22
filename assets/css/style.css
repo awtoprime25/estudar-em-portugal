@@ -193,20 +193,26 @@ a { color: inherit; text-decoration: none; }
 }
 .brand__logo { height: 34px; width: auto; max-width: none; }
 
+/* Segunda barra do header — o menu vive aqui, por baixo da linha do
+   logo/CTA, não espremido na mesma linha. */
 .primary-nav {
+  background: var(--navy-950);
+  border-top: 1px solid var(--border-on-dark);
+}
+.primary-nav > .container {
+  max-width: 1400px;
   display: flex;
   align-items: center;
-  gap: 18px;
-  flex: 1;
-  justify-content: flex-end;
+  min-height: 52px;
 }
 .primary-nav ul {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
   margin: 0;
   padding: 0;
+  flex-wrap: wrap;
 }
 .primary-nav ul > li { display: flex; align-items: center; }
 .primary-nav ul a {
@@ -220,6 +226,7 @@ a { color: inherit; text-decoration: none; }
 .primary-nav ul a:hover,
 .primary-nav ul a.is-active { color: #fff; border-color: var(--teal-light); }
 
+.site-nav__right { display: flex; align-items: center; gap: 16px; }
 .nav-actions { display: flex; align-items: center; gap: 16px; }
 
 .locale-switch {
@@ -988,22 +995,24 @@ a { color: inherit; text-decoration: none; }
    em ecrãs de portátil comuns (1280/1366px) sem precisar do hambúrguer. */
 @media (max-width: 1400px) {
   .nav-toggle { display: flex; }
-  .primary-nav {
-    position: absolute;
-    top: 76px;
-    left: 0;
-    right: 0;
-    background: var(--navy-900);
-    border-bottom: 1px solid var(--border-on-dark);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
-    padding: 20px 24px 28px;
-    display: none;
-  }
-  .primary-nav.is-open { display: flex; }
-  .primary-nav ul { flex-direction: column; gap: 14px; }
-  .nav-actions { flex-direction: column; align-items: stretch; }
+  .primary-nav { display: none; }
+  .primary-nav.is-open { display: block; }
+  .primary-nav > .container { padding: 16px 24px 22px; }
+  .primary-nav ul { flex-direction: column; align-items: stretch; gap: 4px; }
+  .primary-nav ul a { padding: 10px 0; }
+  /* A caixa superior (logo + toggle + ações) já não colapsa para dentro do
+     hambúrguer como antes da 2ª linha do menu — só cabe brand+toggle+CTA,
+     por isso o seletor de idioma sai daqui neste breakpoint. */
+  .site-nav__right .locale-switch { display: none; }
+  .site-nav__right .btn-flag { padding: 10px 18px; font-size: 13px; }
+}
+
+@media (max-width: 360px) {
+  /* Telemóveis muito estreitos (iPhone SE e afins) — logo+toggle+CTA ainda
+     não cabem com os espaçamentos normais. */
+  .site-nav__inner { padding: 0 12px; gap: 8px; }
+  .site-nav__right { gap: 8px; }
+  .site-nav__right .btn-flag { padding: 8px 14px; font-size: 12px; }
 }
 
 @media (max-width: 991px) {

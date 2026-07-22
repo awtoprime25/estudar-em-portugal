@@ -133,11 +133,22 @@ $noindex         = !empty($noindex);
             </div>
         </div>
 
-        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menu">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="site-nav__right">
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-actions">
+                <div class="locale-switch" data-locale-switch role="group" aria-label="Idioma / variante">
+                    <button type="button" class="is-active" data-locale="br">PT-BR</button>
+                    <button type="button" data-locale="pt">PT-PT</button>
+                </div>
+                <a href="#formulario" class="btn btn-pill btn-flag">Fale connosco</a>
+            </div>
+        </div>
+    </div>
 
-        <nav id="primaryNav" class="primary-nav" aria-label="Navegação principal">
+    <nav id="primaryNav" class="primary-nav" aria-label="Navegação principal">
+        <div class="container">
             <ul>
                 <li><a href="./" class="<?= $activeNav === 'inicio' ? 'is-active' : '' ?>">Início</a></li>
                 <li><a href="universidades.php" class="<?= $activeNav === 'mapa' ? 'is-active' : '' ?>">Mapa</a></li>
@@ -162,13 +173,6 @@ $noindex         = !empty($noindex);
                 <li><a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" class="">Outros países</a></li>
                 <li><a href="blog.php" class="<?= $activeNav === 'blog' ? 'is-active' : '' ?>">Blog</a></li>
             </ul>
-            <div class="nav-actions">
-                <div class="locale-switch" data-locale-switch role="group" aria-label="Idioma / variante">
-                    <button type="button" class="is-active" data-locale="br">PT-BR</button>
-                    <button type="button" data-locale="pt">PT-PT</button>
-                </div>
-                <a href="#formulario" class="btn btn-pill btn-flag">Fale connosco</a>
-            </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </header>
