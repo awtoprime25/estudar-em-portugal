@@ -872,10 +872,10 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 4px 16px rgba(10,22,40,.08);
   z-index: 1;
 }
-.icon-diamond__node[data-slot="top"]    { top: 8%;  left: 50%; }
-.icon-diamond__node[data-slot="right"]  { top: 50%; left: 92%; }
-.icon-diamond__node[data-slot="bottom"] { top: 92%; left: 50%; }
-.icon-diamond__node[data-slot="left"]   { top: 50%; left: 8%; }
+.icon-diamond__node[data-slot="top"]    { top: 15%; left: 50%; }
+.icon-diamond__node[data-slot="right"]  { top: 50%; left: 85%; }
+.icon-diamond__node[data-slot="bottom"] { top: 85%; left: 50%; }
+.icon-diamond__node[data-slot="left"]   { top: 50%; left: 15%; }
 .icon-diamond__glyph {
   width: 52px; height: 52px; margin: 0 auto 10px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
