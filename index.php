@@ -27,12 +27,6 @@ require_once __DIR__ . '/includes/header.php';
           <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
           <a href="destinos.php" class="btn-pill btn-outline-light">Explorar cidades</a>
         </div>
-
-        <div class="hero__badges">
-          <span data-br="Nota do ENEM aceita" data-pt="Equivalências europeias">Nota do ENEM aceita</span>
-          <span>Aulas em português</span>
-          <span>Porta de entrada para a Europa</span>
-        </div>
       </div>
 
       <div class="hero__art">
