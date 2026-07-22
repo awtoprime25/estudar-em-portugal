@@ -93,11 +93,19 @@ define('SMTP_HOST',     (string) (getenv('SMTP_HOST')     ?: ''));
 define('SMTP_PORT',     (int)    (getenv('SMTP_PORT')     ?: 587));
 define('SMTP_USER',     (string) (getenv('SMTP_USER')     ?: ''));
 define('SMTP_PASS',     (string) (getenv('SMTP_PASS')     ?: ''));
-define('SMTP_SECURE',   (string) (getenv('SMTP_SECURE')   ?: 'tls'));
+// SMTP_SECURE precisa de verificação explícita: o operador ?: trata string vazia
+// como falsy, por isso `SMTP_SECURE=` no .env caía sempre para 'tls' e forçava
+// STARTTLS contra um relay local em texto simples (porta 25). Mesmo bug já
+// corrigido no site irmão EstudarNoEstrangeiro — replicado aqui.
+$enpSmtpSecureEnv = getenv('SMTP_SECURE');
+define('SMTP_SECURE', $enpSmtpSecureEnv === false ? 'tls' : $enpSmtpSecureEnv);   // 'tls', 'ssl' ou '' (sem encriptação)
+unset($enpSmtpSecureEnv);
+define('SMTP_ALLOW_SELF_SIGNED', (getenv('SMTP_ALLOW_SELF_SIGNED') ?: '0') === '1');
 define('SMTP_FROM',     (string) (getenv('SMTP_FROM')     ?: 'no-reply@estudar-em-portugal.com'));
 define('SMTP_FROMNAME', (string) (getenv('SMTP_FROMNAME') ?: 'Estudar em Portugal'));
 define('MAIL_TO',       (string) (getenv('MAIL_TO')       ?: CONTACT_EMAIL));
 define('MAIL_CC',       (string) (getenv('MAIL_CC')       ?: ''));
+define('MAIL_CC2',      (string) (getenv('MAIL_CC2')      ?: ''));   // Cc opcional (cópia pessoal). Vazio = desativado.
 
 // ============================================================
 // Chatbot "Leo" (chat.php) — mesma integração OpenRouter do site irmão

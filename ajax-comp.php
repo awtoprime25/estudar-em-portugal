@@ -22,6 +22,32 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// Rate limit: 5 submissões por IP por hora (mesmo padrão do site irmão
+// EstudarNoEstrangeiro/send.php). Prefixo próprio (enp_) para não colidir
+// com os ficheiros de rate-limit desse site irmão no mesmo servidor/tmp.
+$enpRlIp   = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+$enpRlFile = sys_get_temp_dir() . '/enp_ratelimit_' . md5($enpRlIp) . '.json';
+$enpRlNow  = time();
+$enpRlLimit  = 5;
+$enpRlWindow = 3600;
+
+$enpRlData = file_exists($enpRlFile) ? json_decode((string) file_get_contents($enpRlFile), true) : null;
+if (!is_array($enpRlData) || !isset($enpRlData['attempts'])) {
+    $enpRlData = ['attempts' => []];
+}
+$enpRlData['attempts'] = array_values(array_filter(
+    $enpRlData['attempts'],
+    fn($t) => $enpRlNow - (int) $t < $enpRlWindow
+));
+if (count($enpRlData['attempts']) >= $enpRlLimit) {
+    http_response_code(429);
+    echo json_encode(['ok' => false, 'message' => 'Muitas tentativas. Tenta novamente daqui a algum tempo.']);
+    exit;
+}
+$enpRlData['attempts'][] = $enpRlNow;
+@file_put_contents($enpRlFile, json_encode($enpRlData), LOCK_EX);
+unset($enpRlIp, $enpRlFile, $enpRlNow, $enpRlLimit, $enpRlWindow, $enpRlData);
+
 // CSRF (Low-friction): comparar.php gera um token em cookie+session, ajax-comp.php verifica.
 // Honeypot anti-bot (campo invisível) — defesa secundária.
 if (!empty($_POST['website'] ?? '')) {
@@ -253,6 +279,13 @@ try {
     $mail->Port       = SMTP_PORT;
     $mail->Timeout    = 12;
     $mail->SMTPSecure = SMTP_SECURE ?: null;
+    if (SMTP_ALLOW_SELF_SIGNED) {
+        $mail->SMTPOptions = ['ssl' => [
+            'verify_peer'       => false,
+            'verify_peer_name'  => false,
+            'allow_self_signed' => true,
+        ]];
+    }
     if (SMTP_USER !== '') {
         $mail->SMTPAuth = true;
         $mail->Username = SMTP_USER;
@@ -262,6 +295,9 @@ try {
     $mail->addAddress(MAIL_TO);
     if (MAIL_CC !== '') {
         $mail->addCC(MAIL_CC);
+    }
+    if (MAIL_CC2 !== '') {
+        $mail->addCC(MAIL_CC2);
     }
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $mail->addReplyTo($email, $nome);
