@@ -172,44 +172,78 @@ function _bn_momento_label(string $m): string {
 
 $origemPagina = (string) ($_SERVER['HTTP_REFERER'] ?? 'estudar-em-portugal (página não identificada)');
 
-$corpoTexto =
-    "FOI EFETUADA UMA PRÉ-INSCRIÇÃO NO SITE ESTUDAR EM PORTUGAL\n".
-    "PARCERIA Da Vinci × StudyWing\n\n".
-    "===========================================\n".
-    "DADOS PESSOAIS\n".
-    "===========================================\n".
-    "Nome:                {$nome}\n".
-    "Email:               {$email}\n".
-    "Telefone/WhatsApp:   {$tel}\n".
-    "Onde mora:           {$local}\n".
-    "Nacionalidade:       "._bn_nacionalidade_label($nacionalidade)."\n\n".
-    "===========================================\n".
-    "CURSO E OBJETIVO\n".
-    "===========================================\n".
-    "Objetivo principal:  "._bn_objetivo_label($objetivo)."\n".
-    "Tipo de formação:    "._bn_tipo_curso_label($tipoCurso)."\n".
-    "Curso pretendido:    {$areas}\n".
-    "Quando quer começar: "._bn_quando_label($quando)."\n\n".
-    "===========================================\n".
-    "PERFIL E ORÇAMENTO\n".
-    "===========================================\n".
-    "Grau de escolaridade: "._bn_ano_label($ano)."\n".
-    "Situação financeira: "._bn_situacao_financeira_label($situacaoFinanceira)."\n".
-    "Como vai financiar:  "._bn_financiamento_label($financiamento)."\n\n".
-    "===========================================\n".
-    "PREFERÊNCIAS FINAIS\n".
-    "===========================================\n".
-    "Destino preferido:   "._bn_destino_pais($destino)."\n".
-    "Fase atual:          "._bn_momento_label($momento)."\n".
-    "Observações:         {$obs}\n\n".
-    "===========================================\n".
-    "Meta\n".
-    "===========================================\n".
-    "IP origem:           ".(string)($_SERVER['REMOTE_ADDR'] ?? '')."\n".
-    "User-agent:          ".(string)($_SERVER['HTTP_USER_AGENT'] ?? '')."\n".
-    "Data/hora servidor:  ".date('Y-m-d H:i:s')."\n".
-    "Página de origem:    {$origemPagina}\n";
-$corpoHtml = nl2br(e($corpoTexto));
+// Email HTML com o mesmo template do site-irmão EstudarNoEstrangeiro/send.php
+// (marca + aviso + cartão "NOVA INSCRIÇÃO" + tabela de campos), com as cores
+// e os campos próprios deste formulário (StudyWing, 4 passos).
+$campos = [
+    'Nome:'                   => $nome,
+    'Email:'                  => $email,
+    'Telefone/WhatsApp:'      => $tel,
+    'Onde mora:'              => $local,
+    'Nacionalidade:'          => _bn_nacionalidade_label($nacionalidade),
+    'Objetivo principal:'     => _bn_objetivo_label($objetivo),
+    'Tipo de formação:'       => _bn_tipo_curso_label($tipoCurso),
+    'Curso pretendido:'       => $areas,
+    'Quando quer começar:'    => _bn_quando_label($quando),
+    'Grau de escolaridade:'   => _bn_ano_label($ano),
+    'Situação financeira:'    => _bn_situacao_financeira_label($situacaoFinanceira),
+    'Como vai financiar:'     => _bn_financiamento_label($financiamento),
+    'Destino preferido:'      => _bn_destino_pais($destino),
+    'Fase atual:'             => _bn_momento_label($momento),
+    'Observações:'            => $obs,
+];
+$dataHoraStr = date('Y-m-d H:i:s');
+$h = fn(string $s): string => htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+$headNotice = "Foi submetida uma nova pré-inscrição através do site estudar-em-portugal.com\n\n"
+            . "O interessado solicita contacto por parte da equipa StudyWing, com o objetivo de obter mais informações.\n\n"
+            . "Segue abaixo a informação preenchida no formulário:";
+$headNoticeHtml = nl2br($headNotice);
+$year = date('Y');
+
+$css = "body{margin:0;padding:0;background:#f4f6f8;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;}"
+     . ".wrap{max-width:600px;margin:24px auto;background:#fff;border:none;border-top:4px solid #0a1628;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.08);overflow:hidden;}"
+     . ".brand{background:#0a1628;color:#fff;padding:22px 28px;}"
+     . ".brand h1{margin:0;font-size:18px;font-weight:700;letter-spacing:.4px;}"
+     . ".brand small{display:block;font-size:12px;opacity:.85;margin-top:4px;letter-spacing:.4px;}"
+     . ".notice{background:#eef6f8;color:#0f4a57;padding:14px 28px;border-bottom:1px solid #d3e9ed;font-size:13px;line-height:1.5;}"
+     . ".title{padding:22px 28px 4px;}"
+     . ".title h2{margin:0;font-size:22px;color:#0f8ba6;font-weight:700;letter-spacing:.4px;}"
+     . ".meta{padding:6px 28px 22px;color:#6b7280;font-size:13px;border-bottom:1px solid #e5e7eb;}"
+     . "table.fields{width:100%;border-collapse:collapse;font-size:14px;}"
+     . "table.fields td{padding:12px 28px;border-bottom:1px solid #e5e7eb;vertical-align:top;}"
+     . "table.fields td.k{color:#6b7280;width:42%;font-weight:bold;}"
+     . "table.fields tr:nth-child(even) td{background:#f8fafc;}"
+     . "table.fields tr:last-child td{border-bottom:none;}"
+     . ".footer{background:#f4f6f8;padding:16px 28px;color:#6b7280;font-size:12px;text-align:center;}"
+     . ".footer a{color:#0f8ba6;text-decoration:none;}"
+     . "@media only screen and (max-width:600px){.wrap{margin:0;border-radius:0;border-left:none;border-right:none;}"
+     . "table.fields td{padding:10px 16px;}"
+     . ".brand,.notice,.title,.meta,.footer{padding-left:16px;padding-right:16px;}}";
+
+$corpoHtml = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
+           . "<style>$css</style></head><body>"
+           . "<div class='wrap'>"
+           .   "<div class='brand'><h1>Estudar em Portugal</h1>"
+           .     "<small>Da Vinci × StudyWing</small></div>"
+           .   "<div class='notice'>$headNoticeHtml</div>"
+           .   "<div class='title'><h2>NOVA PRÉ-INSCRIÇÃO</h2></div>"
+           .   "<div class='meta'>Data e Hora: <b>$dataHoraStr</b></div>"
+           .   "<table class='fields' role='presentation' cellpadding='0' cellspacing='0' border='0'>";
+foreach ($campos as $rotulo => $valor) {
+    $corpoHtml .= "<tr><td class='k'>$rotulo</td><td class='v'>" . $h((string) $valor) . "</td></tr>";
+}
+$corpoHtml .= "</table>"
+           .   "<div class='footer'>© $year Estudar em Portugal · Da Vinci × StudyWing · "
+           .     "<a href='https://www.estudar-em-portugal.com'>www.estudar-em-portugal.com</a></div>"
+           . "</div></body></html>";
+
+$corpoTexto = "$headNotice\n\nDados da pré-inscrição:\n\nData e Hora: $dataHoraStr\n\n";
+foreach ($campos as $rotulo => $valor) {
+    $corpoTexto .= $rotulo . ' ' . $valor . "\n";
+}
+$corpoTexto .= "\nIP origem: " . (string) ($_SERVER['REMOTE_ADDR'] ?? '') . "\n"
+             . "User-agent: " . (string) ($_SERVER['HTTP_USER_AGENT'] ?? '') . "\n"
+             . "Página de origem: {$origemPagina}\n";
 
 // ---- PASSO 1: GRAVAR NA BASE DE DADOS ----
 $leadId = lf_store_lead([
@@ -292,9 +326,9 @@ try {
         $mail->Password = SMTP_PASS;
     }
     $mail->setFrom(SMTP_FROM, SMTP_FROMNAME);
-    $mail->addAddress(MAIL_TO);
+    $mail->addAddress(MAIL_TO, 'Da Vinci');
     if (MAIL_CC !== '') {
-        $mail->addCC(MAIL_CC);
+        $mail->addCC(MAIL_CC, 'StudyWing');
     }
     if (MAIL_CC2 !== '') {
         $mail->addCC(MAIL_CC2);
@@ -303,7 +337,7 @@ try {
         $mail->addReplyTo($email, $nome);
     }
     $mail->isHTML(true);
-    $mail->Subject = '=?UTF-8?B?' . base64_encode('Nova pré-inscrição — Estudar em Portugal') . '?=';
+    $mail->Subject = '=?UTF-8?B?' . base64_encode('Nova pré-inscrição — Estudar em Portugal - ' . $nome) . '?=';
     $mail->Body    = $corpoHtml;
     $mail->AltBody = $corpoTexto;
     $mail->send();
