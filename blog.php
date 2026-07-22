@@ -63,7 +63,7 @@ require_once __DIR__ . '/includes/header.php';
         <input type="search" id="blogSearch" placeholder="Pesquisar artigos…" autocomplete="off">
       </div>
 
-      <div class="blog-cards" id="blogGrid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="blog-cards" id="blogGrid">
         <?php foreach ($rest as $p): ?>
         <a href="artigo.php?slug=<?= urlencode($p['slug']) ?>" class="blog-card blog-card--full blog-item" data-cat="<?= e($p['category']) ?>">
           <div class="blog-card__media">

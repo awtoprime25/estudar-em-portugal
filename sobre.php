@@ -86,7 +86,7 @@ require_once __DIR__ . '/includes/header.php';
         <p>Ao longo do seu percurso, tem-se afirmado como referência nacional no apoio escolar, nas explicações e na formação, oferecendo soluções educativas adaptadas às necessidades de cada aluno.</p>
         <p>Com uma abordagem próxima, personalizada e orientada para resultados, a Da Vinci combina experiência, inovação pedagógica e acompanhamento contínuo — ajudando os alunos a superar desafios académicos e a construir um percurso de sucesso.</p>
       </div>
-      <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
+      <div class="stats-row stats-row--3">
         <div class="stat"><div class="stat__num">+<?= lf_davinci_unidades() ?></div><div class="stat__label">unidades em Portugal</div></div>
         <div class="stat"><div class="stat__num">+90.000</div><div class="stat__label">alunos já apoiados</div></div>
         <div class="stat"><div class="stat__num"><?= date('Y') - 2008 ?> anos</div><div class="stat__label">de liderança em Portugal</div></div>
@@ -137,7 +137,7 @@ require_once __DIR__ . '/includes/header.php';
           <h2>O que nos move</h2>
         </div>
       </div>
-      <div class="icon-row" style="grid-template-columns:repeat(4,1fr);padding-top:12px;">
+      <div class="icon-row icon-row--4" style="padding-top:12px;">
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-people"></i></div>
           <h3>Orientação humanizada</h3>

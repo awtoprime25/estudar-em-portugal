@@ -51,7 +51,7 @@ require_once __DIR__ . '/includes/header.php';
     </div>
     <p class="page-search__empty" id="cursoEmpty">Nenhum curso encontrado. Tenta outro termo ou <a href="#formulario">fala connosco</a>.</p>
 
-    <div class="blog-cards" style="grid-template-columns:repeat(3,1fr);">
+    <div class="blog-cards">
       <?php foreach (CURSOS as $slug => $c): ?>
       <a href="curso-<?= e($slug) ?>.php" class="blog-card blog-card--full">
         <?php $cimg = site_image_exists('curso-' . $slug); ?>

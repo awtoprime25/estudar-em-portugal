@@ -88,7 +88,7 @@ require_once __DIR__ . '/includes/header.php';
           <h2>A rede número 1 de explicações, reforço e tutoria de Portugal</h2>
         </div>
       </div>
-      <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
+      <div class="stats-row stats-row--3">
         <div class="stat"><div class="stat__num">+<?= lf_davinci_unidades() ?></div><div class="stat__label">unidades em Portugal</div></div>
         <div class="stat"><div class="stat__num">+90.000</div><div class="stat__label">alunos já preparados</div></div>
         <div class="stat"><div class="stat__num"><?= date('Y') - 2008 ?> anos</div><div class="stat__label">de liderança em Portugal</div></div>
