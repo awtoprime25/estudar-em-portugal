@@ -264,17 +264,55 @@ function generateGeminiImage(array $topic, string $slug, string $title): ?string
 }
 
 function lf_gemini_image_attempt(string $cleanTitle, string $category, string $slug, int $attempt): array {
+    // Várias opções de cenário/luz/enquadramento/atmosfera por categoria —
+    // combinadas ao acaso a cada chamada, para que artigos da mesma
+    // categoria não peçam sempre a mesma composição de imagem (e para que
+    // um retry tente uma combinação diferente em vez de repetir a que falhou).
+    $settingsByCategory = [
+        'cidade' => [
+            'walking through a historic cobblestone square lined with traditional azulejo-tiled buildings',
+            'crossing a university campus courtyard between classes',
+            'sitting at an outdoor café table on a narrow tram-lined street',
+            'walking up a steep hillside street with colorful tiled façades',
+            'standing by a riverside promenade with the old town skyline behind them',
+            'browsing a small local bookstore near the university district',
+        ],
+        'curso' => [
+            'in a modern university lecture hall with a laptop open',
+            'in a university library surrounded by books and warm reading lamps',
+            'in a hands-on lab or studio working on a project',
+            'in a small-group study room discussing notes around a table',
+            'walking out of a university building carrying books and a backpack',
+            'presenting a project on a laptop to a small group of classmates',
+        ],
+        'dica' => [
+            'reviewing paperwork at a kitchen table in a bright student apartment',
+            'on a laptop at a co-working space, coffee cup nearby',
+            'filling out documents at a table near a sunlit window',
+            'video-calling family while holding travel or student documents',
+            'packing a suitcase in a small apartment, documents on the bed',
+            'sitting on a train with a laptop and a notebook, travel-in-progress feel',
+        ],
+    ];
+    $lighting = [
+        'soft golden-hour light', 'bright overcast daylight', 'warm early-morning light',
+        'gentle afternoon light through a window', 'cool blue-hour dusk light',
+    ];
+    $framing = [
+        'medium shot, shallow depth of field', 'candid over-the-shoulder shot',
+        'wide establishing shot with the subject small in frame', 'close-up with soft bokeh background',
+    ];
+    $mood = [
+        'quiet and focused mood', 'relaxed and hopeful mood', 'lightly candid, in-motion feel',
+        'calm and studious atmosphere',
+    ];
+    $settings = $settingsByCategory[$category] ?? $settingsByCategory['dica'];
+
     $prompt = 'Generate only an image, no text response. ';
-    $prompt .= 'Photorealistic photograph for an educational blog about studying in Portugal for Brazilian students. ';
-    $prompt .= 'Style: professional editorial photography, natural lighting, cinematic quality, shallow depth of field. ';
-    $prompt .= 'NOT an illustration, NOT vector art, NOT flat design, NOT an infographic, no icons, no text overlays. ';
-    if ($category === 'cidade') {
-        $prompt .= 'Real students walking on an authentic Portuguese university campus or historic city street (Lisbon, Porto, Coimbra style architecture), candid natural moment. ';
-    } elseif ($category === 'curso') {
-        $prompt .= 'Students studying together in a modern Portuguese university classroom or library, focused academic atmosphere. ';
-    } else {
-        $prompt .= 'A Brazilian student reviewing documents or using a laptop, warm and hopeful atmosphere, hints of Portuguese architecture through a window. ';
-    }
+    $prompt .= 'Photorealistic editorial photograph for a blog about studying in Portugal for Brazilian students. ';
+    $prompt .= 'NOT an illustration, NOT vector art, NOT flat design, NOT an infographic, no icons, no text overlays, no logos. ';
+    $prompt .= 'A Brazilian student ' . $settings[array_rand($settings)] . '. ';
+    $prompt .= ucfirst($lighting[array_rand($lighting)]) . ', ' . $framing[array_rand($framing)] . ', ' . $mood[array_rand($mood)] . '. ';
     $prompt .= 'Context: ' . $cleanTitle;
 
     $payload = ['model' => BLOG_IMAGE_MODEL, 'messages' => [['role' => 'user', 'content' => $prompt]], 'modalities' => ['image', 'text']];
