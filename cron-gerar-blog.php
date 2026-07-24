@@ -41,6 +41,60 @@ require_once __DIR__ . '/includes/blog-db.php';
 
 set_time_limit(420);
 
+// ── Report por email (EMAILREP1/EMAILREP2 no .env) ──────────────────────────
+// Um email por corrida real (sucesso ou falha) — nunca em --dry-run, e nunca
+// no skip benigno de "já correu hoje". Usa register_shutdown_function para
+// disparar sempre, mesmo que a corrida termine a meio por exit(1) ou erro
+// fatal, sem ter de repetir a chamada em cada ponto de saída do script.
+$GLOBALS['__enpReport']   = null; // ['status'=>'success'|'error', ...detalhes]
+$GLOBALS['__enpDryRun']   = false;
+$GLOBALS['__enpReported'] = false;
+
+function enp_send_cron_report(string $status, array $details): void {
+    $to = array_values(array_filter([EMAILREP1, EMAILREP2]));
+    if (!$to) return; // sem destinatários configurados no .env
+    if (SMTP_HOST === '') { cronLog('Report: SMTP_HOST vazio, a saltar envio de email.'); return; }
+
+    $subject = $status === 'success'
+        ? '[Blog IA] Novo artigo: ' . strip_tags((string) ($details['título'] ?? ''))
+        : '[Blog IA] FALHOU: ' . (string) ($details['motivo'] ?? 'erro desconhecido');
+    $lines = ['Estado: ' . strtoupper($status), 'Data/hora: ' . date('Y-m-d H:i:s'), ''];
+    foreach ($details as $k => $v) { $lines[] = ucfirst($k) . ': ' . $v; }
+    $body = implode("\n", $lines);
+
+    try {
+        require_once __DIR__ . '/lib/PHPMailer/src/Exception.php';
+        require_once __DIR__ . '/lib/PHPMailer/src/PHPMailer.php';
+        require_once __DIR__ . '/lib/PHPMailer/src/SMTP.php';
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->isSMTP();
+        $mail->Host    = SMTP_HOST;
+        $mail->Port    = SMTP_PORT;
+        $mail->Timeout = 12;
+        $mail->SMTPSecure = SMTP_SECURE ?: null;
+        if (SMTP_ALLOW_SELF_SIGNED) {
+            $mail->SMTPOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true]];
+        }
+        if (SMTP_USER !== '') { $mail->SMTPAuth = true; $mail->Username = SMTP_USER; $mail->Password = SMTP_PASS; }
+        $mail->setFrom(SMTP_FROM, SMTP_FROMNAME);
+        foreach ($to as $addr) { $mail->addAddress($addr); }
+        $mail->isHTML(false);
+        $mail->Subject = $subject;
+        $mail->Body    = $body;
+        $mail->send();
+        cronLog('Report enviado por email para: ' . implode(', ', $to));
+    } catch (\Throwable $e) {
+        cronLog('ERROR: falha ao enviar report por email: ' . $e->getMessage());
+    }
+}
+
+register_shutdown_function(function () {
+    if ($GLOBALS['__enpReported'] || $GLOBALS['__enpDryRun'] || !$GLOBALS['__enpReport']) return;
+    $GLOBALS['__enpReported'] = true;
+    enp_send_cron_report($GLOBALS['__enpReport']['status'], $GLOBALS['__enpReport']['dados']);
+});
+
 // Slugs de páginas estáticas já escritas à mão — nunca gerar por cima.
 define('STATIC_BLOG_SLUGS', [
     'explicacoes', 'concurso-especial-estudantes-internacionais',
@@ -720,10 +774,12 @@ try {
     cronLog('=== Cron Blog Start (Estudar em Portugal) ===');
 
     $dryRun = getenv('DRY_RUN') === '1' || (isset($argv) && is_array($argv) && in_array('--dry-run', $argv, true));
+    $GLOBALS['__enpDryRun'] = $dryRun;
     if ($dryRun) cronLog('DRY-RUN ATIVO — sem chamadas reais a OpenRouter/Gemini.');
 
     if (empty(BLOG_OPENROUTER_API_KEY) && !$dryRun) {
         cronLog('ERROR: BLOG_OPENROUTER_API_KEY não definida no .env');
+        $GLOBALS['__enpReport'] = ['status' => 'error', 'dados' => ['motivo' => 'BLOG_OPENROUTER_API_KEY não definida no .env']];
         exit(1);
     }
 
@@ -745,7 +801,11 @@ try {
                 if ($topic !== null) break;
                 sleep(2 * $attempt);
             }
-            if ($topic === null) { cronLog('ERROR: não consegui gerar tópico novo após 3 tentativas.'); exit(1); }
+            if ($topic === null) {
+                cronLog('ERROR: não consegui gerar tópico novo após 3 tentativas.');
+                $GLOBALS['__enpReport'] = ['status' => 'error', 'dados' => ['motivo' => 'Não consegui gerar tópico novo (pool esgotado + IA falhou 3x)']];
+                exit(1);
+            }
         }
     }
     cronLog("Tópico escolhido: {$topic['title']}");
@@ -766,12 +826,17 @@ try {
     } else {
         cronLog('A chamar OpenRouter (modelo: ' . BLOG_MODEL . ')...');
         $rawResponse = callOpenRouter('És um copywriter SEO especializado em estudar em Portugal para brasileiros. Devolve APENAS JSON válido.', buildUserPrompt($topic));
-        if (!$rawResponse) { cronLog('ERROR: sem resposta do OpenRouter'); exit(1); }
+        if (!$rawResponse) {
+            cronLog('ERROR: sem resposta do OpenRouter');
+            $GLOBALS['__enpReport'] = ['status' => 'error', 'dados' => ['motivo' => 'Sem resposta do OpenRouter', 'tópico' => $topic['title']]];
+            exit(1);
+        }
     }
 
     $generated = extractJson($rawResponse);
     if (!$generated || !isset($generated['content_html'], $generated['slug'])) {
         cronLog('ERROR: JSON inválido (' . strlen($rawResponse) . ' bytes).');
+        $GLOBALS['__enpReport'] = ['status' => 'error', 'dados' => ['motivo' => 'JSON inválido devolvido pelo OpenRouter', 'tópico' => $topic['title']]];
         exit(1);
     }
 
@@ -781,6 +846,7 @@ try {
     $generated['slug'] = $slug;
 
     $heroImage = basename(FALLBACK_IMAGE);
+    $heroImageIsAi = false;
     if ($dryRun) {
         cronLog('DRY-RUN: a saltar geração de imagem, uso fallback.');
     } elseif (empty(BLOG_OPENROUTER_API_KEY)) {
@@ -788,7 +854,7 @@ try {
     } else {
         cronLog('A gerar imagem hero com ' . BLOG_IMAGE_MODEL . '...');
         $geminiResult = generateGeminiImage($topic, $slug, $generated['title']);
-        if ($geminiResult) { $heroImage = basename($geminiResult); cronLog('Imagem hero gerada por IA.'); }
+        if ($geminiResult) { $heroImage = basename($geminiResult); $heroImageIsAi = true; cronLog('Imagem hero gerada por IA.'); }
         else { cronLog('Imagem: IA falhou/recusou — uso fallback.'); }
     }
 
@@ -796,7 +862,10 @@ try {
         cronLog("DRY-RUN: inserção na BD ignorada (slug={$slug}).");
     } else {
         $ok = enp_insert_blog_post($generated, $topic, $slug, $heroImage, $today);
-        if (!$ok) exit(1);
+        if (!$ok) {
+            $GLOBALS['__enpReport'] = ['status' => 'error', 'dados' => ['motivo' => 'Falha ao gravar o artigo na BD (ver storage/.cron-blog.log)', 'tópico' => $topic['title']]];
+            exit(1);
+        }
         cronLog("SUCCESS: post '{$slug}' inserido/atualizado em blog_posts.");
     }
 
@@ -820,8 +889,18 @@ try {
     }
 
     cronLog("=== Concluído: {$slug} | Total gerado: " . ($tracker['total_generated'] ?? 0) . ' ===');
+
+    $GLOBALS['__enpReport'] = ['status' => 'success', 'dados' => [
+        'título'    => strip_tags($generated['title']),
+        'categoria' => $topic['category_label'],
+        'slug'      => $slug,
+        'imagem'    => $heroImageIsAi ? 'gerada por IA (' . BLOG_IMAGE_MODEL . ')' : 'fallback (ícone genérico)',
+        'link'      => rtrim(SITE_URL, '/') . '/artigo.php?slug=' . $slug,
+        'total gerado até agora' => (string) ($tracker['total_generated'] ?? 0),
+    ]];
 } catch (Throwable $e) {
     cronLog('FATAL: ' . $e->getMessage() . ' em ' . $e->getFile() . ':' . $e->getLine());
+    $GLOBALS['__enpReport'] = ['status' => 'error', 'dados' => ['motivo' => $e->getMessage() . ' em ' . $e->getFile() . ':' . $e->getLine()]];
     exit(1);
 } finally {
     if (isset($lockFp) && $lockFp) { flock($lockFp, LOCK_UN); fclose($lockFp); }

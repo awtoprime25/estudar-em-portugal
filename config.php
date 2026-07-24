@@ -107,6 +107,12 @@ define('MAIL_TO',       (string) (getenv('MAIL_TO')       ?: CONTACT_EMAIL));
 define('MAIL_CC',       (string) (getenv('MAIL_CC')       ?: ''));
 define('MAIL_CC2',      (string) (getenv('MAIL_CC2')      ?: ''));   // Cc opcional (cópia pessoal). Vazio = desativado.
 
+// Destinatários do report por email do cron-gerar-blog.php (1 email por
+// artigo gerado/falhado). Nomes das chaves tal como o utilizador as definiu
+// no .env (minúsculas, sem prefixo EMAIL_/MAIL_).
+define('EMAILREP1', (string) (getenv('emailrep1') ?: ''));
+define('EMAILREP2', (string) (getenv('emailrep2') ?: ''));
+
 // ============================================================
 // Chatbot "Leo" (chat.php) — mesma integração OpenRouter do site irmão
 // EstudarNoEstrangeiro. Sem chave: chat.php recusa pedidos com erro 502
