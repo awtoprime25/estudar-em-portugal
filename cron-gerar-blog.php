@@ -716,11 +716,13 @@ Artigos já existentes no site (NÃO duplicar conteúdo): {$existingPosts}
 
 O artigo deve:
 - Ser original, útil e focado em estudantes BRASILEIROS que querem estudar em Portugal
+- Ser escrito em Português do Brasil (natural, "você" em vez de "tu", vocabulário brasileiro) — o público-alvo é brasileiro
 - Incluir 4-6 secções com <h2 id="..."> e subsecções com <h3> quando fizer sentido
 - Ter uma lead (parágrafo inicial forte) com class="lead"
 - Incluir uma <div class="highlight-box"> ou <div class="warning-box"> quando relevante
 - Terminar com um parágrafo de conclusão que leva ao CTA
 - Mencionar factos verificáveis (ENEM, Concurso Especial, CPLP, propinas) apenas se tiveres confiança neles — nunca inventar números
+- Evitar afirmações absolutas sobre reconhecimento automático de diplomas, requisitos de profissões regulamentadas (ex.: mestrado obrigatório para exercer) ou percentagens/valores exatos — usar "pode", "em geral", "conforme a instituição", e recomendar confirmar junto da instituição/ordem profissional/consulado competente
 
 Devolve APENAS o JSON válido, sem markdown, sem code fences, sem texto extra antes ou depois, no formato:
 {
@@ -825,7 +827,7 @@ try {
         cronLog("DRY-RUN: JSON enlatado preparado (slug={$drySlug}).");
     } else {
         cronLog('A chamar OpenRouter (modelo: ' . BLOG_MODEL . ')...');
-        $rawResponse = callOpenRouter('És um copywriter SEO especializado em estudar em Portugal para brasileiros. Devolve APENAS JSON válido.', buildUserPrompt($topic));
+        $rawResponse = callOpenRouter('És um copywriter SEO especializado em estudar em Portugal para brasileiros. Escreves sempre em português do Brasil (nunca em português europeu). Devolve APENAS JSON válido.', buildUserPrompt($topic));
         if (!$rawResponse) {
             cronLog('ERROR: sem resposta do OpenRouter');
             $GLOBALS['__enpReport'] = ['status' => 'error', 'dados' => ['motivo' => 'Sem resposta do OpenRouter', 'tópico' => $topic['title']]];

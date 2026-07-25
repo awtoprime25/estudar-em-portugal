@@ -48,9 +48,9 @@ $extraJsonLd = json_encode([
                 ['@type' => 'Question', 'name' => 'Posso usar a nota do ENEM para estudar em Portugal?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Sim. As universidades portuguesas (públicas e algumas privadas) aceitam a nota do ENEM como prova de ingresso, principalmente através do concurso institucional. Esta é uma das maiores vantagens de Portugal para candidatos brasileiros.']],
                 ['@type' => 'Question', 'name' => 'Em Portugal as aulas são em português?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Sim. A esmagadora maioria dos cursos de licenciatura e mestrado em Portugal é lecionada em português, o que elimina a barreira linguística para brasileiros. Alguns mestrados e programas específicos são em inglês, principalmente nas áreas de Gestão e Engenharia.']],
                 ['@type' => 'Question', 'name' => 'Quanto custa estudar em Portugal vs outros países da Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Portugal tem propinas entre 700€ e 7.500€/ano conforme instituição e curso. Países Baixos cobram ~2.314€/ano para UE e ~10.000€ para brasileiros; Alemanha é praticamente gratuita (apenas taxas administrativas de ~300€); Reino Unido varia entre 10.000€ e 25.000£/ano.']],
-                ['@type' => 'Question', 'name' => 'O diploma português vale em toda a Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Sim. Pelo sistema ECTS (Espaço Europeu de Ensino Superior), qualquer diploma emitido por universidade portuguesa acreditada é reconhecível em todos os países da UE e do EEE. Mesmíssimo princípio aplica-se a diplomas da Holanda, Alemanha, Itália, Espanha, etc.']],
-                ['@type' => 'Question', 'name' => 'Como funciona o visto de estudante para Portugal vs Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Para brasileiros, Portugal oferece visto CPLP simplificado e visto de estudante com regras rotinadas. Para outros países europeus (Holanda, Alemanha, Itália, etc.), o processo é semelhante mas requer visto Schengen de estudante, com prazos e documentos próprios. A StudyWing acompanha toda a documentação em ambos os casos.']],
-                ['@type' => 'Question', 'name' => 'Qual é a melhor opção para mim: Portugal ou outro país da Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Depende do perfil: se valoriza idioma em português, custo acessível e inserção rápida, Portugal é ideal. Se procura programas 100% em inglês, especialização técnica (TU Delft, TU München), ou experiência internacional mais intensa, há destinos europeus mais adequados. Use o formulário StudyWing em baixo — falamos consigo em 24h com a análise personalizada.']],
+                ['@type' => 'Question', 'name' => 'O diploma português vale em toda a Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Os diplomas portugueses integram o Espaço Europeu de Ensino Superior e usam o sistema ECTS, o que facilita o reconhecimento acadêmico em toda a UE e no EEE — o mesmo princípio aplica-se a diplomas da Holanda, Alemanha, Itália, Espanha, etc. Em profissões regulamentadas, pode ser necessário um processo específico de reconhecimento profissional.']],
+                ['@type' => 'Question', 'name' => 'Como funciona o visto de estudante para Portugal vs Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Para brasileiros, Portugal oferece visto de estudante com possível enquadramento CPLP; os requisitos exatos devem ser confirmados junto do consulado. Para outros países europeus (Holanda, Alemanha, Itália, etc.), o processo é semelhante mas requer visto Schengen de estudante, com prazos e documentos próprios. A StudyWing acompanha toda a documentação em ambos os casos.']],
+                ['@type' => 'Question', 'name' => 'Qual é a melhor opção para mim: Portugal ou outro país da Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Depende do perfil: se valoriza idioma em português, custo acessível e inserção rápida, Portugal é ideal. Se procura programas 100% em inglês, especialização técnica (TU Delft, TU München), ou experiência internacional mais intensa, há destinos europeus mais adequados. Use o formulário StudyWing abaixo — falamos com você em 24h com a análise personalizada.']],
             ],
         ],
         [
@@ -158,12 +158,12 @@ ksort($cardsColecoes);
             </tr>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-mortarboard"></i></span> Acesso (nota ENEM)</th>
-              <td><span class="good">✓</span> <strong>Sim, ENEM aceite</strong> pela maioria das universidades públicas e algumas privadas, especialmente em Engenharias e Gestão.</td>
+              <td><span class="good">✓</span> <strong>Sim, ENEM aceite</strong> por diversas universidades e institutos politécnicos, conforme os requisitos e protocolos de cada instituição.</td>
               <td><span class="bad">✗</span> ENEM geralmente não é suficiente. É comum precisar de IB, A-Levels, ou Foundation Year de 1 ano.</td>
             </tr>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-cash-coin"></i></span> Propinas anuais (licenciatura, EUR)</th>
-              <td><strong>700€ – 7.500€</strong> (públicas ~700–1.500€; privadas até 7.500€)</td>
+              <td><strong>700€ – 7.500€+</strong> (varia por instituição, curso e regime; propinas de estudante internacional costumam ser mais altas do que as de estudante nacional)</td>
               <td><strong>~0€ – 25.000€</strong><br>Alemanha ~300€; Holanda 2.314€ (UE) / ~10.000€ (BR); UK 10.000–25.000£.</td>
             </tr>
             <tr>
@@ -173,17 +173,17 @@ ksort($cardsColecoes);
             </tr>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-passport"></i></span> Visto / documentação</th>
-              <td><span class="good">✓</span> <strong>Visto CPLP/estudante</strong> bastante simplificado para brasileiros; processo rotinado da Team StudyWing.</td>
+              <td><span class="good">✓</span> <strong>Visto de estudante</strong> para brasileiros, com possível enquadramento CPLP; requisitos e prazos confirmados junto do consulado, acompanhados pela Team StudyWing.</td>
               <td>Visto Schengen de estudante (UE). Mais papelada e prazos mais curtos; varia por país.</td>
             </tr>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-people"></i></span> Comunidade brasileira</th>
-              <td><strong>Enorme</strong> (>300 mil brasileiros a viver em Portugal). Integração imediata, redes, grupos, eventos.</td>
+              <td><strong>Enorme</strong> (>300 mil brasileiros vivendo em Portugal). Integração imediata, redes, grupos, eventos.</td>
               <td>Comunidade mais reduzida, mas presente nas grandes cidades. Imersão intercultural mais intensa.</td>
             </tr>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-award"></i></span> Reconhecimento do diploma</th>
-              <td><strong>Válido em toda a UE</strong> via sistema ECTS. Reconhecimento automático em PT, ES, FR, DE, NL, IT, etc.</td>
+              <td><strong>Integra o Espaço Europeu de Ensino Superior</strong> via sistema ECTS, o que facilita o reconhecimento acadêmico na UE. Profissões regulamentadas podem exigir processo específico.</td>
               <td><strong>Válido em toda a UE</strong> via ECTS. Diploma de TU Delft/Múnich/Bolonha tem peso mundial.</td>
             </tr>
             <tr>
@@ -196,9 +196,9 @@ ksort($cardsColecoes);
       </div>
 
       <p class="compare-table-cta">
-        <strong data-br="Não tens a certeza?" data-pt="Não tens a certeza?">Não tens a certeza?</strong>
-        <span data-br="Pedir a análise da StudyWing — em 24h traçamos o plano A, B e C para o teu perfil."
-              data-pt="Pede a análise da StudyWing — em 24h traçamos o plano A, B e C para o teu perfil.">Pede a análise da StudyWing — em 24h traçamos o plano A, B e C para o teu perfil.</span>
+        <strong data-br="Não tem certeza?" data-pt="Não tens a certeza?">Não tem certeza?</strong>
+        <span data-br="Peça a análise da StudyWing — em 24h traçamos o plano A, B e C para o seu perfil."
+              data-pt="Pede a análise da StudyWing — em 24h traçamos o plano A, B e C para o teu perfil.">Peça a análise da StudyWing — em 24h traçamos o plano A, B e C para o seu perfil.</span>
         <a href="#formulario" class="btn-pill btn-navy">Quero a análise →</a>
       </p>
     </div>
@@ -210,7 +210,7 @@ ksort($cardsColecoes);
       <div class="section-head on-dark">
         <div>
           <span class="eyebrow" data-br="PARA QUEM É CADA OPÇÃO" data-pt="PARA QUEM É CADA OPÇÃO">PARA QUEM É CADA OPÇÃO</span>
-          <h2 data-br="Escolhe Portugal se…" data-pt="Escolhe Portugal se…">Escolhe Portugal se…</h2>
+          <h2 data-br="Escolha Portugal se…" data-pt="Escolhe Portugal se…">Escolha Portugal se…</h2>
         </div>
       </div>
 
@@ -218,36 +218,36 @@ ksort($cardsColecoes);
         <article class="choose-card choose-card--pt">
           <div class="choose-card__head">
             <span class="flag-glyph">🇵🇹</span>
-            <h3 data-br="Portugal é a tua escolha certa" data-pt="Portugal é a tua escolha certa">Portugal é a tua escolha certa</h3>
+            <h3 data-br="Portugal é a sua escolha certa" data-pt="Portugal é a tua escolha certa">Portugal é a sua escolha certa</h3>
           </div>
           <ul>
-            <li data-br="Queres candidatar-te só com a nota do ENEM (sem TOEFL/IELTS)"
-                data-pt="Queres candidatar-te só com a nota do ENEM (sem TOEFL/IELTS)">Queres candidatar-te só com a nota do ENEM (sem TOEFL/IELTS)</li>
-            <li data-br="Valorizas aulas em português (sem barreira linguística)"
-                data-pt="Valorizas aulas em português (sem barreira linguística)">Valorizas aulas em português (sem barreira linguística)</li>
-            <li data-br="Procuras uma transição suave (cultura próxima, grande comunidade brasileira)"
-                data-pt="Procuras uma transição suave (cultura próxima, grande comunidade brasileira)">Procuras uma transição suave (cultura próxima, grande comunidade brasileira)</li>
+            <li data-br="Quer se candidatar só com a nota do ENEM (sem TOEFL/IELTS)"
+                data-pt="Queres candidatar-te só com a nota do ENEM (sem TOEFL/IELTS)">Quer se candidatar só com a nota do ENEM (sem TOEFL/IELTS)</li>
+            <li data-br="Valoriza aulas em português (sem barreira linguística)"
+                data-pt="Valorizas aulas em português (sem barreira linguística)">Valoriza aulas em português (sem barreira linguística)</li>
+            <li data-br="Procura uma transição suave (cultura próxima, grande comunidade brasileira)"
+                data-pt="Procuras uma transição suave (cultura próxima, grande comunidade brasileira)">Procura uma transição suave (cultura próxima, grande comunidade brasileira)</li>
             <li data-br="Orçamento mais controlado (propinas baixas, vida acessível)"
                 data-pt="Orçamento mais controlado (propinas baixas, vida acessível)">Orçamento mais controlado (propinas baixas, vida acessível)</li>
-            <li data-br="Sonhas com carreira em mercado lusófono (Brasil, Portugal, PALOP)"
-                data-pt="Sonhas com carreira em mercado lusófono (Brasil, Portugal, PALOP)">Sonhas com carreira em mercado lusófono (Brasil, Portugal, PALOP)</li>
+            <li data-br="Sonha com carreira em mercado lusófono (Brasil, Portugal, PALOP)"
+                data-pt="Sonhas com carreira em mercado lusófono (Brasil, Portugal, PALOP)">Sonha com carreira em mercado lusófono (Brasil, Portugal, PALOP)</li>
           </ul>
         </article>
 
         <article class="choose-card choose-card--eu">
           <div class="choose-card__head">
             <span class="flag-glyph">🇪🇺</span>
-            <h3 data-br="Europa continental é a tua escolha certa" data-pt="Europa continental é a tua escolha certa">Europa continental é a tua escolha certa</h3>
+            <h3 data-br="Europa continental é a sua escolha certa" data-pt="Europa continental é a tua escolha certa">Europa continental é a sua escolha certa</h3>
           </div>
           <ul>
-            <li data-br="Já tens IELTS/TOEFL e queres um curso 100% em inglês"
-                data-pt="Já tens IELTS/TOEFL e queres um curso 100% em inglês">Já tens IELTS/TOEFL e queres um curso 100% em inglês</li>
-            <li data-br="Miraste universidades de elite (TU Delft, TU München, Bolonha, Sciences Po)"
-                data-pt="Miraste universidades de elite (TU Delft, TU München, Bolonha, Sciences Po)">Miraste universidades de elite (TU Delft, TU München, Bolonha, Sciences Po)</li>
-            <li data-br="Procuras especialização técnica reconhecida globalmente"
-                data-pt="Procuras especialização técnica reconhecida globalmente">Procuras especialização técnica reconhecida globalmente</li>
-            <li data-br="Aceitas/adoras desafio linguístico e multicultural"
-                data-pt="Aceitas/adoras desafio linguístico e multicultural">Aceitas/adoras desafio linguístico e multicultural</li>
+            <li data-br="Já tem IELTS/TOEFL e quer um curso 100% em inglês"
+                data-pt="Já tens IELTS/TOEFL e queres um curso 100% em inglês">Já tem IELTS/TOEFL e quer um curso 100% em inglês</li>
+            <li data-br="Mirou universidades de elite (TU Delft, TU München, Bolonha, Sciences Po)"
+                data-pt="Miraste universidades de elite (TU Delft, TU München, Bolonha, Sciences Po)">Mirou universidades de elite (TU Delft, TU München, Bolonha, Sciences Po)</li>
+            <li data-br="Procura especialização técnica reconhecida globalmente"
+                data-pt="Procuras especialização técnica reconhecida globalmente">Procura especialização técnica reconhecida globalmente</li>
+            <li data-br="Aceita/adora desafio linguístico e multicultural"
+                data-pt="Aceitas/adoras desafio linguístico e multicultural">Aceita/adora desafio linguístico e multicultural</li>
             <li data-br="Carreira-alvo em empresa global ou setor com mercado internacional"
                 data-pt="Carreira-alvo em empresa global ou setor com mercado internacional">Carreira-alvo em empresa global ou setor com mercado internacional</li>
           </ul>
@@ -270,12 +270,12 @@ ksort($cardsColecoes);
       <div class="faq-accordion" data-faq>
         <?php
         $faq = [
-          ['ENEM em Portugal?', 'Sim. Universidades públicas portuguesas e algumas privadas aceitam a nota do ENEM como prova de ingresso. É a maior atalho para brasileiros candidatarem-se sem exames adicionais.'],
+          ['ENEM em Portugal?', 'Sim. Universidades públicas portuguesas e algumas privadas aceitam a nota do ENEM como prova de ingresso. É o maior atalho para brasileiros se candidatarem sem exames adicionais.'],
           ['Aulas em inglês ou português?', 'Em Portugal: 95% em português. Em outros países europeus: a maioria dos programas top é em inglês (Holanda, UK, Países nórdicos), com exceção da Alemanha/Itália/Espanha onde há mais oferta em língua local.'],
           ['Custo real por ano?', 'Portugal 700–7.500€ propinas + 700–1.200€/mês vida. Europa: muito variável — DE ~300€ propinas, NL/UK 10–25k€/ano, com vida mais alta. Fazer as contas realistas antes de escolher é crítico.'],
           ['Visto de estudante — qual a diferença?', 'Portugal tem regime CPLP simplificado para brasileiros, o que encurta prazos e burocracia. Outros países exigem visto Schengen de estudante padrão, com regras próprias. Em qualquer caso, a StudyWing trata da papelada toda.'],
-          ['O diploma vale em toda a Europa?', 'Sim, em ambos. Através do ECTS (Processo de Bolonha), qualquer diploma europeu é reconhecível em todos os países-membros. Diplomas não-europeus exigem reconhecimento específico e podem passar por conversão.'],
-          ['Como decido entre os dois caminhos?', 'Depende de 4 fatores: ENEM/IELTS disponível, orçamento, carreira-alvo, e appetite linguístico. O formulário StudyWing abaixo pede exatamente isto; em 24h voltamos com o plano personalizado.'],
+          ['O diploma vale em toda a Europa?', 'Em ambos, o diploma integra o Espaço Europeu de Ensino Superior via ECTS (Processo de Bolonha), o que facilita o reconhecimento acadêmico entre países-membros — profissões regulamentadas podem exigir um processo específico. Diplomas não-europeus exigem reconhecimento específico e podem passar por conversão.'],
+          ['Como decido entre os dois caminhos?', 'Depende de 4 fatores: ENEM/IELTS disponível, orçamento, carreira-alvo, e afinidade linguística. O formulário StudyWing abaixo pede exatamente isto; em 24h voltamos com o plano personalizado.'],
         ];
         foreach ($faq as $i => $q): ?>
         <details class="faq-item" data-faq-item <?= $i === 0 ? 'open' : '' ?>>

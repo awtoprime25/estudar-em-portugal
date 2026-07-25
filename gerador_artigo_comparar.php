@@ -146,7 +146,7 @@ function enp_render_blog_php(array $artigo, array $topico): string {
         ['q' => 'Como funciona o visto para '.$b.'?',
          'a' => 'É necessário visto Schengen de estudante. A StudyWing trata de toda a documentação (carta de aceitação, seguro, comprovativos financeiros).'],
         ['q' => 'O diploma vale em toda a União Europeia?',
-         'a' => 'Sim. Tanto o diploma português como o de outros países UE é reconhecível por força do sistema ECTS em todos os 27 países-membros.'],
+         'a' => 'Tanto o diploma português como o de outros países UE integram o Espaço Europeu de Ensino Superior via ECTS, o que facilita o reconhecimento académico entre os países-membros. Em profissões regulamentadas, pode ser necessário um processo específico de reconhecimento profissional.'],
     ];
     $faqEntities = [];
     foreach ($faqItems as $f) {
@@ -234,7 +234,7 @@ $pageSlug = $enpSlug;
         <section style="background:#0a1628;color:#fff;padding:32px;border-radius:18px;margin-top:24px;">
             <h2 style="margin:0 0 12px;">Pronto para avançar?</h2>
             <p style="color:rgba(255,255,255,.85);margin:0 0 18px;line-height:1.6;">
-                A equipa StudyWing traça contigo o plano A, B e C para entrar em
+                A equipe StudyWing traça com você o plano A, B e C para entrar em
                 <strong>__A__</strong> ou <strong>__B__</strong>. Candidaturas, vistos, equivalências — tudo num só processo.
             </p>
             <a href="#formulario" class="btn-pill" style="background:#3fd0e0;color:#0a1628;">Falar com a StudyWing →</a>
@@ -285,14 +285,14 @@ function enp_artigo_template(string $titulo, string $a, string $b): array {
         'slug'           => enp_slug('comparar-' . $a . '-' . $b),
         'descricao_longa' => '<p class="lead">Este artigo foi gerado em modo <strong>DRY-RUN</strong> para validar o pipeline end-to-end (texto + imagem + ficheiro + tracker + sitemap) sem gastar créditos LLM. Se esta página aparecer em <code>blog/' . enp_slug('comparar-' . $a . '-' . $b) . '.php</code>, o gerador está operacional.</p>'
             . '<h2>Contexto da comparação ' . $a . ' &times; ' . $b . '</h2>'
-            . '<p>Em ' . $a . ', o sistema de ensino superior europeu X. Em ' . $b . ', sistema de ensino superior europeu Y. Ambos reconhecem créditos ECTS e têm equivalências automáticas.</p>'
+            . '<p>Em ' . $a . ', o sistema de ensino superior europeu X. Em ' . $b . ', sistema de ensino superior europeu Y. Ambos integram o sistema ECTS, o que facilita o reconhecimento académico entre países-membros.</p>'
             . '<h2>Tabela comparativa (referência rápida)</h2>'
             . '<table class="compare-table"><thead><tr><th>Critério</th><th>' . $a . '</th><th>' . $b . '</th></tr></thead><tbody>'
             . '<tr><th>Propinas anuais</th><td>~1.500€</td><td>~10.000€</td></tr>'
             . '<tr><th>Custo de vida mensal</th><td>~800€</td><td>~1.400€</td></tr>'
             . '<tr><th>Idioma</th><td>Português</td><td>Inglês</td></tr>'
             . '<tr><th>ENEM aceite</th><td>Sim</td><td>Não</td></tr>'
-            . '<tr><th>Diploma válido UE</th><td>Sim (ECTS)</td><td>Sim (ECTS)</td></tr>'
+            . '<tr><th>Diploma na UE</th><td>ECTS facilita reconhecimento</td><td>ECTS facilita reconhecimento</td></tr>'
             . '</tbody></table>'
             . '<h2>Para quem é cada destino</h2>'
             . '<p>Se valorizas <strong>custo controlado</strong> e <strong>idioma em português</strong>, ' . $a . ' é ideal. Se procuras <strong>especialização técnica</strong> ou <strong>courses 100% em inglês</strong>, ' . $b . ' leva vantagem.</p>'
@@ -333,7 +333,7 @@ function enp_openrouter_chat(string $prompt, ?string $apiKey, string $model): ?a
 
 function enp_build_prompt(string $titulo, string $a, string $b, string $cat, string $foco): string {
     $af = e($a); $bf = e($b); $cf = e($cat); $ff = e($foco); $tf = e($titulo);
-    return "És um copywriter especializado em conteúdo académico para estudantes internacionais que comparam destinos na Europa. Escreves para o blog do programa 'Estudar em Portugal' (Ginásios Da Vinci em colaboração com a StudyWing) no site comparar.php.\n\nEscreve um artigo comparativo completo sobre o tema:\n\nTÍTULO-BASE: {$tf}\nDESTINO A:    {$af}\nDESTINO B:    {$bf}\nCATEGORIA:    {$cf}\nFOCO:         {$ff}\n\nREGRAS:\n- NÃO menciones lafora.pt, ginasiosdavinci.com, studywing.org, ou qualquer URL externa\n- NÃO escrevas texto fora do JSON\n- Português de Portugal, jornalístico, natural, não promocional\n- Mínimo 900 palavras\n\nEstrutura obrigatória:\n1. Introdução clara ao tema (relação {$af} vs {$bf}).\n2. <h2>O que é {$cat} e porque importa para quem estuda em {$af} ou {$bf}</h2> — resposta direta.\n3. <h2>Comparação direta: {$af} vs {$bf}</h2> — usar tabela HTML (<table class=\"compare-table\">) com 6-8 critérios-chave.\n4. <h2>Prós e contras de cada destino</h2> — listas com <ul><li>.\n5. <h2>Para que perfil serve {$af}?</h2>\n6. <h2>Para que perfil serve {$bf}?</h2>\n7. <h2>Custos e vistos — números reais</h2>.\n8. <h2>Perguntas frequentes sobre {$af} vs {$bf}</h2> — 4 a 5 perguntas com respostas curtas e diretas.\n9. <h2>Conclusão</h2> — decidir quando cada destino é melhor.\n\nSEO+AEO+GEO:\n- Frases claras e respondem a perguntas directas (AEO).\n- Incluir palavras-chave naturais: \"comparar {$af} e {$bf}\", \"{$af} vs {$bf}\", \"estudar {$bf} sendo brasileiro\", \"propinas {$bf}\".\n- FAQ section em perguntas que começam com palavras interrogativas reais.\n\nFormato obrigatório JSON:\n{\n  \"tema\": \"tema principal\",\n  \"titulo\": \"título SEO final (≤ 60 caracteres)\",\n  \"h1_html\": \"h1 em HTML (≤ 70 caracteres)\",\n  \"descricao_meta\": \"meta description (≤ 155 caracteres)\",\n  \"keywords\": \"lista de palavras-chave separadas por vírgula\",\n  \"imagem_url\": \"ogi-comparar.png\",\n  \"descricao_longa\": \"artigo completo em HTML (com <h2>, <h3>, <ul>, <table>, <p>)\",\n  \"slug\": \"url-amigavel-apenas-com-hifens\"\n}\n";
+    return "És um copywriter especializado em conteúdo académico para estudantes internacionais que comparam destinos na Europa. Escreves para o blog do programa 'Estudar em Portugal' (Ginásios Da Vinci em colaboração com a StudyWing) no site comparar.php.\n\nEscreve um artigo comparativo completo sobre o tema:\n\nTÍTULO-BASE: {$tf}\nDESTINO A:    {$af}\nDESTINO B:    {$bf}\nCATEGORIA:    {$cf}\nFOCO:         {$ff}\n\nREGRAS:\n- NÃO menciones lafora.pt, ginasiosdavinci.com, studywing.org, ou qualquer URL externa\n- NÃO escrevas texto fora do JSON\n- Português do Brasil, natural, não promocional (o público-alvo é brasileiro)\n- Mínimo 900 palavras\n- Evita afirmações absolutas sobre reconhecimento automático de diplomas, requisitos de profissões regulamentadas (ex.: mestrado obrigatório), ou percentagens/valores exatos de propinas e descontos — usa linguagem como \"pode\", \"em geral\", \"conforme a instituição\", e recomenda sempre confirmar junto da instituição/ordem profissional/consulado competente\n\nEstrutura obrigatória:\n1. Introdução clara ao tema (relação {$af} vs {$bf}).\n2. <h2>O que é {$cat} e porque importa para quem estuda em {$af} ou {$bf}</h2> — resposta direta.\n3. <h2>Comparação direta: {$af} vs {$bf}</h2> — usar tabela HTML (<table class=\"compare-table\">) com 6-8 critérios-chave.\n4. <h2>Prós e contras de cada destino</h2> — listas com <ul><li>.\n5. <h2>Para que perfil serve {$af}?</h2>\n6. <h2>Para que perfil serve {$bf}?</h2>\n7. <h2>Custos e vistos — números reais</h2>.\n8. <h2>Perguntas frequentes sobre {$af} vs {$bf}</h2> — 4 a 5 perguntas com respostas curtas e diretas.\n9. <h2>Conclusão</h2> — decidir quando cada destino é melhor.\n\nSEO+AEO+GEO:\n- Frases claras e respondem a perguntas directas (AEO).\n- Incluir palavras-chave naturais: \"comparar {$af} e {$bf}\", \"{$af} vs {$bf}\", \"estudar {$bf} sendo brasileiro\", \"propinas {$bf}\".\n- FAQ section em perguntas que começam com palavras interrogativas reais.\n\nFormato obrigatório JSON:\n{\n  \"tema\": \"tema principal\",\n  \"titulo\": \"título SEO final (≤ 60 caracteres)\",\n  \"h1_html\": \"h1 em HTML (≤ 70 caracteres)\",\n  \"descricao_meta\": \"meta description (≤ 155 caracteres)\",\n  \"keywords\": \"lista de palavras-chave separadas por vírgula\",\n  \"imagem_url\": \"ogi-comparar.png\",\n  \"descricao_longa\": \"artigo completo em HTML (com <h2>, <h3>, <ul>, <table>, <p>)\",\n  \"slug\": \"url-amigavel-apenas-com-hifens\"\n}\n";
 }
 
 function enp_run_pipeline(bool $dryrun = false): array {

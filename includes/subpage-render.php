@@ -133,8 +133,8 @@ function render_destino_page(string $slug): void
       <section class="section">
         <div class="container">
           <div class="article-cta">
-            <h3>Queres estudar em <?= e($city['nome']) ?>?</h3>
-            <p>A equipa Da Vinci × StudyWing acompanha-te desde a escolha do curso até à chegada a Portugal.</p>
+            <h3>Quer estudar em <?= e($city['nome']) ?>?</h3>
+            <p>A equipe Da Vinci × StudyWing te acompanha desde a escolha do curso até à chegada a Portugal.</p>
             <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
           </div>
         </div>
@@ -262,8 +262,8 @@ function render_curso_page(string $slug): void
       <section class="section section-dark">
         <div class="container">
           <div class="article-cta">
-            <h3>Queres estudar <?= e($course['nome']) ?> em Portugal?</h3>
-            <p>A equipa Da Vinci × StudyWing acompanha-te desde a escolha da universidade até à chegada a Portugal.</p>
+            <h3>Quer estudar <?= e($course['nome']) ?> em Portugal?</h3>
+            <p>A equipe Da Vinci × StudyWing te acompanha desde a escolha da universidade até à chegada a Portugal.</p>
             <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
           </div>
         </div>

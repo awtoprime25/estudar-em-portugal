@@ -12,9 +12,9 @@ $categorias = [
         ['Preciso de fazer exames portugueses para entrar?',
          'Na maioria dos casos não — quem se candidata pelo Concurso Especial pode usar o ENEM como prova de acesso, sem precisar de fazer os exames nacionais portugueses. Exceção: quem tem dupla nacionalidade brasileira e portuguesa/UE segue o regime geral, com exames obrigatórios.'],
         ['Tenho dupla nacionalidade (brasileira e portuguesa/UE) — o que muda?',
-         'Não podes usar o Concurso Especial de Estudantes Internacionais. O teu caminho é o regime geral, o mesmo dos estudantes portugueses: exames nacionais obrigatórios e propina de estudante nacional/UE (bem mais baixa).'],
+         'Não pode usar o Concurso Especial de Estudantes Internacionais. O seu caminho é o regime geral, o mesmo dos estudantes portugueses: exames nacionais obrigatórios e propina de estudante nacional/UE (bem mais baixa).'],
         ['Como é o acesso por CTeSP, licenciatura, mestrado ou doutorado?',
-         'O Concurso Especial cobre sobretudo o primeiro acesso ao ensino superior (CTeSP e licenciatura). Para mestrado e doutorado, o processo é normalmente uma candidatura direta à instituição, com análise do percurso académico anterior — os requisitos exatos variam por curso e universidade.'],
+         'O Concurso Especial cobre sobretudo o primeiro acesso ao ensino superior (CTeSP e licenciatura). Para mestrado e doutorado, o processo é normalmente uma candidatura direta à instituição, com análise do percurso acadêmico anterior — os requisitos exatos variam por curso e universidade.'],
     ],
     'Custos e Propinas' => [
         ['Quanto custa estudar em Portugal?',
@@ -26,7 +26,7 @@ $categorias = [
     ],
     'Visto e Documentação' => [
         ['Como funciona o visto de estudante para Portugal?',
-         'Depois de admitido, trata-se o visto de estudante junto ao consulado português no Brasil. Já em Portugal, é preciso regularizar a residência junto à AIMA (Agência para a Integração, Migrações e Asilo). Consulta a nossa página de Visto de Estudante para o passo a passo completo.'],
+         'Depois de admitido, trata-se o visto de estudante junto ao consulado português no Brasil. Já em Portugal, é preciso regularizar a residência junto à AIMA (Agência para a Integração, Migrações e Asilo). Consulte a nossa página de Visto de Estudante para o passo a passo completo.'],
         ['Quando devo começar o processo de visto?',
          'O mais cedo possível — logo depois da matrícula, nunca depois. O processo consular pode demorar vários meses, e deixar para tratar disso perto do início das aulas é um dos erros mais comuns e mais caros.'],
         ['Que documentos preciso legalizar antes de vir para Portugal?',
@@ -38,21 +38,21 @@ $categorias = [
         ['As aulas são ao vivo ou gravadas?',
          'São aulas individuais ao vivo, online, 1-a-1 com o professor — não são vídeos gravados.'],
         ['Quais exames posso precisar fazer, conforme o curso?',
-         'Depende do curso: Medicina/Engenharias/Ciências pedem normalmente Matemática A + Física e Química A ou Biologia e Geologia; Economia/Gestão pedem Matemática A + Economia A; Direito/Letras/Ciências Sociais pedem Português + uma opção; Arquitetura/Design pedem Desenho A + Matemática A ou Geometria Descritiva A. Confirma sempre o par instituição/curso exato antes de decidir.'],
+         'Depende do curso: Medicina/Engenharias/Ciências pedem normalmente Matemática A + Física e Química A ou Biologia e Geologia; Economia/Gestão pedem Matemática A + Economia A; Direito/Letras/Ciências Sociais pedem Português + uma opção; Arquitetura/Design pedem Desenho A + Matemática A ou Geometria Descritiva A. Confirme sempre o par instituição/curso exato antes de decidir.'],
     ],
     'Cidades e Universidades' => [
         ['Qual é a melhor cidade para estudar em Portugal?',
-         'Depende do perfil: Lisboa e Porto têm mais universidades e oferta de cursos; Coimbra tem a vida académica mais tradicional; Braga, Aveiro, Évora e Faro são mais acessíveis e mais calmas. Explora o nosso mapa de universidades para comparar.'],
+         'Depende do perfil: Lisboa e Porto têm mais universidades e oferta de cursos; Coimbra tem a vida acadêmica mais tradicional; Braga, Aveiro, Évora e Faro são mais acessíveis e mais calmas. Explore o nosso mapa de universidades para comparar.'],
         ['Quantas universidades existem em Portugal?',
-         'Portugal tem universidades públicas em quase todas as regiões, além de institutos politécnicos e universidades privadas. Explora o nosso mapa completo de universidades para veres todas, filtradas por cidade.'],
+         'Portugal tem universidades públicas em quase todas as regiões, além de institutos politécnicos e universidades privadas. Explore o nosso mapa completo de universidades para ver todas, filtradas por cidade.'],
         ['As aulas em Portugal são em português ou em inglês?',
-         'A esmagadora maioria dos cursos de licenciatura e mestrado em Portugal é lecionada em português — o mesmo português que já falas, sem barreira de idioma. Alguns mestrados específicos são em inglês.'],
+         'A esmagadora maioria dos cursos de licenciatura e mestrado em Portugal é lecionada em português — o mesmo português que você já fala, sem barreira de idioma. Alguns mestrados específicos são em inglês.'],
     ],
     'Portugal vs. Outros Países' => [
         ['Portugal ou outro país da Europa — qual escolher?',
-         'Se valorizas idioma em português, custo mais acessível e inserção rápida, Portugal costuma ser a opção mais direta. Se procuras programas 100% em inglês ou especializações técnicas muito específicas, outros destinos europeus podem fazer mais sentido. Usa o nosso comparador para veres lado a lado.'],
+         'Se valoriza idioma em português, custo mais acessível e inserção rápida, Portugal costuma ser a opção mais direta. Se procura programas 100% em inglês ou especializações técnicas muito específicas, outros destinos europeus podem fazer mais sentido. Use o nosso comparador para ver lado a lado.'],
         ['O diploma português vale em toda a Europa?',
-         'Sim. Pelo sistema ECTS (Espaço Europeu de Ensino Superior, Processo de Bolonha), qualquer diploma emitido por uma universidade portuguesa acreditada é reconhecido em todos os países da UE e do EEE.'],
+         'Os diplomas portugueses integram o Espaço Europeu de Ensino Superior e usam o sistema ECTS, o que facilita a sua comparação e reconhecimento acadêmico em outros países da UE e do EEE. Em profissões regulamentadas (ex.: Medicina, Direito, Engenharia), pode ser necessário um processo específico de reconhecimento profissional junto da ordem ou entidade competente em cada país.'],
     ],
 ];
 
@@ -93,7 +93,7 @@ require_once __DIR__ . '/includes/header.php';
       <i class="bi bi-search page-search__icon" aria-hidden="true"></i>
       <input type="search" id="faqSearch" placeholder="Pesquisar perguntas…" aria-label="Pesquisar perguntas frequentes" autocomplete="off">
     </div>
-    <p class="page-search__empty" id="faqEmpty">Nenhuma pergunta encontrada. Tenta outras palavras ou <a href="#formulario">fala connosco</a>.</p>
+    <p class="page-search__empty" id="faqEmpty">Nenhuma pergunta encontrada. Tente outras palavras ou <a href="#formulario">fale conosco</a>.</p>
 
     <?php foreach ($categorias as $categoria => $lista): ?>
     <div class="faq-category" style="margin-bottom:48px;">
@@ -115,8 +115,8 @@ require_once __DIR__ . '/includes/header.php';
     <?php endforeach; ?>
 
     <div class="article-cta">
-      <h3>Não encontraste a tua resposta?</h3>
-      <p>Fala com a equipa Da Vinci × StudyWing e tira as tuas dúvidas numa consultoria gratuita.</p>
+      <h3>Não encontrou a sua resposta?</h3>
+      <p>Fale com a equipe Da Vinci × StudyWing e tire suas dúvidas numa consultoria gratuita.</p>
       <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
     </div>
   </section>

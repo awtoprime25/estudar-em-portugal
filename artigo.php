@@ -8,7 +8,7 @@ $post = $slug !== '' ? blog_get_by_slug($slug) : null;
 if (!$post) {
     http_response_code(404);
     $pageTitle       = 'Artigo não encontrado | Estudar em Portugal';
-    $pageDescription = 'O artigo que procuras não existe ou foi removido.';
+    $pageDescription = 'O artigo que procura não existe ou foi removido.';
     $noindex         = true;
     require_once __DIR__ . '/includes/header.php';
 ?>
@@ -85,9 +85,9 @@ require_once __DIR__ . '/includes/header.php';
     <?= $post['content_html'] ?>
 
     <div class="article-cta">
-      <h3>Queres saber se te enquadras?</h3>
-      <p>Fala com a nossa equipa — orientamos-te na escolha da cidade, do curso e tratamos da candidatura. Sem compromisso.</p>
-      <a href="#formulario" class="btn-pill btn-teal">Falar com a equipa</a>
+      <h3>Quer saber se você se enquadra?</h3>
+      <p>Fale com a nossa equipe — te orientamos na escolha da cidade, do curso e tratamos da candidatura. Sem compromisso.</p>
+      <a href="#formulario" class="btn-pill btn-teal">Falar com a equipe</a>
     </div>
   </section>
 
@@ -95,7 +95,7 @@ require_once __DIR__ . '/includes/header.php';
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <div><span class="eyebrow">Continua a ler</span><h2>Artigos relacionados</h2></div>
+        <div><span class="eyebrow">Continue lendo</span><h2>Artigos relacionados</h2></div>
       </div>
       <div class="cmp-blog-grid">
         <?php foreach ($related as $r): ?>

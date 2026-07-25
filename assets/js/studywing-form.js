@@ -109,12 +109,12 @@
           steps.forEach(function (s) { s.style.display = 'none'; });
           dots.forEach(function (d) { d.style.background = '#17a079'; });
         } else if (Array.isArray(res.errors) && res.errors.length) {
-          feedback.textContent = 'Verifica: ' + res.errors.join(', ');
+          feedback.textContent = 'Verifique: ' + res.errors.join(', ');
         }
       })
       .catch(function () {
         feedback.hidden = false;
-        feedback.textContent = 'Sem ligação. Tenta de novo em segundos, ou escreve para info@davinci.com.pt';
+        feedback.textContent = 'Sem conexão. Tente de novo em alguns segundos, ou escreva para info@davinci.com.pt';
         feedback.dataset.success = '0';
       })
       .finally(function () {

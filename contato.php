@@ -1,6 +1,6 @@
 <?php
 $pageTitle       = 'Contato — Estudar em Portugal';
-$pageDescription = 'Agende uma consultoria gratuita e fale com a nossa equipa sobre estudar em Portugal e na Europa.';
+$pageDescription = 'Agende uma consultoria gratuita e fale com a nossa equipe sobre estudar em Portugal e na Europa.';
 $activeNav       = 'contato';
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -8,14 +8,14 @@ require_once __DIR__ . '/includes/header.php';
 <main id="conteudo">
   <section class="page-hero">
     <div class="container">
-      <h1>Vamos falar sobre o teu futuro na Europa</h1>
-      <p>Agenda uma consultoria gratuita. Respondemos por email, telefone ou WhatsApp — ou preenche o formulário no fundo desta página.</p>
+      <h1>Vamos falar sobre o seu futuro na Europa</h1>
+      <p>Agende uma consultoria gratuita. Respondemos por email, telefone ou WhatsApp — ou preencha o formulário no fundo desta página.</p>
     </div>
   </section>
 
   <section class="container contact-grid">
     <div class="contact-card">
-      <h3>Fala connosco</h3>
+      <h3>Fale conosco</h3>
       <ul>
         <li><i class="bi bi-telephone"></i> <a href="tel:<?= e(CONTACT_PHONE_TEL) ?>"><?= e(CONTACT_PHONE) ?></a></li>
         <li><i class="bi bi-envelope"></i> <a href="mailto:<?= e(CONTACT_EMAIL) ?>"><?= e(CONTACT_EMAIL) ?></a></li>

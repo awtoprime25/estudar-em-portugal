@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/davinci-units.php';
 $pageTitle       = 'Sobre Nós — Da Vinci × StudyWing | Estudar em Portugal';
-$pageDescription = 'Conhece a parceria Da Vinci × StudyWing: a maior rede de apoio escolar de Portugal e uma consultoria internacional especializada, juntas para levar brasileiros às melhores universidades portuguesas.';
+$pageDescription = 'Conheça a parceria Da Vinci × StudyWing: a maior rede de apoio escolar de Portugal e uma consultoria internacional especializada, juntas para levar brasileiros às melhores universidades portuguesas.';
 $activeNav       = 'sobre';
 
 $extraJsonLd = json_encode([
@@ -36,7 +36,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="hero__copy">
         <span class="eyebrow">A NOSSA HISTÓRIA</span>
         <h1>Duas marcas, <span class="accent">uma missão</span></h1>
-        <p class="lede">A ponte entre o Brasil e as melhores universidades de Portugal. Uma parceria entre duas organizações que partilham a mesma missão: transformar o futuro de quem quer estudar lá fora.</p>
+        <p class="lede">A ponte entre o Brasil e as melhores universidades de Portugal. Uma parceria entre duas organizações que compartilham a mesma missão: transformar o futuro de quem quer estudar lá fora.</p>
         <div class="hero__ctas">
           <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
         </div>
@@ -56,7 +56,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-trophy"></i></div>
           <h3>A rede de apoio escolar nº 1 em Portugal</h3>
-          <p>Confiança de milhares de alunos e famílias em todo o país. Agora, com toda a qualidade Da Vinci, onde estiveres.</p>
+          <p>Confiança de milhares de alunos e famílias em todo o país. Agora, com toda a qualidade Da Vinci, onde você estiver.</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-mortarboard"></i></div>
@@ -84,7 +84,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="content-block content-block--wide" style="padding-top:12px;">
         <p>A Da Vinci é a rede número 1 de centros de apoio escolar de Portugal, com <?= lf_davinci_unidades() ?> unidades em todo o país e mais de 90 mil alunos desde 2008.</p>
         <p>Ao longo do seu percurso, tem-se afirmado como referência nacional no apoio escolar, nas explicações e na formação, oferecendo soluções educativas adaptadas às necessidades de cada aluno.</p>
-        <p>Com uma abordagem próxima, personalizada e orientada para resultados, a Da Vinci combina experiência, inovação pedagógica e acompanhamento contínuo — ajudando os alunos a superar desafios académicos e a construir um percurso de sucesso.</p>
+        <p>Com uma abordagem próxima, personalizada e orientada para resultados, a Da Vinci combina experiência, inovação pedagógica e acompanhamento contínuo — ajudando os alunos a superar desafios acadêmicos e a construir um percurso de sucesso.</p>
       </div>
       <div class="stats-row stats-row--3">
         <div class="stat"><div class="stat__num">+<?= lf_davinci_unidades() ?></div><div class="stat__label">unidades em Portugal</div></div>
@@ -99,7 +99,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="section-head">
         <div>
-          <span class="eyebrow">Consultoria académica internacional</span>
+          <span class="eyebrow">Consultoria acadêmica internacional</span>
           <h2>StudyWing</h2>
         </div>
       </div>
@@ -122,7 +122,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
         <p>O <strong>Estudar em Portugal</strong> é o programa da Ginásios Da Vinci em colaboração com a StudyWing — uma parceria que combina a presença nacional da Da Vinci em Portugal com a experiência internacional da StudyWing em candidaturas universitárias.</p>
-        <p>Juntas, ajudam estudantes brasileiros a entrar em universidades portuguesas em cidades como Lisboa, Porto, Coimbra, Braga, Faro, Évora e Aveiro — com a mesma língua, diploma reconhecido em toda a Europa, e um acompanhamento próximo do primeiro contacto até à chegada.</p>
+        <p>Juntas, ajudam estudantes brasileiros a entrar em universidades portuguesas em cidades como Lisboa, Porto, Coimbra, Braga, Faro, Évora e Aveiro — com a mesma língua, diploma reconhecido em toda a Europa, e um acompanhamento próximo do primeiro contato até à chegada.</p>
         <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
       </div>
     </div>
@@ -141,7 +141,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-people"></i></div>
           <h3>Orientação humanizada</h3>
-          <p>Não somos uma plataforma. Somos pessoas a falar com pessoas — cada aluno é único, e o seu plano também.</p>
+          <p>Não somos uma plataforma. Somos pessoas falando com pessoas — cada aluno é único, e o seu plano também.</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-eye"></i></div>
@@ -167,7 +167,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="article-cta">
         <h3>Pronto para dar o próximo passo?</h3>
-        <p>Fala connosco e descobre como a Da Vinci × StudyWing pode ajudar-te a estudar em Portugal.</p>
+        <p>Fale conosco e descubra como a Da Vinci × StudyWing pode ajudar você a estudar em Portugal.</p>
         <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
       </div>
     </div>

@@ -64,7 +64,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-person"></i></div>
           <h3>Individual</h3>
-          <p>Aulas 1-a-1, ritmo adaptado a ti.</p>
+          <p>Aulas 1-a-1, ritmo adaptado a você.</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-mortarboard"></i></div>
@@ -74,7 +74,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-laptop"></i></div>
           <h3>100% online</h3>
-          <p>Estuda do Brasil, sem sair de casa.</p>
+          <p>Estude do Brasil, sem sair de casa.</p>
         </div>
       </div>
     </div>
@@ -109,11 +109,11 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
         <ul>
-          <li><strong>Aulas 100% individuais</strong> — Sem turmas, sem ritmo alheio. O plano de estudo é feito à tua medida, focado nas tuas dificuldades específicas.</li>
+          <li><strong>Aulas 100% individuais</strong> — Sem turmas, sem ritmo alheio. O plano de estudo é feito à sua medida, focado nas suas dificuldades específicas.</li>
           <li><strong>Professores portugueses certificados</strong> — Conhecem o exame por dentro, sabem exatamente o que os examinadores procuram e como é a estrutura das provas.</li>
-          <li><strong>Flexibilidade total de horário</strong> — Estuda do Brasil, no horário que te dá jeito, sem preocupações de fuso horário rígido.</li>
-          <li><strong>Simulados com correção personalizada</strong> — Pratica com exames reais e recebe feedback direto do teu professor.</li>
-          <li><strong>Acompanhamento contínuo</strong> — Não é uma aula isolada, é um plano até ao dia do exame.</li>
+          <li><strong>Flexibilidade total de horário</strong> — Estude do Brasil, no horário que for melhor para você, sem preocupações de fuso horário rígido.</li>
+          <li><strong>Simulados com correção personalizada</strong> — Pratique com exames reais e receba feedback direto do seu professor.</li>
+          <li><strong>Acompanhamento contínuo</strong> — Não é uma aula isolada, é um plano até o dia do exame.</li>
         </ul>
       </div>
     </div>
@@ -132,12 +132,12 @@ require_once __DIR__ . '/includes/header.php';
         <div class="step">
           <div class="step__num">1</div>
           <h3>Aula experimental gratuita</h3>
-          <p>Conheces o professor e definimos o teu nível.</p>
+          <p>Você conhece o professor e definimos o seu nível.</p>
         </div>
         <div class="step">
           <div class="step__num">2</div>
           <h3>Plano de estudo personalizado</h3>
-          <p>Baseado no exame e no prazo que tens.</p>
+          <p>Baseado no exame e no prazo que você tem.</p>
         </div>
         <div class="step">
           <div class="step__num">3</div>
@@ -147,7 +147,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="step">
           <div class="step__num">4</div>
           <h3>Simulados regulares</h3>
-          <p>Para acompanhar a tua evolução ao longo do tempo.</p>
+          <p>Para acompanhar a sua evolução ao longo do tempo.</p>
         </div>
         <div class="step">
           <div class="step__num">5</div>
@@ -162,7 +162,7 @@ require_once __DIR__ . '/includes/header.php';
   <section class="section">
     <div class="container">
       <div class="article-cta">
-        <h3>Marca a tua aula experimental gratuita</h3>
+        <h3>Marque a sua aula experimental gratuita</h3>
         <p>Preparação individual, com professores portugueses, para brasileiros que querem estudar em Portugal.</p>
         <a href="https://www.ginasiosdavinci.com/inscricao2026-27/" target="_blank" rel="noopener" class="btn-pill btn-teal">Quero começar agora</a>
       </div>

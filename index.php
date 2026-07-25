@@ -24,7 +24,7 @@ require_once __DIR__ . '/includes/header.php';
            data-pt="Mesma língua, universidades reconhecidas em toda a Europa e uma equipa que te acompanha da candidatura à chegada.">Mesma língua, universidades reconhecidas em toda a Europa e uma equipe que acompanha você da candidatura à chegada.</p>
 
         <div class="hero__ctas">
-          <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
+          <a href="#formulario" class="btn-pill btn-flag">Fale conosco</a>
           <a href="destinos.php" class="btn-pill btn-outline-light">Explorar cidades</a>
         </div>
       </div>
@@ -68,7 +68,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
 
       <div class="content-block">
-        <p style="max-width:720px;line-height:1.7;margin-bottom:36px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e acompanhamos-te em cada passo, da escolha do curso à chegada a Portugal.</p>
+        <p style="max-width:720px;line-height:1.7;margin-bottom:36px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e te acompanhamos em cada passo, da escolha do curso à chegada a Portugal.</p>
       </div>
 
       <div class="icon-diamond-wrap">
@@ -87,7 +87,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
 
       <p style="text-align:center;margin-top:36px;">
-        <a href="#formulario" class="btn-pill btn-flag">Fale connosco</a>
+        <a href="#formulario" class="btn-pill btn-flag">Fale conosco</a>
       </p>
     </div>
   </section>
@@ -130,7 +130,7 @@ require_once __DIR__ . '/includes/header.php';
     var rotateBtn = document.getElementById('assessoriaDiamondRotate');
     var slots = ['top', 'right', 'bottom', 'left'];
     var items = [
-      { icon: 'bi-mortarboard', title: 'Universidades certas', text: 'Opções compatíveis com o teu perfil, clima académico e orçamento.' },
+      { icon: 'bi-mortarboard', title: 'Universidades certas', text: 'Opções compatíveis com o seu perfil, clima acadêmico e orçamento.' },
       { icon: 'bi-piggy-bank',  title: 'Bolsas e propinas',    text: 'Mapeamos financiamentos públicos, privados e parcerias internacionais.' },
       { icon: 'bi-check-circle', title: 'Candidatura sem erros', text: 'Documentos, prazos, equivalências ENEM: nós tratamos dos detalhes.' },
       { icon: 'bi-passport',    title: 'Do ENEM ao visto',     text: 'Desde a prova até à chegada e primeiros passos no país.' }
@@ -203,7 +203,7 @@ require_once __DIR__ . '/includes/header.php';
         <a href="destino-evora.php" class="city-row">
           <span class="city-row__num">06</span>
           <h3>Évora</h3>
-          <p>Cidade património da UNESCO, tranquila e acessível.</p>
+          <p>Cidade patrimônio da UNESCO, tranquila e acessível.</p>
           <div class="city-row__thumb"><img src="<?= site_image('cidade-evora') ?>" alt="Évora"></div>
         </a>
         <a href="destino-aveiro.php" class="city-row">
