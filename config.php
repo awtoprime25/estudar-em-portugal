@@ -130,7 +130,7 @@ define('CHAT_ESCALATION_EMAIL', (string) (getenv('CHAT_ESCALATION_EMAIL') ?: CON
 // ============================================================
 define('BLOG_OPENROUTER_API_KEY', (string) (getenv('BLOG_OPENROUTER_API_KEY') ?: ''));
 define('BLOG_MODEL',              (string) (getenv('BLOG_MODEL')       ?: 'openai/gpt-4o-mini'));
-define('BLOG_IMAGE_MODEL',        (string) (getenv('BLOG_IMAGE_MODEL') ?: 'google/gemini-2.5-flash-image-preview'));
+define('BLOG_IMAGE_MODEL',        (string) (getenv('BLOG_IMAGE_MODEL') ?: 'google/gemini-2.5-flash-image'));
 
 // ============================================================
 // CSRF do formulário StudyWing (includes/studywing-form.php + ajax-comp.php).
