@@ -788,10 +788,14 @@ try {
     $tracker = loadTracker();
     $today   = date('Y-m-d');
 
-    if (!$dryRun && $tracker['last_date'] === $today) {
-        cronLog("Já correu hoje ($today). A saltar.");
-        exit(0);
-    }
+    // Limite de 1x/dia temporariamente desativado a pedido do utilizador
+    // (2026-07-25), para permitir gerar vários artigos seguidos e recuperar
+    // o atraso agora que a imagem hero voltou a funcionar. Reativar quando
+    // o blog já tiver massa crítica de conteúdo:
+    // if (!$dryRun && $tracker['last_date'] === $today) {
+    //     cronLog("Já correu hoje ($today). A saltar.");
+    //     exit(0);
+    // }
 
     $topic = pickTopic($TOPIC_POOL, $tracker);
     if ($topic === null) {
