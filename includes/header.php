@@ -171,6 +171,7 @@ $noindex         = !empty($noindex);
                     </ul>
                 </li>
                 <li><a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" class="">Outros países</a></li>
+                <li><a href="palop.php" class="<?= $activeNav === 'palop' ? 'is-active' : '' ?>">PALOP/CPLP</a></li>
                 <li><a href="sobre.php" class="<?= $activeNav === 'sobre' ? 'is-active' : '' ?>">Sobre nós</a></li>
                 <li><a href="blog.php" class="<?= $activeNav === 'blog' ? 'is-active' : '' ?>">Blog</a></li>
             </ul>
