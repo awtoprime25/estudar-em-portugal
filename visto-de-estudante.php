@@ -60,8 +60,8 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="hero__art">
-        <div class="hero__circle hero__circle--icon">
-          <i class="bi bi-passport"></i>
+        <div class="hero__circle">
+          <img src="<?= site_image('hero-visto-estudante') ?>" alt="Estudante brasileiro com passaporte e visto de estudante em Portugal">
         </div>
       </div>
     </div>

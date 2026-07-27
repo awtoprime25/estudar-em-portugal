@@ -51,7 +51,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <div class="hero__art">
         <div class="hero__circle">
-          <img src="<?= site_image('hero-estudante-lisboa') ?>" alt="Aula online de preparação para os exames nacionais portugueses">
+          <img src="<?= site_image('hero-explicacoes') ?>" alt="Aula online de preparação para os exames nacionais portugueses">
         </div>
       </div>
     </div>

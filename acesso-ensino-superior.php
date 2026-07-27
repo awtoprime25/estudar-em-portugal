@@ -44,7 +44,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <div class="hero__art">
         <div class="hero__circle">
-          <img src="<?= site_image('hero-estudante-lisboa') ?>" alt="Estudante internacional em Lisboa estudando na universidade">
+          <img src="<?= site_image('hero-acesso-ensino-superior') ?>" alt="Estudante internacional a entrar numa universidade portuguesa">
         </div>
       </div>
     </div>
