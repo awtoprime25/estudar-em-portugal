@@ -62,9 +62,16 @@ function render_destino_page(string $slug): void
             </div>
           </div>
           <div class="hero__art">
+            <?php $cityImg = !empty($city['imagem']) ? site_image_exists($city['imagem']) : null; ?>
+            <?php if ($cityImg): ?>
             <div class="hero__circle">
-              <img src="<?= e(site_image($city['imagem'])) ?>" alt="Estudar em <?= e($city['nome']) ?>">
+              <img src="<?= e($cityImg) ?>" alt="Estudar em <?= e($city['nome']) ?>">
             </div>
+            <?php else: ?>
+            <div class="hero__circle hero__circle--icon">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <?php endif; ?>
           </div>
         </div>
       </section>
