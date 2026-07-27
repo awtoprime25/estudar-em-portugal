@@ -34,6 +34,7 @@ if (!function_exists('enp_gerar_sitemap')) {
             ['loc' => 'destinos.php', 'priority' => '0.85', 'changefreq' => 'monthly'],
             ['loc' => 'acesso-ensino-superior.php', 'priority' => '0.85', 'changefreq' => 'monthly'],
             ['loc' => 'visto-de-estudante.php', 'priority' => '0.85', 'changefreq' => 'monthly'],
+            ['loc' => 'palop.php', 'priority' => '0.8', 'changefreq' => 'monthly'],
             ['loc' => 'faq.php', 'priority' => '0.8', 'changefreq' => 'monthly'],
             ['loc' => 'comparar.php', 'priority' => '0.95', 'changefreq' => 'weekly'],
             ['loc' => 'explicacoes.php', 'priority' => '0.9', 'changefreq' => 'monthly'],

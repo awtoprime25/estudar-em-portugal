@@ -44,6 +44,7 @@ require_once __DIR__ . '/studywing-form.php';
                 <li><a href="acesso-ensino-superior.php">Acesso ao ensino superior</a></li>
                 <li><a href="concurso-especial-estudantes-internacionais.php">Concurso Especial</a></li>
                 <li><a href="visto-de-estudante.php">Visto de estudante</a></li>
+                <li><a href="palop.php">Estudantes PALOP/CPLP</a></li>
                 <li><a href="faq.php">Perguntas frequentes</a></li>
                 <li><a href="blog.php">Blog</a></li>
             </ul>
