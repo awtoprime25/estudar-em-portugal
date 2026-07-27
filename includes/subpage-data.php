@@ -154,6 +154,7 @@ const DESTINOS = [
     ],
     'setubal' => [
         'nome' => 'Setúbal',
+        'imagem' => 'cidade-setubal',
         'regiao' => 'Lisboa e Vale do Tejo',
         'eyebrow' => 'Junto ao estuário do Sado',
         'resumo' => 'Cidade portuária a 40 minutos de Lisboa, entre o estuário do Sado (famoso pelos golfinhos) e a Serra da Arrábida — o custo de vida da região de Lisboa, sem o preço de Lisboa.',
@@ -170,6 +171,7 @@ const DESTINOS = [
     ],
     'santarem' => [
         'nome' => 'Santarém',
+        'imagem' => 'cidade-santarem',
         'regiao' => 'Lisboa e Vale do Tejo',
         'eyebrow' => 'Coração do Ribatejo',
         'resumo' => 'Capital do Ribatejo, entre Lisboa e o interior, com forte tradição agrícola e gastronómica e um dos custos de vida mais acessíveis perto da capital.',
@@ -186,6 +188,7 @@ const DESTINOS = [
     ],
     'leiria' => [
         'nome' => 'Leiria',
+        'imagem' => 'cidade-leiria',
         'regiao' => 'Centro',
         'eyebrow' => 'Entre o castelo e o mar',
         'resumo' => 'Cidade de média dimensão dominada pelo seu castelo medieval, a meio caminho entre Lisboa e Porto, e perto de destinos turísticos como Nazaré e Fátima.',
@@ -202,6 +205,7 @@ const DESTINOS = [
     ],
     'tomar' => [
         'nome' => 'Tomar',
+        'imagem' => 'cidade-tomar',
         'regiao' => 'Centro',
         'eyebrow' => 'Cidade templária',
         'resumo' => 'Cidade histórica ligada aos Templários e ao Convento de Cristo (Património da UNESCO), com um dos custos de vida mais baixos do país.',
@@ -218,6 +222,7 @@ const DESTINOS = [
     ],
     'viseu' => [
         'nome' => 'Viseu',
+        'imagem' => 'cidade-viseu',
         'regiao' => 'Centro',
         'eyebrow' => 'A "cidade jardim"',
         'resumo' => 'Conhecida como a "cidade jardim" de Portugal, no coração da região do Dão, combina qualidade de vida, custo acessível e boa reputação em saúde e educação.',
@@ -234,6 +239,7 @@ const DESTINOS = [
     ],
     'guarda' => [
         'nome' => 'Guarda',
+        'imagem' => 'cidade-guarda',
         'regiao' => 'Centro',
         'eyebrow' => 'A cidade mais alta de Portugal',
         'resumo' => 'A cidade mais alta de Portugal continental, junto à Serra da Estrela, com um dos custos de vida mais baixos do país.',
@@ -250,6 +256,7 @@ const DESTINOS = [
     ],
     'castelo-branco' => [
         'nome' => 'Castelo Branco',
+        'imagem' => 'cidade-castelo-branco',
         'regiao' => 'Centro',
         'eyebrow' => 'Coração da Beira Baixa',
         'resumo' => 'Capital da Beira Baixa, conhecida pelos bordados tradicionais, com um custo de vida muito baixo e boa reputação nas áreas da saúde e educação.',
@@ -266,6 +273,7 @@ const DESTINOS = [
     ],
     'braganca' => [
         'nome' => 'Bragança',
+        'imagem' => 'cidade-braganca',
         'regiao' => 'Norte',
         'eyebrow' => 'Trás-os-Montes',
         'resumo' => 'Cidade histórica no extremo nordeste de Portugal, com um castelo medieval bem preservado e um dos custos de vida mais baixos do país.',
@@ -282,6 +290,7 @@ const DESTINOS = [
     ],
     'portalegre' => [
         'nome' => 'Portalegre',
+        'imagem' => 'cidade-portalegre',
         'regiao' => 'Alentejo',
         'eyebrow' => 'Tapeçarias do Alentejo',
         'resumo' => 'Capital do Alto Alentejo, conhecida pelas tapeçarias tradicionais e pela Serra de São Mamede, com um dos custos de vida mais baixos do país.',
@@ -298,6 +307,7 @@ const DESTINOS = [
     ],
     'beja' => [
         'nome' => 'Beja',
+        'imagem' => 'cidade-beja',
         'regiao' => 'Alentejo',
         'eyebrow' => 'Planícies do Baixo Alentejo',
         'resumo' => 'Capital do Baixo Alentejo, em pleno coração das planícies alentejanas, com um dos custos de vida mais baixos do país e ritmo de vida calmo.',
@@ -314,6 +324,7 @@ const DESTINOS = [
     ],
     'covilha' => [
         'nome' => 'Covilhã',
+        'imagem' => 'cidade-covilha',
         'regiao' => 'Centro',
         'eyebrow' => 'Aos pés da Serra da Estrela',
         'resumo' => 'Antiga cidade têxtil aos pés da Serra da Estrela, hoje sede de uma universidade forte em medicina e engenharia, com neve nas proximidades no inverno.',
@@ -330,6 +341,7 @@ const DESTINOS = [
     ],
     'vila-real' => [
         'nome' => 'Vila Real',
+        'imagem' => 'cidade-vila-real',
         'regiao' => 'Norte',
         'eyebrow' => 'Portas do Douro',
         'resumo' => 'Cidade do interior norte, próxima da região vinícola do Douro (Património da UNESCO), com uma universidade forte em ciências agrárias e veterinária.',
@@ -346,6 +358,7 @@ const DESTINOS = [
     ],
     'ponta-delgada' => [
         'nome' => 'Ponta Delgada',
+        'imagem' => 'cidade-ponta-delgada',
         'regiao' => 'Ilhas (Açores e Madeira)',
         'eyebrow' => 'Ilha de São Miguel, Açores',
         'resumo' => 'Capital dos Açores, na ilha de São Miguel, com paisagens vulcânicas únicas e uma universidade com forte ligação às ciências do mar e do ambiente.',
@@ -362,6 +375,7 @@ const DESTINOS = [
     ],
     'funchal' => [
         'nome' => 'Funchal',
+        'imagem' => 'cidade-funchal',
         'regiao' => 'Ilhas (Açores e Madeira)',
         'eyebrow' => 'Ilha da Madeira',
         'resumo' => 'Capital da Madeira, com clima ameno todo o ano, paisagens montanhosas junto ao Atlântico e uma universidade com forte ligação ao turismo.',
@@ -378,6 +392,7 @@ const DESTINOS = [
     ],
     'portimao' => [
         'nome' => 'Portimão',
+        'imagem' => 'cidade-portimao',
         'regiao' => 'Algarve',
         'eyebrow' => 'Praias do Algarve',
         'resumo' => 'Segunda maior cidade do Algarve, junto a algumas das praias mais conhecidas da região, com boa oferta em gestão, direito e turismo.',
@@ -394,6 +409,7 @@ const DESTINOS = [
     ],
     'barcelos' => [
         'nome' => 'Barcelos',
+        'imagem' => 'cidade-barcelos',
         'regiao' => 'Norte',
         'eyebrow' => 'Terra do Galo',
         'resumo' => 'Cidade do Minho conhecida pelo artesanato e pelo símbolo do Galo de Barcelos, com um politécnico forte em gestão, design e tecnologia.',
@@ -410,6 +426,7 @@ const DESTINOS = [
     ],
     'viana-do-castelo' => [
         'nome' => 'Viana do Castelo',
+        'imagem' => 'cidade-viana-do-castelo',
         'regiao' => 'Norte',
         'eyebrow' => 'Onde o Minho encontra o mar',
         'resumo' => 'Cidade costeira no extremo norte de Portugal, onde o rio Lima encontra o Atlântico, com praias, tradição marítima e um custo de vida acessível.',
@@ -426,6 +443,7 @@ const DESTINOS = [
     ],
     'vila-nova-de-cerveira' => [
         'nome' => 'Vila Nova de Cerveira',
+        'imagem' => 'cidade-vila-nova-de-cerveira',
         'regiao' => 'Norte',
         'eyebrow' => 'Fronteira do Minho',
         'resumo' => 'Pequena vila fronteiriça à beira do rio Minho, sede de uma escola especializada em arquitetura e design com forte ligação à arte contemporânea.',
@@ -442,6 +460,7 @@ const DESTINOS = [
     ],
     'vila-nova-de-famalicao' => [
         'nome' => 'Vila Nova de Famalicão',
+        'imagem' => 'cidade-vila-nova-de-famalicao',
         'regiao' => 'Norte',
         'eyebrow' => 'Entre Porto e Braga',
         'resumo' => 'Cidade do Minho com forte tradição têxtil, situada entre o Porto e Braga, com boa oferta em arquitetura e economia a um custo de vida acessível.',
