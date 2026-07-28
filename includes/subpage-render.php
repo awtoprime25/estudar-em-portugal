@@ -22,7 +22,8 @@ function render_destino_page(string $slug): void
         return;
     }
 
-    $pageTitle       = 'Estudar em ' . $city['nome'] . ' — Guia para Brasileiros | Estudar em Portugal';
+    $prep            = cidade_preposicao($city['nome']);
+    $pageTitle       = 'Estudar ' . $prep . ' ' . $city['nome'] . ' — Guia para Brasileiros | Estudar em Portugal';
     $pageDescription = $city['resumo'];
     $activeNav       = 'destinos';
     $pageSlug        = 'destino-' . $slug;
@@ -55,7 +56,7 @@ function render_destino_page(string $slug): void
         <div class="container hero__grid">
           <div class="hero__copy">
             <span class="eyebrow"><?= e($city['eyebrow']) ?></span>
-            <h1>Estudar em <span class="accent"><?= e($city['nome']) ?></span></h1>
+            <h1>Estudar <?= e($prep) ?> <span class="accent"><?= e($city['nome']) ?></span></h1>
             <p class="lede"><?= e($city['resumo']) ?></p>
             <div class="hero__ctas">
               <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
@@ -65,7 +66,7 @@ function render_destino_page(string $slug): void
             <?php $cityImg = !empty($city['imagem']) ? site_image_exists($city['imagem']) : null; ?>
             <?php if ($cityImg): ?>
             <div class="hero__circle">
-              <img src="<?= e($cityImg) ?>" alt="Estudar em <?= e($city['nome']) ?>">
+              <img src="<?= e($cityImg) ?>" alt="Estudar <?= e($prep) ?> <?= e($city['nome']) ?>">
             </div>
             <?php else: ?>
             <div class="hero__circle hero__circle--icon">
@@ -93,7 +94,7 @@ function render_destino_page(string $slug): void
       <section class="section section-dark">
         <div class="container">
           <div class="section-head on-dark">
-            <div><h2>Universidades em <?= e($city['nome']) ?></h2></div>
+            <div><h2>Universidades <?= e($prep) ?> <?= e($city['nome']) ?></h2></div>
           </div>
           <div class="content-block content-block--wide" style="padding-top:12px;">
             <ul>
@@ -122,7 +123,7 @@ function render_destino_page(string $slug): void
       <section class="section section-dark">
         <div class="container">
           <div class="section-head on-dark">
-            <div><h2>Cursos em destaque em <?= e($city['nome']) ?></h2></div>
+            <div><h2>Cursos em destaque <?= e($prep) ?> <?= e($city['nome']) ?></h2></div>
           </div>
           <div class="icon-row">
             <?php foreach ($city['cursos_destaque'] as $cSlug): $c = CURSOS[$cSlug] ?? null; if (!$c) continue; ?>
@@ -140,7 +141,7 @@ function render_destino_page(string $slug): void
       <section class="section">
         <div class="container">
           <div class="article-cta">
-            <h3>Quer estudar em <?= e($city['nome']) ?>?</h3>
+            <h3>Quer estudar <?= e($prep) ?> <?= e($city['nome']) ?>?</h3>
             <p>A equipe Da Vinci × StudyWing te acompanha desde a escolha do curso até à chegada a Portugal.</p>
             <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
           </div>

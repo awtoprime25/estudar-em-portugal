@@ -477,6 +477,25 @@ const DESTINOS = [
     ],
 ];
 
+/**
+ * cidade_preposicao($nome)
+ * Algumas cidades portuguesas levam artigo definido no nome ("o Porto",
+ * "a Guarda", "a Covilhã", "o Funchal") e por isso usam "no"/"na" em vez
+ * de "em" ("estudar no Porto", não "estudar em Porto"). As restantes
+ * cidades da lista não têm artigo e usam "em" normalmente.
+ */
+if (!function_exists('cidade_preposicao')) {
+    function cidade_preposicao(string $nome): string {
+        static $excecoes = [
+            'Porto'   => 'no',
+            'Guarda'  => 'na',
+            'Covilhã' => 'na',
+            'Funchal' => 'no',
+        ];
+        return $excecoes[$nome] ?? 'em';
+    }
+}
+
 const CURSOS = [
     'medicina' => [
         'nome' => 'Medicina',
