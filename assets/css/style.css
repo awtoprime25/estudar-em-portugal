@@ -1026,9 +1026,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 400px) {
-  /* Botões de texto longo (ex.: "Marcar aula experimental gratuita") não
-     cabem numa linha só a 320-360px; deixa quebrar em vez de transbordar
-     a página. O CTA do header fica de fora — ali tem de caber numa linha. */
+  /* Botões de texto longo não cabem numa linha só a 320-360px; deixa
+     quebrar em vez de transbordar a página. O CTA do header fica de
+     fora — ali tem de caber numa linha. */
   .btn-pill { white-space: normal; line-height: 1.3; text-align: center; }
   .site-nav__right .btn-flag { white-space: nowrap; }
 }

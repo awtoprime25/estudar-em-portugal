@@ -226,7 +226,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <p style="max-width:720px;line-height:1.7;">Aulas individuais, online ao vivo, com professores portugueses experientes. Somos nº1 em Portugal em explicações, reforço e tutoria — preparação feita para brasileiros que querem estudar em Portugal.</p>
       <p style="margin-top:24px;">
-        <a href="explicacoes.php" class="btn-pill btn-teal">Marcar aula experimental gratuita</a>
+        <a href="explicacoes.php" class="btn-pill btn-teal">Marcar aula</a>
       </p>
       <p style="margin-top:20px;font-size:13px;color:var(--muted-on-light);">Também em <a href="https://www.explicanet.com/" target="_blank" rel="noopener">explicanet.com</a> e <a href="https://www.ginasiosdavinci.com/explicacoes-online-portugal/" target="_blank" rel="noopener">ginasiosdavinci.com/explicações online</a>.</p>
     </div>

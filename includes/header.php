@@ -170,7 +170,7 @@ $noindex         = !empty($noindex);
                         <li><a href="visto-de-estudante.php" class="<?= $activeNav === 'visto' ? 'is-active' : '' ?>">Visto de estudante</a></li>
                     </ul>
                 </li>
-                <li><a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" class="">Outros países</a></li>
+                <li><a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" class="">Estudar na Europa</a></li>
                 <li><a href="palop.php" class="<?= $activeNav === 'palop' ? 'is-active' : '' ?>">PALOP/CPLP</a></li>
                 <li><a href="sobre.php" class="<?= $activeNav === 'sobre' ? 'is-active' : '' ?>">Sobre nós</a></li>
                 <li><a href="blog.php" class="<?= $activeNav === 'blog' ? 'is-active' : '' ?>">Blog</a></li>
