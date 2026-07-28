@@ -61,6 +61,7 @@ foreach (DESTINOS as $slug => $city) {
 }
 ?>
       </div>
+      <div class="destino-pagination" id="destinoPagination"></div>
 
       <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
     </div>
@@ -68,33 +69,67 @@ foreach (DESTINOS as $slug => $city) {
 
   <script>
   (function(){
+    var PAGE_SIZE = 4;
     var input = document.getElementById('destinoSearch');
     var empty = document.getElementById('destinoEmpty');
+    var pagination = document.getElementById('destinoPagination');
     var filterBtns = document.querySelectorAll('#destinoRegiaoFilters .filter-btn');
     var rows = [].slice.call(document.querySelectorAll('.city-list .city-row'));
     var activeRegiao = 'todas';
+    var currentPage = 1;
     function norm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
     function apply(){
       var q = norm(input ? input.value.trim() : '');
-      var any = false;
-      rows.forEach(function(r){
+      var matches = rows.filter(function(r){
         var matchesRegiao = activeRegiao === 'todas' || r.dataset.regiao === activeRegiao;
         var matchesSearch = q === '' || norm(r.textContent).indexOf(q) !== -1;
-        var match = matchesRegiao && matchesSearch;
-        r.style.display = match ? '' : 'none';
-        if(match) any = true;
+        return matchesRegiao && matchesSearch;
       });
-      if (empty) empty.style.display = any ? 'none' : 'block';
+      if (empty) empty.style.display = matches.length ? 'none' : 'block';
+
+      var totalPages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE));
+      if (currentPage > totalPages) currentPage = totalPages;
+      var start = (currentPage - 1) * PAGE_SIZE;
+      var visible = matches.slice(start, start + PAGE_SIZE);
+
+      rows.forEach(function(r){ r.style.display = 'none'; });
+      visible.forEach(function(r){ r.style.display = ''; });
+
+      pagination.innerHTML = '';
+      if (totalPages <= 1) return;
+      var prev = document.createElement('button');
+      prev.className = 'filter-btn';
+      prev.innerHTML = '<i class="bi bi-chevron-left"></i>';
+      prev.disabled = currentPage === 1;
+      prev.addEventListener('click', function(){ currentPage--; apply(); });
+      pagination.appendChild(prev);
+      for (var p = 1; p <= totalPages; p++) {
+        (function(p){
+          var btn = document.createElement('button');
+          btn.className = 'filter-btn' + (p === currentPage ? ' active' : '');
+          btn.textContent = p;
+          btn.addEventListener('click', function(){ currentPage = p; apply(); });
+          pagination.appendChild(btn);
+        })(p);
+      }
+      var next = document.createElement('button');
+      next.className = 'filter-btn';
+      next.innerHTML = '<i class="bi bi-chevron-right"></i>';
+      next.disabled = currentPage === totalPages;
+      next.addEventListener('click', function(){ currentPage++; apply(); });
+      pagination.appendChild(next);
     }
     filterBtns.forEach(function(btn){
       btn.addEventListener('click', function(){
         filterBtns.forEach(function(b){ b.classList.remove('active'); });
         btn.classList.add('active');
         activeRegiao = btn.getAttribute('data-regiao');
+        currentPage = 1;
         apply();
       });
     });
-    if (input) input.addEventListener('input', apply);
+    if (input) input.addEventListener('input', function(){ currentPage = 1; apply(); });
+    apply();
   })();
   </script>
 
