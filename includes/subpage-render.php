@@ -58,7 +58,7 @@ function render_destino_page(string $slug): void
             <h1>Estudar em <span class="accent"><?= e($city['nome']) ?></span></h1>
             <p class="lede"><?= e($city['resumo']) ?></p>
             <div class="hero__ctas">
-              <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+              <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
             </div>
           </div>
           <div class="hero__art">
@@ -142,7 +142,7 @@ function render_destino_page(string $slug): void
           <div class="article-cta">
             <h3>Quer estudar em <?= e($city['nome']) ?>?</h3>
             <p>A equipe Da Vinci × StudyWing te acompanha desde a escolha do curso até à chegada a Portugal.</p>
-            <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+            <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
           </div>
         </div>
       </section>
@@ -202,7 +202,7 @@ function render_curso_page(string $slug): void
             <h1><?= e($course['nome']) ?> <span class="accent">em Portugal</span></h1>
             <p class="lede"><?= e($course['resumo']) ?></p>
             <div class="hero__ctas">
-              <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+              <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
             </div>
           </div>
           <div class="hero__art">
@@ -271,7 +271,7 @@ function render_curso_page(string $slug): void
           <div class="article-cta">
             <h3>Quer estudar <?= e($course['nome']) ?> em Portugal?</h3>
             <p>A equipe Da Vinci × StudyWing te acompanha desde a escolha da universidade até à chegada a Portugal.</p>
-            <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+            <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
           </div>
         </div>
       </section>

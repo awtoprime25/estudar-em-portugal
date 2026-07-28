@@ -67,9 +67,7 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       </div>
 
-      <div class="content-block">
-        <p style="max-width:720px;line-height:1.7;margin-bottom:36px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e te acompanhamos em cada passo, da escolha do curso à chegada a Portugal.</p>
-      </div>
+      <p style="max-width:720px;line-height:1.7;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e te acompanhamos em cada passo, da escolha do curso à chegada a Portugal.</p>
 
       <div class="icon-diamond-wrap">
         <div class="icon-diamond" id="assessoriaDiamond">

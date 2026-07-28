@@ -98,7 +98,7 @@ ksort($cardsColecoes);
            data-br="Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing."
            data-pt="Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing.">Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing.</p>
         <div class="cmp-hero__ctas">
-          <a href="#formulario" class="btn-pill btn-teal">Falar com StudyWing</a>
+          <a href="#formulario" class="btn-pill btn-flag">Falar com StudyWing</a>
         </div>
         <div class="cmp-hero__badges">
           <span data-br="ENEM aceite em PT" data-pt="ENEM aceite em PT">ENEM aceite em PT</span>
@@ -199,7 +199,7 @@ ksort($cardsColecoes);
         <strong data-br="Não tem certeza?" data-pt="Não tens a certeza?">Não tem certeza?</strong>
         <span data-br="Peça a análise da StudyWing — em 24h traçamos o plano A, B e C para o seu perfil."
               data-pt="Pede a análise da StudyWing — em 24h traçamos o plano A, B e C para o teu perfil.">Peça a análise da StudyWing — em 24h traçamos o plano A, B e C para o seu perfil.</span>
-        <a href="#formulario" class="btn-pill btn-navy">Quero a análise →</a>
+        <a href="#formulario" class="btn-pill btn-flag">Quero a análise →</a>
       </p>
     </div>
   </section>

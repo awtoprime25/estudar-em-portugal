@@ -170,7 +170,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="article-cta">
       <h3>Quer saber se você se encaixa no Concurso Especial de Estudantes Internacionais?</h3>
       <p>Fale com um consultor da StudyWing e agende uma conversa gratuita.</p>
-      <a href="#formulario" class="btn-pill btn-teal">Falar com um consultor</a>
+      <a href="#formulario" class="btn-pill btn-flag">Falar com um consultor</a>
     </div>
 
   </section>

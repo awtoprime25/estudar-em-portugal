@@ -237,7 +237,7 @@ $pageSlug = $enpSlug;
                 A equipe StudyWing traça com você o plano A, B e C para entrar em
                 <strong>__A__</strong> ou <strong>__B__</strong>. Candidaturas, vistos, equivalências — tudo num só processo.
             </p>
-            <a href="#formulario" class="btn-pill" style="background:#3fd0e0;color:#0a1628;">Falar com a StudyWing →</a>
+            <a href="#formulario" class="btn-pill btn-flag">Falar com a StudyWing →</a>
         </section>
     </article>
 </main>

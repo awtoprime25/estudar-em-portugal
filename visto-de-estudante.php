@@ -56,7 +56,7 @@ require_once __DIR__ . '/includes/header.php';
         <h1>Visto de estudante em <span class="accent">Portugal</span></h1>
         <p class="lede">Depois de conseguir a vaga, falta um passo essencial: regularizar a sua entrada e residência em Portugal. Aqui explicamos como funciona, sem complicar.</p>
         <div class="hero__ctas">
-          <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+          <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
         </div>
       </div>
       <div class="hero__art">
@@ -162,7 +162,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="article-cta">
         <h3>Não fique sozinho nesta parte</h3>
         <p>A equipe Da Vinci × StudyWing te acompanha desde a matrícula até a chegada a Portugal — incluindo a orientação sobre visto e residência.</p>
-        <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+        <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
       </div>
     </div>
   </section>

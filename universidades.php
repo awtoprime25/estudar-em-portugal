@@ -104,7 +104,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="article-cta">
         <h3>Não sabe qual escolher?</h3>
         <p>A equipe Da Vinci × StudyWing te ajuda a encontrar a universidade e o curso certos para o seu perfil.</p>
-        <a href="#formulario" class="btn-pill btn-teal">Agendar consultoria gratuita</a>
+        <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
       </div>
     </div>
   </section>
