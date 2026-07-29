@@ -181,6 +181,10 @@ if (!function_exists('e')) {
  */
 if (!function_exists('site_image')) {
     function site_image(string $name): string {
+        $webpPath = __DIR__ . '/assets/images/' . $name . '.webp';
+        if (is_file($webpPath) && filesize($webpPath) > 0) {
+            return 'assets/images/' . $name . '.webp';
+        }
         $pngPath = __DIR__ . '/assets/images/' . $name . '.png';
         if (is_file($pngPath) && filesize($pngPath) > 0) {
             return 'assets/images/' . $name . '.png';
@@ -198,6 +202,8 @@ if (!function_exists('site_image')) {
  */
 if (!function_exists('site_image_exists')) {
     function site_image_exists(string $name): ?string {
+        $webpPath = __DIR__ . '/assets/images/' . $name . '.webp';
+        if (is_file($webpPath) && filesize($webpPath) > 0) return 'assets/images/' . $name . '.webp';
         $pngPath = __DIR__ . '/assets/images/' . $name . '.png';
         return (is_file($pngPath) && filesize($pngPath) > 0) ? 'assets/images/' . $name . '.png' : null;
     }

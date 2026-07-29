@@ -10,7 +10,7 @@
  *   - SEO  : meta tags + canonical + OG/Twitter + Schema.org Article
  *   - AEO  : <answer> friendly titles, listas claras
  *   - GEO  : FAQPage Schema + QAPage candidates + metaDescription concisa
- *   - OGI  : og:image dedicado (ogi-comparar.png) — gerado via tools/gerar-imagens
+ *   - OGI  : og:image dedicado (ogi-comparar.jpg) — gerado via tools/gerar-imagens
  *   - CSRF : token ENP_CSRF gerado em config.php (partilhado com o formulário
  *            StudyWing, que agora aparece no footer de todas as páginas).
  */
@@ -19,7 +19,7 @@ require_once __DIR__ . '/config.php';
 $pageTitle       = 'Portugal vs Estudar no Estrangeiro — Comparação Honesta 2026 | Estudar em Portugal';
 $pageDescription = 'Comparação completa para brasileiros: idioma, propinas, custo de vida, visto, equivalências e diploma. Portugal ou outros países da Europa? Tabela comparativa + formulário StudyWing.';
 $activeNav       = 'comparar';
-$ogImage         = SITE_URL . 'assets/images/ogi-comparar.png';
+$ogImage         = SITE_URL . 'assets/images/ogi-comparar.jpg';
 
 $extraJsonLd = json_encode([
     '@context' => 'https://schema.org',
@@ -28,7 +28,7 @@ $extraJsonLd = json_encode([
             '@type' => 'Article',
             'headline' => 'Portugal vs Estudar no Estrangeiro: comparação honesta para 2026',
             'description' => $pageDescription,
-            'image' => SITE_URL . 'assets/images/ogi-comparar.png',
+            'image' => SITE_URL . 'assets/images/ogi-comparar.jpg',
             'url' => SITE_URL . 'comparar.php',
             'inLanguage' => 'pt-PT',
             'datePublished' => '2026-07-13',
@@ -315,7 +315,7 @@ ksort($cardsColecoes);
         ?>
         <article class="cmp-blog-card">
           <a href="blog/<?= e($r['slug']) ?>.php" class="cmp-blog-card__media">
-            <?php $cardImg = $r['imagem_url'] ?: 'assets/images/ogi-comparar.png'; ?>
+            <?php $cardImg = $r['imagem_url'] ?: 'assets/images/ogi-comparar.jpg'; ?>
             <img src="<?= e($cardImg) ?>" alt="<?= e($r['titulo']) ?>" loading="lazy">
             <span class="cmp-blog-card__pair"><?= e(ucwords($pairLabel)) ?></span>
           </a>

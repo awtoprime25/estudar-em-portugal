@@ -10,7 +10,7 @@ require_once __DIR__ . '/../config.php';
 $pageTitle       = $pageTitle       ?? SITE_NAME;
 $pageDescription = $pageDescription ?? SITE_DESCRIPTION;
 $activeNav       = $activeNav       ?? '';
-$ogImage         = $ogImage         ?? SITE_URL . 'assets/images/ogi-estudar-em-portugal.png';
+$ogImage         = $ogImage         ?? SITE_URL . 'assets/images/ogi-estudar-em-portugal.jpg';
 $noindex         = !empty($noindex);
 ?>
 <!DOCTYPE html>
