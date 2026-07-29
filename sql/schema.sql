@@ -172,3 +172,35 @@ CREATE TABLE IF NOT EXISTS blog_posts (
     KEY idx_status_date (status, published_at),
     KEY idx_category (category)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- Leads: formulário StudyWing (assessoria, includes/studywing-form.php)
+--      + formulário Cursos Preparatórios/Explicações (marcação de aulas,
+--      cursos-preparacao-exames.php) — tabela partilhada, distinguidos por
+--      `form_tipo` ('studywing' | 'explicacoes'). ------------------------
+CREATE TABLE IF NOT EXISTS leads (
+    id                    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    created_at            DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    form_tipo             VARCHAR(20) NOT NULL DEFAULT 'studywing',
+    nome                  VARCHAR(255) NULL,
+    email                 VARCHAR(255) NULL,
+    tel                   VARCHAR(255) NULL,
+    responsavel_educacao  VARCHAR(255) NULL,
+    localidade            VARCHAR(255) NULL,
+    nacionalidade         VARCHAR(255) NULL,
+    ano                   VARCHAR(255) NULL,
+    tipo_curso            VARCHAR(255) NULL,
+    objetivo              VARCHAR(255) NULL,
+    situacao_financeira   VARCHAR(255) NULL,
+    financiamento         VARCHAR(255) NULL,
+    destino               VARCHAR(255) NULL,
+    quando                VARCHAR(255) NULL,
+    momento               VARCHAR(255) NULL,
+    disciplina_ano        VARCHAR(255) NULL,
+    origem                VARCHAR(255) NULL,
+    ip                    VARCHAR(45) NULL,
+    user_agent            VARCHAR(255) NULL,
+    areas                 TEXT NULL,
+    obs                   TEXT NULL,
+    KEY idx_created (created_at),
+    KEY idx_form_tipo (form_tipo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

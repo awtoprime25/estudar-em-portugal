@@ -48,13 +48,15 @@ require_once __DIR__ . '/includes/header.php';
       <div class="section-head">
         <div>
           <span class="eyebrow">Quem somos</span>
-          <h2>Da Vinci</h2>
+          <h2>Ginásios da Educação Da Vinci</h2>
         </div>
       </div>
-      <p style="max-width:720px;line-height:1.7;">A <strong>Da Vinci</strong> é a maior rede de apoio escolar e explicações de Portugal, com <?= lf_davinci_unidades() ?> unidades em todo o país e mais de 90 mil alunos apoiados desde 2008. Uma abordagem próxima, personalizada e orientada para resultados — agora também ao serviço de quem quer estudar em Portugal.</p>
-      <p style="margin-top:28px;">
-        <a href="sobre.php" class="btn-pill btn-navy">Conhecer a nossa história →</a>
-      </p>
+      <div style="max-width:720px;">
+        <p style="line-height:1.7;">Os Ginásios da Educação Da Vinci são a maior rede de apoio escolar e preparação para exames em Portugal, com mais de <?= lf_davinci_unidades() ?> unidades em todo o país.</p>
+        <p style="line-height:1.7;margin-top:16px;">Apoiamos estudantes estrangeiros, em particular brasileiros, que pretendem estudar em Portugal, desde a escolha do curso e da instituição até à preparação para exames e à adaptação ao sistema de ensino português.</p>
+        <p style="line-height:1.7;margin-top:16px;">Disponibilizamos acompanhamento personalizado, online para tornar todo o percurso académico mais simples, seguro e bem preparado.</p>
+        <p style="line-height:1.7;margin-top:16px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil e te acompanhamos em cada passo, da escolha do curso à chegada a Portugal.</p>
+      </div>
     </div>
   </section>
 
@@ -67,7 +69,7 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       </div>
 
-      <p style="max-width:720px;line-height:1.7;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil — e te acompanhamos em cada passo, da escolha do curso à chegada a Portugal.</p>
+      <p style="max-width:720px;line-height:1.7;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil e te acompanhamos em cada passo, da escolha do curso à chegada a Portugal.</p>
 
       <div class="icon-diamond-wrap">
         <div class="icon-diamond" id="assessoriaDiamond">
@@ -87,37 +89,6 @@ require_once __DIR__ . '/includes/header.php';
       <p style="text-align:center;margin-top:36px;">
         <a href="#formulario" class="btn-pill btn-flag">Fale conosco</a>
       </p>
-    </div>
-  </section>
-
-  <section class="section" id="como-funciona">
-    <div class="container">
-      <div class="section-head">
-        <h2>Como funciona</h2>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step__num">1</div>
-          <h3>Conversa inicial</h3>
-          <p>Perfil, objetivos e orçamento — tudo começa com uma chamada.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">2</div>
-          <h3>Curso e universidade</h3>
-          <p>Opções compatíveis com o seu perfil, em Portugal e na Europa.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">3</div>
-          <h3>Candidatura e documentos</h3>
-          <p>Prazos, equivalências e nota do ENEM, sem dor de cabeça.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">4</div>
-          <h3>Visto e chegada</h3>
-          <p>Visto de estudante e primeiros passos no país, com apoio local.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -160,6 +131,29 @@ require_once __DIR__ . '/includes/header.php';
     });
   })();
   </script>
+
+  <section class="section" id="explicacoes-preview">
+    <div class="container hero__grid">
+      <div>
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Explicações</span>
+            <h2>Cursos Preparatórios para os Exames Nacionais Portugueses</h2>
+          </div>
+        </div>
+        <p style="max-width:520px;line-height:1.7;">Aulas individuais, online ao vivo, ou presencial em mais de <?= lf_davinci_unidades() ?> unidades por todo o Portugal, com professores portugueses experientes. Somos nº1 em Portugal em explicações, reforço e tutoria, preparação feita para estudantes brasileiros e de outros países de língua portuguesa que querem estudar em Portugal.</p>
+        <p style="margin-top:24px;">
+          <a href="cursos-preparacao-exames" class="btn-pill btn-teal">Marcar aula</a>
+        </p>
+        <p style="margin-top:20px;font-size:13px;color:var(--muted-on-light);">Também em <a href="https://www.explicanet.com/" target="_blank" rel="noopener">explicanet.com</a> e <a href="https://www.ginasiosdavinci.com/explicacoes-online-portugal/" target="_blank" rel="noopener">ginasiosdavinci.com/explicações online</a>.</p>
+      </div>
+      <div class="hero__art">
+        <div class="hero__circle">
+          <img src="<?= site_image('hero-explicacoes') ?>" alt="Aula online de preparação para os exames nacionais portugueses">
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="section section-dark" id="destinos">
     <div class="container">
@@ -216,19 +210,34 @@ require_once __DIR__ . '/includes/header.php';
     </div>
   </section>
 
-  <section class="section" id="explicacoes-preview">
+  <section class="section" id="como-funciona">
     <div class="container">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">Explicações</span>
-          <h2>Cursos Preparatórios para os Exames Nacionais Portugueses</h2>
+        <h2>Como funciona</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">1</div>
+          <h3>Conversa inicial</h3>
+          <p>Perfil, objetivos e orçamento — tudo começa com uma chamada.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <h3>Curso e universidade</h3>
+          <p>Opções compatíveis com o seu perfil, em Portugal e na Europa.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <h3>Candidatura e documentos</h3>
+          <p>Prazos, equivalências e nota do ENEM, sem dor de cabeça.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <h3>Visto e chegada</h3>
+          <p>Visto de estudante e primeiros passos no país, com apoio local.</p>
         </div>
       </div>
-      <p style="max-width:720px;line-height:1.7;">Aulas individuais, online ao vivo, com professores portugueses experientes. Somos nº1 em Portugal em explicações, reforço e tutoria — preparação feita para brasileiros que querem estudar em Portugal.</p>
-      <p style="margin-top:24px;">
-        <a href="explicacoes.php" class="btn-pill btn-teal">Marcar aula</a>
-      </p>
-      <p style="margin-top:20px;font-size:13px;color:var(--muted-on-light);">Também em <a href="https://www.explicanet.com/" target="_blank" rel="noopener">explicanet.com</a> e <a href="https://www.ginasiosdavinci.com/explicacoes-online-portugal/" target="_blank" rel="noopener">ginasiosdavinci.com/explicações online</a>.</p>
     </div>
   </section>
 

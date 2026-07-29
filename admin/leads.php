@@ -52,7 +52,7 @@ if ($stmt = $d->prepare("SELECT COUNT(*) FROM leads")) {
 // Últimas inscrições
 $leads = [];
 if ($stmt = $d->prepare(
-    "SELECT id, created_at, nome, email, tel, localidade, nacionalidade, destino, objetivo
+    "SELECT id, created_at, form_tipo, nome, email, tel, localidade, nacionalidade, destino, objetivo, disciplina_ano
      FROM leads ORDER BY created_at DESC LIMIT ? OFFSET ?"
 )) {
     $stmt->bind_param('ii', $perPage, $offset);
@@ -108,7 +108,7 @@ tr:last-child td{border-bottom:none}
   </div>
 
   <div class="panel" style="margin-bottom:1.5rem">
-    <h2>Formulário StudyWing (<?= number_format($totalRows, 0, ',', '.') ?> inscrições)</h2>
+    <h2>Leads — StudyWing (assessoria) + Cursos Preparatórios (explicações) · <?= number_format($totalRows, 0, ',', '.') ?> no total</h2>
     <?php if (!$leads): ?>
       <div style="padding:1.4rem;color:var(--muted);">Sem inscrições ainda.</div>
     <?php else: ?>
@@ -116,6 +116,7 @@ tr:last-child td{border-bottom:none}
         <thead>
           <tr>
             <th>Data</th>
+            <th>Formulário</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Telefone</th>
@@ -123,19 +124,24 @@ tr:last-child td{border-bottom:none}
             <th>Nacionalidade</th>
             <th>Destino</th>
             <th>Objetivo</th>
+            <th>Disciplina/Ano</th>
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($leads as $r): ?>
+          <?php foreach ($leads as $r):
+            $isExplicacoes = ($r['form_tipo'] ?? 'studywing') === 'explicacoes';
+          ?>
           <tr>
             <td class="muted" style="font-size:.75rem;"><?= htmlspecialchars((string) $r['created_at']) ?></td>
+            <td style="font-size:.72rem;"><span style="padding:.2rem .55rem;border-radius:999px;font-weight:700;<?= $isExplicacoes ? 'background:rgba(245,158,11,.16);color:var(--warn);' : 'background:rgba(34,197,94,.16);color:var(--good);' ?>"><?= $isExplicacoes ? 'Explicações' : 'StudyWing' ?></span></td>
             <td><?= htmlspecialchars((string) $r['nome']) ?></td>
             <td style="font-size:.75rem;"><a href="mailto:<?= htmlspecialchars((string) $r['email']) ?>" style="color:var(--accent);text-decoration:none"><?= htmlspecialchars((string) $r['email']) ?></a></td>
             <td style="font-size:.75rem;"><?= htmlspecialchars((string) $r['tel']) ?></td>
             <td style="font-size:.75rem;"><?= htmlspecialchars((string) $r['localidade']) ?></td>
             <td style="font-size:.75rem;"><?= htmlspecialchars((string) $r['nacionalidade']) ?></td>
-            <td style="font-size:.75rem;"><?= htmlspecialchars((string) $r['destino']) ?></td>
-            <td style="font-size:.75rem;"><?= htmlspecialchars((string) $r['objetivo']) ?></td>
+            <td style="font-size:.75rem;"><?= htmlspecialchars((string) ($r['destino'] ?: '—')) ?></td>
+            <td style="font-size:.75rem;"><?= htmlspecialchars((string) ($r['objetivo'] ?: '—')) ?></td>
+            <td style="font-size:.75rem;"><?= htmlspecialchars((string) ($r['disciplina_ano'] ?: '—')) ?></td>
           </tr>
           <?php endforeach; ?>
         </tbody>

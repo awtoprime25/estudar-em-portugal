@@ -107,6 +107,14 @@ define('MAIL_TO',       (string) (getenv('MAIL_TO')       ?: CONTACT_EMAIL));
 define('MAIL_CC',       (string) (getenv('MAIL_CC')       ?: ''));
 define('MAIL_CC2',      (string) (getenv('MAIL_CC2')      ?: ''));   // Cc opcional (cópia pessoal). Vazio = desativado.
 
+// Destinatários do formulário próprio "Cursos Preparatórios" (marcação de
+// aulas de explicações — cursos-preparacao-exames.php / ajax-explicacoes.php).
+// Formulário DISTINTO do StudyWing acima: mesmo SMTP_FROM/FROMNAME, caixas de
+// entrada diferentes (equipa de explicações, não a equipa de assessoria).
+define('EXPLICACOES_MAIL_TO',  (string) (getenv('EXPLICACOES_MAIL_TO')  ?: CONTACT_EMAIL));
+define('EXPLICACOES_MAIL_CC',  (string) (getenv('EXPLICACOES_MAIL_CC')  ?: 'monica.floro@davinci.edu.pt'));
+define('EXPLICACOES_MAIL_CC2', (string) (getenv('EXPLICACOES_MAIL_CC2') ?: 'joana.morgado@davinci.edu.pt'));
+
 // Destinatários do report por email do cron-gerar-blog.php (1 email por
 // artigo gerado/falhado). Nomes das chaves tal como o utilizador as definiu
 // no .env (minúsculas, sem prefixo EMAIL_/MAIL_).

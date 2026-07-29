@@ -37,7 +37,7 @@ if (!function_exists('enp_gerar_sitemap')) {
             ['loc' => 'palop.php', 'priority' => '0.8', 'changefreq' => 'monthly'],
             ['loc' => 'faq.php', 'priority' => '0.8', 'changefreq' => 'monthly'],
             ['loc' => 'comparar.php', 'priority' => '0.95', 'changefreq' => 'weekly'],
-            ['loc' => 'explicacoes.php', 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => 'cursos-preparacao-exames', 'priority' => '0.9', 'changefreq' => 'monthly'],
             ['loc' => 'concurso-especial-estudantes-internacionais.php', 'priority' => '0.9', 'changefreq' => 'monthly'],
             ['loc' => 'blog.php', 'priority' => '0.8', 'changefreq' => 'daily'],
             ['loc' => 'contato.php', 'priority' => '0.6', 'changefreq' => 'monthly'],

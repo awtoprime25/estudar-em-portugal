@@ -40,6 +40,10 @@
                 <input type="tel" name="tel" placeholder="+55 11 9XXXX-XXXX" required>
               </label>
               <label>
+                <span>Responsável de Educação</span>
+                <input type="text" name="responsavel_educacao" placeholder="Se o estudante for menor de idade">
+              </label>
+              <label>
                 <span>Cidade, estado e país onde você mora? *</span>
                 <input type="text" name="localidade" required placeholder="Cidade, Estado / País">
               </label>

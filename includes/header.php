@@ -10,7 +10,7 @@ require_once __DIR__ . '/../config.php';
 $pageTitle       = $pageTitle       ?? SITE_NAME;
 $pageDescription = $pageDescription ?? SITE_DESCRIPTION;
 $activeNav       = $activeNav       ?? '';
-$ogImage         = $ogImage         ?? SITE_URL . 'assets/images/ogi-comparar.png';
+$ogImage         = $ogImage         ?? SITE_URL . 'assets/images/ogi-estudar-em-portugal.png';
 $noindex         = !empty($noindex);
 ?>
 <!DOCTYPE html>
@@ -161,7 +161,7 @@ $noindex         = !empty($noindex);
                     </ul>
                 </li>
                 <li><a href="faq.php" class="<?= $activeNav === 'faq' ? 'is-active' : '' ?>">FAQs</a></li>
-                <li><a href="explicacoes.php" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Exames e explicações</a></li>
+                <li><a href="cursos-preparacao-exames" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Exames e explicações</a></li>
                 <li class="has-dropdown <?= in_array($activeNav, ['acesso', 'concurso-especial', 'visto']) ? 'is-active-group' : '' ?>">
                     <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-acesso">Ensino superior</button>
                     <ul class="nav-dropdown" id="nav-dropdown-acesso">

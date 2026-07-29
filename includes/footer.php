@@ -40,7 +40,7 @@ require_once __DIR__ . '/studywing-form.php';
         <div class="footer-col">
             <h6>Guias &amp; apoio</h6>
             <ul>
-                <li><a href="explicacoes.php">Exames e explicações</a></li>
+                <li><a href="cursos-preparacao-exames">Exames e explicações</a></li>
                 <li><a href="acesso-ensino-superior.php">Acesso ao ensino superior</a></li>
                 <li><a href="concurso-especial-estudantes-internacionais.php">Concurso Especial</a></li>
                 <li><a href="visto-de-estudante.php">Visto de estudante</a></li>

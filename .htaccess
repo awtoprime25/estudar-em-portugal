@@ -1,0 +1,5 @@
+# URL limpo (sem .php) para a página de Cursos Preparatórios/Explicações.
+# Site continua a servir todas as outras páginas com extensão .php normal —
+# esta é a única exceção, pedida explicitamente para esta URL.
+RewriteEngine On
+RewriteRule ^cursos-preparacao-exames/?$ cursos-preparacao-exames.php [L,QSA]

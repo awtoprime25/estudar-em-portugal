@@ -80,6 +80,7 @@ unset($_SESSION['enp_csrf']);
 $nome       = trim((string)($_POST['nome']       ?? ''));
 $email      = trim((string)($_POST['email']      ?? ''));
 $tel        = trim((string)($_POST['tel']        ?? ''));
+$responsavelEducacao = trim((string)($_POST['responsavel_educacao'] ?? ''));
 $local      = trim((string)($_POST['localidade'] ?? ''));
 $nacionalidade      = trim((string)($_POST['nacionalidade']      ?? ''));
 $ano        = trim((string)($_POST['ano']        ?? ''));
@@ -97,7 +98,7 @@ $termos     = !empty($_POST['termos']) ? '1' : '';
 // Defesa contra header injection (CRLF smuggling) em mail() headers:
 // filter_var filtrou o formato RFC, mas quoted-local-part admite control chars.
 // Strip CR/LF de TODOS os campos que entram em headers (From/Reply-To/Subject).
-foreach (['nome','email','tel','local','areas'] as $enpF) {
+foreach (['nome','email','tel','responsavelEducacao','local','areas'] as $enpF) {
     if (preg_match('/[\r\n]/', (string) ($$enpF))) {
         http_response_code(400);
         echo json_encode(['ok' => false, 'message' => 'Pedido inválido.']);
@@ -179,6 +180,7 @@ $campos = [
     'Nome:'                   => $nome,
     'Email:'                  => $email,
     'Telefone/WhatsApp:'      => $tel,
+    'Responsável de Educação:' => $responsavelEducacao !== '' ? $responsavelEducacao : '—',
     'Onde mora:'              => $local,
     'Nacionalidade:'          => _bn_nacionalidade_label($nacionalidade),
     'Objetivo principal:'     => _bn_objetivo_label($objetivo),
@@ -247,9 +249,11 @@ $corpoTexto .= "\nIP origem: " . (string) ($_SERVER['REMOTE_ADDR'] ?? '') . "\n"
 
 // ---- PASSO 1: GRAVAR NA BASE DE DADOS ----
 $leadId = lf_store_lead([
+    'form_tipo'              => 'studywing',
     'nome'                   => $nome,
     'email'                  => $email,
     'tel'                    => $tel,
+    'responsavel_educacao'   => $responsavelEducacao,
     'localidade'             => $local,
     'nacionalidade'          => $nacionalidade,
     'ano'                    => $ano,
