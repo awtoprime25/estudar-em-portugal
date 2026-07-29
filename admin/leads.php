@@ -41,19 +41,25 @@ $perPage = 50;
 $offset  = $page * $perPage;
 $now     = date('Y-m-d H:i:s');
 
-// Contagem total de leads
+// Contagem total de leads — soma das 2 tabelas (StudyWing + Explicações,
+// ver [[enp-two-lead-forms]] em memória: são tabelas separadas, não uma só).
 $totalRows = 0;
-if ($stmt = $d->prepare("SELECT COUNT(*) FROM leads")) {
+if ($stmt = $d->prepare("SELECT (SELECT COUNT(*) FROM leads) + (SELECT COUNT(*) FROM leads_explicacoes)")) {
     $stmt->execute();
     $totalRows = (int) ((($stmt->get_result()->fetch_row() ?? [])[0]) ?? 0);
     $stmt->close();
 }
 
-// Últimas inscrições
+// Últimas inscrições — UNION ALL das 2 tabelas, com form_tipo literal para
+// distinguir na listagem (colunas só de um dos formulários vêm NULL no outro).
 $leads = [];
 if ($stmt = $d->prepare(
-    "SELECT id, created_at, form_tipo, nome, email, tel, localidade, nacionalidade, destino, objetivo, disciplina_ano
-     FROM leads ORDER BY created_at DESC LIMIT ? OFFSET ?"
+    "SELECT id, created_at, 'studywing' AS form_tipo, nome, email, tel, localidade, nacionalidade, destino, objetivo, NULL AS disciplina_ano
+     FROM leads
+     UNION ALL
+     SELECT id, created_at, 'explicacoes' AS form_tipo, nome, email, tel, localidade, nacionalidade, NULL AS destino, NULL AS objetivo, disciplina_ano
+     FROM leads_explicacoes
+     ORDER BY created_at DESC LIMIT ? OFFSET ?"
 )) {
     $stmt->bind_param('ii', $perPage, $offset);
     $stmt->execute();

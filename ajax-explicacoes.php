@@ -213,9 +213,8 @@ $corpoTexto .= "\nIP origem: " . (string) ($_SERVER['REMOTE_ADDR'] ?? '') . "\n"
              . "User-agent: " . (string) ($_SERVER['HTTP_USER_AGENT'] ?? '') . "\n"
              . "Página de origem: {$origemPagina}\n";
 
-// ---- PASSO 1: GRAVAR NA BD (tabela partilhada `leads`, form_tipo='explicacoes') ----
-$leadId = lf_store_lead([
-    'form_tipo'            => 'explicacoes',
+// ---- PASSO 1: GRAVAR NA BD (tabela própria `leads_explicacoes`) ----
+$leadId = lf_store_lead_explicacoes([
     'nome'                 => $nome,
     'email'                => $email,
     'tel'                  => $tel,

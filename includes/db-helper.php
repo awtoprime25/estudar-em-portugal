@@ -229,14 +229,11 @@ function bn_ensure_analytics_tables(mysqli $d): void {
         KEY idx_category (category)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
 
-    // ---- Leads: formulário StudyWing (assessoria) + formulário Cursos
-    //      Preparatórios/Explicações (marcação de aulas) — tabela partilhada,
-    //      distinguidos por `form_tipo`. Ver includes/studywing-form.php vs
-    //      cursos-preparacao-exames.php (páginas/emails/CSS diferentes). ----
+    // ---- Formulário StudyWing (assessoria, includes/studywing-form.php →
+    //      ajax-comp.php) — tabela própria. ----
     @$d->query("CREATE TABLE IF NOT EXISTS leads (
         id                    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
         created_at            DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        form_tipo             VARCHAR(20) NOT NULL DEFAULT 'studywing',
         nome                  VARCHAR(255) NULL,
         email                 VARCHAR(255) NULL,
         tel                   VARCHAR(255) NULL,
@@ -251,21 +248,36 @@ function bn_ensure_analytics_tables(mysqli $d): void {
         destino               VARCHAR(255) NULL,
         quando                VARCHAR(255) NULL,
         momento               VARCHAR(255) NULL,
-        disciplina_ano        VARCHAR(255) NULL,
         origem                VARCHAR(255) NULL,
         ip                    VARCHAR(45) NULL,
         user_agent            VARCHAR(255) NULL,
         areas                 TEXT NULL,
         obs                   TEXT NULL,
-        KEY idx_created (created_at),
-        KEY idx_form_tipo (form_tipo)
+        KEY idx_created (created_at)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
     // Migração leve (idempotente, swallowable 1060) para a tabela `leads` já
     // existente em produção — a CREATE TABLE acima só corre em BD nova.
-    $d && @$d->query("ALTER TABLE leads ADD COLUMN form_tipo VARCHAR(20) NOT NULL DEFAULT 'studywing' AFTER created_at");
     $d && @$d->query("ALTER TABLE leads ADD COLUMN responsavel_educacao VARCHAR(255) NULL AFTER tel");
-    $d && @$d->query("ALTER TABLE leads ADD COLUMN disciplina_ano VARCHAR(255) NULL AFTER momento");
-    $d && @$d->query("ALTER TABLE leads ADD INDEX idx_form_tipo (form_tipo)");
+
+    // ---- Formulário Cursos Preparatórios/Explicações (marcação de aulas,
+    //      cursos-preparacao-exames.php → ajax-explicacoes.php) — tabela
+    //      PRÓPRIA, distinta de `leads` (campos diferentes, ver [[enp-two-lead-forms]]). ----
+    @$d->query("CREATE TABLE IF NOT EXISTS leads_explicacoes (
+        id                    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        created_at            DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        nome                  VARCHAR(255) NULL,
+        email                 VARCHAR(255) NULL,
+        tel                   VARCHAR(255) NULL,
+        responsavel_educacao  VARCHAR(255) NULL,
+        localidade            VARCHAR(255) NULL,
+        nacionalidade         VARCHAR(255) NULL,
+        disciplina_ano        VARCHAR(255) NULL,
+        origem                VARCHAR(255) NULL,
+        ip                    VARCHAR(45) NULL,
+        user_agent            VARCHAR(255) NULL,
+        obs                   TEXT NULL,
+        KEY idx_created (created_at)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
 }
 
 /**
@@ -301,12 +313,11 @@ function lf_store_chat_message(array $row): bool {
 function lf_store_lead(array $row): ?int {
     $d = db(); if (!$d) return null;
     $stmt = $d->prepare(
-        'INSERT INTO leads (form_tipo, nome, email, tel, responsavel_educacao, localidade, nacionalidade, ano, tipo_curso, objetivo, situacao_financeira, financiamento, destino, quando, momento, disciplina_ano, origem, ip, user_agent, areas, obs)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO leads (nome, email, tel, responsavel_educacao, localidade, nacionalidade, ano, tipo_curso, objetivo, situacao_financeira, financiamento, destino, quando, momento, origem, ip, user_agent, areas, obs)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     );
     if (!$stmt) return null;
 
-    $formTipo = mb_substr((string) ($row['form_tipo']             ?? 'studywing'), 0, 20);
     $nome    = mb_substr((string) ($row['nome']                   ?? ''), 0, 255);
     $email   = mb_substr((string) ($row['email']                  ?? ''), 0, 255);
     $tel     = mb_substr((string) ($row['tel']                    ?? ''), 0, 255);
@@ -321,14 +332,45 @@ function lf_store_lead(array $row): ?int {
     $dest    = mb_substr((string) ($row['destino']                ?? ''), 0, 255);
     $qdo     = mb_substr((string) ($row['quando']                 ?? ''), 0, 255);
     $mom     = mb_substr((string) ($row['momento']                ?? ''), 0, 255);
-    $discAno = mb_substr((string) ($row['disciplina_ano']         ?? ''), 0, 255);
     $orig    = mb_substr((string) ($row['origem']                 ?? ''), 0, 255);
     $ip      = mb_substr((string) ($row['ip']                     ?? ''), 0, 45);
     $ua      = mb_substr((string) ($row['user_agent']             ?? ''), 0, 255);
     $areas   = mb_substr((string) ($row['areas']                  ?? ''), 0, 2000);
     $obs     = mb_substr((string) ($row['obs']                    ?? ''), 0, 2000);
 
-    $stmt->bind_param('sssssssssssssssssssss', $formTipo, $nome, $email, $tel, $respEdu, $local, $nacion, $ano, $tipo, $obj, $sitfin, $financ, $dest, $qdo, $mom, $discAno, $orig, $ip, $ua, $areas, $obs);
+    $stmt->bind_param('sssssssssssssssssss', $nome, $email, $tel, $respEdu, $local, $nacion, $ano, $tipo, $obj, $sitfin, $financ, $dest, $qdo, $mom, $orig, $ip, $ua, $areas, $obs);
+    $ok = $stmt->execute();
+    $id = $ok ? (int) $stmt->insert_id : null;
+    $stmt->close();
+    return $id > 0 ? $id : null;
+}
+
+/**
+ * Guarda 1 lead do formulário Cursos Preparatórios/Explicações (marcação de
+ * aulas) — tabela `leads_explicacoes`, própria, ver lf_store_lead() acima
+ * para a do StudyWing. Best-effort. Devolve o insert_id (int) ou null.
+ */
+function lf_store_lead_explicacoes(array $row): ?int {
+    $d = db(); if (!$d) return null;
+    $stmt = $d->prepare(
+        'INSERT INTO leads_explicacoes (nome, email, tel, responsavel_educacao, localidade, nacionalidade, disciplina_ano, origem, ip, user_agent, obs)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    );
+    if (!$stmt) return null;
+
+    $nome    = mb_substr((string) ($row['nome']                 ?? ''), 0, 255);
+    $email   = mb_substr((string) ($row['email']                ?? ''), 0, 255);
+    $tel     = mb_substr((string) ($row['tel']                  ?? ''), 0, 255);
+    $respEdu = mb_substr((string) ($row['responsavel_educacao'] ?? ''), 0, 255);
+    $local   = mb_substr((string) ($row['localidade']           ?? ''), 0, 255);
+    $nacion  = mb_substr((string) ($row['nacionalidade']        ?? ''), 0, 255);
+    $discAno = mb_substr((string) ($row['disciplina_ano']       ?? ''), 0, 255);
+    $orig    = mb_substr((string) ($row['origem']               ?? ''), 0, 255);
+    $ip      = mb_substr((string) ($row['ip']                   ?? ''), 0, 45);
+    $ua      = mb_substr((string) ($row['user_agent']           ?? ''), 0, 255);
+    $obs     = mb_substr((string) ($row['obs']                  ?? ''), 0, 2000);
+
+    $stmt->bind_param('sssssssssss', $nome, $email, $tel, $respEdu, $local, $nacion, $discAno, $orig, $ip, $ua, $obs);
     $ok = $stmt->execute();
     $id = $ok ? (int) $stmt->insert_id : null;
     $stmt->close();

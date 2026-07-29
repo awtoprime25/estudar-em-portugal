@@ -249,7 +249,6 @@ $corpoTexto .= "\nIP origem: " . (string) ($_SERVER['REMOTE_ADDR'] ?? '') . "\n"
 
 // ---- PASSO 1: GRAVAR NA BASE DE DADOS ----
 $leadId = lf_store_lead([
-    'form_tipo'              => 'studywing',
     'nome'                   => $nome,
     'email'                  => $email,
     'tel'                    => $tel,
