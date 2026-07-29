@@ -160,6 +160,7 @@ $noindex         = !empty($noindex);
                         <li><a href="universidades.php" class="<?= $activeNav === 'universidades' ? 'is-active' : '' ?>">Universidades</a></li>
                     </ul>
                 </li>
+                <li><a href="sobre.php" class="<?= $activeNav === 'sobre' ? 'is-active' : '' ?>">Sobre nós</a></li>
                 <li><a href="faq.php" class="<?= $activeNav === 'faq' ? 'is-active' : '' ?>">FAQs</a></li>
                 <li><a href="cursos-preparacao-exames" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Exames e explicações</a></li>
                 <li class="has-dropdown <?= in_array($activeNav, ['acesso', 'concurso-especial', 'visto']) ? 'is-active-group' : '' ?>">
@@ -172,7 +173,6 @@ $noindex         = !empty($noindex);
                 </li>
                 <li><a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" class="">Estudar na Europa</a></li>
                 <li><a href="palop.php" class="<?= $activeNav === 'palop' ? 'is-active' : '' ?>">PALOP/CPLP</a></li>
-                <li><a href="sobre.php" class="<?= $activeNav === 'sobre' ? 'is-active' : '' ?>">Sobre nós</a></li>
                 <li><a href="blog.php" class="<?= $activeNav === 'blog' ? 'is-active' : '' ?>">Blog</a></li>
             </ul>
         </div>

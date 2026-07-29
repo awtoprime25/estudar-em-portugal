@@ -206,7 +206,7 @@ require_once __DIR__ . '/includes/header.php';
         </a>
       </div>
 
-      <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
+      <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong> — saiba mais em <a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" style="color:var(--teal-light);">Estudar no Estrangeiro ↗</a></p>
     </div>
   </section>
 
