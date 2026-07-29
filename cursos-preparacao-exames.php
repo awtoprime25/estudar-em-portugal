@@ -4,6 +4,7 @@ require_once __DIR__ . '/includes/davinci-units.php';
 $pageTitle       = 'Cursos Preparatórios para os Exames Nacionais Portugueses | Estudar em Portugal';
 $pageDescription = 'Preparação online individual para os Exames Nacionais Portugueses — explicações, reforço e tutoria com professores portugueses, feita para brasileiros.';
 $activeNav       = 'explicacoes';
+$pageSlug        = 'cursos-preparacao-exames';
 $extraJS         = 'assets/js/explicacoes-form.js';
 
 $extraJsonLd = json_encode([
