@@ -40,7 +40,6 @@ require_once __DIR__ . '/includes/header.php';
         <div class="hero__ctas">
           <a href="#formulario" class="btn-pill btn-flag">Fale conosco</a>
         </div>
-        <p style="color:var(--muted-on-dark);font-size:13px;">Sem compromisso.</p>
       </div>
       <div class="hero__art">
         <div class="hero__circle">
