@@ -132,12 +132,12 @@ if ($stmt = $d->prepare(
     $stmt->close();
 }
 
-// 2) Top países (humans, ex-cluindo sentinel)
+// 2) Top países (humans, inclui site inteiro + blog/artigos)
 $topCountries = [];
 if ($stmt = $d->prepare(
     "SELECT country, COUNT(*) AS hits, COUNT(DISTINCT ip_hash) AS uniq
      FROM blog_view_hits
-     WHERE day >= ? AND is_bot = 0 AND $whereExclSite" . ($slugFilter !== '' ? " AND slug = ?" : '') . "
+     WHERE day >= ? AND is_bot = 0" . ($slugFilter !== '' ? " AND slug = ?" : '') . "
      GROUP BY country ORDER BY hits DESC LIMIT 12"
 )) {
     if ($slugFilter !== '') $stmt->bind_param('ss', $minDay, $slugFilter);
