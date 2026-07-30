@@ -696,8 +696,40 @@ function lf_gemini_image_attempt(string $cleanTitle, string $category, string $s
     $bytes = base64_decode($imgB64, true);
     if ($bytes === false || strlen($bytes) < 500) return ['status' => 'retry', 'reason' => 'imagem decodificada inválida'];
 
-    $filename = 'hero-blog-' . $slug . '.png';
-    $written = @file_put_contents(IMAGES_DIR . '/' . $filename, $bytes);
+    // Comprime para WebP (Gemini devolve PNG sem compressão, 2-3MB cada — mesmo fix
+    // aplicado no site irmão EstudarNoEstrangeiro, 2026-07-30, depois de esvaziar
+    // 291MB de PNGs acumulados lá). GD quase sempre disponível em cPanel, mas nunca
+    // garantido — se faltar ou falhar, cai para o PNG original tal e qual.
+    $pngFilename  = 'hero-blog-' . $slug . '.png';
+    $webpFilename = 'hero-blog-' . $slug . '.webp';
+    $filename     = $pngFilename;
+    $dataToSave   = $bytes;
+
+    if (function_exists('imagecreatefromstring') && function_exists('imagewebp')) {
+        $im = @imagecreatefromstring($bytes);
+        if ($im !== false) {
+            $w = imagesx($im);
+            $h = imagesy($im);
+            $maxW = 1200;
+            if ($w > $maxW) {
+                $newH = (int) round($h * ($maxW / $w));
+                $resized = imagecreatetruecolor($maxW, $newH);
+                imagecopyresampled($resized, $im, 0, 0, 0, 0, $maxW, $newH, $w, $h);
+                imagedestroy($im);
+                $im = $resized;
+            }
+            ob_start();
+            $ok = imagewebp($im, null, 82);
+            $webpData = ob_get_clean();
+            imagedestroy($im);
+            if ($ok && $webpData !== false && strlen($webpData) > 1000) {
+                $filename   = $webpFilename;
+                $dataToSave = $webpData;
+            }
+        }
+    }
+
+    $written = @file_put_contents(IMAGES_DIR . '/' . $filename, $dataToSave);
     if ($written === false) return ['status' => 'retry', 'reason' => 'falha a escrever ficheiro'];
     @chmod(IMAGES_DIR . '/' . $filename, 0664);
     return ['status' => 'ok', 'path' => 'assets/images/' . $filename];
