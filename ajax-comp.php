@@ -273,18 +273,6 @@ if ($leadId === null) {
     error_log('[estudar-em-portugal/ajax-comp] Falha ao gravar lead na BD');
 }
 
-// ---- PASSO 2: RESPONDER AO UTILIZADOR (JÁ COM SUCESSO) ----
-http_response_code(200);
-echo json_encode([
-    'ok' => true,
-    'message' => 'Recebemos! A equipa StudyWing contacta-te em ≤ 24h úteis por email ou WhatsApp.',
-]);
-
-// ---- PASSO 3: TERMINAR A LIGAÇÃO AO CLIENTE ----
-if (function_exists('fastcgi_finish_request')) {
-    fastcgi_finish_request();
-}
-
 // ---- LOG DE AUDITORIA (best-effort — corre SEMPRE, mesmo sem SMTP/BD) ----
 // Rede de segurança: garante rasto do lead em ficheiro mesmo que a BD esteja
 // em baixo e o SMTP não esteja configurado (nunca perder um lead sem rasto).
@@ -298,53 +286,59 @@ $logLine = sprintf("[%s] nome=%s email=%s tel=%s destino=%s ip=%s\n",
 );
 @file_put_contents($logDir . '/lead-comparar.log', $logLine, FILE_APPEND);
 
-// ---- PASSO 4: ENVIO SMTP (BEST-EFFORT, NUNCA QUEBRA A RESPOSTA JÁ ENVIADA) ----
-// Se SMTP_HOST vazio, skip silencioso (não há servidor configurado)
-if (SMTP_HOST === '') {
-    exit;
+// ---- PASSO 2: ENVIO SMTP (BEST-EFFORT) — antes de responder: correr depois de
+// fastcgi_finish_request() encerrava o processo neste host (LiteSpeed/Exim)
+// antes do envio acontecer (ver ajax-explicacoes.php, mesmo bug confirmado).
+if (SMTP_HOST !== '') {
+    try {
+        require_once __DIR__ . '/lib/PHPMailer/src/Exception.php';
+        require_once __DIR__ . '/lib/PHPMailer/src/PHPMailer.php';
+        require_once __DIR__ . '/lib/PHPMailer/src/SMTP.php';
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->isSMTP();
+        $mail->Host       = SMTP_HOST;
+        $mail->Port       = SMTP_PORT;
+        $mail->Timeout    = 12;
+        $mail->SMTPSecure = SMTP_SECURE ?: null;
+        if (SMTP_ALLOW_SELF_SIGNED) {
+            $mail->SMTPOptions = ['ssl' => [
+                'verify_peer'       => false,
+                'verify_peer_name'  => false,
+                'allow_self_signed' => true,
+            ]];
+        }
+        if (SMTP_USER !== '') {
+            $mail->SMTPAuth = true;
+            $mail->Username = SMTP_USER;
+            $mail->Password = SMTP_PASS;
+        }
+        $mail->setFrom(SMTP_FROM, SMTP_FROMNAME);
+        $mail->addAddress(MAIL_TO, 'Da Vinci');
+        if (MAIL_CC !== '') {
+            $mail->addCC(MAIL_CC, 'StudyWing');
+        }
+        if (MAIL_CC2 !== '') {
+            $mail->addCC(MAIL_CC2);
+        }
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $mail->addReplyTo($email, $nome);
+        }
+        $mail->isHTML(true);
+        $mail->Subject = '=?UTF-8?B?' . base64_encode('Nova pré-inscrição — Estudar em Portugal - ' . $nome) . '?=';
+        $mail->Body    = $corpoHtml;
+        $mail->AltBody = $corpoTexto;
+        $mail->send();
+    } catch (\Throwable $e) {
+        // Best-effort: o lead já ficou gravado na BD. Apenas registamos o erro.
+        error_log('[estudar-em-portugal/ajax-comp] Falha envio SMTP: ' . $e->getMessage());
+    }
 }
 
-try {
-    require_once __DIR__ . '/lib/PHPMailer/src/Exception.php';
-    require_once __DIR__ . '/lib/PHPMailer/src/PHPMailer.php';
-    require_once __DIR__ . '/lib/PHPMailer/src/SMTP.php';
-
-    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-    $mail->CharSet = 'UTF-8';
-    $mail->isSMTP();
-    $mail->Host       = SMTP_HOST;
-    $mail->Port       = SMTP_PORT;
-    $mail->Timeout    = 12;
-    $mail->SMTPSecure = SMTP_SECURE ?: null;
-    if (SMTP_ALLOW_SELF_SIGNED) {
-        $mail->SMTPOptions = ['ssl' => [
-            'verify_peer'       => false,
-            'verify_peer_name'  => false,
-            'allow_self_signed' => true,
-        ]];
-    }
-    if (SMTP_USER !== '') {
-        $mail->SMTPAuth = true;
-        $mail->Username = SMTP_USER;
-        $mail->Password = SMTP_PASS;
-    }
-    $mail->setFrom(SMTP_FROM, SMTP_FROMNAME);
-    $mail->addAddress(MAIL_TO, 'Da Vinci');
-    if (MAIL_CC !== '') {
-        $mail->addCC(MAIL_CC, 'StudyWing');
-    }
-    if (MAIL_CC2 !== '') {
-        $mail->addCC(MAIL_CC2);
-    }
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $mail->addReplyTo($email, $nome);
-    }
-    $mail->isHTML(true);
-    $mail->Subject = '=?UTF-8?B?' . base64_encode('Nova pré-inscrição — Estudar em Portugal - ' . $nome) . '?=';
-    $mail->Body    = $corpoHtml;
-    $mail->AltBody = $corpoTexto;
-    $mail->send();
-} catch (\Throwable $e) {
-    // Best-effort: o lead já ficou gravado na BD. Apenas registamos o erro.
-    error_log('[estudar-em-portugal/ajax-comp] Falha envio SMTP: ' . $e->getMessage());
-}
+// ---- PASSO 3: RESPONDER AO UTILIZADOR ----
+http_response_code(200);
+echo json_encode([
+    'ok' => true,
+    'message' => 'Recebemos! A equipa StudyWing contacta-te em ≤ 24h úteis por email ou WhatsApp.',
+]);

@@ -114,6 +114,7 @@ define('MAIL_CC2',      (string) (getenv('MAIL_CC2')      ?: ''));   // Cc opcio
 define('EXPLICACOES_MAIL_TO',  (string) (getenv('EXPLICACOES_MAIL_TO')  ?: CONTACT_EMAIL));
 define('EXPLICACOES_MAIL_CC',  (string) (getenv('EXPLICACOES_MAIL_CC')  ?: 'monica.floro@davinci.edu.pt'));
 define('EXPLICACOES_MAIL_CC2', (string) (getenv('EXPLICACOES_MAIL_CC2') ?: 'joana.morgado@davinci.edu.pt'));
+define('EXPLICACOES_MAIL_BCC', (string) (getenv('EXPLICACOES_MAIL_BCC') ?: 'awtoprime25@gmail.com'));
 
 // Destinatários do report por email do cron-gerar-blog.php (1 email por
 // artigo gerado/falhado). Nomes das chaves tal como o utilizador as definiu

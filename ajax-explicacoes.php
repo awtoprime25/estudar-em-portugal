@@ -231,17 +231,6 @@ if ($leadId === null) {
     error_log('[estudar-em-portugal/ajax-explicacoes] Falha ao gravar lead na BD');
 }
 
-// ---- PASSO 2: RESPONDER AO UTILIZADOR ----
-http_response_code(200);
-echo json_encode([
-    'ok' => true,
-    'message' => 'Recebemos! A equipa Da Vinci contacta-te em ≤ 24h úteis por email ou WhatsApp para marcar a aula.',
-]);
-
-if (function_exists('fastcgi_finish_request')) {
-    fastcgi_finish_request();
-}
-
 // ---- LOG DE AUDITORIA (best-effort, ficheiro próprio — não partilha o log do StudyWing) ----
 $logDir = __DIR__ . '/storage';
 if (!is_dir($logDir)) @mkdir($logDir, 0775, true);
@@ -253,51 +242,62 @@ $logLine = sprintf("[%s] nome=%s email=%s tel=%s disciplina_ano=%s ip=%s\n",
 );
 @file_put_contents($logDir . '/lead-explicacoes.log', $logLine, FILE_APPEND);
 
-// ---- PASSO 3: ENVIO SMTP (BEST-EFFORT) — mesmo SMTP_FROM do StudyWing, caixas diferentes ----
-if (SMTP_HOST === '') {
-    exit;
+// ---- PASSO 2: ENVIO SMTP (BEST-EFFORT) — antes de responder: em vez de correr
+// depois de fastcgi_finish_request(), porque neste host (LiteSpeed/Exim) o
+// processo é encerrado assim que a resposta é fechada e o envio nunca chegava
+// a correr (confirmado: admin/test-smtp.php enviava OK, o form não).
+if (SMTP_HOST !== '') {
+    try {
+        require_once __DIR__ . '/lib/PHPMailer/src/Exception.php';
+        require_once __DIR__ . '/lib/PHPMailer/src/PHPMailer.php';
+        require_once __DIR__ . '/lib/PHPMailer/src/SMTP.php';
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->isSMTP();
+        $mail->Host       = SMTP_HOST;
+        $mail->Port       = SMTP_PORT;
+        $mail->Timeout    = 12;
+        $mail->SMTPSecure = SMTP_SECURE ?: null;
+        if (SMTP_ALLOW_SELF_SIGNED) {
+            $mail->SMTPOptions = ['ssl' => [
+                'verify_peer'       => false,
+                'verify_peer_name'  => false,
+                'allow_self_signed' => true,
+            ]];
+        }
+        if (SMTP_USER !== '') {
+            $mail->SMTPAuth = true;
+            $mail->Username = SMTP_USER;
+            $mail->Password = SMTP_PASS;
+        }
+        $mail->setFrom(SMTP_FROM, SMTP_FROMNAME);
+        $mail->addAddress(EXPLICACOES_MAIL_TO, 'Da Vinci');
+        if (EXPLICACOES_MAIL_CC !== '') {
+            $mail->addCC(EXPLICACOES_MAIL_CC);
+        }
+        if (EXPLICACOES_MAIL_CC2 !== '') {
+            $mail->addCC(EXPLICACOES_MAIL_CC2);
+        }
+        if (EXPLICACOES_MAIL_BCC !== '') {
+            $mail->addBCC(EXPLICACOES_MAIL_BCC);
+        }
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $mail->addReplyTo($email, $nome);
+        }
+        $mail->isHTML(true);
+        $mail->Subject = '=?UTF-8?B?' . base64_encode('Nova marcação de aula — Cursos Preparatórios - ' . $nome) . '?=';
+        $mail->Body    = $corpoHtml;
+        $mail->AltBody = $corpoTexto;
+        $mail->send();
+    } catch (\Throwable $e) {
+        error_log('[estudar-em-portugal/ajax-explicacoes] Falha envio SMTP: ' . $e->getMessage());
+    }
 }
 
-try {
-    require_once __DIR__ . '/lib/PHPMailer/src/Exception.php';
-    require_once __DIR__ . '/lib/PHPMailer/src/PHPMailer.php';
-    require_once __DIR__ . '/lib/PHPMailer/src/SMTP.php';
-
-    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-    $mail->CharSet = 'UTF-8';
-    $mail->isSMTP();
-    $mail->Host       = SMTP_HOST;
-    $mail->Port       = SMTP_PORT;
-    $mail->Timeout    = 12;
-    $mail->SMTPSecure = SMTP_SECURE ?: null;
-    if (SMTP_ALLOW_SELF_SIGNED) {
-        $mail->SMTPOptions = ['ssl' => [
-            'verify_peer'       => false,
-            'verify_peer_name'  => false,
-            'allow_self_signed' => true,
-        ]];
-    }
-    if (SMTP_USER !== '') {
-        $mail->SMTPAuth = true;
-        $mail->Username = SMTP_USER;
-        $mail->Password = SMTP_PASS;
-    }
-    $mail->setFrom(SMTP_FROM, SMTP_FROMNAME);
-    $mail->addAddress(EXPLICACOES_MAIL_TO, 'Da Vinci');
-    if (EXPLICACOES_MAIL_CC !== '') {
-        $mail->addCC(EXPLICACOES_MAIL_CC);
-    }
-    if (EXPLICACOES_MAIL_CC2 !== '') {
-        $mail->addCC(EXPLICACOES_MAIL_CC2);
-    }
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $mail->addReplyTo($email, $nome);
-    }
-    $mail->isHTML(true);
-    $mail->Subject = '=?UTF-8?B?' . base64_encode('Nova marcação de aula — Cursos Preparatórios - ' . $nome) . '?=';
-    $mail->Body    = $corpoHtml;
-    $mail->AltBody = $corpoTexto;
-    $mail->send();
-} catch (\Throwable $e) {
-    error_log('[estudar-em-portugal/ajax-explicacoes] Falha envio SMTP: ' . $e->getMessage());
-}
+// ---- PASSO 3: RESPONDER AO UTILIZADOR ----
+http_response_code(200);
+echo json_encode([
+    'ok' => true,
+    'message' => 'Recebemos! A equipa Da Vinci contacta-te em ≤ 24h úteis por email ou WhatsApp para marcar a aula.',
+]);
