@@ -454,15 +454,6 @@ a { color: inherit; text-decoration: none; }
   gap: 28px;
   position: relative;
 }
-.steps::before {
-  content: "";
-  position: absolute;
-  top: 20px;
-  left: 6%;
-  right: 6%;
-  height: 1px;
-  background: #e4e8ef;
-}
 .step { position: relative; }
 .step__num {
   width: 40px;
@@ -483,7 +474,6 @@ a { color: inherit; text-decoration: none; }
 .step p { font-size: 14.5px; line-height: 1.6; color: var(--muted-on-light); margin: 0; }
 .section-dark .step__num { background: var(--teal-light); color: var(--navy-950); }
 .section-dark .step p { color: var(--muted-on-dark); }
-.section-dark .steps::before { background: var(--border-on-dark); }
 
 /* ---------- Onde você pode estudar ---------- */
 .section-dark { background: var(--navy-900); color: #fff; }
@@ -1040,7 +1030,6 @@ a { color: inherit; text-decoration: none; }
   .hero__art { order: -1; }
   .hero__circle { width: min(320px, 70vw); margin: 0 auto; }
   .steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
-  .steps::before { display: none; }
   .city-row { grid-template-columns: 36px 1fr auto; }
   .city-row p { grid-column: 2 / 3; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
