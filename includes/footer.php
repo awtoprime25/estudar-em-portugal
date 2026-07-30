@@ -71,7 +71,7 @@ if (($pageSlug ?? '') !== 'cursos-preparacao-exames') {
     </div>
     <div class="container footer-meta">
         <span>© <?= date('Y') ?> Ginásios Da Vinci × StudyWing. Todos os direitos reservados.</span>
-        <span class="footer-legal"><a href="termos.php">Termos de uso</a> · <a href="privacidade.php">Política de privacidade</a></span>
+        <span class="footer-legal"><a href="termos.php">Termos de uso</a> · <a href="https://www.ginasiosdavinci.com/privacidade-websites/" target="_blank" rel="noopener">Política de privacidade</a></span>
     </div>
 </footer>
 

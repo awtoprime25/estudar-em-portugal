@@ -194,7 +194,7 @@
               </label>
               <label class="studywing-grid--full studywing-consent">
                 <input type="checkbox" name="termos" value="1" required>
-                <span>Aceito os <a href="privacidade.php" target="_blank">termos de privacidade</a> e o consentimento para ser contactado pela equipa Da Vinci × StudyWing.</span>
+                <span>Aceito os <a href="https://www.ginasiosdavinci.com/privacidade-websites/" target="_blank" rel="noopener">termos de privacidade</a> e o consentimento para ser contactado pela equipa Da Vinci × StudyWing.</span>
               </label>
             </div>
             <div class="studywing-actions">
