@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/davinci-units.php';
-$pageTitle       = 'Cursos Preparatórios para os Exames Nacionais Portugueses | Estudar em Portugal';
+$pageTitle       = 'Aulas de Preparação para Exames Portugueses | Estudar em Portugal';
 $pageDescription = 'Preparação online individual para os Exames Nacionais Portugueses — explicações, reforço e tutoria com professores portugueses, feita para brasileiros.';
 $activeNav       = 'explicacoes';
 $pageSlug        = 'cursos-preparacao-exames';
@@ -44,7 +44,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container hero__grid">
       <div class="hero__copy">
         <span class="eyebrow">EXAMES NACIONAIS — PORTUGAL</span>
-        <h1>Cursos Preparatórios para os <span class="accent">Exames Nacionais</span> Portugueses</h1>
+        <h1>Aulas de Preparação para <span class="accent">Exames Portugueses</span></h1>
         <p class="lede">Aulas individuais, online, com professores portugueses. Preparação feita para brasileiros que querem estudar em Portugal.</p>
         <div class="hero__ctas">
           <a href="#form-explicacoes" class="btn-pill btn-teal">Marcar aula</a>

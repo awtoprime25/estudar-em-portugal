@@ -7,7 +7,11 @@ require_once __DIR__ . '/db-helper.php';
 if (function_exists('site_visit_track')) {
     site_visit_track();
 }
-require_once __DIR__ . '/studywing-form.php';
+// cursos-preparacao-exames.php já tem o form próprio (Da Vinci, #form-explicacoes)
+// — não deve mostrar também o form StudyWing partilhado.
+if (($pageSlug ?? '') !== 'cursos-preparacao-exames') {
+    require_once __DIR__ . '/studywing-form.php';
+}
 ?>
 <footer class="site-footer">
     <div class="container footer-grid">
@@ -40,7 +44,7 @@ require_once __DIR__ . '/studywing-form.php';
         <div class="footer-col">
             <h6>Guias &amp; apoio</h6>
             <ul>
-                <li><a href="cursos-preparacao-exames">Exames e explicações</a></li>
+                <li><a href="cursos-preparacao-exames">Aulas Preparatórias</a></li>
                 <li><a href="acesso-ensino-superior.php">Acesso ao ensino superior</a></li>
                 <li><a href="concurso-especial-estudantes-internacionais.php">Concurso Especial</a></li>
                 <li><a href="visto-de-estudante.php">Visto de estudante</a></li>

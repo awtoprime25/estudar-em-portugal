@@ -162,7 +162,7 @@ $noindex         = !empty($noindex);
                 </li>
                 <li><a href="sobre.php" class="<?= $activeNav === 'sobre' ? 'is-active' : '' ?>">Sobre nós</a></li>
                 <li><a href="faq.php" class="<?= $activeNav === 'faq' ? 'is-active' : '' ?>">FAQs</a></li>
-                <li><a href="cursos-preparacao-exames" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Exames e explicações</a></li>
+                <li><a href="cursos-preparacao-exames" class="<?= $activeNav === 'explicacoes' ? 'is-active' : '' ?>">Aulas Preparatórias</a></li>
                 <li class="has-dropdown <?= in_array($activeNav, ['acesso', 'concurso-especial', 'visto']) ? 'is-active-group' : '' ?>">
                     <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-acesso">Ensino superior</button>
                     <ul class="nav-dropdown" id="nav-dropdown-acesso">

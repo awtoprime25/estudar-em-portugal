@@ -403,6 +403,8 @@ a { color: inherit; text-decoration: none; }
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid var(--border-on-dark);
+  outline: 3px solid var(--teal-light);
+  outline-offset: 6px;
   box-shadow: 0 30px 80px rgba(0,0,0,.35);
 }
 .hero__circle img { width: 100%; height: 100%; object-fit: cover; }
