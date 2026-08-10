@@ -793,6 +793,9 @@ function lf_track_view(string $slug, ?string $ipRaw = null, ?string $userAgent =
     try {
         $ipHash  = hash_hmac('sha256', lf_client_ip(), lf_hash_salt());
         $country = lf_country();
+        // Pedido do user (2026-08-10): não gravar NADA (nem para auditoria) de
+        // China, EUA ou país não identificado — nem hit nem contador.
+        if (in_array($country, ['CN', 'US', 'XX'], true)) return;
         $isBot   = lf_is_bot() ? 1 : 0;
         $day     = date('Y-m-d');
 
