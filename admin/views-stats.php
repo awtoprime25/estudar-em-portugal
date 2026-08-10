@@ -109,6 +109,13 @@ if ($stmt = $d->prepare(
     $stmt->close();
 }
 
+// Resumo compacto para o dashboard central (oprofessorcerto/admin/views-todos.php).
+if (($_GET['format'] ?? '') === 'json') {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(['dias' => $days, 'humanos' => $siteSummary['h'], 'bots' => $siteSummary['b'], 'unicos' => $siteSummary['u']]);
+    exit;
+}
+
 // 1b) Blog (excluindo sentinel) — ou single-slug se filtro
 $blogSummary = ['h' => 0, 'b' => 0, 'u' => 0];
 $blogWhere = $slugFilter !== ''
