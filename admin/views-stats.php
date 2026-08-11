@@ -110,9 +110,24 @@ if ($stmt = $d->prepare(
 }
 
 // Resumo compacto para o dashboard central (oprofessorcerto/admin/views-todos.php).
+// Países do MESMO conjunto de linhas que $siteSummary (slug do sentinel).
 if (($_GET['format'] ?? '') === 'json') {
+    $porPaisJson = [];
+    if ($stmt = $d->prepare(
+        "SELECT country, COUNT(*) AS n FROM blog_view_hits
+         WHERE day >= ? AND slug = ? AND is_bot = 0 GROUP BY country ORDER BY n DESC LIMIT 8"
+    )) {
+        $stmt->bind_param('ss', $minDay, $SITE_SLUG);
+        $stmt->execute();
+        $r = $stmt->get_result();
+        while ($row = $r->fetch_assoc()) $porPaisJson[$row['country']] = (int) $row['n'];
+        $stmt->close();
+    }
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode(['dias' => $days, 'humanos' => $siteSummary['h'], 'bots' => $siteSummary['b'], 'unicos' => $siteSummary['u']]);
+    echo json_encode([
+        'dias' => $days, 'humanos' => $siteSummary['h'], 'bots' => $siteSummary['b'],
+        'unicos' => $siteSummary['u'], 'por_pais' => $porPaisJson,
+    ]);
     exit;
 }
 
