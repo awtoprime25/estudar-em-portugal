@@ -26,13 +26,13 @@ $noindex         = !empty($noindex);
     <meta name="robots" content="noindex, nofollow">
     <?php else: ?>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-    <link rel="canonical" href="<?= e(SITE_URL . ltrim(strtok($_SERVER['REQUEST_URI'] ?? '/', '?'), '/')) ?>">
+    <link rel="canonical" href="<?= e(canonical_url()) ?>">
     <?php endif; ?>
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="<?= e($pageTitle) ?>">
     <meta property="og:description" content="<?= e($pageDescription) ?>">
-    <meta property="og:url" content="<?= e(SITE_URL . ltrim(strtok($_SERVER['REQUEST_URI'] ?? '/', '?'), '/')) ?>">
+    <meta property="og:url" content="<?= e(canonical_url()) ?>">
     <meta property="og:site_name" content="<?= e(SITE_SHORT_NAME) ?> — Da Vinci × StudyWing">
     <meta property="og:locale" content="pt_PT">
     <meta property="og:image" content="<?= e($ogImage) ?>">
@@ -101,9 +101,9 @@ $noindex         = !empty($noindex);
     <script type="application/ld+json"><?= $extraJsonLdSafe ?></script>
     <?php endif; ?>
 
-    <link rel="alternate" hreflang="pt-BR" href="<?= e(SITE_URL . ltrim(strtok($_SERVER['REQUEST_URI'] ?? '/', '?'), '/')) ?>">
-    <link rel="alternate" hreflang="pt-PT" href="<?= e(SITE_URL . ltrim(strtok($_SERVER['REQUEST_URI'] ?? '/', '?'), '/')) ?>">
-    <link rel="alternate" hreflang="x-default" href="<?= e(SITE_URL . ltrim(strtok($_SERVER['REQUEST_URI'] ?? '/', '?'), '/')) ?>">
+    <link rel="alternate" hreflang="pt-BR" href="<?= e(canonical_url()) ?>">
+    <link rel="alternate" hreflang="pt-PT" href="<?= e(canonical_url()) ?>">
+    <link rel="alternate" hreflang="x-default" href="<?= e(canonical_url()) ?>">
 
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">

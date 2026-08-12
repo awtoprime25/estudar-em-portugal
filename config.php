@@ -173,6 +173,27 @@ if (!function_exists('e')) {
 }
 
 /**
+ * canonical_url()
+ * URL canónica da página atual: caminho + query string, menos parâmetros de
+ * tracking (utm_*, fbclid, gclid, ...). Sem isto (só o caminho), páginas como
+ * artigo.php?slug=X ficavam todas com o mesmo canonical (artigo.php, um 404),
+ * o que dizia ao Google para as tratar como duplicadas de uma página que nem
+ * existe — matava a indexação de todo o blog.
+ */
+if (!function_exists('canonical_url')) {
+    function canonical_url(): string {
+        $uri  = $_SERVER['REQUEST_URI'] ?? '/';
+        $path = strtok($uri, '?');
+        parse_str((string) parse_url($uri, PHP_URL_QUERY), $params);
+        foreach (['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid', 'gclsrc', 'gad_source', 'msclkid', 'mc_cid', 'mc_eid', 'ref'] as $tracking) {
+            unset($params[$tracking]);
+        }
+        $qs = $params ? '?' . http_build_query($params) : '';
+        return SITE_URL . ltrim($path, '/') . $qs;
+    }
+}
+
+/**
  * site_image($name)
  * Devolve o caminho relativo para assets/images/{$name}.png se esse ficheiro
  * já tiver sido gerado (ex.: correndo tools/gerar-imagens.js), caso contrário
