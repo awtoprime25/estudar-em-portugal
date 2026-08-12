@@ -28,17 +28,25 @@ declare(strict_types=1);
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../includes/db-helper.php';
 
+// Via cron (`php views-stats.php --snapshot`) grava cache/metricas-snapshot.json
+// em disco para o MetricasWalter ler direto do filesystem (addon domain na
+// mesma conta de hosting) — sem HTTPS de servidor para servidor, que este
+// hosting bloqueia para scripts novos.
+$viaCronCli = PHP_SAPI === 'cli' && in_array('--snapshot', $argv ?? [], true);
+
 // ── AUTH ─────────────────────────────────────────────────────────────────────
-$token = (string) ($_GET['key'] ?? '');
-if (VIEWS_STATS_TOKEN === '' || !hash_equals(VIEWS_STATS_TOKEN, $token)) {
-    header('HTTP/1.0 401 Unauthorized');
-    header('Content-Type: text/plain; charset=utf-8');
-    echo "401 Unauthorized\n\nEste painel requer token VIEWS_STATS_TOKEN.\n";
-    echo "Uso: " . htmlspecialchars($_SERVER['SCRIPT_NAME'] ?? '/admin/views-stats.php') . "?key=<TOKEN>\n";
-    exit;
+if (!$viaCronCli) {
+    $token = (string) ($_GET['key'] ?? '');
+    if (VIEWS_STATS_TOKEN === '' || !hash_equals(VIEWS_STATS_TOKEN, $token)) {
+        header('HTTP/1.0 401 Unauthorized');
+        header('Content-Type: text/plain; charset=utf-8');
+        echo "401 Unauthorized\n\nEste painel requer token VIEWS_STATS_TOKEN.\n";
+        echo "Uso: " . htmlspecialchars($_SERVER['SCRIPT_NAME'] ?? '/admin/views-stats.php') . "?key=<TOKEN>\n";
+        exit;
+    }
 }
 
-$days    = max(1, min(90, (int) ($_GET['days'] ?? 30)));
+$days    = $viaCronCli ? 30 : max(1, min(90, (int) ($_GET['days'] ?? 30)));
 $page    = max(0, (int) ($_GET['page']  ?? 0));
 $slugFilter = trim((string) ($_GET['slug'] ?? ''));
 $slugFilter = preg_replace('/[^a-z0-9\-\_\/]/', '', strtolower($slugFilter));
@@ -111,7 +119,7 @@ if ($stmt = $d->prepare(
 
 // Resumo compacto para o dashboard central (oprofessorcerto/admin/views-todos.php).
 // Países do MESMO conjunto de linhas que $siteSummary (slug do sentinel).
-if (($_GET['format'] ?? '') === 'json') {
+if ($viaCronCli || ($_GET['format'] ?? '') === 'json') {
     $porPaisJson = [];
     if ($stmt = $d->prepare(
         "SELECT country, COUNT(*) AS n FROM blog_view_hits
@@ -123,11 +131,35 @@ if (($_GET['format'] ?? '') === 'json') {
         while ($row = $r->fetch_assoc()) $porPaisJson[$row['country']] = (int) $row['n'];
         $stmt->close();
     }
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode([
+    $porDiaJson = [];
+    if ($stmt = $d->prepare('SELECT day, SUM(is_bot = 0) AS h FROM blog_view_hits WHERE day >= ? AND slug = ? GROUP BY day ORDER BY day ASC')) {
+        $stmt->bind_param('ss', $minDay, $SITE_SLUG);
+        $stmt->execute();
+        $r = $stmt->get_result();
+        while ($row = $r->fetch_assoc()) $porDiaJson[$row['day']] = (int) $row['h'];
+        $stmt->close();
+    }
+    $timelineJson = [];
+    $cursor = strtotime($minDay);
+    $fim = strtotime(date('Y-m-d'));
+    while ($cursor <= $fim) {
+        $dd = date('Y-m-d', $cursor);
+        $timelineJson[] = ['dia' => $dd, 'humanos' => $porDiaJson[$dd] ?? 0];
+        $cursor = strtotime('+1 day', $cursor);
+    }
+    $payload = [
         'dias' => $days, 'humanos' => $siteSummary['h'], 'bots' => $siteSummary['b'],
-        'unicos' => $siteSummary['u'], 'por_pais' => $porPaisJson,
-    ]);
+        'unicos' => $siteSummary['u'], 'por_pais' => $porPaisJson, 'timeline' => $timelineJson,
+    ];
+    if ($viaCronCli) {
+        $cacheDir = __DIR__ . '/cache';
+        if (!is_dir($cacheDir)) @mkdir($cacheDir, 0755, true);
+        file_put_contents($cacheDir . '/metricas-snapshot.json', json_encode($payload));
+        fwrite(STDOUT, "snapshot gravado em $cacheDir/metricas-snapshot.json\n");
+        exit(0);
+    }
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($payload);
     exit;
 }
 
