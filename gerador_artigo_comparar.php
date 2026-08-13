@@ -165,7 +165,7 @@ function enp_render_blog_php(array $artigo, array $topico): string {
                 'description'   => $meta,
                 'image'         => SITE_URL . 'assets/images/' . ($img !== '' ? $img : 'ogi-comparar.png'),
                 'url'           => SITE_URL . 'blog/' . $slug . '.php',
-                'inLanguage'    => 'pt-PT',
+                'inLanguage'    => 'pt-BR',
                 'datePublished' => date('Y-m-d'),
                 'dateModified'  => date('Y-m-d'),
                 'author'        => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],

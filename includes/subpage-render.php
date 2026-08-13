@@ -180,7 +180,7 @@ function render_curso_page(string $slug): void
                 'description' => $course['resumo'],
                 'provider'    => ['@type' => 'Organization', 'name' => 'Ginásios Da Vinci', 'sameAs' => 'https://www.ginasiosdavinci.com/'],
                 'url'         => SITE_URL . 'curso-' . $slug . '.php',
-                'inLanguage'  => 'pt-PT',
+                'inLanguage'  => 'pt-BR',
             ],
             [
                 '@type' => 'BreadcrumbList',

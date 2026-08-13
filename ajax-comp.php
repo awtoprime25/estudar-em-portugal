@@ -340,5 +340,5 @@ if (SMTP_HOST !== '') {
 http_response_code(200);
 echo json_encode([
     'ok' => true,
-    'message' => 'Recebemos! A equipa StudyWing contacta-te em ≤ 24h úteis por email ou WhatsApp.',
+    'message' => 'Recebemos! A equipe StudyWing entra em contato em ≤ 24h úteis por email ou WhatsApp.',
 ]);

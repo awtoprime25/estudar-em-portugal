@@ -13,7 +13,7 @@ $faq = [
     ['O que é a AIMA e quando preciso dela?',
      'A AIMA (Agência para a Integração, Migrações e Asilo) é a entidade portuguesa responsável pela residência de estrangeiros. Depois de chegar a Portugal com o visto de estudante, é junto à AIMA que você regulariza a sua residência para todo o período do curso.'],
     ['O desconto CPLP também vale para o visto?',
-     'Não — o desconto CPLP é uma redução na propina (mensalidade/anuidade), não tem relação com o processo de visto. São dois processos completamente separados.'],
+     'Não — o desconto CPLP é uma redução na mensalidade (propina, no termo oficial português), sem relação com o processo de visto. São dois processos completamente separados.'],
 ];
 
 $extraJsonLd = json_encode([
@@ -23,7 +23,7 @@ $extraJsonLd = json_encode([
             '@type'            => 'Article',
             'headline'         => 'Visto de Estudante em Portugal para Brasileiros',
             'description'      => $pageDescription,
-            'inLanguage'       => 'pt-PT',
+            'inLanguage'       => 'pt-BR',
             'author'           => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'publisher'        => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => SITE_URL . 'visto-de-estudante.php'],
@@ -127,7 +127,7 @@ require_once __DIR__ . '/includes/header.php';
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <div><h2>Documentos a legalizar antes de vir</h2></div>
+        <div><h2>Documentos para legalizar antes de vir</h2></div>
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
         <p>Documentos emitidos no Brasil — como o histórico escolar e o diploma do ensino secundário — normalmente precisam de <strong>tradução</strong> (quando não estão em português, inglês, francês ou espanhol) e de <strong>reconhecimento</strong>, via apostila de Haia ou consulado português no Brasil.</p>

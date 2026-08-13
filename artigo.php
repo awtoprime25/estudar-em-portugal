@@ -45,7 +45,7 @@ $extraJsonLd = json_encode([
             'description' => $desc,
             'image' => $ogImage,
             'url' => SITE_URL . 'artigo.php?slug=' . $post['slug'],
-            'inLanguage' => 'pt-PT',
+            'inLanguage' => 'pt-BR',
             'datePublished' => $post['published_at'] ? date('Y-m-d', strtotime($post['published_at'])) : date('Y-m-d'),
             'dateModified' => $post['updated_at'] ? date('Y-m-d', strtotime($post['updated_at'])) : date('Y-m-d'),
             'author' => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],

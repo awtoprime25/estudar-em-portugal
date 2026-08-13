@@ -75,7 +75,7 @@
                   <option value="diploma-ue">Um diploma reconhecido na União Europeia</option>
                   <option value="mudar-vida">Mudar de vida / viver na Europa a longo prazo</option>
                   <option value="raizes-familia">Já tenho família ou raízes em Portugal</option>
-                  <option value="explorando">Ainda estou a explorar as opções</option>
+                  <option value="explorando">Ainda estou explorando as opções</option>
                 </select>
               </label>
               <label>
@@ -194,7 +194,7 @@
               </label>
               <label class="studywing-grid--full studywing-consent">
                 <input type="checkbox" name="termos" value="1" required>
-                <span>Aceito os <a href="https://www.ginasiosdavinci.com/privacidade-websites/" target="_blank" rel="noopener">termos de privacidade</a> e o consentimento para ser contactado pela equipa Da Vinci × StudyWing.</span>
+                <span>Aceito os <a href="https://www.ginasiosdavinci.com/privacidade-websites/" target="_blank" rel="noopener">termos de privacidade</a> e o consentimento para ser contatado pela equipe Da Vinci × StudyWing.</span>
               </label>
             </div>
             <div class="studywing-actions">

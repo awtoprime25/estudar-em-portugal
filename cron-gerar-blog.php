@@ -513,10 +513,12 @@ function generateTopicIdea(array $tracker): ?array {
     $used = $tracker['used_topics'] ?? [];
     $allExisting = array_unique(array_merge($used, STATIC_BLOG_SLUGS));
 
-    $systemPrompt = 'És um especialista em conteúdo SEO para brasileiros que querem estudar em Portugal. Devolve APENAS um JSON válido, sem markdown, sem texto extra.';
+    $systemPrompt = 'És um especialista em SEO que escreve para brasileiros que querem estudar em Portugal. O título, o slug e as keywords têm de usar os termos que um brasileiro pesquisa no Google (português do Brasil), nunca os termos técnicos portugueses como palavra-chave principal. Devolve APENAS um JSON válido, sem markdown, sem texto extra.';
     $userPrompt  = "Sugere UM novo tópico de blog para o site Estudar em Portugal (brasileiros que querem estudar em Portugal).\n";
     $userPrompt .= "Conteúdo já existente (NÃO repetir nem tópicos semelhantes):\n" . implode(', ', $allExisting) . "\n\n";
-    $userPrompt .= "O tópico deve ser sobre cidades portuguesas, cursos em Portugal, vistos, ENEM, Concurso Especial, propinas, CPLP, vida estudantil — 100% focado em Portugal para brasileiros.\n";
+    $userPrompt .= "O tópico deve ser sobre cidades portuguesas, cursos em Portugal, vistos, ENEM, Concurso Especial, mensalidade/propinas, CPLP, vida estudantil — 100% focado em Portugal para brasileiros.\n";
+    $userPrompt .= "IMPORTANTE — termo de pesquisa (title/slug/keywords) tem de ser o termo brasileiro, não o português: graduação (não licenciatura), mensalidade (não propina — 'propina' em pt-BR significa suborno), doutorado (não doutoramento), inscrição/processo seletivo (não candidatura), aulas particulares/reforço (não explicações). Podes mencionar o termo português DENTRO do artigo como esclarecimento, mas nunca como title/slug/keyword principal.\n";
+    $userPrompt .= "O slug_prefix tem de ser português correto, sem erros de tradução (ex.: nunca 'energies' — a palavra certa é 'energias').\n";
     $userPrompt .= "Devolve APENAS este JSON:\n{\n  \"title\": \"Título com <span>palavra-chave</span>\",\n  \"slug_prefix\": \"slug-unico-em-minusculas\",\n  \"category\": \"cidade|curso|dica\",\n  \"category_label\": \"Guia por Cidade · X  ou  Guia por Curso · X  ou  Dicas · X\",\n  \"category_icon\": \"bi bi-lightbulb\",\n  \"keywords\": \"keyword1, keyword2, keyword3\",\n  \"tags\": [\"Tag1\", \"Tag2\"]\n}";
 
     $raw = callOpenRouter($systemPrompt, $userPrompt);

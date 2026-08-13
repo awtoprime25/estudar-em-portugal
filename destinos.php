@@ -18,7 +18,7 @@ foreach (DESTINOS as $city) {
   <section class="page-hero">
     <div class="container">
       <h1>Destinos para estudar em Portugal</h1>
-      <p>Conheça <?= count(DESTINOS) ?> destinos para estudar em Portugal, de norte a sul e nas ilhas — desde Lisboa, a capital vibrante, até pequenas cidades universitárias do interior. Cada cidade oferece uma experiência única de vida académica e universidades de referência.</p>
+      <p>Conheça <?= count(DESTINOS) ?> destinos para estudar em Portugal, de norte a sul e nas ilhas — desde Lisboa, a capital vibrante, até pequenas cidades universitárias do interior. Cada cidade oferece uma experiência única de vida acadêmica e universidades de referência.</p>
     </div>
   </section>
 
@@ -63,7 +63,7 @@ foreach (DESTINOS as $slug => $city) {
       </div>
       <div class="destino-pagination" id="destinoPagination"></div>
 
-      <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
+      <p class="also-europe">Também ajudamos com inscrições em outros destinos da Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
     </div>
   </section>
 

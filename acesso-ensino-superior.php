@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
-$pageTitle       = 'Como se acede ao ensino superior em Portugal | Estudar em Portugal';
+$pageTitle       = 'Como acessar o ensino superior em Portugal | Estudar em Portugal';
 $pageDescription = 'Guia de acesso ao ensino superior em Portugal para estudantes brasileiros e internacionais: graduação, CTeSP, mestrado e doutorado.';
 $activeNav       = 'acesso';
 
@@ -13,7 +13,7 @@ $extraJsonLd = json_encode([
             'description' => $pageDescription,
             'provider'    => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'url'         => SITE_URL . 'acesso-ensino-superior.php',
-            'inLanguage'  => 'pt-PT',
+            'inLanguage'  => 'pt-BR',
         ],
         [
             '@type' => 'BreadcrumbList',
@@ -35,7 +35,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container hero__grid">
       <div class="hero__copy">
         <span class="eyebrow">ACESSO AO ENSINO SUPERIOR — PORTUGAL</span>
-        <h1>Como se acede ao <span class="accent">ensino superior</span> em Portugal</h1>
+        <h1>Como acessar o <span class="accent">ensino superior</span> em Portugal</h1>
         <p class="lede">Guia completo para estudantes brasileiros e internacionais que querem concorrer a cursos de graduação, CTeSP, mestrado e doutorado em Portugal.</p>
         <div class="hero__ctas">
           <a href="#formulario" class="btn-pill btn-flag">Fale conosco</a>
@@ -43,7 +43,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <div class="hero__art">
         <div class="hero__circle">
-          <img src="<?= site_image('hero-acesso-ensino-superior') ?>" alt="Estudante internacional a entrar numa universidade portuguesa">
+          <img src="<?= site_image('hero-acesso-ensino-superior') ?>" alt="Estudante internacional entrando em uma universidade portuguesa">
         </div>
       </div>
     </div>
@@ -62,22 +62,22 @@ require_once __DIR__ . '/includes/header.php';
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-mortarboard"></i></div>
           <h3>CTeSP</h3>
-          <p>Curso Técnico Superior Profissional — 2 anos de formação prática, dá acesso direto a licenciatura.</p>
+          <p>Curso Técnico Superior Profissional — 2 anos de formação prática, dá acesso direto à graduação (licenciatura).</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-book"></i></div>
-          <h3>Licenciatura</h3>
-          <p>1º ciclo, 3 a 4 anos. Diploma de graduação que qualifica para trabalho ou prosseguimento em mestrado.</p>
+          <h3>Graduação (Licenciatura)</h3>
+          <p>1º ciclo, 3 a 4 anos. Diploma de graduação que qualifica para o mercado de trabalho ou para seguir direto num mestrado.</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-award"></i></div>
           <h3>Mestrado</h3>
-          <p>2º ciclo, 1 a 2 anos. Especialização após licenciatura. Mestrados Integrados (5-6 anos) em áreas como Medicina incluem licenciatura.</p>
+          <p>2º ciclo, 1 a 2 anos. Especialização após a graduação. Mestrados Integrados (5-6 anos) em áreas como Medicina já incluem a graduação.</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-beaker"></i></div>
           <h3>Doutorado</h3>
-          <p>3º ciclo, focado em investigação. Acesso após mestrado ou licenciatura com mérito, conforme a instituição.</p>
+          <p>3º ciclo, focado em pesquisa. Acesso após o mestrado ou a graduação com mérito, conforme a instituição.</p>
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@ require_once __DIR__ . '/includes/header.php';
         <ul style="color:var(--muted-on-dark);margin-bottom:24px;">
           <li>Vagas próprias e reservadas;</li>
           <li>Aceitação de nota ENEM como prova de acesso, sem exames portugueses obrigatórios;</li>
-          <li>Processo de candidatura que varia por instituição.</li>
+          <li>Processo de inscrição (candidatura, no termo oficial português) que varia por instituição.</li>
         </ul>
         <p style="color:var(--muted-on-dark);"><a href="concurso-especial-estudantes-internacionais.php" style="color:var(--teal);font-weight:600;">Ver o guia completo do Concurso Especial para Estudantes Internacionais →</a></p>
       </div>
@@ -114,12 +114,12 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="section-head">
         <div>
-          <h2>Propinas e ENEM</h2>
+          <h2>Mensalidade (propina) e ENEM</h2>
         </div>
       </div>
       <div class="content-block content-block--wide">
-        <p>Como estudante internacional, paga uma propina (mensalidade/anuidade) mais alta do que um aluno nacional — mas Portugal e o Brasil fazem parte da CPLP (Comunidade dos Países de Língua Portuguesa), o que dá acesso a descontos significativos que podem chegar até 45% em várias instituições.</p>
-        <p>A nota do ENEM é aceite como prova de acesso em grande parte das universidades e politécnicos para o Concurso Especial, dispensando a necessidade de fazer exames portugueses. Isso simplifica o processo se você já fez ou vai fazer o exame.</p>
+        <p>Como estudante internacional, você paga uma mensalidade (chamada de propina em Portugal) mais alta do que um aluno nacional — mas Portugal e o Brasil fazem parte da CPLP (Comunidade dos Países de Língua Portuguesa), o que dá acesso a descontos significativos, que podem chegar a 45% em várias instituições.</p>
+        <p>A nota do ENEM é aceita como prova de acesso na maior parte das universidades e institutos politécnicos para o Concurso Especial, dispensando a necessidade de fazer exames portugueses. Isso simplifica o processo se você já fez ou vai fazer o exame.</p>
       </div>
     </div>
   </section>
@@ -141,8 +141,8 @@ require_once __DIR__ . '/includes/header.php';
         </div>
         <div class="step">
           <div class="step__num">2</div>
-          <h3>Candidatura online</h3>
-          <p>Registre-se na plataforma da instituição e submeta a candidatura dentro do prazo da fase escolhida (normalmente 2-3 fases ao longo do ano).</p>
+          <h3>Inscrição online</h3>
+          <p>Registre-se na plataforma da instituição e envie a inscrição dentro do prazo da fase escolhida (normalmente de 2 a 3 fases ao longo do ano).</p>
         </div>
         <div class="step">
           <div class="step__num">3</div>

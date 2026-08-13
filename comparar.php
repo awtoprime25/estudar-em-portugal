@@ -17,7 +17,7 @@
 require_once __DIR__ . '/config.php';
 
 $pageTitle       = 'Portugal vs Estudar no Estrangeiro — Comparação Honesta 2026 | Estudar em Portugal';
-$pageDescription = 'Comparação completa para brasileiros: idioma, propinas, custo de vida, visto, equivalências e diploma. Portugal ou outros países da Europa? Tabela comparativa + formulário StudyWing.';
+$pageDescription = 'Comparação completa para brasileiros: idioma, mensalidade (propina), custo de vida, visto, equivalências e diploma. Portugal ou outros países da Europa? Tabela comparativa + formulário StudyWing.';
 $activeNav       = 'comparar';
 $ogImage         = SITE_URL . 'assets/images/ogi-comparar.jpg';
 
@@ -30,7 +30,7 @@ $extraJsonLd = json_encode([
             'description' => $pageDescription,
             'image' => SITE_URL . 'assets/images/ogi-comparar.jpg',
             'url' => SITE_URL . 'comparar.php',
-            'inLanguage' => 'pt-PT',
+            'inLanguage' => 'pt-BR',
             'datePublished' => '2026-07-13',
             'dateModified' => '2026-07-13',
             'author' => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
@@ -95,13 +95,13 @@ ksort($cardsColecoes);
             data-br="<span class=&quot;accent&quot;>Portugal</span> ou <span class=&quot;accent-alt&quot;>Europa</span>?<br>Comparação sem rodeios."
             data-pt="<span class=&quot;accent&quot;>Portugal</span> ou <span class=&quot;accent-alt&quot;>Europa</span>?<br>Comparação sem rodeios.">Portugal ou Europa?<br>Comparação sem rodeios.</h1>
         <p class="lede"
-           data-br="Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing."
-           data-pt="Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing.">Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing.</p>
+           data-br="Idioma, mensalidade (propina), custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing."
+           data-pt="Idioma, propinas, custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing.">Idioma, mensalidade (propina), custo de vida, visto, equivalências e diploma — colocamos lado a lado as duas grandes portas de entrada para a Europa, com a curadoria da Da Vinci × StudyWing.</p>
         <div class="cmp-hero__ctas">
           <a href="#formulario" class="btn-pill btn-flag">Falar com StudyWing</a>
         </div>
         <div class="cmp-hero__badges">
-          <span data-br="ENEM aceite em PT" data-pt="ENEM aceite em PT">ENEM aceite em PT</span>
+          <span data-br="ENEM aceito em PT" data-pt="ENEM aceite em PT">ENEM aceito em PT</span>
           <span data-br="ECTS em toda a UE" data-pt="ECTS em toda a UE">ECTS em toda a UE</span>
           <span data-br="Acompanhamento StudyWing" data-pt="Acompanhamento StudyWing">Acompanhamento StudyWing</span>
         </div>
@@ -153,17 +153,17 @@ ksort($cardsColecoes);
           <tbody>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-book"></i></span> Idioma de ensino</th>
-              <td><strong>Português</strong> em ~95% dos cursos de licenciatura e mestrado. Zero barreira linguística para brasileiros.</td>
+              <td><strong>Português</strong> em ~95% dos cursos de graduação (chamada de "licenciatura" em Portugal) e mestrado. Zero barreira linguística para brasileiros.</td>
               <td>Inglês em quase todos os programas de topo. TOEFL/IELTS geralmente exigido. Holandês, alemão, italiano, etc., só no dia-a-dia.</td>
             </tr>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-mortarboard"></i></span> Acesso (nota ENEM)</th>
-              <td><span class="good">✓</span> <strong>Sim, ENEM aceite</strong> por diversas universidades e institutos politécnicos, conforme os requisitos e protocolos de cada instituição.</td>
+              <td><span class="good">✓</span> <strong>Sim, ENEM aceito</strong> por diversas universidades e institutos politécnicos, conforme os requisitos e protocolos de cada instituição.</td>
               <td><span class="bad">✗</span> ENEM geralmente não é suficiente. É comum precisar de IB, A-Levels, ou Foundation Year de 1 ano.</td>
             </tr>
             <tr>
-              <th scope="row"><span class="check"><i class="bi bi-cash-coin"></i></span> Propinas anuais (licenciatura, EUR)</th>
-              <td><strong>700€ – 7.500€+</strong> (varia por instituição, curso e regime; propinas de estudante internacional costumam ser mais altas do que as de estudante nacional)</td>
+              <th scope="row"><span class="check"><i class="bi bi-cash-coin"></i></span> Quanto custa por ano (graduação, EUR)</th>
+              <td><strong>700€ – 7.500€+</strong> (a "propina", como é chamada em Portugal; varia por instituição, curso e regime — o valor para estudante internacional costuma ser mais alto do que para estudante nacional)</td>
               <td><strong>~0€ – 25.000€</strong><br>Alemanha ~300€; Holanda 2.314€ (UE) / ~10.000€ (BR); UK 10.000–25.000£.</td>
             </tr>
             <tr>
@@ -173,7 +173,7 @@ ksort($cardsColecoes);
             </tr>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-passport"></i></span> Visto / documentação</th>
-              <td><span class="good">✓</span> <strong>Visto de estudante</strong> para brasileiros, com possível enquadramento CPLP; requisitos e prazos confirmados junto do consulado, acompanhados pela Team StudyWing.</td>
+              <td><span class="good">✓</span> <strong>Visto de estudante</strong> para brasileiros, com possível enquadramento CPLP; requisitos e prazos confirmados junto ao consulado, acompanhados pela Team StudyWing.</td>
               <td>Visto Schengen de estudante (UE). Mais papelada e prazos mais curtos; varia por país.</td>
             </tr>
             <tr>
@@ -187,9 +187,9 @@ ksort($cardsColecoes);
               <td><strong>Válido em toda a UE</strong> via ECTS. Diploma de TU Delft/Múnich/Bolonha tem peso mundial.</td>
             </tr>
             <tr>
-              <th scope="row"><span class="check"><i class="bi bi-briefcase"></i></span> Saídas profissionais</th>
+              <th scope="row"><span class="check"><i class="bi bi-briefcase"></i></span> Oportunidades de carreira</th>
               <td>Mercado lusófono forte (PT, BR, MO, AO). Salários iniciais mais baixos que NL/DE/UK, mas custo de vida acompanha.</td>
-              <td>Mercado global e salários mais altos. Maior exposição internacional. Networking multilingue direto.</td>
+              <td>Mercado global e salários mais altos. Maior exposição internacional. Networking multilíngue direto.</td>
             </tr>
           </tbody>
         </table>
@@ -227,8 +227,8 @@ ksort($cardsColecoes);
                 data-pt="Valorizas aulas em português (sem barreira linguística)">Valoriza aulas em português (sem barreira linguística)</li>
             <li data-br="Procura uma transição suave (cultura próxima, grande comunidade brasileira)"
                 data-pt="Procuras uma transição suave (cultura próxima, grande comunidade brasileira)">Procura uma transição suave (cultura próxima, grande comunidade brasileira)</li>
-            <li data-br="Orçamento mais controlado (propinas baixas, vida acessível)"
-                data-pt="Orçamento mais controlado (propinas baixas, vida acessível)">Orçamento mais controlado (propinas baixas, vida acessível)</li>
+            <li data-br="Orçamento mais controlado (mensalidades mais baixas, vida acessível)"
+                data-pt="Orçamento mais controlado (propinas baixas, vida acessível)">Orçamento mais controlado (mensalidades mais baixas, vida acessível)</li>
             <li data-br="Sonha com carreira em mercado lusófono (Brasil, Portugal, PALOP)"
                 data-pt="Sonhas com carreira em mercado lusófono (Brasil, Portugal, PALOP)">Sonha com carreira em mercado lusófono (Brasil, Portugal, PALOP)</li>
           </ul>
@@ -272,7 +272,7 @@ ksort($cardsColecoes);
         $faq = [
           ['ENEM em Portugal?', 'Sim. Universidades públicas portuguesas e algumas privadas aceitam a nota do ENEM como prova de ingresso. É o maior atalho para brasileiros se candidatarem sem exames adicionais.'],
           ['Aulas em inglês ou português?', 'Em Portugal: 95% em português. Em outros países europeus: a maioria dos programas top é em inglês (Holanda, UK, Países nórdicos), com exceção da Alemanha/Itália/Espanha onde há mais oferta em língua local.'],
-          ['Custo real por ano?', 'Portugal 700–7.500€ propinas + 700–1.200€/mês vida. Europa: muito variável — DE ~300€ propinas, NL/UK 10–25k€/ano, com vida mais alta. Fazer as contas realistas antes de escolher é crítico.'],
+          ['Custo real por ano?', 'Em Portugal: 700–7.500€ de mensalidade (a "propina") por ano, mais 700–1.200€/mês de custo de vida. Na Europa em geral varia muito — Alemanha ~300€/ano, Holanda e Reino Unido entre 10 mil e 25 mil €/ano, com custo de vida mais alto. Fazer as contas direito antes de escolher é essencial.'],
           ['Visto de estudante — qual a diferença?', 'Portugal tem regime CPLP simplificado para brasileiros, o que encurta prazos e burocracia. Outros países exigem visto Schengen de estudante padrão, com regras próprias. Em qualquer caso, a StudyWing trata da papelada toda.'],
           ['O diploma vale em toda a Europa?', 'Em ambos, o diploma integra o Espaço Europeu de Ensino Superior via ECTS (Processo de Bolonha), o que facilita o reconhecimento acadêmico entre países-membros — profissões regulamentadas podem exigir um processo específico. Diplomas não-europeus exigem reconhecimento específico e podem passar por conversão.'],
           ['Como decido entre os dois caminhos?', 'Depende de 4 fatores: ENEM/IELTS disponível, orçamento, carreira-alvo, e afinidade linguística. O formulário StudyWing abaixo pede exatamente isto; em 24h voltamos com o plano personalizado.'],
@@ -322,7 +322,8 @@ ksort($cardsColecoes);
           <div class="cmp-blog-card__body">
             <h3><a href="blog/<?= e($r['slug']) ?>.php"><?= e($r['titulo']) ?></a></h3>
             <p><?= e(mb_substr((string)($r['descricao_meta'] ?? ''), 0, 140, 'UTF-8')) ?>…</p>
-            <span class="cmp-blog-card__views"><i class="bi bi-eye"></i> <?= (int)$r['contador_views'] ?> leituras</span>
+            <?php $views = (int) $r['contador_views']; ?>
+            <?php if ($views > 0): ?><span class="cmp-blog-card__views"><i class="bi bi-eye"></i> <?= $views ?> leituras</span><?php endif; ?>
           </div>
         </article>
         <?php endforeach; endforeach; ?>

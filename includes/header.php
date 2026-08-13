@@ -14,7 +14,7 @@ $ogImage         = $ogImage         ?? SITE_URL . 'assets/images/ogi-estudar-em-
 $noindex         = !empty($noindex);
 ?>
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -34,7 +34,8 @@ $noindex         = !empty($noindex);
     <meta property="og:description" content="<?= e($pageDescription) ?>">
     <meta property="og:url" content="<?= e(canonical_url()) ?>">
     <meta property="og:site_name" content="<?= e(SITE_SHORT_NAME) ?> — Da Vinci × StudyWing">
-    <meta property="og:locale" content="pt_PT">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="pt_PT">
     <meta property="og:image" content="<?= e($ogImage) ?>">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -88,7 +89,7 @@ $noindex         = !empty($noindex);
           "@id": "<?= e(SITE_URL) ?>#site",
           "url": "<?= e(SITE_URL) ?>",
           "name": "<?= e(SITE_NAME) ?>",
-          "inLanguage": "pt-PT",
+          "inLanguage": "pt-BR",
           "publisher": {"@id": "<?= e(SITE_URL) ?>#org"}
         }
       ]
@@ -102,7 +103,6 @@ $noindex         = !empty($noindex);
     <?php endif; ?>
 
     <link rel="alternate" hreflang="pt-BR" href="<?= e(canonical_url()) ?>">
-    <link rel="alternate" hreflang="pt-PT" href="<?= e(canonical_url()) ?>">
     <link rel="alternate" hreflang="x-default" href="<?= e(canonical_url()) ?>">
 
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">

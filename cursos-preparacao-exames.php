@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/davinci-units.php';
-$pageTitle       = 'Aulas de Preparação para Exames Portugueses | Estudar em Portugal';
-$pageDescription = 'Preparação online individual para os Exames Nacionais Portugueses — explicações, reforço e tutoria com professores portugueses, feita para brasileiros.';
+$pageTitle       = 'Aulas Particulares para os Exames Nacionais de Portugal | Estudar em Portugal';
+$pageDescription = 'Aulas particulares e reforço online para os Exames Nacionais de Portugal — também chamadas de explicações — com professores portugueses, feitas para brasileiros.';
 $activeNav       = 'explicacoes';
 $pageSlug        = 'cursos-preparacao-exames';
 $extraJS         = 'assets/js/explicacoes-form.js';
@@ -16,7 +16,7 @@ $extraJsonLd = json_encode([
             'description' => $pageDescription,
             'provider'    => ['@type' => 'Organization', 'name' => 'Ginásios Da Vinci', 'sameAs' => 'https://www.ginasiosdavinci.com/'],
             'url'         => SITE_URL . 'cursos-preparacao-exames',
-            'inLanguage'  => 'pt-PT',
+            'inLanguage'  => 'pt-BR',
             'hasCourseInstance' => [
                 '@type'             => 'CourseInstance',
                 'courseMode'        => 'online',
@@ -44,8 +44,8 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container hero__grid">
       <div class="hero__copy">
         <span class="eyebrow">EXAMES NACIONAIS — PORTUGAL</span>
-        <h1>Aulas de Preparação para <span class="accent">Exames Portugueses</span></h1>
-        <p class="lede">Aulas individuais, online, com professores portugueses. Preparação feita para brasileiros que querem estudar em Portugal.</p>
+        <h1>Aulas Particulares de Preparação para <span class="accent">Exames Portugueses</span></h1>
+        <p class="lede">Aulas individuais e 100% online, com professores portugueses — o que em Portugal é chamado de explicações. Preparação sob medida para brasileiros que querem estudar em Portugal.</p>
         <div class="hero__ctas">
           <a href="#form-explicacoes" class="btn-pill btn-teal">Marcar aula</a>
         </div>
@@ -86,7 +86,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="section-head on-dark">
         <div>
-          <h2>A rede número 1 de explicações, reforço e tutoria de Portugal</h2>
+          <h2>A rede número 1 de aulas particulares e reforço escolar de Portugal</h2>
         </div>
       </div>
       <div class="stats-row stats-row--3">
@@ -94,7 +94,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="stat"><div class="stat__num">+90.000</div><div class="stat__label">alunos já preparados</div></div>
         <div class="stat"><div class="stat__num"><?= date('Y') - 2008 ?> anos</div><div class="stat__label">de liderança em Portugal</div></div>
       </div>
-      <p style="color:var(--muted-on-dark);max-width:720px;line-height:1.7;">Somos a rede número 1 de aulas particulares, explicações, reforço e tutoria de Portugal — com <?= lf_davinci_unidades() ?> unidades no país e mais de 90 mil alunos já preparados. Agora, essa mesma experiência chega até você, no Brasil, 100% online.</p>
+      <p style="color:var(--muted-on-dark);max-width:720px;line-height:1.7;">Somos a rede número 1 de aulas particulares e reforço escolar de Portugal — também chamados de explicações e tutoria por aqui — com <?= lf_davinci_unidades() ?> unidades no país e mais de 90 mil alunos já preparados. Agora, essa mesma experiência chega até você, no Brasil, 100% online.</p>
       <p style="color:var(--muted-on-dark);max-width:720px;line-height:1.7;font-size:14px;">Também em <a href="https://www.explicanet.com/" target="_blank" rel="noopener" style="color:var(--teal-light);">explicanet.com</a> e <a href="https://www.ginasiosdavinci.com/explicacoes-online-portugal/" target="_blank" rel="noopener" style="color:var(--teal-light);">ginasiosdavinci.com/explicações online</a>.</p>
     </div>
   </section>
@@ -105,7 +105,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="section-head">
         <div>
           <span class="eyebrow">Benefícios</span>
-          <h2>O que torna a nossa preparação diferente</h2>
+          <h2>O que torna nossa preparação diferente</h2>
         </div>
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
@@ -166,7 +166,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="formulario-intro">
           <span class="eyebrow">Marcar aula</span>
           <h2>Marque a sua aula de preparação</h2>
-          <p>Preencha o formulário e a equipa Da Vinci entra em contacto por email ou WhatsApp em menos de 24 horas.</p>
+          <p>Preencha o formulário e a equipe Da Vinci entra em contato por email ou WhatsApp em menos de 24 horas.</p>
           <ul class="formulario-bullets">
             <li><i class="bi bi-person"></i> <span>Aulas individuais, professores portugueses.</span></li>
             <li><i class="bi bi-clock-history"></i> <span>Resposta em ≤ 24 horas úteis.</span></li>
@@ -253,7 +253,7 @@ require_once __DIR__ . '/includes/header.php';
               </label>
               <label class="studywing-grid--full studywing-consent">
                 <input type="checkbox" name="termos" value="1" required>
-                <span>Aceito os <a href="https://www.ginasiosdavinci.com/privacidade-websites/" target="_blank" rel="noopener">termos de privacidade</a> e o consentimento para ser contactado pela equipa Da Vinci.</span>
+                <span>Aceito os <a href="https://www.ginasiosdavinci.com/privacidade-websites/" target="_blank" rel="noopener">termos de privacidade</a> e o consentimento para ser contatado pela equipe Da Vinci.</span>
               </label>
             </div>
             <div class="studywing-actions" style="justify-content:flex-end;">

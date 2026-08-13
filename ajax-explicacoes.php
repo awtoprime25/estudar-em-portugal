@@ -299,5 +299,5 @@ if (SMTP_HOST !== '') {
 http_response_code(200);
 echo json_encode([
     'ok' => true,
-    'message' => 'Recebemos! A equipa Da Vinci contacta-te em ≤ 24h úteis por email ou WhatsApp para marcar a aula.',
+    'message' => 'Recebemos! A equipe Da Vinci entra em contato em ≤ 24h úteis por email ou WhatsApp para marcar a aula.',
 ]);

@@ -34,9 +34,9 @@ require_once __DIR__ . '/includes/header.php';
   <section class="hero">
     <div class="container hero__grid">
       <div class="hero__copy">
-        <span class="eyebrow">A NOSSA HISTÓRIA</span>
+        <span class="eyebrow">NOSSA HISTÓRIA</span>
         <h1>Duas marcas, <span class="accent">uma missão</span></h1>
-        <p class="lede">A ponte entre o Brasil e as melhores universidades de Portugal. Uma parceria entre duas organizações que compartilham a mesma missão: transformar o futuro de quem quer estudar lá fora.</p>
+        <p class="lede">A ponte entre o Brasil e as melhores universidades de Portugal. Uma parceria entre duas organizações que compartilham a mesma missão: transformar o futuro de quem quer estudar fora do país.</p>
         <div class="hero__ctas">
           <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
         </div>
@@ -61,7 +61,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-mortarboard"></i></div>
           <h3>Consultoria internacional especializada</h3>
-          <p>A StudyWing acompanha candidaturas universitárias há mais de uma década, agora dedicada ao Brasil.</p>
+          <p>A StudyWing acompanha processos de inscrição em universidades há mais de uma década, agora dedicada ao Brasil.</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-globe-americas"></i></div>
@@ -83,7 +83,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
         <p>A Da Vinci é a rede número 1 de centros de apoio escolar de Portugal, com <?= lf_davinci_unidades() ?> unidades em todo o país e mais de 90 mil alunos desde 2008.</p>
-        <p>Ao longo do seu percurso, tem-se afirmado como referência nacional no apoio escolar, nas explicações e na formação, oferecendo soluções educativas adaptadas às necessidades de cada aluno.</p>
+        <p>Ao longo do seu percurso, vem se firmando como referência nacional no apoio escolar, nas aulas particulares e na formação, oferecendo soluções educativas adaptadas às necessidades de cada aluno.</p>
         <p>Com uma abordagem próxima, personalizada e orientada para resultados, a Da Vinci combina experiência, inovação pedagógica e acompanhamento contínuo — ajudando os alunos a superar desafios acadêmicos e a construir um percurso de sucesso.</p>
       </div>
       <div class="stats-row stats-row--3">
@@ -104,9 +104,9 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
-        <p>A StudyWing é uma consultora especializada em candidaturas a universidades internacionais. Com uma vasta experiência acumulada, ajuda estudantes a encontrar e a candidatar-se às universidades certas para o seu perfil.</p>
-        <p>No programa Estudar em Portugal, essa experiência está agora dedicada aos brasileiros que querem estudar em Portugal: da escolha do curso e da universidade, à candidatura pelo Concurso Especial de Estudantes Internacionais, passando pelo visto e pela chegada.</p>
-        <p>A experiência internacional da StudyWing é um pilar do programa — garante que cada aluno brasileiro tem acesso à orientação certa em cada etapa da candidatura.</p>
+        <p>A StudyWing é uma consultoria especializada em processos de inscrição (candidaturas, no termo oficial português) em universidades internacionais. Com uma ampla experiência acumulada, ajuda estudantes a encontrar e se inscrever nas universidades certas para o seu perfil.</p>
+        <p>No programa Estudar em Portugal, essa experiência está dedicada aos brasileiros que querem estudar em Portugal: da escolha do curso e da universidade, à inscrição pelo Concurso Especial de Estudantes Internacionais, passando pelo visto e pela chegada.</p>
+        <p>A experiência internacional da StudyWing é um pilar do programa — garante que cada aluno brasileiro tem acesso à orientação certa em cada etapa da inscrição.</p>
       </div>
     </div>
   </section>
@@ -121,9 +121,9 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="content-block content-block--wide" style="padding-top:12px;">
-        <p>O <strong>Estudar em Portugal</strong> é o programa da Ginásios Da Vinci em colaboração com a StudyWing — uma parceria que combina a presença nacional da Da Vinci em Portugal com a experiência internacional da StudyWing em candidaturas universitárias.</p>
+        <p>O <strong>Estudar em Portugal</strong> é o programa da Ginásios Da Vinci em colaboração com a StudyWing — uma parceria que combina a presença nacional da Da Vinci em Portugal com a experiência internacional da StudyWing em processos de inscrição universitária.</p>
         <p>Juntas, ajudam estudantes brasileiros a entrar em universidades portuguesas em cidades como Lisboa, Porto, Coimbra, Braga, Faro, Évora e Aveiro — com a mesma língua, diploma reconhecido em toda a Europa, e um acompanhamento próximo do primeiro contato até à chegada.</p>
-        <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
+        <p class="also-europe">Também apoiamos processos de inscrição na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong></p>
       </div>
     </div>
   </section>
@@ -133,7 +133,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="section-head">
         <div>
-          <span class="eyebrow">Os nossos valores</span>
+          <span class="eyebrow">Nossos valores</span>
           <h2>O que nos move</h2>
         </div>
       </div>
@@ -146,12 +146,12 @@ require_once __DIR__ . '/includes/header.php';
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-eye"></i></div>
           <h3>Transparência total</h3>
-          <p>Explicamos cada passo, cada custo, cada opção. Sem surpresas, sem letras pequeninas.</p>
+          <p>Explicamos cada passo, cada custo, cada opção. Sem surpresas, sem letras miúdas.</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-graph-up-arrow"></i></div>
           <h3>Resultados comprovados</h3>
-          <p>Experiência, orientação personalizada e conhecimento aprofundado do processo de candidatura.</p>
+          <p>Experiência, orientação personalizada e conhecimento aprofundado do processo de inscrição.</p>
         </div>
         <div class="icon-card">
           <div class="icon-card__glyph"><i class="bi bi-compass"></i></div>

@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/subpage-data.php';
 require_once __DIR__ . '/includes/universidades-data.php';
 
 $pageTitle       = 'Cursos em Portugal para Brasileiros | Estudar em Portugal';
-$pageDescription = 'Medicina, Engenharia Informática, Direito, Gestão e mais — descobre a duração, as universidades de referência e as saídas profissionais de cada curso em Portugal.';
+$pageDescription = 'Medicina, Engenharia Informática, Direito, Gestão e mais — descubra a duração, as universidades de referência e as oportunidades de carreira de cada curso em Portugal.';
 $activeNav       = 'cursos';
 
 $countByCurso = [];
@@ -40,7 +40,7 @@ require_once __DIR__ . '/includes/header.php';
   <section class="page-hero">
     <div class="container">
       <h1>Cursos em Portugal</h1>
-      <p>Duração, universidades de referência e saídas profissionais — tudo o que precisas de saber antes de escolher o teu curso em Portugal.</p>
+      <p>Duração, universidades de referência e oportunidades de carreira — tudo o que você precisa saber antes de escolher o seu curso em Portugal.</p>
     </div>
   </section>
 
@@ -49,7 +49,7 @@ require_once __DIR__ . '/includes/header.php';
       <i class="bi bi-search page-search__icon" aria-hidden="true"></i>
       <input type="search" id="cursoSearch" placeholder="Pesquisar curso…" aria-label="Pesquisar cursos" autocomplete="off">
     </div>
-    <p class="page-search__empty" id="cursoEmpty">Nenhum curso encontrado. Tenta outro termo ou <a href="#formulario">fala connosco</a>.</p>
+    <p class="page-search__empty" id="cursoEmpty">Nenhum curso encontrado. Tente outro termo ou <a href="#formulario">fale conosco</a>.</p>
 
     <div class="blog-cards">
       <?php foreach (CURSOS as $slug => $c): ?>
@@ -75,8 +75,8 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 
     <div class="article-cta" style="margin-top:48px;">
-      <h3>Queres ver onde estudar cada curso?</h3>
-      <p>Explora o mapa completo de universidades portuguesas e filtra por cidade.</p>
+      <h3>Quer ver onde estudar cada curso?</h3>
+      <p>Explore o mapa completo de universidades portuguesas e filtre por cidade.</p>
       <a href="universidades.php" class="btn-pill btn-teal">Ver mapa de universidades</a>
     </div>
   </section>

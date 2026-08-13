@@ -75,7 +75,8 @@ require_once __DIR__ . '/includes/header.php';
             <p><?= e(mb_substr((string) ($p['excerpt'] ?? ''), 0, 110, 'UTF-8')) ?>…</p>
             <div class="blog-card__footer">
               <span><?= $p['published_at'] ? date('d/m/Y', strtotime($p['published_at'])) : '' ?></span>
-              <span><?= (int) ($viewsMap[$p['slug']] ?? 0) ?> leituras</span>
+              <?php $views = (int) ($viewsMap[$p['slug']] ?? 0); ?>
+              <?php if ($views > 0): ?><span><?= $views ?> leituras</span><?php endif; ?>
             </div>
           </div>
         </a>

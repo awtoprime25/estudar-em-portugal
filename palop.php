@@ -14,7 +14,7 @@ $extraJsonLd = json_encode([
             'description' => $pageDescription,
             'provider'    => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'url'         => SITE_URL . 'palop.php',
-            'inLanguage'  => 'pt-PT',
+            'inLanguage'  => 'pt-BR',
             'areaServed'  => ['Angola', 'Moçambique', 'Cabo Verde', 'Guiné-Bissau', 'São Tomé e Príncipe', 'Timor-Leste'],
         ],
         [

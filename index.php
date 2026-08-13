@@ -1,6 +1,6 @@
 <?php
 $pageTitle       = 'Estudar em Portugal para Brasileiros | Ginásios Da Vinci';
-$pageDescription = 'Seu diploma europeu começa em Portugal. Mesma língua, universidades reconhecidas em toda a Europa e acompanhamento completo da candidatura à chegada. Agende uma consultoria gratuita.';
+$pageDescription = 'Seu diploma europeu começa em Portugal. Mesma língua, universidades reconhecidas em toda a Europa e acompanhamento completo da inscrição até a chegada. Agende uma consultoria gratuita.';
 $activeNav       = 'inicio';
 require_once __DIR__ . '/includes/davinci-units.php';
 require_once __DIR__ . '/includes/header.php';
@@ -20,8 +20,8 @@ require_once __DIR__ . '/includes/header.php';
             data-pt="O teu diploma europeu<br>começa em <span class=&quot;accent&quot;>Portugal</span>.">Seu diploma europeu<br>começa em <span class="accent">Portugal</span>.</h1>
 
         <p class="lede"
-           data-br="Mesma língua, universidades reconhecidas em toda a Europa e uma equipe que acompanha você da candidatura à chegada."
-           data-pt="Mesma língua, universidades reconhecidas em toda a Europa e uma equipa que te acompanha da candidatura à chegada.">Mesma língua, universidades reconhecidas em toda a Europa e uma equipe que acompanha você da candidatura à chegada.</p>
+           data-br="Mesma língua, universidades reconhecidas em toda a Europa e uma equipe que acompanha você da inscrição até a chegada."
+           data-pt="Mesma língua, universidades reconhecidas em toda a Europa e uma equipa que te acompanha da candidatura à chegada.">Mesma língua, universidades reconhecidas em toda a Europa e uma equipe que acompanha você da inscrição até a chegada.</p>
 
         <div class="hero__ctas">
           <a href="#formulario" class="btn-pill btn-flag">Fale conosco</a>
@@ -53,8 +53,8 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <div style="max-width:720px;">
         <p style="line-height:1.7;">Os Ginásios da Educação Da Vinci são a maior rede de apoio escolar e preparação para exames em Portugal, com mais de <?= lf_davinci_unidades() ?> unidades em todo o país.</p>
-        <p style="line-height:1.7;margin-top:16px;">Apoiamos estudantes estrangeiros, em particular brasileiros, que pretendem estudar em Portugal, desde a escolha do curso e da instituição até à preparação para exames e à adaptação ao sistema de ensino português.</p>
-        <p style="line-height:1.7;margin-top:16px;">Disponibilizamos acompanhamento personalizado, online para tornar todo o percurso académico mais simples, seguro e bem preparado.</p>
+        <p style="line-height:1.7;margin-top:16px;">Apoiamos estudantes estrangeiros, em particular brasileiros, que pretendem estudar em Portugal, desde a escolha do curso e da instituição até a preparação para exames e a adaptação ao sistema de ensino português.</p>
+        <p style="line-height:1.7;margin-top:16px;">Disponibilizamos acompanhamento personalizado, online para tornar todo o percurso acadêmico mais simples, seguro e bem preparado.</p>
         <p style="line-height:1.7;margin-top:16px;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil e te acompanhamos em cada passo, da escolha do curso à chegada a Portugal.</p>
       </div>
     </div>
@@ -69,7 +69,7 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       </div>
 
-      <p style="max-width:720px;line-height:1.7;">Identificamos quais as melhores universidades e bolsas de acordo com o seu perfil e te acompanhamos em cada passo, da escolha do curso à chegada a Portugal.</p>
+      <p style="max-width:720px;line-height:1.7;">Nossa equipe cuida da inscrição, da equivalência de disciplinas e da documentação do visto — você se concentra em estudar, nós cuidamos da burocracia.</p>
 
       <div class="icon-diamond-wrap">
         <div class="icon-diamond" id="assessoriaDiamond">
@@ -100,9 +100,9 @@ require_once __DIR__ . '/includes/header.php';
     var slots = ['top', 'right', 'bottom', 'left'];
     var items = [
       { icon: 'bi-mortarboard', title: 'Universidades certas', text: 'Opções compatíveis com o seu perfil, clima acadêmico e orçamento.' },
-      { icon: 'bi-piggy-bank',  title: 'Bolsas e propinas',    text: 'Mapeamos financiamentos públicos, privados e parcerias internacionais.' },
-      { icon: 'bi-check-circle', title: 'Candidatura sem erros', text: 'Documentos, prazos, equivalências ENEM: nós tratamos dos detalhes.' },
-      { icon: 'bi-passport',    title: 'Do ENEM ao visto',     text: 'Desde a prova até à chegada e primeiros passos no país.' }
+      { icon: 'bi-piggy-bank',  title: 'Bolsas e mensalidades',    text: 'Mapeamos financiamentos públicos, privados e parcerias internacionais.' },
+      { icon: 'bi-check-circle', title: 'Inscrição sem erros', text: 'Documentos, prazos, equivalências ENEM: nós tratamos dos detalhes.' },
+      { icon: 'bi-passport',    title: 'Do ENEM ao visto',     text: 'Desde a prova até a chegada e primeiros passos no país.' }
     ];
     var topIndex = 0;
 
@@ -137,11 +137,11 @@ require_once __DIR__ . '/includes/header.php';
       <div>
         <div class="section-head">
           <div>
-            <span class="eyebrow">Explicações</span>
+            <span class="eyebrow">Aulas Particulares</span>
             <h2>Cursos Preparatórios para os Exames Nacionais Portugueses</h2>
           </div>
         </div>
-        <p style="max-width:520px;line-height:1.7;">Aulas individuais, online ao vivo, ou presencial em mais de <?= lf_davinci_unidades() ?> unidades por todo o Portugal, com professores portugueses experientes. Somos nº1 em Portugal em explicações, reforço e tutoria, preparação feita para estudantes brasileiros e de outros países de língua portuguesa que querem estudar em Portugal.</p>
+        <p style="max-width:520px;line-height:1.7;">Aulas individuais, online ao vivo, ou presencial em mais de <?= lf_davinci_unidades() ?> unidades por todo o Portugal, com professores portugueses experientes. Somos a rede nº1 em Portugal em aulas particulares, reforço escolar e tutoria — o que os portugueses chamam de "explicações" — preparação feita para estudantes brasileiros e de outros países de língua portuguesa que querem estudar em Portugal.</p>
         <p style="margin-top:24px;">
           <a href="cursos-preparacao-exames" class="btn-pill btn-teal">Marcar aula</a>
         </p>
@@ -206,7 +206,7 @@ require_once __DIR__ . '/includes/header.php';
         </a>
       </div>
 
-      <p class="also-europe">Também apoiamos candidaturas na Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong> — saiba mais em <a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" style="color:var(--teal-light);">Estudar no Estrangeiro ↗</a></p>
+      <p class="also-europe">Também apoiamos a inscrição em outros países da Europa: <strong>Espanha · Irlanda · Países Baixos · Alemanha</strong> — saiba mais em <a href="https://www.ginasiosdavinci.com/estudar-no-estrangeiro/" target="_blank" rel="noopener" style="color:var(--teal-light);">Estudar no Estrangeiro ↗</a></p>
     </div>
   </section>
 
@@ -229,7 +229,7 @@ require_once __DIR__ . '/includes/header.php';
         </div>
         <div class="step">
           <div class="step__num">3</div>
-          <h3>Candidatura e documentos</h3>
+          <h3>Inscrição e documentos</h3>
           <p>Prazos, equivalências e nota do ENEM, sem dor de cabeça.</p>
         </div>
         <div class="step">
