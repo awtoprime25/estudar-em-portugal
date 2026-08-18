@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/config.php';
 
-$pageTitle       = 'Perguntas Frequentes — Estudar em Portugal';
-$pageDescription = 'Respostas às perguntas mais comuns de brasileiros sobre estudar em Portugal: Concurso Especial, ENEM, mensalidades, visto de estudante, exames e mais.';
+$pageTitle       = 'FAQ sobre Estudar em Portugal | Brasileiros';
+$pageDescription = 'Respostas para brasileiros sobre estudar em Portugal: Concurso Especial, ENEM, propinas, visto, exames, cidades e universidades.';
 $activeNav       = 'faq';
+$pageModified    = '2026-08-18';
 
 $categorias = [
     'Acesso e Concurso Especial' => [
@@ -66,7 +67,7 @@ foreach ($categorias as $lista) {
 $extraJsonLd = json_encode([
     '@context' => 'https://schema.org',
     '@graph' => [
-        ['@type' => 'FAQPage', 'mainEntity' => $faqSchema],
+        ['@type' => 'FAQPage', 'mainEntity' => $faqSchema, 'dateModified' => $pageModified],
         [
             '@type' => 'BreadcrumbList',
             'itemListElement' => [
@@ -113,6 +114,18 @@ require_once __DIR__ . '/includes/header.php';
       </div>
     </div>
     <?php endforeach; ?>
+
+    <div class="content-block content-block--wide" style="margin-bottom:48px;">
+      <h2>Fontes oficiais</h2>
+      <p>As regras de candidatura, residência e acesso podem mudar por ano e por instituição. Consulte também:</p>
+      <ul>
+        <li><a href="https://www.dges.gov.pt/pt/pagina/concurso-especial-para-estudantes-internacionais" target="_blank" rel="noopener noreferrer">DGES — Concurso Especial para Estudantes Internacionais</a></li>
+        <li><a href="https://diariodarepublica.pt/dr/detalhe/decreto-lei/36-2014-572431" target="_blank" rel="noopener noreferrer">Diário da República — Estatuto do Estudante Internacional</a></li>
+        <li><a href="https://aima.gov.pt/pt/estudar" target="_blank" rel="noopener noreferrer">AIMA — informação para estudantes</a></li>
+        <li><a href="https://www.gov.pt/servicos/pedir-um-visto-de-residencia-para-estudo-intercambio-de-estudantes-estagio-profissional-ou-voluntariado" target="_blank" rel="noopener noreferrer">gov.pt — visto de residência para estudo</a></li>
+      </ul>
+      <p style="font-size:13px;color:var(--muted-on-light);">Conteúdo revisto em <?= e(date('d/m/Y', strtotime($pageModified))) ?>.</p>
+    </div>
 
     <div class="article-cta">
       <h3>Não encontrou sua resposta?</h3>

@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/includes/subpage-data.php';
 
-$pageTitle       = 'Destinos para Estudar em Portugal | Ginásios Da Vinci';
-$pageDescription = 'Explore ' . count(DESTINOS) . ' destinos para estudar em Portugal, de norte a sul e nas ilhas: Lisboa, Porto, Coimbra, Braga e muito mais. Conheça as universidades, custos de vida e oportunidades de cada cidade.';
+$pageTitle       = 'Destinos para estudar em Portugal | Guia';
+$pageDescription = 'Explore ' . count(DESTINOS) . ' destinos para estudar em Portugal: universidades, custo de vida, transportes e vida académica de Lisboa ao Algarve e às ilhas.';
 $activeNav       = 'destinos';
+$pageModified    = '2026-08-18';
 require_once __DIR__ . '/includes/header.php';
 
 $regioesOrdem = ['Norte', 'Centro', 'Lisboa e Vale do Tejo', 'Alentejo', 'Algarve', 'Ilhas (Açores e Madeira)'];

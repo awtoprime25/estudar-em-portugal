@@ -1,7 +1,8 @@
 <?php
-$pageTitle       = 'Blog — Estudar em Portugal';
-$pageDescription = 'Guias, prazos de candidatura e dicas práticas sobre estudar em Portugal para brasileiros: cidades, cursos, vistos, ENEM e Concurso Especial.';
+$pageTitle       = 'Blog sobre Estudar em Portugal | Guias';
+$pageDescription = 'Guias para brasileiros sobre estudar em Portugal: candidatura, ENEM, cursos, universidades, cidades, visto, custos e Concurso Especial.';
 $activeNav       = 'blog';
+$pageModified    = '2026-08-18';
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/blog-db.php';
 

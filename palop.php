@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/davinci-units.php';
-$pageTitle       = 'Estudar em Portugal para PALOP e CPLP | Angola, Moçambique, Cabo Verde e mais';
-$pageDescription = 'Guia para estudantes de Angola, Moçambique, Cabo Verde, Guiné-Bissau, São Tomé e Príncipe e Timor-Leste que querem estudar em Portugal: Concurso Especial, desconto CPLP, cidades e cursos.';
+$pageTitle       = 'Estudar em Portugal para PALOP e CPLP | Guia';
+$pageDescription = 'Guia para estudantes PALOP e CPLP sobre candidatura, Concurso Especial, desconto CPLP, cidades e cursos para estudar em Portugal.';
 $activeNav       = 'palop';
+$pageModified    = '2026-08-18';
 
 $extraJsonLd = json_encode([
     '@context' => 'https://schema.org',

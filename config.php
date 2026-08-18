@@ -173,6 +173,41 @@ if (!function_exists('e')) {
 }
 
 /**
+ * seo_meta_description()
+ * Mantém as meta descriptions geradas a partir dos dados dentro de um limite
+ * seguro sem cortar palavras a meio. O texto completo continua visível na página.
+ */
+if (!function_exists('seo_meta_description')) {
+    function seo_meta_description(string $value, int $max = 160): string {
+        $value = trim((string) preg_replace('/\\s+/u', ' ', strip_tags($value)));
+        if ($value === '') return '';
+
+        if (function_exists('mb_strlen') && function_exists('mb_substr')) {
+            if (mb_strlen($value, 'UTF-8') <= $max) return $value;
+            $cut = rtrim(mb_substr($value, 0, max(1, $max - 1), 'UTF-8'));
+            $lastSpace = function_exists('mb_strrpos') ? mb_strrpos($cut, ' ', 0, 'UTF-8') : false;
+            if ($lastSpace !== false && $lastSpace > (int) ($max * 0.65)) {
+                $cut = mb_substr($cut, 0, $lastSpace, 'UTF-8');
+            }
+            return rtrim($cut, " .,:;—-") . '…';
+        }
+
+        // Fallback para instalações PHP sem mbstring: mantém caracteres UTF-8
+        // completos ao cortar por uma lista de caracteres, não por bytes.
+        $chars = preg_split('//u', $value, -1, PREG_SPLIT_NO_EMPTY);
+        if (!is_array($chars) || count($chars) <= $max) return $value;
+        $cutChars = array_slice($chars, 0, max(1, $max - 1));
+        for ($i = count($cutChars) - 1; $i > (int) ($max * 0.65); $i--) {
+            if ($cutChars[$i] === ' ') {
+                $cutChars = array_slice($cutChars, 0, $i);
+                break;
+            }
+        }
+        return rtrim(implode('', $cutChars), " .,:;—-") . '…';
+    }
+}
+
+/**
  * canonical_url()
  * URL canónica da página atual: caminho + query string, menos parâmetros de
  * tracking (utm_*, fbclid, gclid, ...). Sem isto (só o caminho), páginas como
@@ -182,12 +217,25 @@ if (!function_exists('e')) {
  */
 if (!function_exists('canonical_url')) {
     function canonical_url(): string {
-        $uri  = $_SERVER['REQUEST_URI'] ?? '/';
-        $path = strtok($uri, '?');
-        parse_str((string) parse_url($uri, PHP_URL_QUERY), $params);
-        foreach (['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid', 'gclsrc', 'gad_source', 'msclkid', 'mc_cid', 'mc_eid', 'ref'] as $tracking) {
-            unset($params[$tracking]);
+        $uri  = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+        $path = (string) (parse_url($uri, PHP_URL_PATH) ?: '/');
+        $path = '/' . ltrim($path, '/');
+
+        // A homepage tem uma única URL canónica, sem /index.php.
+        if ($path === '/index.php' || $path === '/index.php/') {
+            $path = '/';
+        } elseif (in_array($path, ['/cursos-preparacao-exames.php', '/cursos-preparacao-exames.php/', '/explicacoes.php'], true)) {
+            $path = '/cursos-preparacao-exames';
         }
+
+        // Só o slug do artigo é conteúdo; tracking e parâmetros arbitrários
+        // criam URLs duplicadas e não devem aparecer no canonical.
+        $params = [];
+        parse_str((string) (parse_url($uri, PHP_URL_QUERY) ?: ''), $queryParams);
+        if (basename(rtrim($path, '/')) === 'artigo.php' && !empty($queryParams['slug'])) {
+            $params['slug'] = preg_replace('/[^a-z0-9\-]/i', '', (string) $queryParams['slug']);
+        }
+
         $qs = $params ? '?' . http_build_query($params) : '';
         return SITE_URL . ltrim($path, '/') . $qs;
     }

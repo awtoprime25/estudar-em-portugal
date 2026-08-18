@@ -3,9 +3,10 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/subpage-data.php';
 require_once __DIR__ . '/includes/universidades-data.php';
 
-$pageTitle       = 'Cursos em Portugal para Brasileiros | Estudar em Portugal';
-$pageDescription = 'Medicina, Engenharia Informática, Direito, Gestão e mais — descubra a duração, as universidades de referência e as oportunidades de carreira de cada curso em Portugal.';
+$pageTitle       = 'Cursos em Portugal para Brasileiros | Guia';
+$pageDescription = 'Compare cursos em Portugal: duração, universidades de referência e saídas profissionais para brasileiros que querem estudar numa instituição portuguesa.';
 $activeNav       = 'cursos';
+$pageModified    = '2026-08-18';
 
 $countByCurso = [];
 foreach (UNIVERSIDADES as $u) {

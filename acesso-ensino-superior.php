@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/config.php';
-$pageTitle       = 'Como acessar o ensino superior em Portugal | Estudar em Portugal';
-$pageDescription = 'Guia de acesso ao ensino superior em Portugal para estudantes brasileiros e internacionais: graduação, CTeSP, mestrado e doutorado.';
+$pageTitle       = 'Como entrar no ensino superior em Portugal | Guia';
+$pageDescription = 'Entenda as vias de acesso ao ensino superior em Portugal: licenciatura, CTeSP, mestrado e doutoramento para estudantes brasileiros.';
 $activeNav       = 'acesso';
+$pageModified    = '2026-08-18';
 
 $extraJsonLd = json_encode([
     '@context' => 'https://schema.org',

@@ -1,6 +1,6 @@
 <?php
-$pageTitle       = 'Termos de Uso | Estudar em Portugal';
-$pageDescription = 'Termos de uso do site Estudar em Portugal.';
+$pageTitle       = 'Termos de Uso | Estudar';
+$pageDescription = 'Condições de utilização do site Estudar em Portugal e dos seus conteúdos e formulários.';
 $activeNav       = '';
 require_once __DIR__ . '/includes/header.php';
 ?>

@@ -1,6 +1,6 @@
 <?php
-$pageTitle       = 'Política de Privacidade | Estudar em Portugal';
-$pageDescription = 'Política de privacidade do site Estudar em Portugal.';
+$pageTitle       = 'Política de Privacidade | Estudar';
+$pageDescription = 'Saiba como o site Estudar em Portugal trata dados pessoais, contactos e pedidos de consultoria.';
 $activeNav       = '';
 require_once __DIR__ . '/includes/header.php';
 ?>

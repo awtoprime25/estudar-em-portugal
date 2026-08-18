@@ -84,7 +84,8 @@ if (!function_exists('enp_gerar_sitemap')) {
         }
 
         $xml .= '</urlset>' . "\n";
-        @file_put_contents(__DIR__ . '/sitemap.xml', $xml);
+        $written = @file_put_contents(__DIR__ . '/sitemap.xml', $xml);
+        $GLOBALS['enp_sitemap_write_ok'] = $written !== false;
         return $count;
     }
 }

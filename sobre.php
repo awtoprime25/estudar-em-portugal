@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/davinci-units.php';
-$pageTitle       = 'Sobre Nós — Da Vinci × StudyWing | Estudar em Portugal';
-$pageDescription = 'Conheça a parceria Da Vinci × StudyWing: a maior rede de apoio escolar de Portugal e uma consultoria internacional especializada, juntas para levar brasileiros às melhores universidades portuguesas.';
+$pageTitle       = 'Sobre a Da Vinci e a StudyWing | Estudar';
+$pageDescription = 'Conheça a parceria Da Vinci × StudyWing e o apoio para brasileiros que querem escolher curso, candidatar-se e estudar em Portugal.';
 $activeNav       = 'sobre';
+$pageModified    = '2026-08-18';
 
 $extraJsonLd = json_encode([
     '@context' => 'https://schema.org',

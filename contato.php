@@ -1,7 +1,8 @@
 <?php
-$pageTitle       = 'Contato — Estudar em Portugal';
-$pageDescription = 'Agende uma consultoria gratuita e fale com a nossa equipe sobre estudar em Portugal e na Europa.';
+$pageTitle       = 'Contato | Estudar em Portugal';
+$pageDescription = 'Agende uma consultoria gratuita sobre cursos, universidades, candidatura e visto de estudante em Portugal. Fale com a Da Vinci × StudyWing.';
 $activeNav       = 'contato';
+$pageModified    = '2026-08-18';
 require_once __DIR__ . '/includes/header.php';
 ?>
 

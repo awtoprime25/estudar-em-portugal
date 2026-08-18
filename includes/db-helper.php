@@ -27,6 +27,17 @@ require_once __DIR__ . '/../config.php';
 // ---- Conexão MySQLi (cache por request) -----------------------
 function db(): ?mysqli {
     static $link = null;
+    static $mysqliUnavailableLogged = false;
+
+    // Analytics é opcional: uma instalação sem mysqli não pode derrubar as
+    // páginas públicas nem impedir o conteúdo SEO de ser servido.
+    if (!function_exists('mysqli_init')) {
+        if (!$mysqliUnavailableLogged) {
+            error_log('[estudar-em-portugal/db] extensão mysqli não disponível; analytics desativado neste pedido.');
+            $mysqliUnavailableLogged = true;
+        }
+        return null;
+    }
     if ($link instanceof mysqli) return $link;
 
     if (function_exists('mysqli_report')) mysqli_report(MYSQLI_REPORT_OFF);

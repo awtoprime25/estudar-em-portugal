@@ -3,9 +3,10 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/universidades-data.php';
 require_once __DIR__ . '/includes/subpage-data.php';
 
-$pageTitle       = 'Universidades em Portugal — Mapa Completo | Estudar em Portugal';
-$pageDescription = 'Explore ' . count(UNIVERSIDADES) . ' universidades e institutos politécnicos em Portugal — filtre por cidade e descubra onde estudar.';
+$pageTitle       = 'Universidades em Portugal | Mapa e Guia';
+$pageDescription = 'Explore ' . count(UNIVERSIDADES) . ' universidades e institutos politécnicos em Portugal. Filtre por cidade e natureza e descubra cursos para estudantes internacionais.';
 $activeNav       = 'mapa';
+$pageModified    = '2026-08-18';
 
 $extraHeadHtml = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">';
 
@@ -93,7 +94,27 @@ require_once __DIR__ . '/includes/header.php';
             <span>Universidades</span>
             <span class="count" id="uniCount"><?= count(UNIVERSIDADES) ?> instituições</span>
           </div>
-          <div class="uni-list" id="uniList"></div>
+          <div class="uni-list" id="uniList">
+            <?php foreach (UNIVERSIDADES as $u): ?>
+            <article class="uni-card" data-lat="<?= e((string) $u['lat']) ?>" data-lng="<?= e((string) $u['lng']) ?>">
+              <h3 class="uni-card__name"><?= e($u['nome']) ?></h3>
+              <p class="uni-card__meta">
+                <span><?= e($u['cidade']) ?></span>
+                <span><?= e($u['grau'] === 'politecnico' ? 'Politécnico' : 'Universidade') ?> <?= e($u['natureza'] === 'privada' ? 'privado' : 'público') ?></span>
+                <?php if (!empty($u['citySlug'])): ?>
+                <a href="destino-<?= e($u['citySlug']) ?>.php">Ver cidade</a>
+                <?php endif; ?>
+              </p>
+              <?php if (!empty($u['cursos'])): ?>
+              <div class="uni-card__cursos">
+                <?php foreach ($u['cursos'] as $cSlug): $c = CURSOS[$cSlug] ?? null; if (!$c) continue; ?>
+                <a href="curso-<?= e($cSlug) ?>.php"><?= e($c['nome']) ?></a>
+                <?php endforeach; ?>
+              </div>
+              <?php endif; ?>
+            </article>
+            <?php endforeach; ?>
+          </div>
         </div>
       </div>
     </div>

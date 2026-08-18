@@ -16,9 +16,10 @@
  */
 require_once __DIR__ . '/config.php';
 
-$pageTitle       = 'Portugal vs Estudar no Estrangeiro — Comparação Honesta 2026 | Estudar em Portugal';
-$pageDescription = 'Comparação completa para brasileiros: idioma, mensalidade (propina), custo de vida, visto, equivalências e diploma. Portugal ou outros países da Europa? Tabela comparativa + formulário StudyWing.';
+$pageTitle       = 'Portugal ou Europa? | Comparação 2026';
+$pageDescription = 'Compare Portugal com destinos europeus: idioma, propinas, custo de vida, visto e diploma para brasileiros. Veja qual opção combina com o seu perfil.';
 $activeNav       = 'comparar';
+$pageModified    = '2026-08-18';
 $ogImage         = SITE_URL . 'assets/images/ogi-comparar.jpg';
 
 $extraJsonLd = json_encode([
@@ -32,7 +33,7 @@ $extraJsonLd = json_encode([
             'url' => SITE_URL . 'comparar.php',
             'inLanguage' => 'pt-BR',
             'datePublished' => '2026-07-13',
-            'dateModified' => '2026-07-13',
+            'dateModified' => $pageModified,
             'author' => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'publisher' => [
                 '@type' => 'Organization',
@@ -49,7 +50,7 @@ $extraJsonLd = json_encode([
                 ['@type' => 'Question', 'name' => 'Em Portugal as aulas são em português?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Sim. A esmagadora maioria dos cursos de licenciatura e mestrado em Portugal é lecionada em português, o que elimina a barreira linguística para brasileiros. Alguns mestrados e programas específicos são em inglês, principalmente nas áreas de Gestão e Engenharia.']],
                 ['@type' => 'Question', 'name' => 'Quanto custa estudar em Portugal vs outros países da Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Portugal tem propinas entre 700€ e 7.500€/ano conforme instituição e curso. Países Baixos cobram ~2.314€/ano para UE e ~10.000€ para brasileiros; Alemanha é praticamente gratuita (apenas taxas administrativas de ~300€); Reino Unido varia entre 10.000€ e 25.000£/ano.']],
                 ['@type' => 'Question', 'name' => 'O diploma português vale em toda a Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Os diplomas portugueses integram o Espaço Europeu de Ensino Superior e usam o sistema ECTS, o que facilita o reconhecimento acadêmico em toda a UE e no EEE — o mesmo princípio aplica-se a diplomas da Holanda, Alemanha, Itália, Espanha, etc. Em profissões regulamentadas, pode ser necessário um processo específico de reconhecimento profissional.']],
-                ['@type' => 'Question', 'name' => 'Como funciona o visto de estudante para Portugal vs Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Para brasileiros, Portugal oferece visto de estudante com possível enquadramento CPLP; os requisitos exatos devem ser confirmados junto do consulado. Para outros países europeus (Holanda, Alemanha, Itália, etc.), o processo é semelhante mas requer visto Schengen de estudante, com prazos e documentos próprios. A StudyWing acompanha toda a documentação em ambos os casos.']],
+                ['@type' => 'Question', 'name' => 'Como funciona o visto de estudante para Portugal vs Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Para brasileiros, Portugal oferece visto de estudante com possível enquadramento CPLP; os requisitos exatos devem ser confirmados junto do consulado. Para outros países europeus (Holanda, Alemanha, Itália, etc.), o processo é semelhante mas requer um visto nacional de longa duração ou autorização própria, com prazos e documentos definidos por cada país. A StudyWing acompanha toda a documentação em ambos os casos.']],
                 ['@type' => 'Question', 'name' => 'Qual é a melhor opção para mim: Portugal ou outro país da Europa?', 'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'Depende do perfil: se valoriza idioma em português, custo acessível e inserção rápida, Portugal é ideal. Se procura programas 100% em inglês, especialização técnica (TU Delft, TU München), ou experiência internacional mais intensa, há destinos europeus mais adequados. Use o formulário StudyWing abaixo — falamos com você em 24h com a análise personalizada.']],
             ],
         ],
@@ -174,7 +175,7 @@ ksort($cardsColecoes);
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-passport"></i></span> Visto / documentação</th>
               <td><span class="good">✓</span> <strong>Visto de estudante</strong> para brasileiros, com possível enquadramento CPLP; requisitos e prazos confirmados junto ao consulado, acompanhados pela Team StudyWing.</td>
-              <td>Visto Schengen de estudante (UE). Mais papelada e prazos mais curtos; varia por país.</td>
+              <td>Visto nacional de estudante ou autorização própria. A documentação e os prazos variam por país.</td>
             </tr>
             <tr>
               <th scope="row"><span class="check"><i class="bi bi-people"></i></span> Comunidade brasileira</th>
@@ -201,6 +202,16 @@ ksort($cardsColecoes);
               data-pt="Pede a análise da StudyWing — em 24h traçamos o plano A, B e C para o teu perfil.">Peça a análise da StudyWing — em 24h traçamos o plano A, B e C para o seu perfil.</span>
         <a href="#formulario" class="btn-pill btn-flag">Quero a análise →</a>
       </p>
+      <div class="content-block content-block--wide" style="margin-top:32px;">
+        <h3>Fontes para confirmar os requisitos</h3>
+        <p>Valores, vistos e regras de candidatura mudam por país, instituição e ano. Consulte as fontes oficiais antes de tomar uma decisão:</p>
+        <ul>
+          <li><a href="https://www.dges.gov.pt/pt/pagina/concurso-especial-para-estudantes-internacionais" target="_blank" rel="noopener noreferrer">DGES — acesso de estudantes internacionais em Portugal</a></li>
+          <li><a href="https://www.gov.pt/servicos/pedir-um-visto-de-residencia-para-estudo-intercambio-de-estudantes-estagio-profissional-ou-voluntariado" target="_blank" rel="noopener noreferrer">gov.pt — visto de residência para estudo</a></li>
+          <li><a href="https://aima.gov.pt/pt/estudar" target="_blank" rel="noopener noreferrer">AIMA — residência para estudantes em Portugal</a></li>
+        </ul>
+        <p style="font-size:13px;color:var(--muted-on-light);">Conteúdo revisto em <?= e(date('d/m/Y', strtotime($pageModified))) ?>.</p>
+      </div>
     </div>
   </section>
 
@@ -273,7 +284,7 @@ ksort($cardsColecoes);
           ['ENEM em Portugal?', 'Sim. Universidades públicas portuguesas e algumas privadas aceitam a nota do ENEM como prova de ingresso. É o maior atalho para brasileiros se candidatarem sem exames adicionais.'],
           ['Aulas em inglês ou português?', 'Em Portugal: 95% em português. Em outros países europeus: a maioria dos programas top é em inglês (Holanda, UK, Países nórdicos), com exceção da Alemanha/Itália/Espanha onde há mais oferta em língua local.'],
           ['Custo real por ano?', 'Em Portugal: 700–7.500€ de mensalidade (a "propina") por ano, mais 700–1.200€/mês de custo de vida. Na Europa em geral varia muito — Alemanha ~300€/ano, Holanda e Reino Unido entre 10 mil e 25 mil €/ano, com custo de vida mais alto. Fazer as contas direito antes de escolher é essencial.'],
-          ['Visto de estudante — qual a diferença?', 'Portugal tem regime CPLP simplificado para brasileiros, o que encurta prazos e burocracia. Outros países exigem visto Schengen de estudante padrão, com regras próprias. Em qualquer caso, a StudyWing trata da papelada toda.'],
+          ['Visto de estudante — qual a diferença?', 'Portugal tem um visto nacional de estudo e regras próprias para brasileiros. Outros países exigem um visto nacional de longa duração ou autorização de residência, com requisitos definidos por cada país. Em qualquer caso, confirme os procedimentos junto das autoridades competentes.'],
           ['O diploma vale em toda a Europa?', 'Em ambos, o diploma integra o Espaço Europeu de Ensino Superior via ECTS (Processo de Bolonha), o que facilita o reconhecimento acadêmico entre países-membros — profissões regulamentadas podem exigir um processo específico. Diplomas não-europeus exigem reconhecimento específico e podem passar por conversão.'],
           ['Como decido entre os dois caminhos?', 'Depende de 4 fatores: ENEM/IELTS disponível, orçamento, carreira-alvo, e afinidade linguística. O formulário StudyWing abaixo pede exatamente isto; em 24h voltamos com o plano personalizado.'],
         ];
@@ -314,13 +325,13 @@ ksort($cardsColecoes);
                 $shown++;
         ?>
         <article class="cmp-blog-card">
-          <a href="blog/<?= e($r['slug']) ?>.php" class="cmp-blog-card__media">
+          <a href="artigo.php?slug=<?= urlencode((string) $r['slug']) ?>" class="cmp-blog-card__media">
             <?php $cardImg = $r['imagem_url'] ?: 'assets/images/ogi-comparar.jpg'; ?>
             <img src="<?= e($cardImg) ?>" alt="<?= e($r['titulo']) ?>" loading="lazy">
             <span class="cmp-blog-card__pair"><?= e(ucwords($pairLabel)) ?></span>
           </a>
           <div class="cmp-blog-card__body">
-            <h3><a href="blog/<?= e($r['slug']) ?>.php"><?= e($r['titulo']) ?></a></h3>
+            <h3><a href="artigo.php?slug=<?= urlencode((string) $r['slug']) ?>"><?= e($r['titulo']) ?></a></h3>
             <p><?= e(mb_substr((string)($r['descricao_meta'] ?? ''), 0, 140, 'UTF-8')) ?>…</p>
             <?php $views = (int) $r['contador_views']; ?>
             <?php if ($views > 0): ?><span class="cmp-blog-card__views"><i class="bi bi-eye"></i> <?= $views ?> leituras</span><?php endif; ?>

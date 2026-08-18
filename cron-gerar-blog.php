@@ -5,21 +5,30 @@
  * tópicos são sobre ESTUDAR EM PORTUGAL (cidades, cursos, vistos, ENEM,
  * Concurso Especial, CPLP) em vez de "estudar no estrangeiro" genérico.
  *
- * Cron sugerido (cPanel, 3x/semana):
- *   0 6 * * 1,3,5 /usr/bin/php -q /caminho/estudar-em-portugal/cron-gerar-blog.php >> /caminho/estudar-em-portugal/cron-blog.log 2>&1
+ * Cron sugerido (cPanel, todos os dias às 06:00 — hora do servidor):
+ *   0 6 * * * /usr/bin/php -q /caminho/estudar-em-portugal/cron-gerar-blog.php >> /caminho/estudar-em-portugal/storage/cron-blog-console.log 2>&1
  *
- * Dependencies: PHP 7.4+, cURL, config.php + .env (BLOG_OPENROUTER_API_KEY, BLOG_MODEL).
+ * O script tem uma trava de 1 publicação por dia. Para uma execução manual
+ * extraordinária, usar `php -f cron-gerar-blog.php -- --force`.
+ *
+ * Dependencies: PHP 7.4+, CLI, cURL, config.php + .env
+ * (BLOG_OPENROUTER_API_KEY, BLOG_MODEL).
  *
  * DRY_RUN / testing:
- *   php -f cron-gerar-blog.php --dry-run
+ *   php -f cron-gerar-blog.php -- --dry-run
  *   DRY_RUN=1 php -f cron-gerar-blog.php
  *   → usa JSON mock + salta OpenRouter/Gemini. Recomendado para validar o
  *     pipeline local antes de gastar créditos.
  *
- * Proteção: este script só deve correr por cron/CLI — sem guard de SAPI em
- * PHP (não fiável), mas o flock + ausência de link no site tornam-no
- * inofensivo mesmo se acedido via web (não expõe segredos, só gera 1 post).
+ * Proteção: este script só corre por CLI/cron. O flock impede execuções
+ * concorrentes e a ausência de link no site mantém o job fora da navegação.
  */
+
+if (PHP_SAPI !== 'cli') {
+    http_response_code(404);
+    header('Content-Type: text/plain; charset=utf-8');
+    exit("Not Found\n");
+}
 
 define('CRON_LOCK', __DIR__ . '/storage/.cron-blog.lock');
 define('STALE_LOCK_SECONDS', 1800);
@@ -39,6 +48,14 @@ if (!$lockFp || !flock($lockFp, LOCK_EX | LOCK_NB)) {
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/blog-db.php';
 
+$enpCronTimezone = (string) (getenv('APP_TIMEZONE') ?: 'Europe/Lisbon');
+if (in_array($enpCronTimezone, timezone_identifiers_list(), true)) {
+    date_default_timezone_set($enpCronTimezone);
+} else {
+    error_log('[estudar-em-portugal/cron] APP_TIMEZONE inválido (' . $enpCronTimezone . '); a usar o timezone padrão do PHP.');
+}
+unset($enpCronTimezone);
+
 set_time_limit(420);
 
 // ── Report por email (EMAILREP1/EMAILREP2 no .env) ──────────────────────────
@@ -46,9 +63,11 @@ set_time_limit(420);
 // no skip benigno de "já correu hoje". Usa register_shutdown_function para
 // disparar sempre, mesmo que a corrida termine a meio por exit(1) ou erro
 // fatal, sem ter de repetir a chamada em cada ponto de saída do script.
-$GLOBALS['__enpReport']   = null; // ['status'=>'success'|'error', ...detalhes]
-$GLOBALS['__enpDryRun']   = false;
-$GLOBALS['__enpReported'] = false;
+$GLOBALS['__enpReport']       = null; // ['status'=>'success'|'error', ...detalhes]
+$GLOBALS['__enpDryRun']       = false;
+$GLOBALS['__enpReported']     = false;
+$GLOBALS['__enpSitemapStatus'] = 'não executado';
+$GLOBALS['__enpSitemapUrls']   = null;
 
 function enp_send_cron_report(string $status, array $details): void {
     $to = array_values(array_filter([EMAILREP1, EMAILREP2]));
@@ -58,6 +77,19 @@ function enp_send_cron_report(string $status, array $details): void {
     $subject = $status === 'success'
         ? '[Blog IA] Novo artigo: ' . strip_tags((string) ($details['título'] ?? ''))
         : '[Blog IA] FALHOU: ' . (string) ($details['motivo'] ?? 'erro desconhecido');
+    $sitemapUrl = rtrim(SITE_URL, '/') . '/sitemap.xml';
+    $details['sitemap'] = $sitemapUrl;
+    $details['estado do sitemap'] = (string) ($GLOBALS['__enpSitemapStatus'] ?? 'não executado');
+    if ($GLOBALS['__enpSitemapUrls'] !== null) {
+        $details['URLs no sitemap'] = (string) $GLOBALS['__enpSitemapUrls'];
+    }
+    if ($status !== 'success') {
+        $details['link de verificação'] = !empty($details['slug'])
+            ? rtrim(SITE_URL, '/') . '/artigo.php?slug=' . rawurlencode((string) $details['slug'])
+            : $sitemapUrl;
+        $details['últimas linhas do log'] = enp_cron_log_tail(25);
+    }
+
     $lines = ['Estado: ' . strtoupper($status), 'Data/hora: ' . date('Y-m-d H:i:s'), ''];
     foreach ($details as $k => $v) { $lines[] = ucfirst($k) . ': ' . $v; }
     $body = implode("\n", $lines);
@@ -116,6 +148,17 @@ function cronLog(string $msg): void {
     }
     @file_put_contents(CRON_LOG, $line, FILE_APPEND);
     echo $line;
+}
+
+/** Últimas linhas do log para diagnosticar falhas sem entrar no cPanel. */
+function enp_cron_log_tail(int $maxLines = 25): string {
+    if (!defined('CRON_LOG') || !is_readable(CRON_LOG)) {
+        return 'Log indisponível em ' . (defined('CRON_LOG') ? CRON_LOG : 'storage/.cron-blog.log');
+    }
+    $lines = @file(CRON_LOG, FILE_IGNORE_NEW_LINES);
+    if (!is_array($lines) || !$lines) return 'Log vazio.';
+    $tail = array_slice($lines, -max(1, $maxLines));
+    return implode("\n", $tail);
 }
 
 // ── Topic Pool — tema único: estudar em Portugal (cidades, cursos, dicas) ──
@@ -810,8 +853,10 @@ try {
     cronLog('=== Cron Blog Start (Estudar em Portugal) ===');
 
     $dryRun = getenv('DRY_RUN') === '1' || (isset($argv) && is_array($argv) && in_array('--dry-run', $argv, true));
+    $forceRun = getenv('FORCE_RUN') === '1' || (isset($argv) && is_array($argv) && in_array('--force', $argv, true));
     $GLOBALS['__enpDryRun'] = $dryRun;
     if ($dryRun) cronLog('DRY-RUN ATIVO — sem chamadas reais a OpenRouter/Gemini.');
+    if ($forceRun) cronLog('FORCE ATIVO — a ignorar a trava de uma publicação por dia.');
 
     if (empty(BLOG_OPENROUTER_API_KEY) && !$dryRun) {
         cronLog('ERROR: BLOG_OPENROUTER_API_KEY não definida no .env');
@@ -822,14 +867,17 @@ try {
     $tracker = loadTracker();
     $today   = date('Y-m-d');
 
-    // Limite de 1x/dia temporariamente desativado a pedido do utilizador
-    // (2026-07-25), para permitir gerar vários artigos seguidos e recuperar
-    // o atraso agora que a imagem hero voltou a funcionar. Reativar quando
-    // o blog já tiver massa crítica de conteúdo:
-    // if (!$dryRun && $tracker['last_date'] === $today) {
-    //     cronLog("Já correu hoje ($today). A saltar.");
-    //     exit(0);
-    // }
+    // Uma execução diária deve publicar no máximo um artigo. O --force existe
+    // para recuperação operacional/manual sem desativar esta proteção no cron.
+    if (!$dryRun && !$forceRun && ($tracker['last_date'] ?? null) === $today) {
+        cronLog("Já correu hoje ($today). A saltar.");
+        if (isset($lockFp) && $lockFp) {
+            flock($lockFp, LOCK_UN);
+            fclose($lockFp);
+            $lockFp = null;
+        }
+        exit(0);
+    }
 
     $topic = pickTopic($TOPIC_POOL, $tracker);
     if ($topic === null) {
@@ -914,8 +962,17 @@ try {
         require __DIR__ . '/gerar-sitemap.php';
         if (function_exists('enp_gerar_sitemap')) {
             $n = enp_gerar_sitemap();
-            cronLog("Sitemap regenerado: {$n} URLs");
+            $GLOBALS['__enpSitemapUrls'] = $n;
+            $writeOk = $GLOBALS['enp_sitemap_write_ok'] ?? is_file(__DIR__ . '/sitemap.xml');
+            $GLOBALS['__enpSitemapStatus'] = $writeOk ? 'regenerado' : 'falhou a escrever';
+            cronLog($writeOk ? "Sitemap regenerado: {$n} URLs" : "ERROR: falha a escrever sitemap.xml ({$n} URLs calculadas)");
+        } else {
+            $GLOBALS['__enpSitemapStatus'] = 'gerador sem função disponível';
+            cronLog('WARNING: gerar-sitemap.php não disponibilizou enp_gerar_sitemap().');
         }
+    } else {
+        $GLOBALS['__enpSitemapStatus'] = 'gerador não encontrado';
+        cronLog('WARNING: gerar-sitemap.php não encontrado.');
     }
 
     if (!$dryRun) {

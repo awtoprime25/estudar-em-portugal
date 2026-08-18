@@ -1,8 +1,18 @@
-User-agent: *
+# Crawlers de pesquisa e de respostas AI: o conteúdo público pode ser descoberto e citado.
+# As exclusões são repetidas no grupo explícito porque, segundo o padrão robots,
+# um grupo específico não herda as regras do grupo User-agent: *.
+User-agent: Googlebot
+User-agent: Google-Extended
+User-agent: Bingbot
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
 Allow: /
-Disallow: /views-stats.php
-Disallow: /admin/views-stats.php
+Disallow: /admin/
 Disallow: /ajax-comp.php
+Disallow: /ajax-explicacoes.php
 Disallow: /track-visit.php
 Disallow: /cron-cleanup-views.php
 Disallow: /cron-update-geoip.php
@@ -11,6 +21,28 @@ Disallow: /cron-gerar-blog.php
 Disallow: /gerar-sitemap.php
 Disallow: /chat.php
 Disallow: /csrf-token.php
+Disallow: /config.php
+Disallow: /comparar-form.log
+Disallow: /storage/
+Disallow: /includes/
+Disallow: /log/
+Disallow: /_dev/
+Disallow: /_backups*/
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /ajax-comp.php
+Disallow: /ajax-explicacoes.php
+Disallow: /track-visit.php
+Disallow: /cron-cleanup-views.php
+Disallow: /cron-update-geoip.php
+Disallow: /gerador_artigo_comparar.php
+Disallow: /cron-gerar-blog.php
+Disallow: /gerar-sitemap.php
+Disallow: /chat.php
+Disallow: /csrf-token.php
+Disallow: /config.php
 Disallow: /comparar-form.log
 Disallow: /storage/
 Disallow: /includes/

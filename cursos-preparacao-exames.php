@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/davinci-units.php';
-$pageTitle       = 'Aulas Particulares para os Exames Nacionais de Portugal | Estudar em Portugal';
-$pageDescription = 'Aulas particulares e reforço online para os Exames Nacionais de Portugal — também chamadas de explicações — com professores portugueses, feitas para brasileiros.';
+$pageTitle       = 'Preparação para Exames Nacionais em Portugal | Da Vinci';
+$pageDescription = 'Aulas individuais online com professores portugueses para preparar Exames Nacionais. Apoio a brasileiros que querem estudar em Portugal.';
 $activeNav       = 'explicacoes';
+$pageModified    = '2026-08-18';
 $pageSlug        = 'cursos-preparacao-exames';
 $extraJS         = 'assets/js/explicacoes-form.js';
 

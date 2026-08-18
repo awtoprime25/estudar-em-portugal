@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/config.php';
-$pageTitle       = 'Concurso Especial de Acesso para Estudantes Internacionais em Portugal: Guia Completo para Brasileiros | Estudar em Portugal';
-$pageDescription = 'Guia completo do Concurso Especial de Acesso a Portugal: quem se enquadra, exames, documentos, prazos, custos e desconto CPLP para brasileiros.';
+$pageTitle       = 'Concurso Especial em Portugal | Guia';
+$pageDescription = 'Guia para brasileiros sobre o Concurso Especial em Portugal: elegibilidade, ENEM, documentos, fases, custos, desconto CPLP e candidatura.';
 $activeNav       = 'concurso-especial';
+$pageModified    = '2026-08-18';
 
 $faq = [
     ['O que é o Concurso Especial de Estudantes Internacionais em Portugal?',
@@ -27,7 +28,7 @@ $extraJsonLd = json_encode([
             'url'           => SITE_URL . 'concurso-especial-estudantes-internacionais.php',
             'inLanguage'    => 'pt-BR',
             'datePublished' => '2026-07-15',
-            'dateModified'  => '2026-07-15',
+            'dateModified'  => $pageModified,
             'author'        => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'publisher'     => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => SITE_URL . 'concurso-especial-estudantes-internacionais.php'],
@@ -149,6 +150,14 @@ require_once __DIR__ . '/includes/header.php';
     <div class="highlight-box">
       <strong>Desconto CPLP:</strong> como o Brasil faz parte da CPLP (Comunidade dos Países de Língua Portuguesa), muitas universidades oferecem desconto na mensalidade — que pode chegar a 45% em algumas instituições. Vale sempre confirmar se a universidade escolhida aplica esse desconto e como solicitá-lo.
     </div>
+    <p style="font-size:13px;color:var(--muted-on-light);">Conteúdo revisto em <?= e(date('d/m/Y', strtotime($pageModified))) ?>. Prazos, valores e requisitos devem ser confirmados no edital da instituição e nas fontes oficiais.</p>
+
+    <h3>Fontes oficiais para confirmar o processo</h3>
+    <ul>
+      <li><a href="https://www.dges.gov.pt/pt/pagina/concurso-especial-para-estudantes-internacionais" target="_blank" rel="noopener noreferrer">DGES — Concurso Especial para Estudantes Internacionais</a></li>
+      <li><a href="https://diariodarepublica.pt/dr/detalhe/decreto-lei/36-2014-572431" target="_blank" rel="noopener noreferrer">Diário da República — Decreto-Lei n.º 36/2014</a></li>
+      <li><a href="https://aima.gov.pt/pt/estudar" target="_blank" rel="noopener noreferrer">AIMA — informação para estudantes</a></li>
+    </ul>
 
     <h2 id="erros-comuns">Os erros mais comuns</h2>
     <div class="warning-box">

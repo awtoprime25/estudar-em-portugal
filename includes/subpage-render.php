@@ -23,10 +23,11 @@ function render_destino_page(string $slug): void
     }
 
     $prep            = cidade_preposicao($city['nome']);
-    $pageTitle       = 'Estudar ' . $prep . ' ' . $city['nome'] . ' — Guia para Brasileiros | Estudar em Portugal';
-    $pageDescription = $city['resumo'];
+    $pageTitle       = 'Estudar ' . $prep . ' ' . $city['nome'] . ' | Guia para Brasileiros';
+    $pageDescription = seo_meta_description($city['resumo']);
     $activeNav       = 'destinos';
     $pageSlug        = 'destino-' . $slug;
+    $pageModified    = '2026-08-18';
 
     $extraJsonLd = json_encode([
         '@context' => 'https://schema.org',
@@ -36,6 +37,7 @@ function render_destino_page(string $slug): void
                 'name'        => $city['nome'] . ', Portugal',
                 'description' => $city['resumo'],
                 'url'         => SITE_URL . 'destino-' . $slug . '.php',
+                'dateModified' => $pageModified,
             ],
             [
                 '@type' => 'BreadcrumbList',
@@ -58,6 +60,7 @@ function render_destino_page(string $slug): void
             <span class="eyebrow"><?= e($city['eyebrow']) ?></span>
             <h1>Estudar <?= e($prep) ?> <span class="accent"><?= e($city['nome']) ?></span></h1>
             <p class="lede"><?= e($city['resumo']) ?></p>
+            <p style="font-size:12px;opacity:.75;margin-top:12px;">Conteúdo revisto em <?= e(date('d/m/Y', strtotime($pageModified))) ?>.</p>
             <div class="hero__ctas">
               <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
             </div>
@@ -167,9 +170,10 @@ function render_curso_page(string $slug): void
         return;
     }
 
-    $pageTitle       = e($course['nome']) . ' em Portugal para Brasileiros | Estudar em Portugal';
-    $pageDescription = $course['resumo'];
+    $pageTitle       = $course['nome'] . ' em Portugal | Guia para Brasileiros';
+    $pageDescription = seo_meta_description($course['resumo']);
     $pageSlug        = 'curso-' . $slug;
+    $pageModified    = '2026-08-18';
 
     $extraJsonLd = json_encode([
         '@context' => 'https://schema.org',
@@ -181,6 +185,7 @@ function render_curso_page(string $slug): void
                 'provider'    => ['@type' => 'Organization', 'name' => 'Ginásios Da Vinci', 'sameAs' => 'https://www.ginasiosdavinci.com/'],
                 'url'         => SITE_URL . 'curso-' . $slug . '.php',
                 'inLanguage'  => 'pt-BR',
+                'dateModified' => $pageModified,
             ],
             [
                 '@type' => 'BreadcrumbList',
@@ -202,6 +207,7 @@ function render_curso_page(string $slug): void
             <span class="eyebrow"><?= e($course['eyebrow']) ?></span>
             <h1><?= e($course['nome']) ?> <span class="accent">em Portugal</span></h1>
             <p class="lede"><?= e($course['resumo']) ?></p>
+            <p style="font-size:12px;opacity:.75;margin-top:12px;">Conteúdo revisto em <?= e(date('d/m/Y', strtotime($pageModified))) ?>.</p>
             <div class="hero__ctas">
               <a href="#formulario" class="btn-pill btn-flag">Agendar consultoria gratuita</a>
             </div>

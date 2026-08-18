@@ -144,7 +144,7 @@ function enp_render_blog_php(array $artigo, array $topico): string {
         ['q' => 'Quanto custa em média estudar em '.$b.'?',
          'a' => 'Em '.$b.', propinas tipicamente entre 2.000€ e 25.000€ por ano (varia por país), e custo de vida 900€ a 1.800€/mês.'],
         ['q' => 'Como funciona o visto para '.$b.'?',
-         'a' => 'É necessário visto Schengen de estudante. A StudyWing trata de toda a documentação (carta de aceitação, seguro, comprovativos financeiros).'],
+         'a' => 'É necessário um visto nacional de longa duração ou autorização de residência, conforme o país. Confirme os requisitos e prepare a documentação com a autoridade competente.'],
         ['q' => 'O diploma vale em toda a União Europeia?',
          'a' => 'Tanto o diploma português como o de outros países UE integram o Espaço Europeu de Ensino Superior via ECTS, o que facilita o reconhecimento académico entre os países-membros. Em profissões regulamentadas, pode ser necessário um processo específico de reconhecimento profissional.'],
     ];

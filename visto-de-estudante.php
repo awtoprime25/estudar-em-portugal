@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/config.php';
 
-$pageTitle       = 'Visto de Estudante em Portugal para Brasileiros | Estudar em Portugal';
-$pageDescription = 'Como funciona o visto de estudante para brasileiros que vão estudar em Portugal: quando pedir, que documentos preparar e o que fazer depois de chegar.';
+$pageTitle       = 'Visto de estudante em Portugal | Guia';
+$pageDescription = 'Veja quando pedir o visto de estudante para Portugal, quais documentos preparar, como tratar do consulado e como regularizar a residência na AIMA.';
 $activeNav       = 'visto';
+$pageModified    = '2026-08-18';
 
 $faq = [
     ['Quando devo pedir o visto de estudante?',
@@ -24,6 +25,8 @@ $extraJsonLd = json_encode([
             'headline'         => 'Visto de Estudante em Portugal para Brasileiros',
             'description'      => $pageDescription,
             'inLanguage'       => 'pt-BR',
+            'datePublished'    => '2026-08-18',
+            'dateModified'     => $pageModified,
             'author'           => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'publisher'        => ['@type' => 'Organization', 'name' => 'Estudar em Portugal — Da Vinci × StudyWing', 'url' => SITE_URL],
             'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => SITE_URL . 'visto-de-estudante.php'],
@@ -132,6 +135,20 @@ require_once __DIR__ . '/includes/header.php';
       <div class="content-block content-block--wide" style="padding-top:12px;">
         <p>Documentos emitidos no Brasil — como o histórico escolar e o diploma do ensino secundário — normalmente precisam de <strong>tradução</strong> (quando não estão em português, inglês, francês ou espanhol) e de <strong>reconhecimento</strong>, via apostila de Haia ou consulado português no Brasil.</p>
         <p class="warning-box">Este processo de tradução e reconhecimento pode demorar — não deixe para a última hora. Confirme sempre os requisitos exatos e atualizados diretamente com o consulado, já que os procedimentos podem mudar.</p>
+        <p style="font-size:13px;color:var(--muted-on-light);">Conteúdo revisto em <?= e(date('d/m/Y', strtotime($pageModified))) ?>. Os requisitos oficiais podem mudar; confirme sempre a informação nas entidades competentes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="content-block content-block--wide">
+        <h2>Fontes oficiais</h2>
+        <ul>
+          <li><a href="https://www.gov.pt/servicos/pedir-um-visto-de-residencia-para-estudo-intercambio-de-estudantes-estagio-profissional-ou-voluntariado" target="_blank" rel="noopener noreferrer">gov.pt — pedido de visto de residência para estudo</a></li>
+          <li><a href="https://vistos.mne.gov.pt/pt/vistos-nacionais/informacao-geral/tipo-de-visto" target="_blank" rel="noopener noreferrer">Vistos Nacionais — informação oficial sobre tipos de visto</a></li>
+          <li><a href="https://aima.gov.pt/pt/estudar" target="_blank" rel="noopener noreferrer">AIMA — estudar e autorização de residência</a></li>
+        </ul>
       </div>
     </div>
   </section>

@@ -11,6 +11,8 @@ $pageTitle       = $pageTitle       ?? SITE_NAME;
 $pageDescription = $pageDescription ?? SITE_DESCRIPTION;
 $activeNav       = $activeNav       ?? '';
 $ogImage         = $ogImage         ?? SITE_URL . 'assets/images/ogi-estudar-em-portugal.jpg';
+$ogImageAlt      = $ogImageAlt      ?? $pageTitle;
+$pageModified    = $pageModified    ?? '';
 $noindex         = !empty($noindex);
 ?>
 <!DOCTYPE html>
@@ -22,6 +24,10 @@ $noindex         = !empty($noindex);
 
     <title><?= e($pageTitle) ?></title>
     <meta name="description" content="<?= e($pageDescription) ?>">
+    <meta http-equiv="content-language" content="pt-BR">
+    <?php if ($pageModified !== ''): ?>
+    <meta property="article:modified_time" content="<?= e($pageModified) ?>">
+    <?php endif; ?>
     <?php if ($noindex): ?>
     <meta name="robots" content="noindex, nofollow">
     <?php else: ?>
@@ -37,10 +43,12 @@ $noindex         = !empty($noindex);
     <meta property="og:locale" content="pt_BR">
     <meta property="og:locale:alternate" content="pt_PT">
     <meta property="og:image" content="<?= e($ogImage) ?>">
+    <meta property="og:image:alt" content="<?= e($ogImageAlt) ?>">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="<?= e(canonical_url()) ?>">
     <meta name="twitter:title" content="<?= e($pageTitle) ?>">
     <meta name="twitter:description" content="<?= e($pageDescription) ?>">
     <meta name="twitter:image" content="<?= e($ogImage) ?>">
@@ -82,7 +90,16 @@ $noindex         = !empty($noindex);
               {"@type": "Organization", "name": "StudyWing", "url": "https://studywing.org/"}
             ]
           },
-          "serviceType": "Consultoria de admissão universitária na Europa"
+          "serviceType": "Consultoria de admissão universitária na Europa",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "<?= e(SITE_URL) ?>assets/logo-davinci.svg"
+          },
+          "sameAs": [
+            "<?= e(SOCIAL_INSTAGRAM) ?>",
+            "<?= e(SOCIAL_FACEBOOK) ?>",
+            "<?= e(SOCIAL_YOUTUBE) ?>"
+          ]
         },
         {
           "@type": "WebSite",

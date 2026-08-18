@@ -27,12 +27,14 @@ $categoryLabels = ['cidade' => 'Cidades', 'curso' => 'Cursos', 'dica' => 'Dicas'
 $heroImg = $post['hero_image'] ?: 'hero-blog-default.svg';
 $title   = $post['title'] !== '' ? $post['title'] : 'Blog Estudar em Portugal';
 $desc    = $post['meta_description'] !== '' ? $post['meta_description'] : (string) $post['excerpt'];
-$dateFmt = $post['published_at'] ? date('d/m/Y', strtotime($post['published_at'])) : '';
+$dateFmt    = $post['published_at'] ? date('d/m/Y', strtotime($post['published_at'])) : '';
+$dateModFmt = $post['updated_at'] ? date('d/m/Y', strtotime($post['updated_at'])) : $dateFmt;
 
 $pageTitle       = $title;
-$pageDescription = $desc;
+$pageDescription = seo_meta_description($desc);
 $activeNav       = 'blog';
 $ogImage         = SITE_URL . 'assets/images/' . $heroImg;
+$pageModified    = $post['updated_at'] ? date('Y-m-d', strtotime($post['updated_at'])) : ($post['published_at'] ? date('Y-m-d', strtotime($post['published_at'])) : '');
 
 $related = blog_related((int) $post['id'], (string) $post['category'], 3);
 
@@ -75,8 +77,10 @@ require_once __DIR__ . '/includes/header.php';
       </p>
       <h1><?= $post['h1_html'] !== '' ? $post['h1_html'] : e($title) ?></h1>
       <p>
-        <?php if ($dateFmt): ?><?= e($dateFmt) ?><?php endif; ?>
+        <?php if ($dateFmt): ?>Publicado em <?= e($dateFmt) ?><?php endif; ?>
+        <?php if ($dateModFmt && $dateModFmt !== $dateFmt): ?> · Atualizado em <?= e($dateModFmt) ?><?php endif; ?>
         <?php if (!empty($post['reading_minutes'])): ?> · <?= (int) $post['reading_minutes'] ?> min de leitura<?php endif; ?>
+        · Da Vinci × StudyWing
       </p>
     </div>
   </section>

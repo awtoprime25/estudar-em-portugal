@@ -5,8 +5,28 @@
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
 
-# URL limpo (sem .php) para a página de Cursos Preparatórios/Explicações.
-# Site continua a servir todas as outras páginas com extensão .php normal —
-# esta é a única exceção, pedida explicitamente para esta URL.
 RewriteEngine On
+
+# Remove endpoints antigos apenas quando foram pedidos diretamente pelo cliente.
+# THE_REQUEST impede que o rewrite interno abaixo provoque um loop e evita
+# uma cadeia extra de redirects para pedidos em www ou HTTP.
+RewriteCond %{HTTP_HOST} ^(?:www\.)?estudar-em-portugal\.com$ [NC]
+RewriteCond %{THE_REQUEST} \s/+index\.php(?:[?\s]) [NC]
+RewriteRule ^index\.php$ https://estudar-em-portugal.com/ [R=301,L,NE,QSD]
+
+RewriteCond %{HTTP_HOST} ^(?:www\.)?estudar-em-portugal\.com$ [NC]
+RewriteCond %{THE_REQUEST} \s/+cursos-preparacao-exames\.php(?:[?\s]) [NC]
+RewriteRule ^cursos-preparacao-exames\.php$ https://estudar-em-portugal.com/cursos-preparacao-exames [R=301,L,NE,QSD]
+
+# Canonicalização de domínio e protocolo apenas no host de produção.
+# O bloco X-Forwarded-Proto evita loops quando existe proxy HTTPS à frente do Apache.
+RewriteCond %{HTTP_HOST} ^(?:www\.)?estudar-em-portugal\.com$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https [NC]
+RewriteRule ^ https://estudar-em-portugal.com%{REQUEST_URI} [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} ^www\.estudar-em-portugal\.com$ [NC]
+RewriteRule ^ https://estudar-em-portugal.com%{REQUEST_URI} [R=301,L,NE]
+
+# URL limpa para a página de Cursos Preparatórios/Explicações.
 RewriteRule ^cursos-preparacao-exames/?$ cursos-preparacao-exames.php [L,QSA]

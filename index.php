@@ -1,7 +1,8 @@
 <?php
 $pageTitle       = 'Estudar em Portugal para Brasileiros | Ginásios Da Vinci';
-$pageDescription = 'Seu diploma europeu começa em Portugal. Mesma língua, universidades reconhecidas em toda a Europa e acompanhamento completo da inscrição até a chegada. Agende uma consultoria gratuita.';
+$pageDescription = 'Estude em Portugal com apoio na escolha do curso, candidatura, visto e chegada. Orientação para brasileiros que procuram universidade na Europa.';
 $activeNav       = 'inicio';
+$pageModified    = '2026-08-18';
 require_once __DIR__ . '/includes/davinci-units.php';
 require_once __DIR__ . '/includes/header.php';
 ?>
