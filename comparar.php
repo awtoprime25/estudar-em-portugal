@@ -333,8 +333,6 @@ ksort($cardsColecoes);
           <div class="cmp-blog-card__body">
             <h3><a href="artigo.php?slug=<?= urlencode((string) $r['slug']) ?>"><?= e($r['titulo']) ?></a></h3>
             <p><?= e(mb_substr((string)($r['descricao_meta'] ?? ''), 0, 140, 'UTF-8')) ?>…</p>
-            <?php $views = (int) $r['contador_views']; ?>
-            <?php if ($views > 0): ?><span class="cmp-blog-card__views"><i class="bi bi-eye"></i> <?= $views ?> leituras</span><?php endif; ?>
           </div>
         </article>
         <?php endforeach; endforeach; ?>

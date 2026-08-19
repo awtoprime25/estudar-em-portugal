@@ -108,6 +108,8 @@
         if (res.ok) {
           steps.forEach(function (s) { s.style.display = 'none'; });
           dots.forEach(function (d) { d.style.background = '#17a079'; });
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({'event': 'lead_formulario'});
         } else if (Array.isArray(res.errors) && res.errors.length) {
           feedback.textContent = 'Verifique: ' + res.errors.join(', ');
         }

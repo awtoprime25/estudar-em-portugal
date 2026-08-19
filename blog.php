@@ -8,7 +8,6 @@ require_once __DIR__ . '/includes/blog-db.php';
 
 $categoryLabels = ['cidade' => 'Cidades', 'curso' => 'Cursos', 'dica' => 'Dicas'];
 $posts   = blog_list(['limit' => 100]);
-$viewsMap = lf_get_views_map();
 $total   = count($posts);
 $byCat   = ['cidade' => 0, 'curso' => 0, 'dica' => 0];
 foreach ($posts as $p) {
@@ -76,8 +75,6 @@ require_once __DIR__ . '/includes/header.php';
             <p><?= e(mb_substr((string) ($p['excerpt'] ?? ''), 0, 110, 'UTF-8')) ?>…</p>
             <div class="blog-card__footer">
               <span><?= $p['published_at'] ? date('d/m/Y', strtotime($p['published_at'])) : '' ?></span>
-              <?php $views = (int) ($viewsMap[$p['slug']] ?? 0); ?>
-              <?php if ($views > 0): ?><span><?= $views ?> leituras</span><?php endif; ?>
             </div>
           </div>
         </a>

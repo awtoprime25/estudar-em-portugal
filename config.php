@@ -85,6 +85,11 @@ define('LF_VIEWS_RETENTION_DAYS', max(7, min(180, (int) (getenv('LF_VIEWS_RETENT
 // VIEWS_STATS_TOKEN no .env em produção.
 define('VIEWS_STATS_TOKEN', (string) (getenv('VIEWS_STATS_TOKEN') ?: '88b4193f989f69dd43a5b48b36ff16a5d42872c6093f449febd75864e1f5393e'));
 
+// Google Tag Manager. Vazio por omissão — o snippet só é impresso
+// (includes/header.php) quando isto tiver um valor real "GTM-XXXXXXX"
+// vindo do .env. Sem isto, o site não carrega nenhum script do GTM.
+define('GTM_CONTAINER_ID', (string) (getenv('GTM_CONTAINER_ID') ?: ''));
+
 // ============================================================
 // SMTP para envio de email (formulário StudyWing — ajax-comp.php)
 // Lido do .env; vazio = skip (best-effort, sem erro se mail() falhar).

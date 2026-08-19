@@ -201,6 +201,11 @@ if ($stmt = $d->prepare(
     while ($r = $res->fetch_assoc()) $topCountries[] = $r;
     $stmt->close();
 }
+// Total do MESMO universo da query acima (site inteiro + blog quando sem
+// filtro; só o slug quando filtrado) — usado para a % de cada país e para
+// a linha "Outros", para nunca desalinhar com o que a tabela mostra.
+$topCountriesScopeTotal = $slugFilter !== '' ? $blogSummary['h'] : ($siteSummary['h'] + $blogSummary['h']);
+$topCountriesOthers = max(0, $topCountriesScopeTotal - array_sum(array_column($topCountries, 'hits')));
 
 // 3) Top artigos (ex-cluindo sentinel)
 $topArticles = [];
@@ -401,12 +406,24 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
               <td><span class="flag"><?= htmlspecialchars(eplFlag($cc)) ?></span><?= htmlspecialchars($name) ?> <span class="muted">(<?= htmlspecialchars($cc) ?>)</span></td>
               <td class="num"><?= number_format($hits, 0, ',', '.') ?></td>
               <td class="num"><?= number_format($uniq, 0, ',', '.') ?></td>
-              <td class="num muted"><?= $blogSummary['h'] > 0 ? round(($hits / $blogSummary['h']) * 100, 1) . '%' : '—' ?></td>
+              <td class="num muted"><?= $topCountriesScopeTotal > 0 ? round(($hits / $topCountriesScopeTotal) * 100, 1) . '%' : '—' ?></td>
               <td><div class="bar"><i style="width:<?= $w ?>%"></i></div></td>
             </tr>
             <?php endforeach; ?>
+            <?php if ($topCountriesOthers > 0): ?>
+            <tr>
+              <td class="muted">🏳️ Outros países <span class="muted">(fora do top 12)</span></td>
+              <td class="num muted"><?= number_format($topCountriesOthers, 0, ',', '.') ?></td>
+              <td class="num muted">—</td>
+              <td class="num muted"><?= round(($topCountriesOthers / $topCountriesScopeTotal) * 100, 1) ?>%</td>
+              <td></td>
+            </tr>
+            <?php endif; ?>
           </tbody>
         </table>
+        <div style="padding:.6rem 1.2rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border)">
+          Soma = <?= number_format($topCountriesScopeTotal, 0, ',', '.') ?> visitas humanas <?= $slugFilter !== '' ? 'do slug filtrado' : '(site inteiro + blog)' ?>.
+        </div>
       <?php endif; ?>
     </div>
 

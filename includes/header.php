@@ -18,9 +18,19 @@ $noindex         = !empty($noindex);
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <?php if (GTM_CONTAINER_ID !== ''): ?>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','<?= e(GTM_CONTAINER_ID) ?>');</script>
+    <!-- End Google Tag Manager -->
+    <?php endif; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0a1628">
+    <meta name="google-site-verification" content="UvZhJep5Tz2peeS0ARf_Vhl0y08mX0Gf1-pseASHWdE">
 
     <title><?= e($pageTitle) ?></title>
     <meta name="description" content="<?= e($pageDescription) ?>">
@@ -133,6 +143,12 @@ $noindex         = !empty($noindex);
     <?= $extraHeadHtml ?? '' ?>
 </head>
 <body>
+<?php if (GTM_CONTAINER_ID !== ''): ?>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= urlencode(GTM_CONTAINER_ID) ?>"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<?php endif; ?>
 
 <a href="#conteudo" class="skip-link">Saltar para o conteúdo</a>
 

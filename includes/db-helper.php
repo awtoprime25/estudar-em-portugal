@@ -841,27 +841,3 @@ function lf_track_view(string $slug, ?string $ipRaw = null, ?string $userAgent =
     }
 }
 
-/** Cacheado por request. Devolve mapa slug → views (só humanos). */
-function lf_get_views_map(): array {
-    static $map = null;
-    if ($map !== null) return $map;
-    $map = [];
-    $d = db(); if (!$d) return $map;
-    try {
-        $res = $d->query('SELECT slug, views FROM blog_views');
-        if ($res) {
-            while ($row = $res->fetch_assoc()) $map[(string) $row['slug']] = (int) $row['views'];
-            $res->free();
-        }
-    } catch (\Throwable $e) {}
-    return $map;
-}
-
-function lf_get_view(string $slug): int {
-    $map = lf_get_views_map();
-    return (int) ($map[$slug] ?? 0);
-}
-
-function lf_views_available(): bool {
-    return db() !== null;
-}

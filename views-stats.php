@@ -81,6 +81,9 @@ if ($stmt = $d->prepare(
     while ($r = $res->fetch_assoc()) $topCountries[] = $r;
     $stmt->close();
 }
+// Outros = long tail fora do top 12 + visitas sem país resolvido (esta
+// query exige "pais IS NOT NULL", o card de cima ("Visitas humanas") não).
+$topCountriesOthers = max(0, $summary['h'] - array_sum(array_column($topCountries, 'hits')));
 
 // 3) Timeline diária (humanos e bots lado-a-lado)
 $timeline = [];
@@ -244,8 +247,18 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
               <td><div class="bar"><i style="width:<?= $w ?>%"></i></div></td>
             </tr>
             <?php endforeach; ?>
+            <?php if ($topCountriesOthers > 0): ?>
+            <tr>
+              <td class="muted">🏳️ Outros / não identificado</td>
+              <td class="num muted"><?= number_format($topCountriesOthers, 0, ',', '.') ?></td>
+              <td></td>
+            </tr>
+            <?php endif; ?>
           </tbody>
         </table>
+        <div style="padding:.6rem 1.2rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border)">
+          Soma = <?= number_format($summary['h'], 0, ',', '.') ?> visitas humanas (top 12 países + outros/não identificado).
+        </div>
       <?php endif; ?>
     </div>
 
